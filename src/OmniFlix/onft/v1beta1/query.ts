@@ -1,87 +1,329 @@
+//@ts-nocheck
 /* eslint-disable */
-import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
-import { Collection, Denom, ONFT, Owner } from "./onft";
-import { Params } from "./params";
+import {
+  PageRequest,
+  PageRequestAmino,
+  PageResponse,
+  PageResponseAmino,
+} from "../../../cosmos/base/query/v1beta1/pagination";
+import { Collection, CollectionAmino, Denom, DenomAmino, ONFT, ONFTAmino, Owner, OwnerAmino } from "./onft";
+import { Params, ParamsAmino } from "./params";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact, Rpc } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact, Rpc } from "../../../helpers";
 export const protobufPackage = "OmniFlix.onft.v1beta1";
 export interface QueryCollectionRequest {
   denomId: string;
   pagination?: PageRequest;
 }
+export interface QueryCollectionRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryCollectionRequest";
+  value: Uint8Array;
+}
+export interface QueryCollectionRequestAmino {
+  denom_id?: string;
+  pagination?: PageRequestAmino;
+}
+export interface QueryCollectionRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryCollectionRequest";
+  value: QueryCollectionRequestAmino;
+}
 export interface QueryCollectionResponse {
   collection?: Collection;
   pagination?: PageResponse;
+}
+export interface QueryCollectionResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryCollectionResponse";
+  value: Uint8Array;
+}
+export interface QueryCollectionResponseAmino {
+  collection?: CollectionAmino;
+  pagination?: PageResponseAmino;
+}
+export interface QueryCollectionResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryCollectionResponse";
+  value: QueryCollectionResponseAmino;
 }
 export interface QueryIBCCollectionRequest {
   hash: string;
   pagination?: PageRequest;
 }
+export interface QueryIBCCollectionRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryIBCCollectionRequest";
+  value: Uint8Array;
+}
+export interface QueryIBCCollectionRequestAmino {
+  hash?: string;
+  pagination?: PageRequestAmino;
+}
+export interface QueryIBCCollectionRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryIBCCollectionRequest";
+  value: QueryIBCCollectionRequestAmino;
+}
 export interface QueryDenomRequest {
   denomId: string;
+}
+export interface QueryDenomRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryDenomRequest";
+  value: Uint8Array;
+}
+export interface QueryDenomRequestAmino {
+  denom_id?: string;
+}
+export interface QueryDenomRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryDenomRequest";
+  value: QueryDenomRequestAmino;
 }
 export interface QueryDenomResponse {
   denom?: Denom;
 }
+export interface QueryDenomResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryDenomResponse";
+  value: Uint8Array;
+}
+export interface QueryDenomResponseAmino {
+  denom?: DenomAmino;
+}
+export interface QueryDenomResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryDenomResponse";
+  value: QueryDenomResponseAmino;
+}
 export interface QueryIBCDenomRequest {
   hash: string;
+}
+export interface QueryIBCDenomRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryIBCDenomRequest";
+  value: Uint8Array;
+}
+export interface QueryIBCDenomRequestAmino {
+  hash?: string;
+}
+export interface QueryIBCDenomRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryIBCDenomRequest";
+  value: QueryIBCDenomRequestAmino;
 }
 export interface QueryDenomsRequest {
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
   owner: string;
 }
+export interface QueryDenomsRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryDenomsRequest";
+  value: Uint8Array;
+}
+export interface QueryDenomsRequestAmino {
+  /** pagination defines an optional pagination for the request. */
+  pagination?: PageRequestAmino;
+  owner?: string;
+}
+export interface QueryDenomsRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryDenomsRequest";
+  value: QueryDenomsRequestAmino;
+}
 export interface QueryDenomsResponse {
   denoms: Denom[];
   pagination?: PageResponse;
+}
+export interface QueryDenomsResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryDenomsResponse";
+  value: Uint8Array;
+}
+export interface QueryDenomsResponseAmino {
+  denoms?: DenomAmino[];
+  pagination?: PageResponseAmino;
+}
+export interface QueryDenomsResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryDenomsResponse";
+  value: QueryDenomsResponseAmino;
 }
 export interface QueryONFTRequest {
   denomId: string;
   id: string;
 }
+export interface QueryONFTRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryONFTRequest";
+  value: Uint8Array;
+}
+export interface QueryONFTRequestAmino {
+  denom_id?: string;
+  id?: string;
+}
+export interface QueryONFTRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryONFTRequest";
+  value: QueryONFTRequestAmino;
+}
 export interface QueryONFTResponse {
   onft?: ONFT;
+}
+export interface QueryONFTResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryONFTResponse";
+  value: Uint8Array;
+}
+export interface QueryONFTResponseAmino {
+  onft?: ONFTAmino;
+}
+export interface QueryONFTResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryONFTResponse";
+  value: QueryONFTResponseAmino;
 }
 export interface QueryIBCDenomONFTRequest {
   hash: string;
   id: string;
+}
+export interface QueryIBCDenomONFTRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryIBCDenomONFTRequest";
+  value: Uint8Array;
+}
+export interface QueryIBCDenomONFTRequestAmino {
+  hash?: string;
+  id?: string;
+}
+export interface QueryIBCDenomONFTRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryIBCDenomONFTRequest";
+  value: QueryIBCDenomONFTRequestAmino;
 }
 export interface QueryOwnerONFTsRequest {
   denomId: string;
   owner: string;
   pagination?: PageRequest;
 }
+export interface QueryOwnerONFTsRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryOwnerONFTsRequest";
+  value: Uint8Array;
+}
+export interface QueryOwnerONFTsRequestAmino {
+  denom_id?: string;
+  owner?: string;
+  pagination?: PageRequestAmino;
+}
+export interface QueryOwnerONFTsRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryOwnerONFTsRequest";
+  value: QueryOwnerONFTsRequestAmino;
+}
 export interface QueryOwnerONFTsResponse {
   owner?: Owner;
   pagination?: PageResponse;
+}
+export interface QueryOwnerONFTsResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryOwnerONFTsResponse";
+  value: Uint8Array;
+}
+export interface QueryOwnerONFTsResponseAmino {
+  owner?: OwnerAmino;
+  pagination?: PageResponseAmino;
+}
+export interface QueryOwnerONFTsResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryOwnerONFTsResponse";
+  value: QueryOwnerONFTsResponseAmino;
 }
 export interface QueryOwnerIBCDenomONFTsRequest {
   hash: string;
   owner: string;
   pagination?: PageRequest;
 }
+export interface QueryOwnerIBCDenomONFTsRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryOwnerIBCDenomONFTsRequest";
+  value: Uint8Array;
+}
+export interface QueryOwnerIBCDenomONFTsRequestAmino {
+  hash?: string;
+  owner?: string;
+  pagination?: PageRequestAmino;
+}
+export interface QueryOwnerIBCDenomONFTsRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryOwnerIBCDenomONFTsRequest";
+  value: QueryOwnerIBCDenomONFTsRequestAmino;
+}
 export interface QuerySupplyRequest {
   denomId: string;
   owner: string;
 }
+export interface QuerySupplyRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QuerySupplyRequest";
+  value: Uint8Array;
+}
+export interface QuerySupplyRequestAmino {
+  denom_id?: string;
+  owner?: string;
+}
+export interface QuerySupplyRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QuerySupplyRequest";
+  value: QuerySupplyRequestAmino;
+}
 export interface QuerySupplyResponse {
   amount: bigint;
+}
+export interface QuerySupplyResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QuerySupplyResponse";
+  value: Uint8Array;
+}
+export interface QuerySupplyResponseAmino {
+  amount?: string;
+}
+export interface QuerySupplyResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QuerySupplyResponse";
+  value: QuerySupplyResponseAmino;
 }
 export interface QueryIBCDenomSupplyRequest {
   hash: string;
   owner: string;
 }
+export interface QueryIBCDenomSupplyRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryIBCDenomSupplyRequest";
+  value: Uint8Array;
+}
+export interface QueryIBCDenomSupplyRequestAmino {
+  hash?: string;
+  owner?: string;
+}
+export interface QueryIBCDenomSupplyRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryIBCDenomSupplyRequest";
+  value: QueryIBCDenomSupplyRequestAmino;
+}
 export interface OwnerONFTCollection {
   denom: Denom;
   onfts: ONFT[];
 }
+export interface OwnerONFTCollectionProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.OwnerONFTCollection";
+  value: Uint8Array;
+}
+export interface OwnerONFTCollectionAmino {
+  denom?: DenomAmino;
+  onfts?: ONFTAmino[];
+}
+export interface OwnerONFTCollectionAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.OwnerONFTCollection";
+  value: OwnerONFTCollectionAmino;
+}
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
+export interface QueryParamsRequestProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryParamsRequest";
+  value: Uint8Array;
+}
+/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+export interface QueryParamsRequestAmino {}
+export interface QueryParamsRequestAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryParamsRequest";
+  value: QueryParamsRequestAmino;
+}
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 export interface QueryParamsResponse {
   /** params defines the parameters of the module. */
   params: Params;
+}
+export interface QueryParamsResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.QueryParamsResponse";
+  value: Uint8Array;
+}
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponseAmino {
+  /** params defines the parameters of the module. */
+  params?: ParamsAmino;
+}
+export interface QueryParamsResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.QueryParamsResponse";
+  value: QueryParamsResponseAmino;
 }
 function createBaseQueryCollectionRequest(): QueryCollectionRequest {
   return {
@@ -120,19 +362,6 @@ export const QueryCollectionRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryCollectionRequest {
-    const obj = createBaseQueryCollectionRequest();
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.pagination)) obj.pagination = PageRequest.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryCollectionRequest): JsonSafe<QueryCollectionRequest> {
-    const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryCollectionRequest>, I>>(object: I): QueryCollectionRequest {
     const message = createBaseQueryCollectionRequest();
     message.denomId = object.denomId ?? "";
@@ -140,6 +369,37 @@ export const QueryCollectionRequest = {
       message.pagination = PageRequest.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryCollectionRequestAmino): QueryCollectionRequest {
+    const message = createBaseQueryCollectionRequest();
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryCollectionRequest): QueryCollectionRequestAmino {
+    const obj: any = {};
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryCollectionRequestAminoMsg): QueryCollectionRequest {
+    return QueryCollectionRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryCollectionRequestProtoMsg): QueryCollectionRequest {
+    return QueryCollectionRequest.decode(message.value);
+  },
+  toProto(message: QueryCollectionRequest): Uint8Array {
+    return QueryCollectionRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryCollectionRequest): QueryCollectionRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryCollectionRequest",
+      value: QueryCollectionRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryCollectionResponse(): QueryCollectionResponse {
@@ -179,20 +439,6 @@ export const QueryCollectionResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryCollectionResponse {
-    const obj = createBaseQueryCollectionResponse();
-    if (isSet(object.collection)) obj.collection = Collection.fromJSON(object.collection);
-    if (isSet(object.pagination)) obj.pagination = PageResponse.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryCollectionResponse): JsonSafe<QueryCollectionResponse> {
-    const obj: any = {};
-    message.collection !== undefined &&
-      (obj.collection = message.collection ? Collection.toJSON(message.collection) : undefined);
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryCollectionResponse>, I>>(object: I): QueryCollectionResponse {
     const message = createBaseQueryCollectionResponse();
     if (object.collection !== undefined && object.collection !== null) {
@@ -202,6 +448,37 @@ export const QueryCollectionResponse = {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryCollectionResponseAmino): QueryCollectionResponse {
+    const message = createBaseQueryCollectionResponse();
+    if (object.collection !== undefined && object.collection !== null) {
+      message.collection = Collection.fromAmino(object.collection);
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryCollectionResponse): QueryCollectionResponseAmino {
+    const obj: any = {};
+    obj.collection = message.collection ? Collection.toAmino(message.collection) : undefined;
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryCollectionResponseAminoMsg): QueryCollectionResponse {
+    return QueryCollectionResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryCollectionResponseProtoMsg): QueryCollectionResponse {
+    return QueryCollectionResponse.decode(message.value);
+  },
+  toProto(message: QueryCollectionResponse): Uint8Array {
+    return QueryCollectionResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryCollectionResponse): QueryCollectionResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryCollectionResponse",
+      value: QueryCollectionResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryIBCCollectionRequest(): QueryIBCCollectionRequest {
@@ -241,19 +518,6 @@ export const QueryIBCCollectionRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryIBCCollectionRequest {
-    const obj = createBaseQueryIBCCollectionRequest();
-    if (isSet(object.hash)) obj.hash = String(object.hash);
-    if (isSet(object.pagination)) obj.pagination = PageRequest.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryIBCCollectionRequest): JsonSafe<QueryIBCCollectionRequest> {
-    const obj: any = {};
-    message.hash !== undefined && (obj.hash = message.hash);
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryIBCCollectionRequest>, I>>(
     object: I,
   ): QueryIBCCollectionRequest {
@@ -263,6 +527,37 @@ export const QueryIBCCollectionRequest = {
       message.pagination = PageRequest.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryIBCCollectionRequestAmino): QueryIBCCollectionRequest {
+    const message = createBaseQueryIBCCollectionRequest();
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = object.hash;
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryIBCCollectionRequest): QueryIBCCollectionRequestAmino {
+    const obj: any = {};
+    obj.hash = message.hash === "" ? undefined : message.hash;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryIBCCollectionRequestAminoMsg): QueryIBCCollectionRequest {
+    return QueryIBCCollectionRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryIBCCollectionRequestProtoMsg): QueryIBCCollectionRequest {
+    return QueryIBCCollectionRequest.decode(message.value);
+  },
+  toProto(message: QueryIBCCollectionRequest): Uint8Array {
+    return QueryIBCCollectionRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryIBCCollectionRequest): QueryIBCCollectionRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryIBCCollectionRequest",
+      value: QueryIBCCollectionRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryDenomRequest(): QueryDenomRequest {
@@ -295,20 +590,37 @@ export const QueryDenomRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryDenomRequest {
-    const obj = createBaseQueryDenomRequest();
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    return obj;
-  },
-  toJSON(message: QueryDenomRequest): JsonSafe<QueryDenomRequest> {
-    const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryDenomRequest>, I>>(object: I): QueryDenomRequest {
     const message = createBaseQueryDenomRequest();
     message.denomId = object.denomId ?? "";
     return message;
+  },
+  fromAmino(object: QueryDenomRequestAmino): QueryDenomRequest {
+    const message = createBaseQueryDenomRequest();
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    return message;
+  },
+  toAmino(message: QueryDenomRequest): QueryDenomRequestAmino {
+    const obj: any = {};
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    return obj;
+  },
+  fromAminoMsg(object: QueryDenomRequestAminoMsg): QueryDenomRequest {
+    return QueryDenomRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryDenomRequestProtoMsg): QueryDenomRequest {
+    return QueryDenomRequest.decode(message.value);
+  },
+  toProto(message: QueryDenomRequest): Uint8Array {
+    return QueryDenomRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryDenomRequest): QueryDenomRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryDenomRequest",
+      value: QueryDenomRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryDenomResponse(): QueryDenomResponse {
@@ -341,22 +653,39 @@ export const QueryDenomResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryDenomResponse {
-    const obj = createBaseQueryDenomResponse();
-    if (isSet(object.denom)) obj.denom = Denom.fromJSON(object.denom);
-    return obj;
-  },
-  toJSON(message: QueryDenomResponse): JsonSafe<QueryDenomResponse> {
-    const obj: any = {};
-    message.denom !== undefined && (obj.denom = message.denom ? Denom.toJSON(message.denom) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryDenomResponse>, I>>(object: I): QueryDenomResponse {
     const message = createBaseQueryDenomResponse();
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = Denom.fromPartial(object.denom);
     }
     return message;
+  },
+  fromAmino(object: QueryDenomResponseAmino): QueryDenomResponse {
+    const message = createBaseQueryDenomResponse();
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = Denom.fromAmino(object.denom);
+    }
+    return message;
+  },
+  toAmino(message: QueryDenomResponse): QueryDenomResponseAmino {
+    const obj: any = {};
+    obj.denom = message.denom ? Denom.toAmino(message.denom) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryDenomResponseAminoMsg): QueryDenomResponse {
+    return QueryDenomResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryDenomResponseProtoMsg): QueryDenomResponse {
+    return QueryDenomResponse.decode(message.value);
+  },
+  toProto(message: QueryDenomResponse): Uint8Array {
+    return QueryDenomResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryDenomResponse): QueryDenomResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryDenomResponse",
+      value: QueryDenomResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryIBCDenomRequest(): QueryIBCDenomRequest {
@@ -389,20 +718,37 @@ export const QueryIBCDenomRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryIBCDenomRequest {
-    const obj = createBaseQueryIBCDenomRequest();
-    if (isSet(object.hash)) obj.hash = String(object.hash);
-    return obj;
-  },
-  toJSON(message: QueryIBCDenomRequest): JsonSafe<QueryIBCDenomRequest> {
-    const obj: any = {};
-    message.hash !== undefined && (obj.hash = message.hash);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryIBCDenomRequest>, I>>(object: I): QueryIBCDenomRequest {
     const message = createBaseQueryIBCDenomRequest();
     message.hash = object.hash ?? "";
     return message;
+  },
+  fromAmino(object: QueryIBCDenomRequestAmino): QueryIBCDenomRequest {
+    const message = createBaseQueryIBCDenomRequest();
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = object.hash;
+    }
+    return message;
+  },
+  toAmino(message: QueryIBCDenomRequest): QueryIBCDenomRequestAmino {
+    const obj: any = {};
+    obj.hash = message.hash === "" ? undefined : message.hash;
+    return obj;
+  },
+  fromAminoMsg(object: QueryIBCDenomRequestAminoMsg): QueryIBCDenomRequest {
+    return QueryIBCDenomRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryIBCDenomRequestProtoMsg): QueryIBCDenomRequest {
+    return QueryIBCDenomRequest.decode(message.value);
+  },
+  toProto(message: QueryIBCDenomRequest): Uint8Array {
+    return QueryIBCDenomRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryIBCDenomRequest): QueryIBCDenomRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryIBCDenomRequest",
+      value: QueryIBCDenomRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryDenomsRequest(): QueryDenomsRequest {
@@ -442,19 +788,6 @@ export const QueryDenomsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryDenomsRequest {
-    const obj = createBaseQueryDenomsRequest();
-    if (isSet(object.pagination)) obj.pagination = PageRequest.fromJSON(object.pagination);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: QueryDenomsRequest): JsonSafe<QueryDenomsRequest> {
-    const obj: any = {};
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryDenomsRequest>, I>>(object: I): QueryDenomsRequest {
     const message = createBaseQueryDenomsRequest();
     if (object.pagination !== undefined && object.pagination !== null) {
@@ -462,6 +795,37 @@ export const QueryDenomsRequest = {
     }
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: QueryDenomsRequestAmino): QueryDenomsRequest {
+    const message = createBaseQueryDenomsRequest();
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: QueryDenomsRequest): QueryDenomsRequestAmino {
+    const obj: any = {};
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: QueryDenomsRequestAminoMsg): QueryDenomsRequest {
+    return QueryDenomsRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryDenomsRequestProtoMsg): QueryDenomsRequest {
+    return QueryDenomsRequest.decode(message.value);
+  },
+  toProto(message: QueryDenomsRequest): Uint8Array {
+    return QueryDenomsRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryDenomsRequest): QueryDenomsRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryDenomsRequest",
+      value: QueryDenomsRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryDenomsResponse(): QueryDenomsResponse {
@@ -501,23 +865,6 @@ export const QueryDenomsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryDenomsResponse {
-    const obj = createBaseQueryDenomsResponse();
-    if (Array.isArray(object?.denoms)) obj.denoms = object.denoms.map((e: any) => Denom.fromJSON(e));
-    if (isSet(object.pagination)) obj.pagination = PageResponse.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryDenomsResponse): JsonSafe<QueryDenomsResponse> {
-    const obj: any = {};
-    if (message.denoms) {
-      obj.denoms = message.denoms.map((e) => (e ? Denom.toJSON(e) : undefined));
-    } else {
-      obj.denoms = [];
-    }
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryDenomsResponse>, I>>(object: I): QueryDenomsResponse {
     const message = createBaseQueryDenomsResponse();
     message.denoms = object.denoms?.map((e) => Denom.fromPartial(e)) || [];
@@ -525,6 +872,39 @@ export const QueryDenomsResponse = {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryDenomsResponseAmino): QueryDenomsResponse {
+    const message = createBaseQueryDenomsResponse();
+    message.denoms = object.denoms?.map((e) => Denom.fromAmino(e)) || [];
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryDenomsResponse): QueryDenomsResponseAmino {
+    const obj: any = {};
+    if (message.denoms) {
+      obj.denoms = message.denoms.map((e) => (e ? Denom.toAmino(e) : undefined));
+    } else {
+      obj.denoms = message.denoms;
+    }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryDenomsResponseAminoMsg): QueryDenomsResponse {
+    return QueryDenomsResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryDenomsResponseProtoMsg): QueryDenomsResponse {
+    return QueryDenomsResponse.decode(message.value);
+  },
+  toProto(message: QueryDenomsResponse): Uint8Array {
+    return QueryDenomsResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryDenomsResponse): QueryDenomsResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryDenomsResponse",
+      value: QueryDenomsResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryONFTRequest(): QueryONFTRequest {
@@ -564,23 +944,42 @@ export const QueryONFTRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryONFTRequest {
-    const obj = createBaseQueryONFTRequest();
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.id)) obj.id = String(object.id);
-    return obj;
-  },
-  toJSON(message: QueryONFTRequest): JsonSafe<QueryONFTRequest> {
-    const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.id !== undefined && (obj.id = message.id);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryONFTRequest>, I>>(object: I): QueryONFTRequest {
     const message = createBaseQueryONFTRequest();
     message.denomId = object.denomId ?? "";
     message.id = object.id ?? "";
     return message;
+  },
+  fromAmino(object: QueryONFTRequestAmino): QueryONFTRequest {
+    const message = createBaseQueryONFTRequest();
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    return message;
+  },
+  toAmino(message: QueryONFTRequest): QueryONFTRequestAmino {
+    const obj: any = {};
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.id = message.id === "" ? undefined : message.id;
+    return obj;
+  },
+  fromAminoMsg(object: QueryONFTRequestAminoMsg): QueryONFTRequest {
+    return QueryONFTRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryONFTRequestProtoMsg): QueryONFTRequest {
+    return QueryONFTRequest.decode(message.value);
+  },
+  toProto(message: QueryONFTRequest): Uint8Array {
+    return QueryONFTRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryONFTRequest): QueryONFTRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryONFTRequest",
+      value: QueryONFTRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryONFTResponse(): QueryONFTResponse {
@@ -613,22 +1012,39 @@ export const QueryONFTResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryONFTResponse {
-    const obj = createBaseQueryONFTResponse();
-    if (isSet(object.onft)) obj.onft = ONFT.fromJSON(object.onft);
-    return obj;
-  },
-  toJSON(message: QueryONFTResponse): JsonSafe<QueryONFTResponse> {
-    const obj: any = {};
-    message.onft !== undefined && (obj.onft = message.onft ? ONFT.toJSON(message.onft) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryONFTResponse>, I>>(object: I): QueryONFTResponse {
     const message = createBaseQueryONFTResponse();
     if (object.onft !== undefined && object.onft !== null) {
       message.onft = ONFT.fromPartial(object.onft);
     }
     return message;
+  },
+  fromAmino(object: QueryONFTResponseAmino): QueryONFTResponse {
+    const message = createBaseQueryONFTResponse();
+    if (object.onft !== undefined && object.onft !== null) {
+      message.onft = ONFT.fromAmino(object.onft);
+    }
+    return message;
+  },
+  toAmino(message: QueryONFTResponse): QueryONFTResponseAmino {
+    const obj: any = {};
+    obj.onft = message.onft ? ONFT.toAmino(message.onft) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryONFTResponseAminoMsg): QueryONFTResponse {
+    return QueryONFTResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryONFTResponseProtoMsg): QueryONFTResponse {
+    return QueryONFTResponse.decode(message.value);
+  },
+  toProto(message: QueryONFTResponse): Uint8Array {
+    return QueryONFTResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryONFTResponse): QueryONFTResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryONFTResponse",
+      value: QueryONFTResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryIBCDenomONFTRequest(): QueryIBCDenomONFTRequest {
@@ -668,18 +1084,6 @@ export const QueryIBCDenomONFTRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryIBCDenomONFTRequest {
-    const obj = createBaseQueryIBCDenomONFTRequest();
-    if (isSet(object.hash)) obj.hash = String(object.hash);
-    if (isSet(object.id)) obj.id = String(object.id);
-    return obj;
-  },
-  toJSON(message: QueryIBCDenomONFTRequest): JsonSafe<QueryIBCDenomONFTRequest> {
-    const obj: any = {};
-    message.hash !== undefined && (obj.hash = message.hash);
-    message.id !== undefined && (obj.id = message.id);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryIBCDenomONFTRequest>, I>>(
     object: I,
   ): QueryIBCDenomONFTRequest {
@@ -687,6 +1091,37 @@ export const QueryIBCDenomONFTRequest = {
     message.hash = object.hash ?? "";
     message.id = object.id ?? "";
     return message;
+  },
+  fromAmino(object: QueryIBCDenomONFTRequestAmino): QueryIBCDenomONFTRequest {
+    const message = createBaseQueryIBCDenomONFTRequest();
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = object.hash;
+    }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    return message;
+  },
+  toAmino(message: QueryIBCDenomONFTRequest): QueryIBCDenomONFTRequestAmino {
+    const obj: any = {};
+    obj.hash = message.hash === "" ? undefined : message.hash;
+    obj.id = message.id === "" ? undefined : message.id;
+    return obj;
+  },
+  fromAminoMsg(object: QueryIBCDenomONFTRequestAminoMsg): QueryIBCDenomONFTRequest {
+    return QueryIBCDenomONFTRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryIBCDenomONFTRequestProtoMsg): QueryIBCDenomONFTRequest {
+    return QueryIBCDenomONFTRequest.decode(message.value);
+  },
+  toProto(message: QueryIBCDenomONFTRequest): Uint8Array {
+    return QueryIBCDenomONFTRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryIBCDenomONFTRequest): QueryIBCDenomONFTRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryIBCDenomONFTRequest",
+      value: QueryIBCDenomONFTRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryOwnerONFTsRequest(): QueryOwnerONFTsRequest {
@@ -733,21 +1168,6 @@ export const QueryOwnerONFTsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryOwnerONFTsRequest {
-    const obj = createBaseQueryOwnerONFTsRequest();
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    if (isSet(object.pagination)) obj.pagination = PageRequest.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryOwnerONFTsRequest): JsonSafe<QueryOwnerONFTsRequest> {
-    const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.owner !== undefined && (obj.owner = message.owner);
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryOwnerONFTsRequest>, I>>(object: I): QueryOwnerONFTsRequest {
     const message = createBaseQueryOwnerONFTsRequest();
     message.denomId = object.denomId ?? "";
@@ -756,6 +1176,41 @@ export const QueryOwnerONFTsRequest = {
       message.pagination = PageRequest.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryOwnerONFTsRequestAmino): QueryOwnerONFTsRequest {
+    const message = createBaseQueryOwnerONFTsRequest();
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryOwnerONFTsRequest): QueryOwnerONFTsRequestAmino {
+    const obj: any = {};
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryOwnerONFTsRequestAminoMsg): QueryOwnerONFTsRequest {
+    return QueryOwnerONFTsRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryOwnerONFTsRequestProtoMsg): QueryOwnerONFTsRequest {
+    return QueryOwnerONFTsRequest.decode(message.value);
+  },
+  toProto(message: QueryOwnerONFTsRequest): Uint8Array {
+    return QueryOwnerONFTsRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryOwnerONFTsRequest): QueryOwnerONFTsRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryOwnerONFTsRequest",
+      value: QueryOwnerONFTsRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryOwnerONFTsResponse(): QueryOwnerONFTsResponse {
@@ -795,19 +1250,6 @@ export const QueryOwnerONFTsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryOwnerONFTsResponse {
-    const obj = createBaseQueryOwnerONFTsResponse();
-    if (isSet(object.owner)) obj.owner = Owner.fromJSON(object.owner);
-    if (isSet(object.pagination)) obj.pagination = PageResponse.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryOwnerONFTsResponse): JsonSafe<QueryOwnerONFTsResponse> {
-    const obj: any = {};
-    message.owner !== undefined && (obj.owner = message.owner ? Owner.toJSON(message.owner) : undefined);
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryOwnerONFTsResponse>, I>>(object: I): QueryOwnerONFTsResponse {
     const message = createBaseQueryOwnerONFTsResponse();
     if (object.owner !== undefined && object.owner !== null) {
@@ -817,6 +1259,37 @@ export const QueryOwnerONFTsResponse = {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryOwnerONFTsResponseAmino): QueryOwnerONFTsResponse {
+    const message = createBaseQueryOwnerONFTsResponse();
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = Owner.fromAmino(object.owner);
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryOwnerONFTsResponse): QueryOwnerONFTsResponseAmino {
+    const obj: any = {};
+    obj.owner = message.owner ? Owner.toAmino(message.owner) : undefined;
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryOwnerONFTsResponseAminoMsg): QueryOwnerONFTsResponse {
+    return QueryOwnerONFTsResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryOwnerONFTsResponseProtoMsg): QueryOwnerONFTsResponse {
+    return QueryOwnerONFTsResponse.decode(message.value);
+  },
+  toProto(message: QueryOwnerONFTsResponse): Uint8Array {
+    return QueryOwnerONFTsResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryOwnerONFTsResponse): QueryOwnerONFTsResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryOwnerONFTsResponse",
+      value: QueryOwnerONFTsResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryOwnerIBCDenomONFTsRequest(): QueryOwnerIBCDenomONFTsRequest {
@@ -866,21 +1339,6 @@ export const QueryOwnerIBCDenomONFTsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryOwnerIBCDenomONFTsRequest {
-    const obj = createBaseQueryOwnerIBCDenomONFTsRequest();
-    if (isSet(object.hash)) obj.hash = String(object.hash);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    if (isSet(object.pagination)) obj.pagination = PageRequest.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryOwnerIBCDenomONFTsRequest): JsonSafe<QueryOwnerIBCDenomONFTsRequest> {
-    const obj: any = {};
-    message.hash !== undefined && (obj.hash = message.hash);
-    message.owner !== undefined && (obj.owner = message.owner);
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryOwnerIBCDenomONFTsRequest>, I>>(
     object: I,
   ): QueryOwnerIBCDenomONFTsRequest {
@@ -891,6 +1349,41 @@ export const QueryOwnerIBCDenomONFTsRequest = {
       message.pagination = PageRequest.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryOwnerIBCDenomONFTsRequestAmino): QueryOwnerIBCDenomONFTsRequest {
+    const message = createBaseQueryOwnerIBCDenomONFTsRequest();
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = object.hash;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryOwnerIBCDenomONFTsRequest): QueryOwnerIBCDenomONFTsRequestAmino {
+    const obj: any = {};
+    obj.hash = message.hash === "" ? undefined : message.hash;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryOwnerIBCDenomONFTsRequestAminoMsg): QueryOwnerIBCDenomONFTsRequest {
+    return QueryOwnerIBCDenomONFTsRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryOwnerIBCDenomONFTsRequestProtoMsg): QueryOwnerIBCDenomONFTsRequest {
+    return QueryOwnerIBCDenomONFTsRequest.decode(message.value);
+  },
+  toProto(message: QueryOwnerIBCDenomONFTsRequest): Uint8Array {
+    return QueryOwnerIBCDenomONFTsRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryOwnerIBCDenomONFTsRequest): QueryOwnerIBCDenomONFTsRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryOwnerIBCDenomONFTsRequest",
+      value: QueryOwnerIBCDenomONFTsRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQuerySupplyRequest(): QuerySupplyRequest {
@@ -930,23 +1423,42 @@ export const QuerySupplyRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QuerySupplyRequest {
-    const obj = createBaseQuerySupplyRequest();
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: QuerySupplyRequest): JsonSafe<QuerySupplyRequest> {
-    const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QuerySupplyRequest>, I>>(object: I): QuerySupplyRequest {
     const message = createBaseQuerySupplyRequest();
     message.denomId = object.denomId ?? "";
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: QuerySupplyRequestAmino): QuerySupplyRequest {
+    const message = createBaseQuerySupplyRequest();
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: QuerySupplyRequest): QuerySupplyRequestAmino {
+    const obj: any = {};
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: QuerySupplyRequestAminoMsg): QuerySupplyRequest {
+    return QuerySupplyRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QuerySupplyRequestProtoMsg): QuerySupplyRequest {
+    return QuerySupplyRequest.decode(message.value);
+  },
+  toProto(message: QuerySupplyRequest): Uint8Array {
+    return QuerySupplyRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QuerySupplyRequest): QuerySupplyRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QuerySupplyRequest",
+      value: QuerySupplyRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQuerySupplyResponse(): QuerySupplyResponse {
@@ -979,22 +1491,39 @@ export const QuerySupplyResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QuerySupplyResponse {
-    const obj = createBaseQuerySupplyResponse();
-    if (isSet(object.amount)) obj.amount = BigInt(object.amount.toString());
-    return obj;
-  },
-  toJSON(message: QuerySupplyResponse): JsonSafe<QuerySupplyResponse> {
-    const obj: any = {};
-    message.amount !== undefined && (obj.amount = (message.amount || BigInt(0)).toString());
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QuerySupplyResponse>, I>>(object: I): QuerySupplyResponse {
     const message = createBaseQuerySupplyResponse();
     if (object.amount !== undefined && object.amount !== null) {
       message.amount = BigInt(object.amount.toString());
     }
     return message;
+  },
+  fromAmino(object: QuerySupplyResponseAmino): QuerySupplyResponse {
+    const message = createBaseQuerySupplyResponse();
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = BigInt(object.amount);
+    }
+    return message;
+  },
+  toAmino(message: QuerySupplyResponse): QuerySupplyResponseAmino {
+    const obj: any = {};
+    obj.amount = message.amount !== BigInt(0) ? message.amount?.toString() : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QuerySupplyResponseAminoMsg): QuerySupplyResponse {
+    return QuerySupplyResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QuerySupplyResponseProtoMsg): QuerySupplyResponse {
+    return QuerySupplyResponse.decode(message.value);
+  },
+  toProto(message: QuerySupplyResponse): Uint8Array {
+    return QuerySupplyResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QuerySupplyResponse): QuerySupplyResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QuerySupplyResponse",
+      value: QuerySupplyResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryIBCDenomSupplyRequest(): QueryIBCDenomSupplyRequest {
@@ -1034,18 +1563,6 @@ export const QueryIBCDenomSupplyRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryIBCDenomSupplyRequest {
-    const obj = createBaseQueryIBCDenomSupplyRequest();
-    if (isSet(object.hash)) obj.hash = String(object.hash);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: QueryIBCDenomSupplyRequest): JsonSafe<QueryIBCDenomSupplyRequest> {
-    const obj: any = {};
-    message.hash !== undefined && (obj.hash = message.hash);
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryIBCDenomSupplyRequest>, I>>(
     object: I,
   ): QueryIBCDenomSupplyRequest {
@@ -1053,6 +1570,37 @@ export const QueryIBCDenomSupplyRequest = {
     message.hash = object.hash ?? "";
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: QueryIBCDenomSupplyRequestAmino): QueryIBCDenomSupplyRequest {
+    const message = createBaseQueryIBCDenomSupplyRequest();
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = object.hash;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: QueryIBCDenomSupplyRequest): QueryIBCDenomSupplyRequestAmino {
+    const obj: any = {};
+    obj.hash = message.hash === "" ? undefined : message.hash;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: QueryIBCDenomSupplyRequestAminoMsg): QueryIBCDenomSupplyRequest {
+    return QueryIBCDenomSupplyRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryIBCDenomSupplyRequestProtoMsg): QueryIBCDenomSupplyRequest {
+    return QueryIBCDenomSupplyRequest.decode(message.value);
+  },
+  toProto(message: QueryIBCDenomSupplyRequest): Uint8Array {
+    return QueryIBCDenomSupplyRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryIBCDenomSupplyRequest): QueryIBCDenomSupplyRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryIBCDenomSupplyRequest",
+      value: QueryIBCDenomSupplyRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseOwnerONFTCollection(): OwnerONFTCollection {
@@ -1092,22 +1640,6 @@ export const OwnerONFTCollection = {
     }
     return message;
   },
-  fromJSON(object: any): OwnerONFTCollection {
-    const obj = createBaseOwnerONFTCollection();
-    if (isSet(object.denom)) obj.denom = Denom.fromJSON(object.denom);
-    if (Array.isArray(object?.onfts)) obj.onfts = object.onfts.map((e: any) => ONFT.fromJSON(e));
-    return obj;
-  },
-  toJSON(message: OwnerONFTCollection): JsonSafe<OwnerONFTCollection> {
-    const obj: any = {};
-    message.denom !== undefined && (obj.denom = message.denom ? Denom.toJSON(message.denom) : undefined);
-    if (message.onfts) {
-      obj.onfts = message.onfts.map((e) => (e ? ONFT.toJSON(e) : undefined));
-    } else {
-      obj.onfts = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<OwnerONFTCollection>, I>>(object: I): OwnerONFTCollection {
     const message = createBaseOwnerONFTCollection();
     if (object.denom !== undefined && object.denom !== null) {
@@ -1115,6 +1647,39 @@ export const OwnerONFTCollection = {
     }
     message.onfts = object.onfts?.map((e) => ONFT.fromPartial(e)) || [];
     return message;
+  },
+  fromAmino(object: OwnerONFTCollectionAmino): OwnerONFTCollection {
+    const message = createBaseOwnerONFTCollection();
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = Denom.fromAmino(object.denom);
+    }
+    message.onfts = object.onfts?.map((e) => ONFT.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: OwnerONFTCollection): OwnerONFTCollectionAmino {
+    const obj: any = {};
+    obj.denom = message.denom ? Denom.toAmino(message.denom) : undefined;
+    if (message.onfts) {
+      obj.onfts = message.onfts.map((e) => (e ? ONFT.toAmino(e) : undefined));
+    } else {
+      obj.onfts = message.onfts;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: OwnerONFTCollectionAminoMsg): OwnerONFTCollection {
+    return OwnerONFTCollection.fromAmino(object.value);
+  },
+  fromProtoMsg(message: OwnerONFTCollectionProtoMsg): OwnerONFTCollection {
+    return OwnerONFTCollection.decode(message.value);
+  },
+  toProto(message: OwnerONFTCollection): Uint8Array {
+    return OwnerONFTCollection.encode(message).finish();
+  },
+  toProtoMsg(message: OwnerONFTCollection): OwnerONFTCollectionProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.OwnerONFTCollection",
+      value: OwnerONFTCollection.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -1139,17 +1704,32 @@ export const QueryParamsRequest = {
     }
     return message;
   },
-  fromJSON(_: any): QueryParamsRequest {
-    const obj = createBaseQueryParamsRequest();
-    return obj;
-  },
-  toJSON(_: QueryParamsRequest): JsonSafe<QueryParamsRequest> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(_: I): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
+  },
+  fromAmino(_: QueryParamsRequestAmino): QueryParamsRequest {
+    const message = createBaseQueryParamsRequest();
+    return message;
+  },
+  toAmino(_: QueryParamsRequest): QueryParamsRequestAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: QueryParamsRequestAminoMsg): QueryParamsRequest {
+    return QueryParamsRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryParamsRequestProtoMsg): QueryParamsRequest {
+    return QueryParamsRequest.decode(message.value);
+  },
+  toProto(message: QueryParamsRequest): Uint8Array {
+    return QueryParamsRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryParamsRequest): QueryParamsRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryParamsRequest",
+      value: QueryParamsRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryParamsResponse(): QueryParamsResponse {
@@ -1182,22 +1762,39 @@ export const QueryParamsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryParamsResponse {
-    const obj = createBaseQueryParamsResponse();
-    if (isSet(object.params)) obj.params = Params.fromJSON(object.params);
-    return obj;
-  },
-  toJSON(message: QueryParamsResponse): JsonSafe<QueryParamsResponse> {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
     return message;
+  },
+  fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse {
+    const message = createBaseQueryParamsResponse();
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message: QueryParamsResponse): QueryParamsResponseAmino {
+    const obj: any = {};
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryParamsResponseAminoMsg): QueryParamsResponse {
+    return QueryParamsResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryParamsResponseProtoMsg): QueryParamsResponse {
+    return QueryParamsResponse.decode(message.value);
+  },
+  toProto(message: QueryParamsResponse): Uint8Array {
+    return QueryParamsResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.QueryParamsResponse",
+      value: QueryParamsResponse.encode(message).finish(),
+    };
   },
 };
 export interface Query {

@@ -1,13 +1,13 @@
+//@ts-nocheck
 /* eslint-disable */
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
-import { WeightedAddress } from "./listing";
+import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
+import { WeightedAddress, WeightedAddressAmino } from "./listing";
 import { Timestamp } from "../../../google/protobuf/timestamp";
-import { Duration } from "../../../google/protobuf/duration";
-import { Params } from "./params";
-import { AuctionListing } from "./auction";
+import { Duration, DurationAmino } from "../../../google/protobuf/duration";
+import { Params, ParamsAmino } from "./params";
+import { AuctionListing, AuctionListingAmino } from "./auction";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact, fromJsonTimestamp, fromTimestamp, Rpc } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact, Rpc } from "../../../helpers";
 export const protobufPackage = "OmniFlix.marketplace.v1beta1";
 export interface MsgListNFT {
   id: string;
@@ -17,24 +17,114 @@ export interface MsgListNFT {
   owner: string;
   splitShares: WeightedAddress[];
 }
+export interface MsgListNFTProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgListNFT";
+  value: Uint8Array;
+}
+export interface MsgListNFTAmino {
+  id?: string;
+  nft_id?: string;
+  denom_id?: string;
+  price?: CoinAmino;
+  owner?: string;
+  split_shares?: WeightedAddressAmino[];
+}
+export interface MsgListNFTAminoMsg {
+  type: "OmniFlix/marketplace/MsgListNFT";
+  value: MsgListNFTAmino;
+}
 export interface MsgListNFTResponse {}
+export interface MsgListNFTResponseProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgListNFTResponse";
+  value: Uint8Array;
+}
+export interface MsgListNFTResponseAmino {}
+export interface MsgListNFTResponseAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.MsgListNFTResponse";
+  value: MsgListNFTResponseAmino;
+}
 export interface MsgEditListing {
   id: string;
   price: Coin;
   owner: string;
 }
+export interface MsgEditListingProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgEditListing";
+  value: Uint8Array;
+}
+export interface MsgEditListingAmino {
+  id?: string;
+  price?: CoinAmino;
+  owner?: string;
+}
+export interface MsgEditListingAminoMsg {
+  type: "OmniFlix/marketplace/MsgEditListing";
+  value: MsgEditListingAmino;
+}
 export interface MsgEditListingResponse {}
+export interface MsgEditListingResponseProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgEditListingResponse";
+  value: Uint8Array;
+}
+export interface MsgEditListingResponseAmino {}
+export interface MsgEditListingResponseAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.MsgEditListingResponse";
+  value: MsgEditListingResponseAmino;
+}
 export interface MsgDeListNFT {
   id: string;
   owner: string;
 }
+export interface MsgDeListNFTProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgDeListNFT";
+  value: Uint8Array;
+}
+export interface MsgDeListNFTAmino {
+  id?: string;
+  owner?: string;
+}
+export interface MsgDeListNFTAminoMsg {
+  type: "OmniFlix/marketplace/MsgDeListNFT";
+  value: MsgDeListNFTAmino;
+}
 export interface MsgDeListNFTResponse {}
+export interface MsgDeListNFTResponseProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgDeListNFTResponse";
+  value: Uint8Array;
+}
+export interface MsgDeListNFTResponseAmino {}
+export interface MsgDeListNFTResponseAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.MsgDeListNFTResponse";
+  value: MsgDeListNFTResponseAmino;
+}
 export interface MsgBuyNFT {
   id: string;
   price: Coin;
   buyer: string;
 }
+export interface MsgBuyNFTProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgBuyNFT";
+  value: Uint8Array;
+}
+export interface MsgBuyNFTAmino {
+  id?: string;
+  price?: CoinAmino;
+  buyer?: string;
+}
+export interface MsgBuyNFTAminoMsg {
+  type: "OmniFlix/marketplace/MsgBuyNFT";
+  value: MsgBuyNFTAmino;
+}
 export interface MsgBuyNFTResponse {}
+export interface MsgBuyNFTResponseProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgBuyNFTResponse";
+  value: Uint8Array;
+}
+export interface MsgBuyNFTResponseAmino {}
+export interface MsgBuyNFTResponseAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.MsgBuyNFTResponse";
+  value: MsgBuyNFTResponseAmino;
+}
 export interface MsgCreateAuction {
   nftId: string;
   denomId: string;
@@ -46,20 +136,93 @@ export interface MsgCreateAuction {
   splitShares: WeightedAddress[];
   owner: string;
 }
+export interface MsgCreateAuctionProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgCreateAuction";
+  value: Uint8Array;
+}
+export interface MsgCreateAuctionAmino {
+  nft_id?: string;
+  denom_id?: string;
+  start_time?: string;
+  start_price?: CoinAmino;
+  duration?: DurationAmino;
+  increment_percentage?: string;
+  whitelist_accounts?: string[];
+  split_shares?: WeightedAddressAmino[];
+  owner?: string;
+}
+export interface MsgCreateAuctionAminoMsg {
+  type: "OmniFlix/marketplace/MsgCreateAuction";
+  value: MsgCreateAuctionAmino;
+}
 export interface MsgCreateAuctionResponse {
   auction?: AuctionListing;
+}
+export interface MsgCreateAuctionResponseProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgCreateAuctionResponse";
+  value: Uint8Array;
+}
+export interface MsgCreateAuctionResponseAmino {
+  auction?: AuctionListingAmino;
+}
+export interface MsgCreateAuctionResponseAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.MsgCreateAuctionResponse";
+  value: MsgCreateAuctionResponseAmino;
 }
 export interface MsgCancelAuction {
   auctionId: bigint;
   owner: string;
 }
+export interface MsgCancelAuctionProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgCancelAuction";
+  value: Uint8Array;
+}
+export interface MsgCancelAuctionAmino {
+  auction_id?: string;
+  owner?: string;
+}
+export interface MsgCancelAuctionAminoMsg {
+  type: "OmniFlix/marketplace/MsgCancelAuction";
+  value: MsgCancelAuctionAmino;
+}
 export interface MsgCancelAuctionResponse {}
+export interface MsgCancelAuctionResponseProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgCancelAuctionResponse";
+  value: Uint8Array;
+}
+export interface MsgCancelAuctionResponseAmino {}
+export interface MsgCancelAuctionResponseAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.MsgCancelAuctionResponse";
+  value: MsgCancelAuctionResponseAmino;
+}
 export interface MsgPlaceBid {
   auctionId: bigint;
   amount: Coin;
   bidder: string;
 }
+export interface MsgPlaceBidProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgPlaceBid";
+  value: Uint8Array;
+}
+export interface MsgPlaceBidAmino {
+  auction_id?: string;
+  amount?: CoinAmino;
+  bidder?: string;
+}
+export interface MsgPlaceBidAminoMsg {
+  type: "OmniFlix/marketplace/MsgPlaceBid";
+  value: MsgPlaceBidAmino;
+}
 export interface MsgPlaceBidResponse {}
+export interface MsgPlaceBidResponseProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgPlaceBidResponse";
+  value: Uint8Array;
+}
+export interface MsgPlaceBidResponseAmino {}
+export interface MsgPlaceBidResponseAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.MsgPlaceBidResponse";
+  value: MsgPlaceBidResponseAmino;
+}
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
  *
@@ -75,6 +238,29 @@ export interface MsgUpdateParams {
    */
   params: Params;
 }
+export interface MsgUpdateParamsProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgUpdateParams";
+  value: Uint8Array;
+}
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ *
+ * Since: cosmos-sdk 0.47
+ */
+export interface MsgUpdateParamsAmino {
+  /** authority is the address of the governance account. */
+  authority?: string;
+  /**
+   * params defines the x/marketplace parameters to update.
+   *
+   * NOTE: All parameters must be supplied.
+   */
+  params?: ParamsAmino;
+}
+export interface MsgUpdateParamsAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.MsgUpdateParams";
+  value: MsgUpdateParamsAmino;
+}
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
@@ -82,6 +268,21 @@ export interface MsgUpdateParams {
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponse {}
+export interface MsgUpdateParamsResponseProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.MsgUpdateParamsResponse";
+  value: Uint8Array;
+}
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ *
+ * Since: cosmos-sdk 0.47
+ */
+export interface MsgUpdateParamsResponseAmino {}
+export interface MsgUpdateParamsResponseAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.MsgUpdateParamsResponse";
+  value: MsgUpdateParamsResponseAmino;
+}
 function createBaseMsgListNFT(): MsgListNFT {
   return {
     id: "",
@@ -147,31 +348,6 @@ export const MsgListNFT = {
     }
     return message;
   },
-  fromJSON(object: any): MsgListNFT {
-    const obj = createBaseMsgListNFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.price)) obj.price = Coin.fromJSON(object.price);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    if (Array.isArray(object?.splitShares))
-      obj.splitShares = object.splitShares.map((e: any) => WeightedAddress.fromJSON(e));
-    return obj;
-  },
-  toJSON(message: MsgListNFT): JsonSafe<MsgListNFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.price !== undefined && (obj.price = message.price ? Coin.toJSON(message.price) : undefined);
-    message.owner !== undefined && (obj.owner = message.owner);
-    if (message.splitShares) {
-      obj.splitShares = message.splitShares.map((e) => (e ? WeightedAddress.toJSON(e) : undefined));
-    } else {
-      obj.splitShares = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgListNFT>, I>>(object: I): MsgListNFT {
     const message = createBaseMsgListNFT();
     message.id = object.id ?? "";
@@ -183,6 +359,61 @@ export const MsgListNFT = {
     message.owner = object.owner ?? "";
     message.splitShares = object.splitShares?.map((e) => WeightedAddress.fromPartial(e)) || [];
     return message;
+  },
+  fromAmino(object: MsgListNFTAmino): MsgListNFT {
+    const message = createBaseMsgListNFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.price !== undefined && object.price !== null) {
+      message.price = Coin.fromAmino(object.price);
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    message.splitShares = object.split_shares?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: MsgListNFT): MsgListNFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.price = message.price ? Coin.toAmino(message.price) : undefined;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    if (message.splitShares) {
+      obj.split_shares = message.splitShares.map((e) => (e ? WeightedAddress.toAmino(e) : undefined));
+    } else {
+      obj.split_shares = message.splitShares;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: MsgListNFTAminoMsg): MsgListNFT {
+    return MsgListNFT.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgListNFT): MsgListNFTAminoMsg {
+    return {
+      type: "OmniFlix/marketplace/MsgListNFT",
+      value: MsgListNFT.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgListNFTProtoMsg): MsgListNFT {
+    return MsgListNFT.decode(message.value);
+  },
+  toProto(message: MsgListNFT): Uint8Array {
+    return MsgListNFT.encode(message).finish();
+  },
+  toProtoMsg(message: MsgListNFT): MsgListNFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgListNFT",
+      value: MsgListNFT.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgListNFTResponse(): MsgListNFTResponse {
@@ -207,17 +438,32 @@ export const MsgListNFTResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgListNFTResponse {
-    const obj = createBaseMsgListNFTResponse();
-    return obj;
-  },
-  toJSON(_: MsgListNFTResponse): JsonSafe<MsgListNFTResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgListNFTResponse>, I>>(_: I): MsgListNFTResponse {
     const message = createBaseMsgListNFTResponse();
     return message;
+  },
+  fromAmino(_: MsgListNFTResponseAmino): MsgListNFTResponse {
+    const message = createBaseMsgListNFTResponse();
+    return message;
+  },
+  toAmino(_: MsgListNFTResponse): MsgListNFTResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgListNFTResponseAminoMsg): MsgListNFTResponse {
+    return MsgListNFTResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgListNFTResponseProtoMsg): MsgListNFTResponse {
+    return MsgListNFTResponse.decode(message.value);
+  },
+  toProto(message: MsgListNFTResponse): Uint8Array {
+    return MsgListNFTResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgListNFTResponse): MsgListNFTResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgListNFTResponse",
+      value: MsgListNFTResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgEditListing(): MsgEditListing {
@@ -264,20 +510,6 @@ export const MsgEditListing = {
     }
     return message;
   },
-  fromJSON(object: any): MsgEditListing {
-    const obj = createBaseMsgEditListing();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.price)) obj.price = Coin.fromJSON(object.price);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: MsgEditListing): JsonSafe<MsgEditListing> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.price !== undefined && (obj.price = message.price ? Coin.toJSON(message.price) : undefined);
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgEditListing>, I>>(object: I): MsgEditListing {
     const message = createBaseMsgEditListing();
     message.id = object.id ?? "";
@@ -286,6 +518,47 @@ export const MsgEditListing = {
     }
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: MsgEditListingAmino): MsgEditListing {
+    const message = createBaseMsgEditListing();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.price !== undefined && object.price !== null) {
+      message.price = Coin.fromAmino(object.price);
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: MsgEditListing): MsgEditListingAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.price = message.price ? Coin.toAmino(message.price) : undefined;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: MsgEditListingAminoMsg): MsgEditListing {
+    return MsgEditListing.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgEditListing): MsgEditListingAminoMsg {
+    return {
+      type: "OmniFlix/marketplace/MsgEditListing",
+      value: MsgEditListing.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgEditListingProtoMsg): MsgEditListing {
+    return MsgEditListing.decode(message.value);
+  },
+  toProto(message: MsgEditListing): Uint8Array {
+    return MsgEditListing.encode(message).finish();
+  },
+  toProtoMsg(message: MsgEditListing): MsgEditListingProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgEditListing",
+      value: MsgEditListing.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgEditListingResponse(): MsgEditListingResponse {
@@ -310,17 +583,32 @@ export const MsgEditListingResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgEditListingResponse {
-    const obj = createBaseMsgEditListingResponse();
-    return obj;
-  },
-  toJSON(_: MsgEditListingResponse): JsonSafe<MsgEditListingResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgEditListingResponse>, I>>(_: I): MsgEditListingResponse {
     const message = createBaseMsgEditListingResponse();
     return message;
+  },
+  fromAmino(_: MsgEditListingResponseAmino): MsgEditListingResponse {
+    const message = createBaseMsgEditListingResponse();
+    return message;
+  },
+  toAmino(_: MsgEditListingResponse): MsgEditListingResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgEditListingResponseAminoMsg): MsgEditListingResponse {
+    return MsgEditListingResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgEditListingResponseProtoMsg): MsgEditListingResponse {
+    return MsgEditListingResponse.decode(message.value);
+  },
+  toProto(message: MsgEditListingResponse): Uint8Array {
+    return MsgEditListingResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgEditListingResponse): MsgEditListingResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgEditListingResponse",
+      value: MsgEditListingResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgDeListNFT(): MsgDeListNFT {
@@ -360,23 +648,48 @@ export const MsgDeListNFT = {
     }
     return message;
   },
-  fromJSON(object: any): MsgDeListNFT {
-    const obj = createBaseMsgDeListNFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: MsgDeListNFT): JsonSafe<MsgDeListNFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgDeListNFT>, I>>(object: I): MsgDeListNFT {
     const message = createBaseMsgDeListNFT();
     message.id = object.id ?? "";
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: MsgDeListNFTAmino): MsgDeListNFT {
+    const message = createBaseMsgDeListNFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: MsgDeListNFT): MsgDeListNFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: MsgDeListNFTAminoMsg): MsgDeListNFT {
+    return MsgDeListNFT.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgDeListNFT): MsgDeListNFTAminoMsg {
+    return {
+      type: "OmniFlix/marketplace/MsgDeListNFT",
+      value: MsgDeListNFT.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgDeListNFTProtoMsg): MsgDeListNFT {
+    return MsgDeListNFT.decode(message.value);
+  },
+  toProto(message: MsgDeListNFT): Uint8Array {
+    return MsgDeListNFT.encode(message).finish();
+  },
+  toProtoMsg(message: MsgDeListNFT): MsgDeListNFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgDeListNFT",
+      value: MsgDeListNFT.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgDeListNFTResponse(): MsgDeListNFTResponse {
@@ -401,17 +714,32 @@ export const MsgDeListNFTResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgDeListNFTResponse {
-    const obj = createBaseMsgDeListNFTResponse();
-    return obj;
-  },
-  toJSON(_: MsgDeListNFTResponse): JsonSafe<MsgDeListNFTResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgDeListNFTResponse>, I>>(_: I): MsgDeListNFTResponse {
     const message = createBaseMsgDeListNFTResponse();
     return message;
+  },
+  fromAmino(_: MsgDeListNFTResponseAmino): MsgDeListNFTResponse {
+    const message = createBaseMsgDeListNFTResponse();
+    return message;
+  },
+  toAmino(_: MsgDeListNFTResponse): MsgDeListNFTResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgDeListNFTResponseAminoMsg): MsgDeListNFTResponse {
+    return MsgDeListNFTResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgDeListNFTResponseProtoMsg): MsgDeListNFTResponse {
+    return MsgDeListNFTResponse.decode(message.value);
+  },
+  toProto(message: MsgDeListNFTResponse): Uint8Array {
+    return MsgDeListNFTResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgDeListNFTResponse): MsgDeListNFTResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgDeListNFTResponse",
+      value: MsgDeListNFTResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgBuyNFT(): MsgBuyNFT {
@@ -458,20 +786,6 @@ export const MsgBuyNFT = {
     }
     return message;
   },
-  fromJSON(object: any): MsgBuyNFT {
-    const obj = createBaseMsgBuyNFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.price)) obj.price = Coin.fromJSON(object.price);
-    if (isSet(object.buyer)) obj.buyer = String(object.buyer);
-    return obj;
-  },
-  toJSON(message: MsgBuyNFT): JsonSafe<MsgBuyNFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.price !== undefined && (obj.price = message.price ? Coin.toJSON(message.price) : undefined);
-    message.buyer !== undefined && (obj.buyer = message.buyer);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgBuyNFT>, I>>(object: I): MsgBuyNFT {
     const message = createBaseMsgBuyNFT();
     message.id = object.id ?? "";
@@ -480,6 +794,47 @@ export const MsgBuyNFT = {
     }
     message.buyer = object.buyer ?? "";
     return message;
+  },
+  fromAmino(object: MsgBuyNFTAmino): MsgBuyNFT {
+    const message = createBaseMsgBuyNFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.price !== undefined && object.price !== null) {
+      message.price = Coin.fromAmino(object.price);
+    }
+    if (object.buyer !== undefined && object.buyer !== null) {
+      message.buyer = object.buyer;
+    }
+    return message;
+  },
+  toAmino(message: MsgBuyNFT): MsgBuyNFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.price = message.price ? Coin.toAmino(message.price) : undefined;
+    obj.buyer = message.buyer === "" ? undefined : message.buyer;
+    return obj;
+  },
+  fromAminoMsg(object: MsgBuyNFTAminoMsg): MsgBuyNFT {
+    return MsgBuyNFT.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgBuyNFT): MsgBuyNFTAminoMsg {
+    return {
+      type: "OmniFlix/marketplace/MsgBuyNFT",
+      value: MsgBuyNFT.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgBuyNFTProtoMsg): MsgBuyNFT {
+    return MsgBuyNFT.decode(message.value);
+  },
+  toProto(message: MsgBuyNFT): Uint8Array {
+    return MsgBuyNFT.encode(message).finish();
+  },
+  toProtoMsg(message: MsgBuyNFT): MsgBuyNFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgBuyNFT",
+      value: MsgBuyNFT.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgBuyNFTResponse(): MsgBuyNFTResponse {
@@ -504,17 +859,32 @@ export const MsgBuyNFTResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgBuyNFTResponse {
-    const obj = createBaseMsgBuyNFTResponse();
-    return obj;
-  },
-  toJSON(_: MsgBuyNFTResponse): JsonSafe<MsgBuyNFTResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgBuyNFTResponse>, I>>(_: I): MsgBuyNFTResponse {
     const message = createBaseMsgBuyNFTResponse();
     return message;
+  },
+  fromAmino(_: MsgBuyNFTResponseAmino): MsgBuyNFTResponse {
+    const message = createBaseMsgBuyNFTResponse();
+    return message;
+  },
+  toAmino(_: MsgBuyNFTResponse): MsgBuyNFTResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgBuyNFTResponseAminoMsg): MsgBuyNFTResponse {
+    return MsgBuyNFTResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgBuyNFTResponseProtoMsg): MsgBuyNFTResponse {
+    return MsgBuyNFTResponse.decode(message.value);
+  },
+  toProto(message: MsgBuyNFTResponse): Uint8Array {
+    return MsgBuyNFTResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgBuyNFTResponse): MsgBuyNFTResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgBuyNFTResponse",
+      value: MsgBuyNFTResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgCreateAuction(): MsgCreateAuction {
@@ -603,44 +973,6 @@ export const MsgCreateAuction = {
     }
     return message;
   },
-  fromJSON(object: any): MsgCreateAuction {
-    const obj = createBaseMsgCreateAuction();
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.startTime)) obj.startTime = fromJsonTimestamp(object.startTime);
-    if (isSet(object.startPrice)) obj.startPrice = Coin.fromJSON(object.startPrice);
-    if (isSet(object.duration)) obj.duration = Duration.fromJSON(object.duration);
-    if (isSet(object.incrementPercentage)) obj.incrementPercentage = String(object.incrementPercentage);
-    if (Array.isArray(object?.whitelistAccounts))
-      obj.whitelistAccounts = object.whitelistAccounts.map((e: any) => String(e));
-    if (Array.isArray(object?.splitShares))
-      obj.splitShares = object.splitShares.map((e: any) => WeightedAddress.fromJSON(e));
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: MsgCreateAuction): JsonSafe<MsgCreateAuction> {
-    const obj: any = {};
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.startTime !== undefined && (obj.startTime = fromTimestamp(message.startTime).toISOString());
-    message.startPrice !== undefined &&
-      (obj.startPrice = message.startPrice ? Coin.toJSON(message.startPrice) : undefined);
-    message.duration !== undefined &&
-      (obj.duration = message.duration ? Duration.toJSON(message.duration) : undefined);
-    message.incrementPercentage !== undefined && (obj.incrementPercentage = message.incrementPercentage);
-    if (message.whitelistAccounts) {
-      obj.whitelistAccounts = message.whitelistAccounts.map((e) => e);
-    } else {
-      obj.whitelistAccounts = [];
-    }
-    if (message.splitShares) {
-      obj.splitShares = message.splitShares.map((e) => (e ? WeightedAddress.toJSON(e) : undefined));
-    } else {
-      obj.splitShares = [];
-    }
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgCreateAuction>, I>>(object: I): MsgCreateAuction {
     const message = createBaseMsgCreateAuction();
     message.nftId = object.nftId ?? "";
@@ -659,6 +991,75 @@ export const MsgCreateAuction = {
     message.splitShares = object.splitShares?.map((e) => WeightedAddress.fromPartial(e)) || [];
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: MsgCreateAuctionAmino): MsgCreateAuction {
+    const message = createBaseMsgCreateAuction();
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.start_time !== undefined && object.start_time !== null) {
+      message.startTime = Timestamp.fromAmino(object.start_time);
+    }
+    if (object.start_price !== undefined && object.start_price !== null) {
+      message.startPrice = Coin.fromAmino(object.start_price);
+    }
+    if (object.duration !== undefined && object.duration !== null) {
+      message.duration = Duration.fromAmino(object.duration);
+    }
+    if (object.increment_percentage !== undefined && object.increment_percentage !== null) {
+      message.incrementPercentage = object.increment_percentage;
+    }
+    message.whitelistAccounts = object.whitelist_accounts?.map((e) => e) || [];
+    message.splitShares = object.split_shares?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: MsgCreateAuction): MsgCreateAuctionAmino {
+    const obj: any = {};
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.start_time = message.startTime ? Timestamp.toAmino(message.startTime) : undefined;
+    obj.start_price = message.startPrice ? Coin.toAmino(message.startPrice) : undefined;
+    obj.duration = message.duration ? Duration.toAmino(message.duration) : undefined;
+    obj.increment_percentage = message.incrementPercentage === "" ? undefined : message.incrementPercentage;
+    if (message.whitelistAccounts) {
+      obj.whitelist_accounts = message.whitelistAccounts.map((e) => e);
+    } else {
+      obj.whitelist_accounts = message.whitelistAccounts;
+    }
+    if (message.splitShares) {
+      obj.split_shares = message.splitShares.map((e) => (e ? WeightedAddress.toAmino(e) : undefined));
+    } else {
+      obj.split_shares = message.splitShares;
+    }
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: MsgCreateAuctionAminoMsg): MsgCreateAuction {
+    return MsgCreateAuction.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgCreateAuction): MsgCreateAuctionAminoMsg {
+    return {
+      type: "OmniFlix/marketplace/MsgCreateAuction",
+      value: MsgCreateAuction.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgCreateAuctionProtoMsg): MsgCreateAuction {
+    return MsgCreateAuction.decode(message.value);
+  },
+  toProto(message: MsgCreateAuction): Uint8Array {
+    return MsgCreateAuction.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCreateAuction): MsgCreateAuctionProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgCreateAuction",
+      value: MsgCreateAuction.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgCreateAuctionResponse(): MsgCreateAuctionResponse {
@@ -691,17 +1092,6 @@ export const MsgCreateAuctionResponse = {
     }
     return message;
   },
-  fromJSON(object: any): MsgCreateAuctionResponse {
-    const obj = createBaseMsgCreateAuctionResponse();
-    if (isSet(object.auction)) obj.auction = AuctionListing.fromJSON(object.auction);
-    return obj;
-  },
-  toJSON(message: MsgCreateAuctionResponse): JsonSafe<MsgCreateAuctionResponse> {
-    const obj: any = {};
-    message.auction !== undefined &&
-      (obj.auction = message.auction ? AuctionListing.toJSON(message.auction) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgCreateAuctionResponse>, I>>(
     object: I,
   ): MsgCreateAuctionResponse {
@@ -710,6 +1100,33 @@ export const MsgCreateAuctionResponse = {
       message.auction = AuctionListing.fromPartial(object.auction);
     }
     return message;
+  },
+  fromAmino(object: MsgCreateAuctionResponseAmino): MsgCreateAuctionResponse {
+    const message = createBaseMsgCreateAuctionResponse();
+    if (object.auction !== undefined && object.auction !== null) {
+      message.auction = AuctionListing.fromAmino(object.auction);
+    }
+    return message;
+  },
+  toAmino(message: MsgCreateAuctionResponse): MsgCreateAuctionResponseAmino {
+    const obj: any = {};
+    obj.auction = message.auction ? AuctionListing.toAmino(message.auction) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: MsgCreateAuctionResponseAminoMsg): MsgCreateAuctionResponse {
+    return MsgCreateAuctionResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgCreateAuctionResponseProtoMsg): MsgCreateAuctionResponse {
+    return MsgCreateAuctionResponse.decode(message.value);
+  },
+  toProto(message: MsgCreateAuctionResponse): Uint8Array {
+    return MsgCreateAuctionResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCreateAuctionResponse): MsgCreateAuctionResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgCreateAuctionResponse",
+      value: MsgCreateAuctionResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgCancelAuction(): MsgCancelAuction {
@@ -749,18 +1166,6 @@ export const MsgCancelAuction = {
     }
     return message;
   },
-  fromJSON(object: any): MsgCancelAuction {
-    const obj = createBaseMsgCancelAuction();
-    if (isSet(object.auctionId)) obj.auctionId = BigInt(object.auctionId.toString());
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: MsgCancelAuction): JsonSafe<MsgCancelAuction> {
-    const obj: any = {};
-    message.auctionId !== undefined && (obj.auctionId = (message.auctionId || BigInt(0)).toString());
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgCancelAuction>, I>>(object: I): MsgCancelAuction {
     const message = createBaseMsgCancelAuction();
     if (object.auctionId !== undefined && object.auctionId !== null) {
@@ -768,6 +1173,43 @@ export const MsgCancelAuction = {
     }
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: MsgCancelAuctionAmino): MsgCancelAuction {
+    const message = createBaseMsgCancelAuction();
+    if (object.auction_id !== undefined && object.auction_id !== null) {
+      message.auctionId = BigInt(object.auction_id);
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: MsgCancelAuction): MsgCancelAuctionAmino {
+    const obj: any = {};
+    obj.auction_id = message.auctionId !== BigInt(0) ? message.auctionId?.toString() : undefined;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: MsgCancelAuctionAminoMsg): MsgCancelAuction {
+    return MsgCancelAuction.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgCancelAuction): MsgCancelAuctionAminoMsg {
+    return {
+      type: "OmniFlix/marketplace/MsgCancelAuction",
+      value: MsgCancelAuction.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgCancelAuctionProtoMsg): MsgCancelAuction {
+    return MsgCancelAuction.decode(message.value);
+  },
+  toProto(message: MsgCancelAuction): Uint8Array {
+    return MsgCancelAuction.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCancelAuction): MsgCancelAuctionProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgCancelAuction",
+      value: MsgCancelAuction.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgCancelAuctionResponse(): MsgCancelAuctionResponse {
@@ -792,17 +1234,32 @@ export const MsgCancelAuctionResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgCancelAuctionResponse {
-    const obj = createBaseMsgCancelAuctionResponse();
-    return obj;
-  },
-  toJSON(_: MsgCancelAuctionResponse): JsonSafe<MsgCancelAuctionResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgCancelAuctionResponse>, I>>(_: I): MsgCancelAuctionResponse {
     const message = createBaseMsgCancelAuctionResponse();
     return message;
+  },
+  fromAmino(_: MsgCancelAuctionResponseAmino): MsgCancelAuctionResponse {
+    const message = createBaseMsgCancelAuctionResponse();
+    return message;
+  },
+  toAmino(_: MsgCancelAuctionResponse): MsgCancelAuctionResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgCancelAuctionResponseAminoMsg): MsgCancelAuctionResponse {
+    return MsgCancelAuctionResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgCancelAuctionResponseProtoMsg): MsgCancelAuctionResponse {
+    return MsgCancelAuctionResponse.decode(message.value);
+  },
+  toProto(message: MsgCancelAuctionResponse): Uint8Array {
+    return MsgCancelAuctionResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCancelAuctionResponse): MsgCancelAuctionResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgCancelAuctionResponse",
+      value: MsgCancelAuctionResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgPlaceBid(): MsgPlaceBid {
@@ -849,20 +1306,6 @@ export const MsgPlaceBid = {
     }
     return message;
   },
-  fromJSON(object: any): MsgPlaceBid {
-    const obj = createBaseMsgPlaceBid();
-    if (isSet(object.auctionId)) obj.auctionId = BigInt(object.auctionId.toString());
-    if (isSet(object.amount)) obj.amount = Coin.fromJSON(object.amount);
-    if (isSet(object.bidder)) obj.bidder = String(object.bidder);
-    return obj;
-  },
-  toJSON(message: MsgPlaceBid): JsonSafe<MsgPlaceBid> {
-    const obj: any = {};
-    message.auctionId !== undefined && (obj.auctionId = (message.auctionId || BigInt(0)).toString());
-    message.amount !== undefined && (obj.amount = message.amount ? Coin.toJSON(message.amount) : undefined);
-    message.bidder !== undefined && (obj.bidder = message.bidder);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgPlaceBid>, I>>(object: I): MsgPlaceBid {
     const message = createBaseMsgPlaceBid();
     if (object.auctionId !== undefined && object.auctionId !== null) {
@@ -873,6 +1316,47 @@ export const MsgPlaceBid = {
     }
     message.bidder = object.bidder ?? "";
     return message;
+  },
+  fromAmino(object: MsgPlaceBidAmino): MsgPlaceBid {
+    const message = createBaseMsgPlaceBid();
+    if (object.auction_id !== undefined && object.auction_id !== null) {
+      message.auctionId = BigInt(object.auction_id);
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = Coin.fromAmino(object.amount);
+    }
+    if (object.bidder !== undefined && object.bidder !== null) {
+      message.bidder = object.bidder;
+    }
+    return message;
+  },
+  toAmino(message: MsgPlaceBid): MsgPlaceBidAmino {
+    const obj: any = {};
+    obj.auction_id = message.auctionId !== BigInt(0) ? message.auctionId?.toString() : undefined;
+    obj.amount = message.amount ? Coin.toAmino(message.amount) : undefined;
+    obj.bidder = message.bidder === "" ? undefined : message.bidder;
+    return obj;
+  },
+  fromAminoMsg(object: MsgPlaceBidAminoMsg): MsgPlaceBid {
+    return MsgPlaceBid.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgPlaceBid): MsgPlaceBidAminoMsg {
+    return {
+      type: "OmniFlix/marketplace/MsgPlaceBid",
+      value: MsgPlaceBid.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgPlaceBidProtoMsg): MsgPlaceBid {
+    return MsgPlaceBid.decode(message.value);
+  },
+  toProto(message: MsgPlaceBid): Uint8Array {
+    return MsgPlaceBid.encode(message).finish();
+  },
+  toProtoMsg(message: MsgPlaceBid): MsgPlaceBidProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgPlaceBid",
+      value: MsgPlaceBid.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgPlaceBidResponse(): MsgPlaceBidResponse {
@@ -897,17 +1381,32 @@ export const MsgPlaceBidResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgPlaceBidResponse {
-    const obj = createBaseMsgPlaceBidResponse();
-    return obj;
-  },
-  toJSON(_: MsgPlaceBidResponse): JsonSafe<MsgPlaceBidResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgPlaceBidResponse>, I>>(_: I): MsgPlaceBidResponse {
     const message = createBaseMsgPlaceBidResponse();
     return message;
+  },
+  fromAmino(_: MsgPlaceBidResponseAmino): MsgPlaceBidResponse {
+    const message = createBaseMsgPlaceBidResponse();
+    return message;
+  },
+  toAmino(_: MsgPlaceBidResponse): MsgPlaceBidResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgPlaceBidResponseAminoMsg): MsgPlaceBidResponse {
+    return MsgPlaceBidResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgPlaceBidResponseProtoMsg): MsgPlaceBidResponse {
+    return MsgPlaceBidResponse.decode(message.value);
+  },
+  toProto(message: MsgPlaceBidResponse): Uint8Array {
+    return MsgPlaceBidResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgPlaceBidResponse): MsgPlaceBidResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgPlaceBidResponse",
+      value: MsgPlaceBidResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgUpdateParams(): MsgUpdateParams {
@@ -947,18 +1446,6 @@ export const MsgUpdateParams = {
     }
     return message;
   },
-  fromJSON(object: any): MsgUpdateParams {
-    const obj = createBaseMsgUpdateParams();
-    if (isSet(object.authority)) obj.authority = String(object.authority);
-    if (isSet(object.params)) obj.params = Params.fromJSON(object.params);
-    return obj;
-  },
-  toJSON(message: MsgUpdateParams): JsonSafe<MsgUpdateParams> {
-    const obj: any = {};
-    message.authority !== undefined && (obj.authority = message.authority);
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? "";
@@ -966,6 +1453,37 @@ export const MsgUpdateParams = {
       message.params = Params.fromPartial(object.params);
     }
     return message;
+  },
+  fromAmino(object: MsgUpdateParamsAmino): MsgUpdateParams {
+    const message = createBaseMsgUpdateParams();
+    if (object.authority !== undefined && object.authority !== null) {
+      message.authority = object.authority;
+    }
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino {
+    const obj: any = {};
+    obj.authority = message.authority === "" ? undefined : message.authority;
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams {
+    return MsgUpdateParams.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams {
+    return MsgUpdateParams.decode(message.value);
+  },
+  toProto(message: MsgUpdateParams): Uint8Array {
+    return MsgUpdateParams.encode(message).finish();
+  },
+  toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgUpdateParams",
+      value: MsgUpdateParams.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
@@ -990,17 +1508,32 @@ export const MsgUpdateParamsResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgUpdateParamsResponse {
-    const obj = createBaseMsgUpdateParamsResponse();
-    return obj;
-  },
-  toJSON(_: MsgUpdateParamsResponse): JsonSafe<MsgUpdateParamsResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(_: I): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
+  },
+  fromAmino(_: MsgUpdateParamsResponseAmino): MsgUpdateParamsResponse {
+    const message = createBaseMsgUpdateParamsResponse();
+    return message;
+  },
+  toAmino(_: MsgUpdateParamsResponse): MsgUpdateParamsResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgUpdateParamsResponseAminoMsg): MsgUpdateParamsResponse {
+    return MsgUpdateParamsResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse {
+    return MsgUpdateParamsResponse.decode(message.value);
+  },
+  toProto(message: MsgUpdateParamsResponse): Uint8Array {
+    return MsgUpdateParamsResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.MsgUpdateParamsResponse",
+      value: MsgUpdateParamsResponse.encode(message).finish(),
+    };
   },
 };
 export interface Msg {

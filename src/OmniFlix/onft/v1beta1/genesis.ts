@@ -1,14 +1,27 @@
+//@ts-nocheck
 /* eslint-disable */
-import { Collection } from "./onft";
-import { Params } from "./params";
+import { Collection, CollectionAmino } from "./onft";
+import { Params, ParamsAmino } from "./params";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "OmniFlix.onft.v1beta1";
 /** GenesisState defines the nft module's genesis state. */
 export interface GenesisState {
   collections: Collection[];
   params: Params;
+}
+export interface GenesisStateProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.GenesisState";
+  value: Uint8Array;
+}
+/** GenesisState defines the nft module's genesis state. */
+export interface GenesisStateAmino {
+  collections?: CollectionAmino[];
+  params?: ParamsAmino;
+}
+export interface GenesisStateAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.GenesisState";
+  value: GenesisStateAmino;
 }
 function createBaseGenesisState(): GenesisState {
   return {
@@ -47,23 +60,6 @@ export const GenesisState = {
     }
     return message;
   },
-  fromJSON(object: any): GenesisState {
-    const obj = createBaseGenesisState();
-    if (Array.isArray(object?.collections))
-      obj.collections = object.collections.map((e: any) => Collection.fromJSON(e));
-    if (isSet(object.params)) obj.params = Params.fromJSON(object.params);
-    return obj;
-  },
-  toJSON(message: GenesisState): JsonSafe<GenesisState> {
-    const obj: any = {};
-    if (message.collections) {
-      obj.collections = message.collections.map((e) => (e ? Collection.toJSON(e) : undefined));
-    } else {
-      obj.collections = [];
-    }
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.collections = object.collections?.map((e) => Collection.fromPartial(e)) || [];
@@ -71,5 +67,38 @@ export const GenesisState = {
       message.params = Params.fromPartial(object.params);
     }
     return message;
+  },
+  fromAmino(object: GenesisStateAmino): GenesisState {
+    const message = createBaseGenesisState();
+    message.collections = object.collections?.map((e) => Collection.fromAmino(e)) || [];
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message: GenesisState): GenesisStateAmino {
+    const obj: any = {};
+    if (message.collections) {
+      obj.collections = message.collections.map((e) => (e ? Collection.toAmino(e) : undefined));
+    } else {
+      obj.collections = message.collections;
+    }
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
+    return GenesisState.fromAmino(object.value);
+  },
+  fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
+    return GenesisState.decode(message.value);
+  },
+  toProto(message: GenesisState): Uint8Array {
+    return GenesisState.encode(message).finish();
+  },
+  toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.GenesisState",
+      value: GenesisState.encode(message).finish(),
+    };
   },
 };

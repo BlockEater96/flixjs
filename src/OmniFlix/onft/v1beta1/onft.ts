@@ -1,17 +1,42 @@
+//@ts-nocheck
 /* eslint-disable */
 import { Timestamp } from "../../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact, fromJsonTimestamp, fromTimestamp } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "OmniFlix.onft.v1beta1";
 /** Collection */
 export interface Collection {
   denom: Denom;
   onfts: ONFT[];
 }
+export interface CollectionProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.Collection";
+  value: Uint8Array;
+}
+/** Collection */
+export interface CollectionAmino {
+  denom?: DenomAmino;
+  onfts?: ONFTAmino[];
+}
+export interface CollectionAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.Collection";
+  value: CollectionAmino;
+}
 export interface IDCollection {
   denomId: string;
   onftIds: string[];
+}
+export interface IDCollectionProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.IDCollection";
+  value: Uint8Array;
+}
+export interface IDCollectionAmino {
+  denom_id?: string;
+  onft_ids?: string[];
+}
+export interface IDCollectionAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.IDCollection";
+  value: IDCollectionAmino;
 }
 export interface Denom {
   id: string;
@@ -26,6 +51,27 @@ export interface Denom {
   data: string;
   royaltyReceivers: WeightedAddress[];
 }
+export interface DenomProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.Denom";
+  value: Uint8Array;
+}
+export interface DenomAmino {
+  id?: string;
+  symbol?: string;
+  name?: string;
+  schema?: string;
+  creator?: string;
+  description?: string;
+  preview_uri?: string;
+  uri?: string;
+  uri_hash?: string;
+  data?: string;
+  royalty_receivers?: WeightedAddressAmino[];
+}
+export interface DenomAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.Denom";
+  value: DenomAmino;
+}
 export interface DenomMetadata {
   creator: string;
   schema: string;
@@ -34,6 +80,23 @@ export interface DenomMetadata {
   data: string;
   uriHash: string;
   royaltyReceivers: WeightedAddress[];
+}
+export interface DenomMetadataProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.DenomMetadata";
+  value: Uint8Array;
+}
+export interface DenomMetadataAmino {
+  creator?: string;
+  schema?: string;
+  description?: string;
+  preview_uri?: string;
+  data?: string;
+  uri_hash?: string;
+  royalty_receivers?: WeightedAddressAmino[];
+}
+export interface DenomMetadataAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.DenomMetadata";
+  value: DenomMetadataAmino;
 }
 /** ASSET or ONFT */
 export interface ONFT {
@@ -47,12 +110,47 @@ export interface ONFT {
   nsfw: boolean;
   royaltyShare: string;
 }
+export interface ONFTProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.ONFT";
+  value: Uint8Array;
+}
+/** ASSET or ONFT */
+export interface ONFTAmino {
+  id?: string;
+  metadata?: MetadataAmino;
+  data?: string;
+  owner?: string;
+  transferable?: boolean;
+  extensible?: boolean;
+  created_at?: string;
+  nsfw?: boolean;
+  royalty_share?: string;
+}
+export interface ONFTAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.ONFT";
+  value: ONFTAmino;
+}
 export interface Metadata {
   name: string;
   description: string;
   mediaUri: string;
   previewUri: string;
   uriHash: string;
+}
+export interface MetadataProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.Metadata";
+  value: Uint8Array;
+}
+export interface MetadataAmino {
+  name?: string;
+  description?: string;
+  media_uri?: string;
+  preview_uri?: string;
+  uri_hash?: string;
+}
+export interface MetadataAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.Metadata";
+  value: MetadataAmino;
 }
 export interface ONFTMetadata {
   name: string;
@@ -66,13 +164,57 @@ export interface ONFTMetadata {
   royaltyShare: string;
   uriHash: string;
 }
+export interface ONFTMetadataProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.ONFTMetadata";
+  value: Uint8Array;
+}
+export interface ONFTMetadataAmino {
+  name?: string;
+  description?: string;
+  preview_uri?: string;
+  data?: string;
+  transferable?: boolean;
+  extensible?: boolean;
+  created_at?: string;
+  nsfw?: boolean;
+  royalty_share?: string;
+  uri_hash?: string;
+}
+export interface ONFTMetadataAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.ONFTMetadata";
+  value: ONFTMetadataAmino;
+}
 export interface Owner {
   address: string;
   idCollections: IDCollection[];
 }
+export interface OwnerProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.Owner";
+  value: Uint8Array;
+}
+export interface OwnerAmino {
+  address?: string;
+  id_collections?: IDCollectionAmino[];
+}
+export interface OwnerAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.Owner";
+  value: OwnerAmino;
+}
 export interface WeightedAddress {
   address: string;
   weight: string;
+}
+export interface WeightedAddressProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.WeightedAddress";
+  value: Uint8Array;
+}
+export interface WeightedAddressAmino {
+  address?: string;
+  weight?: string;
+}
+export interface WeightedAddressAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.WeightedAddress";
+  value: WeightedAddressAmino;
 }
 function createBaseCollection(): Collection {
   return {
@@ -111,22 +253,6 @@ export const Collection = {
     }
     return message;
   },
-  fromJSON(object: any): Collection {
-    const obj = createBaseCollection();
-    if (isSet(object.denom)) obj.denom = Denom.fromJSON(object.denom);
-    if (Array.isArray(object?.onfts)) obj.onfts = object.onfts.map((e: any) => ONFT.fromJSON(e));
-    return obj;
-  },
-  toJSON(message: Collection): JsonSafe<Collection> {
-    const obj: any = {};
-    message.denom !== undefined && (obj.denom = message.denom ? Denom.toJSON(message.denom) : undefined);
-    if (message.onfts) {
-      obj.onfts = message.onfts.map((e) => (e ? ONFT.toJSON(e) : undefined));
-    } else {
-      obj.onfts = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Collection>, I>>(object: I): Collection {
     const message = createBaseCollection();
     if (object.denom !== undefined && object.denom !== null) {
@@ -134,6 +260,39 @@ export const Collection = {
     }
     message.onfts = object.onfts?.map((e) => ONFT.fromPartial(e)) || [];
     return message;
+  },
+  fromAmino(object: CollectionAmino): Collection {
+    const message = createBaseCollection();
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = Denom.fromAmino(object.denom);
+    }
+    message.onfts = object.onfts?.map((e) => ONFT.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: Collection): CollectionAmino {
+    const obj: any = {};
+    obj.denom = message.denom ? Denom.toAmino(message.denom) : undefined;
+    if (message.onfts) {
+      obj.onfts = message.onfts.map((e) => (e ? ONFT.toAmino(e) : undefined));
+    } else {
+      obj.onfts = message.onfts;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: CollectionAminoMsg): Collection {
+    return Collection.fromAmino(object.value);
+  },
+  fromProtoMsg(message: CollectionProtoMsg): Collection {
+    return Collection.decode(message.value);
+  },
+  toProto(message: Collection): Uint8Array {
+    return Collection.encode(message).finish();
+  },
+  toProtoMsg(message: Collection): CollectionProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.Collection",
+      value: Collection.encode(message).finish(),
+    };
   },
 };
 function createBaseIDCollection(): IDCollection {
@@ -173,27 +332,44 @@ export const IDCollection = {
     }
     return message;
   },
-  fromJSON(object: any): IDCollection {
-    const obj = createBaseIDCollection();
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (Array.isArray(object?.onftIds)) obj.onftIds = object.onftIds.map((e: any) => String(e));
-    return obj;
-  },
-  toJSON(message: IDCollection): JsonSafe<IDCollection> {
-    const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    if (message.onftIds) {
-      obj.onftIds = message.onftIds.map((e) => e);
-    } else {
-      obj.onftIds = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<IDCollection>, I>>(object: I): IDCollection {
     const message = createBaseIDCollection();
     message.denomId = object.denomId ?? "";
     message.onftIds = object.onftIds?.map((e) => e) || [];
     return message;
+  },
+  fromAmino(object: IDCollectionAmino): IDCollection {
+    const message = createBaseIDCollection();
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    message.onftIds = object.onft_ids?.map((e) => e) || [];
+    return message;
+  },
+  toAmino(message: IDCollection): IDCollectionAmino {
+    const obj: any = {};
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    if (message.onftIds) {
+      obj.onft_ids = message.onftIds.map((e) => e);
+    } else {
+      obj.onft_ids = message.onftIds;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: IDCollectionAminoMsg): IDCollection {
+    return IDCollection.fromAmino(object.value);
+  },
+  fromProtoMsg(message: IDCollectionProtoMsg): IDCollection {
+    return IDCollection.decode(message.value);
+  },
+  toProto(message: IDCollection): Uint8Array {
+    return IDCollection.encode(message).finish();
+  },
+  toProtoMsg(message: IDCollection): IDCollectionProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.IDCollection",
+      value: IDCollection.encode(message).finish(),
+    };
   },
 };
 function createBaseDenom(): Denom {
@@ -296,41 +472,6 @@ export const Denom = {
     }
     return message;
   },
-  fromJSON(object: any): Denom {
-    const obj = createBaseDenom();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.symbol)) obj.symbol = String(object.symbol);
-    if (isSet(object.name)) obj.name = String(object.name);
-    if (isSet(object.schema)) obj.schema = String(object.schema);
-    if (isSet(object.creator)) obj.creator = String(object.creator);
-    if (isSet(object.description)) obj.description = String(object.description);
-    if (isSet(object.previewUri)) obj.previewUri = String(object.previewUri);
-    if (isSet(object.uri)) obj.uri = String(object.uri);
-    if (isSet(object.uriHash)) obj.uriHash = String(object.uriHash);
-    if (isSet(object.data)) obj.data = String(object.data);
-    if (Array.isArray(object?.royaltyReceivers))
-      obj.royaltyReceivers = object.royaltyReceivers.map((e: any) => WeightedAddress.fromJSON(e));
-    return obj;
-  },
-  toJSON(message: Denom): JsonSafe<Denom> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.symbol !== undefined && (obj.symbol = message.symbol);
-    message.name !== undefined && (obj.name = message.name);
-    message.schema !== undefined && (obj.schema = message.schema);
-    message.creator !== undefined && (obj.creator = message.creator);
-    message.description !== undefined && (obj.description = message.description);
-    message.previewUri !== undefined && (obj.previewUri = message.previewUri);
-    message.uri !== undefined && (obj.uri = message.uri);
-    message.uriHash !== undefined && (obj.uriHash = message.uriHash);
-    message.data !== undefined && (obj.data = message.data);
-    if (message.royaltyReceivers) {
-      obj.royaltyReceivers = message.royaltyReceivers.map((e) => (e ? WeightedAddress.toJSON(e) : undefined));
-    } else {
-      obj.royaltyReceivers = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Denom>, I>>(object: I): Denom {
     const message = createBaseDenom();
     message.id = object.id ?? "";
@@ -345,6 +486,77 @@ export const Denom = {
     message.data = object.data ?? "";
     message.royaltyReceivers = object.royaltyReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
     return message;
+  },
+  fromAmino(object: DenomAmino): Denom {
+    const message = createBaseDenom();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.symbol !== undefined && object.symbol !== null) {
+      message.symbol = object.symbol;
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    }
+    if (object.schema !== undefined && object.schema !== null) {
+      message.schema = object.schema;
+    }
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    }
+    if (object.preview_uri !== undefined && object.preview_uri !== null) {
+      message.previewUri = object.preview_uri;
+    }
+    if (object.uri !== undefined && object.uri !== null) {
+      message.uri = object.uri;
+    }
+    if (object.uri_hash !== undefined && object.uri_hash !== null) {
+      message.uriHash = object.uri_hash;
+    }
+    if (object.data !== undefined && object.data !== null) {
+      message.data = object.data;
+    }
+    message.royaltyReceivers = object.royalty_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: Denom): DenomAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.symbol = message.symbol === "" ? undefined : message.symbol;
+    obj.name = message.name === "" ? undefined : message.name;
+    obj.schema = message.schema === "" ? undefined : message.schema;
+    obj.creator = message.creator === "" ? undefined : message.creator;
+    obj.description = message.description === "" ? undefined : message.description;
+    obj.preview_uri = message.previewUri === "" ? undefined : message.previewUri;
+    obj.uri = message.uri === "" ? undefined : message.uri;
+    obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
+    obj.data = message.data === "" ? undefined : message.data;
+    if (message.royaltyReceivers) {
+      obj.royalty_receivers = message.royaltyReceivers.map((e) =>
+        e ? WeightedAddress.toAmino(e) : undefined,
+      );
+    } else {
+      obj.royalty_receivers = message.royaltyReceivers;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: DenomAminoMsg): Denom {
+    return Denom.fromAmino(object.value);
+  },
+  fromProtoMsg(message: DenomProtoMsg): Denom {
+    return Denom.decode(message.value);
+  },
+  toProto(message: Denom): Uint8Array {
+    return Denom.encode(message).finish();
+  },
+  toProtoMsg(message: Denom): DenomProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.Denom",
+      value: Denom.encode(message).finish(),
+    };
   },
 };
 function createBaseDenomMetadata(): DenomMetadata {
@@ -419,33 +631,6 @@ export const DenomMetadata = {
     }
     return message;
   },
-  fromJSON(object: any): DenomMetadata {
-    const obj = createBaseDenomMetadata();
-    if (isSet(object.creator)) obj.creator = String(object.creator);
-    if (isSet(object.schema)) obj.schema = String(object.schema);
-    if (isSet(object.description)) obj.description = String(object.description);
-    if (isSet(object.previewUri)) obj.previewUri = String(object.previewUri);
-    if (isSet(object.data)) obj.data = String(object.data);
-    if (isSet(object.uriHash)) obj.uriHash = String(object.uriHash);
-    if (Array.isArray(object?.royaltyReceivers))
-      obj.royaltyReceivers = object.royaltyReceivers.map((e: any) => WeightedAddress.fromJSON(e));
-    return obj;
-  },
-  toJSON(message: DenomMetadata): JsonSafe<DenomMetadata> {
-    const obj: any = {};
-    message.creator !== undefined && (obj.creator = message.creator);
-    message.schema !== undefined && (obj.schema = message.schema);
-    message.description !== undefined && (obj.description = message.description);
-    message.previewUri !== undefined && (obj.previewUri = message.previewUri);
-    message.data !== undefined && (obj.data = message.data);
-    message.uriHash !== undefined && (obj.uriHash = message.uriHash);
-    if (message.royaltyReceivers) {
-      obj.royaltyReceivers = message.royaltyReceivers.map((e) => (e ? WeightedAddress.toJSON(e) : undefined));
-    } else {
-      obj.royaltyReceivers = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<DenomMetadata>, I>>(object: I): DenomMetadata {
     const message = createBaseDenomMetadata();
     message.creator = object.creator ?? "";
@@ -456,6 +641,61 @@ export const DenomMetadata = {
     message.uriHash = object.uriHash ?? "";
     message.royaltyReceivers = object.royaltyReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
     return message;
+  },
+  fromAmino(object: DenomMetadataAmino): DenomMetadata {
+    const message = createBaseDenomMetadata();
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    }
+    if (object.schema !== undefined && object.schema !== null) {
+      message.schema = object.schema;
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    }
+    if (object.preview_uri !== undefined && object.preview_uri !== null) {
+      message.previewUri = object.preview_uri;
+    }
+    if (object.data !== undefined && object.data !== null) {
+      message.data = object.data;
+    }
+    if (object.uri_hash !== undefined && object.uri_hash !== null) {
+      message.uriHash = object.uri_hash;
+    }
+    message.royaltyReceivers = object.royalty_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: DenomMetadata): DenomMetadataAmino {
+    const obj: any = {};
+    obj.creator = message.creator === "" ? undefined : message.creator;
+    obj.schema = message.schema === "" ? undefined : message.schema;
+    obj.description = message.description === "" ? undefined : message.description;
+    obj.preview_uri = message.previewUri === "" ? undefined : message.previewUri;
+    obj.data = message.data === "" ? undefined : message.data;
+    obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
+    if (message.royaltyReceivers) {
+      obj.royalty_receivers = message.royaltyReceivers.map((e) =>
+        e ? WeightedAddress.toAmino(e) : undefined,
+      );
+    } else {
+      obj.royalty_receivers = message.royaltyReceivers;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: DenomMetadataAminoMsg): DenomMetadata {
+    return DenomMetadata.fromAmino(object.value);
+  },
+  fromProtoMsg(message: DenomMetadataProtoMsg): DenomMetadata {
+    return DenomMetadata.decode(message.value);
+  },
+  toProto(message: DenomMetadata): Uint8Array {
+    return DenomMetadata.encode(message).finish();
+  },
+  toProtoMsg(message: DenomMetadata): DenomMetadataProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.DenomMetadata",
+      value: DenomMetadata.encode(message).finish(),
+    };
   },
 };
 function createBaseONFT(): ONFT {
@@ -544,33 +784,6 @@ export const ONFT = {
     }
     return message;
   },
-  fromJSON(object: any): ONFT {
-    const obj = createBaseONFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.metadata)) obj.metadata = Metadata.fromJSON(object.metadata);
-    if (isSet(object.data)) obj.data = String(object.data);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    if (isSet(object.transferable)) obj.transferable = Boolean(object.transferable);
-    if (isSet(object.extensible)) obj.extensible = Boolean(object.extensible);
-    if (isSet(object.createdAt)) obj.createdAt = fromJsonTimestamp(object.createdAt);
-    if (isSet(object.nsfw)) obj.nsfw = Boolean(object.nsfw);
-    if (isSet(object.royaltyShare)) obj.royaltyShare = String(object.royaltyShare);
-    return obj;
-  },
-  toJSON(message: ONFT): JsonSafe<ONFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.metadata !== undefined &&
-      (obj.metadata = message.metadata ? Metadata.toJSON(message.metadata) : undefined);
-    message.data !== undefined && (obj.data = message.data);
-    message.owner !== undefined && (obj.owner = message.owner);
-    message.transferable !== undefined && (obj.transferable = message.transferable);
-    message.extensible !== undefined && (obj.extensible = message.extensible);
-    message.createdAt !== undefined && (obj.createdAt = fromTimestamp(message.createdAt).toISOString());
-    message.nsfw !== undefined && (obj.nsfw = message.nsfw);
-    message.royaltyShare !== undefined && (obj.royaltyShare = message.royaltyShare);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<ONFT>, I>>(object: I): ONFT {
     const message = createBaseONFT();
     message.id = object.id ?? "";
@@ -587,6 +800,65 @@ export const ONFT = {
     message.nsfw = object.nsfw ?? false;
     message.royaltyShare = object.royaltyShare ?? "";
     return message;
+  },
+  fromAmino(object: ONFTAmino): ONFT {
+    const message = createBaseONFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.metadata !== undefined && object.metadata !== null) {
+      message.metadata = Metadata.fromAmino(object.metadata);
+    }
+    if (object.data !== undefined && object.data !== null) {
+      message.data = object.data;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    if (object.transferable !== undefined && object.transferable !== null) {
+      message.transferable = object.transferable;
+    }
+    if (object.extensible !== undefined && object.extensible !== null) {
+      message.extensible = object.extensible;
+    }
+    if (object.created_at !== undefined && object.created_at !== null) {
+      message.createdAt = Timestamp.fromAmino(object.created_at);
+    }
+    if (object.nsfw !== undefined && object.nsfw !== null) {
+      message.nsfw = object.nsfw;
+    }
+    if (object.royalty_share !== undefined && object.royalty_share !== null) {
+      message.royaltyShare = object.royalty_share;
+    }
+    return message;
+  },
+  toAmino(message: ONFT): ONFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
+    obj.data = message.data === "" ? undefined : message.data;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    obj.transferable = message.transferable === false ? undefined : message.transferable;
+    obj.extensible = message.extensible === false ? undefined : message.extensible;
+    obj.created_at = message.createdAt ? Timestamp.toAmino(message.createdAt) : undefined;
+    obj.nsfw = message.nsfw === false ? undefined : message.nsfw;
+    obj.royalty_share = message.royaltyShare === "" ? undefined : message.royaltyShare;
+    return obj;
+  },
+  fromAminoMsg(object: ONFTAminoMsg): ONFT {
+    return ONFT.fromAmino(object.value);
+  },
+  fromProtoMsg(message: ONFTProtoMsg): ONFT {
+    return ONFT.decode(message.value);
+  },
+  toProto(message: ONFT): Uint8Array {
+    return ONFT.encode(message).finish();
+  },
+  toProtoMsg(message: ONFT): ONFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.ONFT",
+      value: ONFT.encode(message).finish(),
+    };
   },
 };
 function createBaseMetadata(): Metadata {
@@ -647,24 +919,6 @@ export const Metadata = {
     }
     return message;
   },
-  fromJSON(object: any): Metadata {
-    const obj = createBaseMetadata();
-    if (isSet(object.name)) obj.name = String(object.name);
-    if (isSet(object.description)) obj.description = String(object.description);
-    if (isSet(object.mediaUri)) obj.mediaUri = String(object.mediaUri);
-    if (isSet(object.previewUri)) obj.previewUri = String(object.previewUri);
-    if (isSet(object.uriHash)) obj.uriHash = String(object.uriHash);
-    return obj;
-  },
-  toJSON(message: Metadata): JsonSafe<Metadata> {
-    const obj: any = {};
-    message.name !== undefined && (obj.name = message.name);
-    message.description !== undefined && (obj.description = message.description);
-    message.mediaUri !== undefined && (obj.mediaUri = message.mediaUri);
-    message.previewUri !== undefined && (obj.previewUri = message.previewUri);
-    message.uriHash !== undefined && (obj.uriHash = message.uriHash);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Metadata>, I>>(object: I): Metadata {
     const message = createBaseMetadata();
     message.name = object.name ?? "";
@@ -673,6 +927,49 @@ export const Metadata = {
     message.previewUri = object.previewUri ?? "";
     message.uriHash = object.uriHash ?? "";
     return message;
+  },
+  fromAmino(object: MetadataAmino): Metadata {
+    const message = createBaseMetadata();
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    }
+    if (object.media_uri !== undefined && object.media_uri !== null) {
+      message.mediaUri = object.media_uri;
+    }
+    if (object.preview_uri !== undefined && object.preview_uri !== null) {
+      message.previewUri = object.preview_uri;
+    }
+    if (object.uri_hash !== undefined && object.uri_hash !== null) {
+      message.uriHash = object.uri_hash;
+    }
+    return message;
+  },
+  toAmino(message: Metadata): MetadataAmino {
+    const obj: any = {};
+    obj.name = message.name === "" ? undefined : message.name;
+    obj.description = message.description === "" ? undefined : message.description;
+    obj.media_uri = message.mediaUri === "" ? undefined : message.mediaUri;
+    obj.preview_uri = message.previewUri === "" ? undefined : message.previewUri;
+    obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
+    return obj;
+  },
+  fromAminoMsg(object: MetadataAminoMsg): Metadata {
+    return Metadata.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MetadataProtoMsg): Metadata {
+    return Metadata.decode(message.value);
+  },
+  toProto(message: Metadata): Uint8Array {
+    return Metadata.encode(message).finish();
+  },
+  toProtoMsg(message: Metadata): MetadataProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.Metadata",
+      value: Metadata.encode(message).finish(),
+    };
   },
 };
 function createBaseONFTMetadata(): ONFTMetadata {
@@ -768,34 +1065,6 @@ export const ONFTMetadata = {
     }
     return message;
   },
-  fromJSON(object: any): ONFTMetadata {
-    const obj = createBaseONFTMetadata();
-    if (isSet(object.name)) obj.name = String(object.name);
-    if (isSet(object.description)) obj.description = String(object.description);
-    if (isSet(object.previewUri)) obj.previewUri = String(object.previewUri);
-    if (isSet(object.data)) obj.data = String(object.data);
-    if (isSet(object.transferable)) obj.transferable = Boolean(object.transferable);
-    if (isSet(object.extensible)) obj.extensible = Boolean(object.extensible);
-    if (isSet(object.createdAt)) obj.createdAt = fromJsonTimestamp(object.createdAt);
-    if (isSet(object.nsfw)) obj.nsfw = Boolean(object.nsfw);
-    if (isSet(object.royaltyShare)) obj.royaltyShare = String(object.royaltyShare);
-    if (isSet(object.uriHash)) obj.uriHash = String(object.uriHash);
-    return obj;
-  },
-  toJSON(message: ONFTMetadata): JsonSafe<ONFTMetadata> {
-    const obj: any = {};
-    message.name !== undefined && (obj.name = message.name);
-    message.description !== undefined && (obj.description = message.description);
-    message.previewUri !== undefined && (obj.previewUri = message.previewUri);
-    message.data !== undefined && (obj.data = message.data);
-    message.transferable !== undefined && (obj.transferable = message.transferable);
-    message.extensible !== undefined && (obj.extensible = message.extensible);
-    message.createdAt !== undefined && (obj.createdAt = fromTimestamp(message.createdAt).toISOString());
-    message.nsfw !== undefined && (obj.nsfw = message.nsfw);
-    message.royaltyShare !== undefined && (obj.royaltyShare = message.royaltyShare);
-    message.uriHash !== undefined && (obj.uriHash = message.uriHash);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<ONFTMetadata>, I>>(object: I): ONFTMetadata {
     const message = createBaseONFTMetadata();
     message.name = object.name ?? "";
@@ -811,6 +1080,69 @@ export const ONFTMetadata = {
     message.royaltyShare = object.royaltyShare ?? "";
     message.uriHash = object.uriHash ?? "";
     return message;
+  },
+  fromAmino(object: ONFTMetadataAmino): ONFTMetadata {
+    const message = createBaseONFTMetadata();
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    }
+    if (object.preview_uri !== undefined && object.preview_uri !== null) {
+      message.previewUri = object.preview_uri;
+    }
+    if (object.data !== undefined && object.data !== null) {
+      message.data = object.data;
+    }
+    if (object.transferable !== undefined && object.transferable !== null) {
+      message.transferable = object.transferable;
+    }
+    if (object.extensible !== undefined && object.extensible !== null) {
+      message.extensible = object.extensible;
+    }
+    if (object.created_at !== undefined && object.created_at !== null) {
+      message.createdAt = Timestamp.fromAmino(object.created_at);
+    }
+    if (object.nsfw !== undefined && object.nsfw !== null) {
+      message.nsfw = object.nsfw;
+    }
+    if (object.royalty_share !== undefined && object.royalty_share !== null) {
+      message.royaltyShare = object.royalty_share;
+    }
+    if (object.uri_hash !== undefined && object.uri_hash !== null) {
+      message.uriHash = object.uri_hash;
+    }
+    return message;
+  },
+  toAmino(message: ONFTMetadata): ONFTMetadataAmino {
+    const obj: any = {};
+    obj.name = message.name === "" ? undefined : message.name;
+    obj.description = message.description === "" ? undefined : message.description;
+    obj.preview_uri = message.previewUri === "" ? undefined : message.previewUri;
+    obj.data = message.data === "" ? undefined : message.data;
+    obj.transferable = message.transferable === false ? undefined : message.transferable;
+    obj.extensible = message.extensible === false ? undefined : message.extensible;
+    obj.created_at = message.createdAt ? Timestamp.toAmino(message.createdAt) : undefined;
+    obj.nsfw = message.nsfw === false ? undefined : message.nsfw;
+    obj.royalty_share = message.royaltyShare === "" ? undefined : message.royaltyShare;
+    obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
+    return obj;
+  },
+  fromAminoMsg(object: ONFTMetadataAminoMsg): ONFTMetadata {
+    return ONFTMetadata.fromAmino(object.value);
+  },
+  fromProtoMsg(message: ONFTMetadataProtoMsg): ONFTMetadata {
+    return ONFTMetadata.decode(message.value);
+  },
+  toProto(message: ONFTMetadata): Uint8Array {
+    return ONFTMetadata.encode(message).finish();
+  },
+  toProtoMsg(message: ONFTMetadata): ONFTMetadataProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.ONFTMetadata",
+      value: ONFTMetadata.encode(message).finish(),
+    };
   },
 };
 function createBaseOwner(): Owner {
@@ -850,28 +1182,44 @@ export const Owner = {
     }
     return message;
   },
-  fromJSON(object: any): Owner {
-    const obj = createBaseOwner();
-    if (isSet(object.address)) obj.address = String(object.address);
-    if (Array.isArray(object?.idCollections))
-      obj.idCollections = object.idCollections.map((e: any) => IDCollection.fromJSON(e));
-    return obj;
-  },
-  toJSON(message: Owner): JsonSafe<Owner> {
-    const obj: any = {};
-    message.address !== undefined && (obj.address = message.address);
-    if (message.idCollections) {
-      obj.idCollections = message.idCollections.map((e) => (e ? IDCollection.toJSON(e) : undefined));
-    } else {
-      obj.idCollections = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Owner>, I>>(object: I): Owner {
     const message = createBaseOwner();
     message.address = object.address ?? "";
     message.idCollections = object.idCollections?.map((e) => IDCollection.fromPartial(e)) || [];
     return message;
+  },
+  fromAmino(object: OwnerAmino): Owner {
+    const message = createBaseOwner();
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    }
+    message.idCollections = object.id_collections?.map((e) => IDCollection.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: Owner): OwnerAmino {
+    const obj: any = {};
+    obj.address = message.address === "" ? undefined : message.address;
+    if (message.idCollections) {
+      obj.id_collections = message.idCollections.map((e) => (e ? IDCollection.toAmino(e) : undefined));
+    } else {
+      obj.id_collections = message.idCollections;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: OwnerAminoMsg): Owner {
+    return Owner.fromAmino(object.value);
+  },
+  fromProtoMsg(message: OwnerProtoMsg): Owner {
+    return Owner.decode(message.value);
+  },
+  toProto(message: Owner): Uint8Array {
+    return Owner.encode(message).finish();
+  },
+  toProtoMsg(message: Owner): OwnerProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.Owner",
+      value: Owner.encode(message).finish(),
+    };
   },
 };
 function createBaseWeightedAddress(): WeightedAddress {
@@ -911,22 +1259,41 @@ export const WeightedAddress = {
     }
     return message;
   },
-  fromJSON(object: any): WeightedAddress {
-    const obj = createBaseWeightedAddress();
-    if (isSet(object.address)) obj.address = String(object.address);
-    if (isSet(object.weight)) obj.weight = String(object.weight);
-    return obj;
-  },
-  toJSON(message: WeightedAddress): JsonSafe<WeightedAddress> {
-    const obj: any = {};
-    message.address !== undefined && (obj.address = message.address);
-    message.weight !== undefined && (obj.weight = message.weight);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<WeightedAddress>, I>>(object: I): WeightedAddress {
     const message = createBaseWeightedAddress();
     message.address = object.address ?? "";
     message.weight = object.weight ?? "";
     return message;
+  },
+  fromAmino(object: WeightedAddressAmino): WeightedAddress {
+    const message = createBaseWeightedAddress();
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = object.weight;
+    }
+    return message;
+  },
+  toAmino(message: WeightedAddress): WeightedAddressAmino {
+    const obj: any = {};
+    obj.address = message.address === "" ? undefined : message.address;
+    obj.weight = message.weight === "" ? undefined : message.weight;
+    return obj;
+  },
+  fromAminoMsg(object: WeightedAddressAminoMsg): WeightedAddress {
+    return WeightedAddress.fromAmino(object.value);
+  },
+  fromProtoMsg(message: WeightedAddressProtoMsg): WeightedAddress {
+    return WeightedAddress.decode(message.value);
+  },
+  toProto(message: WeightedAddress): Uint8Array {
+    return WeightedAddress.encode(message).finish();
+  },
+  toProtoMsg(message: WeightedAddress): WeightedAddressProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.WeightedAddress",
+      value: WeightedAddress.encode(message).finish(),
+    };
   },
 };

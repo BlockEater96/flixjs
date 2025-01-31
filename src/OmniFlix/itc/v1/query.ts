@@ -1,23 +1,65 @@
+//@ts-nocheck
 /* eslint-disable */
-import { CampaignStatus, Campaign, Claim, campaignStatusFromJSON, campaignStatusToJSON } from "./itc";
-import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
-import { Params } from "./params";
+import { CampaignStatus, Campaign, CampaignAmino, Claim, ClaimAmino } from "./itc";
+import {
+  PageRequest,
+  PageRequestAmino,
+  PageResponse,
+  PageResponseAmino,
+} from "../../../cosmos/base/query/v1beta1/pagination";
+import { Params, ParamsAmino } from "./params";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { JsonSafe } from "../../../json-safe";
-import { DeepPartial, Exact, isSet, Rpc } from "../../../helpers";
+import { DeepPartial, Exact, Rpc } from "../../../helpers";
 export const protobufPackage = "OmniFlix.itc.v1";
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
+export interface QueryParamsRequestProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.QueryParamsRequest";
+  value: Uint8Array;
+}
+/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+export interface QueryParamsRequestAmino {}
+export interface QueryParamsRequestAminoMsg {
+  type: "/OmniFlix.itc.v1.QueryParamsRequest";
+  value: QueryParamsRequestAmino;
+}
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 export interface QueryParamsResponse {
   /** params defines the parameters of the module. */
   params: Params;
+}
+export interface QueryParamsResponseProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.QueryParamsResponse";
+  value: Uint8Array;
+}
+/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+export interface QueryParamsResponseAmino {
+  /** params defines the parameters of the module. */
+  params?: ParamsAmino;
+}
+export interface QueryParamsResponseAminoMsg {
+  type: "/OmniFlix.itc.v1.QueryParamsResponse";
+  value: QueryParamsResponseAmino;
 }
 /** QueryCampaignsRequest is the request type for the Query/Campaigns RPC method. */
 export interface QueryCampaignsRequest {
   status: CampaignStatus;
   creator: string;
   pagination?: PageRequest;
+}
+export interface QueryCampaignsRequestProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.QueryCampaignsRequest";
+  value: Uint8Array;
+}
+/** QueryCampaignsRequest is the request type for the Query/Campaigns RPC method. */
+export interface QueryCampaignsRequestAmino {
+  status?: CampaignStatus;
+  creator?: string;
+  pagination?: PageRequestAmino;
+}
+export interface QueryCampaignsRequestAminoMsg {
+  type: "/OmniFlix.itc.v1.QueryCampaignsRequest";
+  value: QueryCampaignsRequestAmino;
 }
 /**
  * QueryCampaignsResponse is the response type for the Query/Campaigns RPC
@@ -27,13 +69,53 @@ export interface QueryCampaignsResponse {
   campaigns: Campaign[];
   pagination?: PageResponse;
 }
+export interface QueryCampaignsResponseProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.QueryCampaignsResponse";
+  value: Uint8Array;
+}
+/**
+ * QueryCampaignsResponse is the response type for the Query/Campaigns RPC
+ * method.
+ */
+export interface QueryCampaignsResponseAmino {
+  campaigns?: CampaignAmino[];
+  pagination?: PageResponseAmino;
+}
+export interface QueryCampaignsResponseAminoMsg {
+  type: "/OmniFlix.itc.v1.QueryCampaignsResponse";
+  value: QueryCampaignsResponseAmino;
+}
 /** QueryCampaignRequest is the request type for the Query/Campaign RPC method. */
 export interface QueryCampaignRequest {
   campaignId: bigint;
 }
+export interface QueryCampaignRequestProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.QueryCampaignRequest";
+  value: Uint8Array;
+}
+/** QueryCampaignRequest is the request type for the Query/Campaign RPC method. */
+export interface QueryCampaignRequestAmino {
+  campaign_id?: string;
+}
+export interface QueryCampaignRequestAminoMsg {
+  type: "/OmniFlix.itc.v1.QueryCampaignRequest";
+  value: QueryCampaignRequestAmino;
+}
 /** QueryCampaignResponse is the response type for the Query/Campaign RPC method. */
 export interface QueryCampaignResponse {
   campaign: Campaign;
+}
+export interface QueryCampaignResponseProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.QueryCampaignResponse";
+  value: Uint8Array;
+}
+/** QueryCampaignResponse is the response type for the Query/Campaign RPC method. */
+export interface QueryCampaignResponseAmino {
+  Campaign?: CampaignAmino;
+}
+export interface QueryCampaignResponseAminoMsg {
+  type: "/OmniFlix.itc.v1.QueryCampaignResponse";
+  value: QueryCampaignResponseAmino;
 }
 /** QueryClaimsRequest is the request type for the Query/Claims RPC method. */
 export interface QueryClaimsRequest {
@@ -41,9 +123,35 @@ export interface QueryClaimsRequest {
   address: string;
   pagination?: PageRequest;
 }
+export interface QueryClaimsRequestProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.QueryClaimsRequest";
+  value: Uint8Array;
+}
+/** QueryClaimsRequest is the request type for the Query/Claims RPC method. */
+export interface QueryClaimsRequestAmino {
+  campaign_id?: string;
+  address?: string;
+  pagination?: PageRequestAmino;
+}
+export interface QueryClaimsRequestAminoMsg {
+  type: "/OmniFlix.itc.v1.QueryClaimsRequest";
+  value: QueryClaimsRequestAmino;
+}
 export interface QueryClaimsResponse {
   claims: Claim[];
   pagination?: PageResponse;
+}
+export interface QueryClaimsResponseProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.QueryClaimsResponse";
+  value: Uint8Array;
+}
+export interface QueryClaimsResponseAmino {
+  claims?: ClaimAmino[];
+  pagination?: PageResponseAmino;
+}
+export interface QueryClaimsResponseAminoMsg {
+  type: "/OmniFlix.itc.v1.QueryClaimsResponse";
+  value: QueryClaimsResponseAmino;
 }
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
@@ -67,17 +175,32 @@ export const QueryParamsRequest = {
     }
     return message;
   },
-  fromJSON(_: any): QueryParamsRequest {
-    const obj = createBaseQueryParamsRequest();
-    return obj;
-  },
-  toJSON(_: QueryParamsRequest): JsonSafe<QueryParamsRequest> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(_: I): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
+  },
+  fromAmino(_: QueryParamsRequestAmino): QueryParamsRequest {
+    const message = createBaseQueryParamsRequest();
+    return message;
+  },
+  toAmino(_: QueryParamsRequest): QueryParamsRequestAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: QueryParamsRequestAminoMsg): QueryParamsRequest {
+    return QueryParamsRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryParamsRequestProtoMsg): QueryParamsRequest {
+    return QueryParamsRequest.decode(message.value);
+  },
+  toProto(message: QueryParamsRequest): Uint8Array {
+    return QueryParamsRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryParamsRequest): QueryParamsRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.QueryParamsRequest",
+      value: QueryParamsRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryParamsResponse(): QueryParamsResponse {
@@ -110,22 +233,39 @@ export const QueryParamsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryParamsResponse {
-    const obj = createBaseQueryParamsResponse();
-    if (isSet(object.params)) obj.params = Params.fromJSON(object.params);
-    return obj;
-  },
-  toJSON(message: QueryParamsResponse): JsonSafe<QueryParamsResponse> {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
     return message;
+  },
+  fromAmino(object: QueryParamsResponseAmino): QueryParamsResponse {
+    const message = createBaseQueryParamsResponse();
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message: QueryParamsResponse): QueryParamsResponseAmino {
+    const obj: any = {};
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryParamsResponseAminoMsg): QueryParamsResponse {
+    return QueryParamsResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryParamsResponseProtoMsg): QueryParamsResponse {
+    return QueryParamsResponse.decode(message.value);
+  },
+  toProto(message: QueryParamsResponse): Uint8Array {
+    return QueryParamsResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.QueryParamsResponse",
+      value: QueryParamsResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryCampaignsRequest(): QueryCampaignsRequest {
@@ -172,21 +312,6 @@ export const QueryCampaignsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryCampaignsRequest {
-    const obj = createBaseQueryCampaignsRequest();
-    if (isSet(object.status)) obj.status = campaignStatusFromJSON(object.status);
-    if (isSet(object.creator)) obj.creator = String(object.creator);
-    if (isSet(object.pagination)) obj.pagination = PageRequest.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryCampaignsRequest): JsonSafe<QueryCampaignsRequest> {
-    const obj: any = {};
-    message.status !== undefined && (obj.status = campaignStatusToJSON(message.status));
-    message.creator !== undefined && (obj.creator = message.creator);
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryCampaignsRequest>, I>>(object: I): QueryCampaignsRequest {
     const message = createBaseQueryCampaignsRequest();
     message.status = object.status ?? 0;
@@ -195,6 +320,41 @@ export const QueryCampaignsRequest = {
       message.pagination = PageRequest.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryCampaignsRequestAmino): QueryCampaignsRequest {
+    const message = createBaseQueryCampaignsRequest();
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    }
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryCampaignsRequest): QueryCampaignsRequestAmino {
+    const obj: any = {};
+    obj.status = message.status === 0 ? undefined : message.status;
+    obj.creator = message.creator === "" ? undefined : message.creator;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryCampaignsRequestAminoMsg): QueryCampaignsRequest {
+    return QueryCampaignsRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryCampaignsRequestProtoMsg): QueryCampaignsRequest {
+    return QueryCampaignsRequest.decode(message.value);
+  },
+  toProto(message: QueryCampaignsRequest): Uint8Array {
+    return QueryCampaignsRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryCampaignsRequest): QueryCampaignsRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.QueryCampaignsRequest",
+      value: QueryCampaignsRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryCampaignsResponse(): QueryCampaignsResponse {
@@ -234,24 +394,6 @@ export const QueryCampaignsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryCampaignsResponse {
-    const obj = createBaseQueryCampaignsResponse();
-    if (Array.isArray(object?.campaigns))
-      obj.campaigns = object.campaigns.map((e: any) => Campaign.fromJSON(e));
-    if (isSet(object.pagination)) obj.pagination = PageResponse.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryCampaignsResponse): JsonSafe<QueryCampaignsResponse> {
-    const obj: any = {};
-    if (message.campaigns) {
-      obj.campaigns = message.campaigns.map((e) => (e ? Campaign.toJSON(e) : undefined));
-    } else {
-      obj.campaigns = [];
-    }
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryCampaignsResponse>, I>>(object: I): QueryCampaignsResponse {
     const message = createBaseQueryCampaignsResponse();
     message.campaigns = object.campaigns?.map((e) => Campaign.fromPartial(e)) || [];
@@ -259,6 +401,39 @@ export const QueryCampaignsResponse = {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryCampaignsResponseAmino): QueryCampaignsResponse {
+    const message = createBaseQueryCampaignsResponse();
+    message.campaigns = object.campaigns?.map((e) => Campaign.fromAmino(e)) || [];
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryCampaignsResponse): QueryCampaignsResponseAmino {
+    const obj: any = {};
+    if (message.campaigns) {
+      obj.campaigns = message.campaigns.map((e) => (e ? Campaign.toAmino(e) : undefined));
+    } else {
+      obj.campaigns = message.campaigns;
+    }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryCampaignsResponseAminoMsg): QueryCampaignsResponse {
+    return QueryCampaignsResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryCampaignsResponseProtoMsg): QueryCampaignsResponse {
+    return QueryCampaignsResponse.decode(message.value);
+  },
+  toProto(message: QueryCampaignsResponse): Uint8Array {
+    return QueryCampaignsResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryCampaignsResponse): QueryCampaignsResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.QueryCampaignsResponse",
+      value: QueryCampaignsResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryCampaignRequest(): QueryCampaignRequest {
@@ -291,22 +466,39 @@ export const QueryCampaignRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryCampaignRequest {
-    const obj = createBaseQueryCampaignRequest();
-    if (isSet(object.campaignId)) obj.campaignId = BigInt(object.campaignId.toString());
-    return obj;
-  },
-  toJSON(message: QueryCampaignRequest): JsonSafe<QueryCampaignRequest> {
-    const obj: any = {};
-    message.campaignId !== undefined && (obj.campaignId = (message.campaignId || BigInt(0)).toString());
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryCampaignRequest>, I>>(object: I): QueryCampaignRequest {
     const message = createBaseQueryCampaignRequest();
     if (object.campaignId !== undefined && object.campaignId !== null) {
       message.campaignId = BigInt(object.campaignId.toString());
     }
     return message;
+  },
+  fromAmino(object: QueryCampaignRequestAmino): QueryCampaignRequest {
+    const message = createBaseQueryCampaignRequest();
+    if (object.campaign_id !== undefined && object.campaign_id !== null) {
+      message.campaignId = BigInt(object.campaign_id);
+    }
+    return message;
+  },
+  toAmino(message: QueryCampaignRequest): QueryCampaignRequestAmino {
+    const obj: any = {};
+    obj.campaign_id = message.campaignId !== BigInt(0) ? message.campaignId?.toString() : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryCampaignRequestAminoMsg): QueryCampaignRequest {
+    return QueryCampaignRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryCampaignRequestProtoMsg): QueryCampaignRequest {
+    return QueryCampaignRequest.decode(message.value);
+  },
+  toProto(message: QueryCampaignRequest): Uint8Array {
+    return QueryCampaignRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryCampaignRequest): QueryCampaignRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.QueryCampaignRequest",
+      value: QueryCampaignRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryCampaignResponse(): QueryCampaignResponse {
@@ -339,23 +531,39 @@ export const QueryCampaignResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryCampaignResponse {
-    const obj = createBaseQueryCampaignResponse();
-    if (isSet(object.campaign)) obj.campaign = Campaign.fromJSON(object.campaign);
-    return obj;
-  },
-  toJSON(message: QueryCampaignResponse): JsonSafe<QueryCampaignResponse> {
-    const obj: any = {};
-    message.campaign !== undefined &&
-      (obj.campaign = message.campaign ? Campaign.toJSON(message.campaign) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryCampaignResponse>, I>>(object: I): QueryCampaignResponse {
     const message = createBaseQueryCampaignResponse();
     if (object.campaign !== undefined && object.campaign !== null) {
       message.campaign = Campaign.fromPartial(object.campaign);
     }
     return message;
+  },
+  fromAmino(object: QueryCampaignResponseAmino): QueryCampaignResponse {
+    const message = createBaseQueryCampaignResponse();
+    if (object.Campaign !== undefined && object.Campaign !== null) {
+      message.campaign = Campaign.fromAmino(object.Campaign);
+    }
+    return message;
+  },
+  toAmino(message: QueryCampaignResponse): QueryCampaignResponseAmino {
+    const obj: any = {};
+    obj.Campaign = message.campaign ? Campaign.toAmino(message.campaign) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryCampaignResponseAminoMsg): QueryCampaignResponse {
+    return QueryCampaignResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryCampaignResponseProtoMsg): QueryCampaignResponse {
+    return QueryCampaignResponse.decode(message.value);
+  },
+  toProto(message: QueryCampaignResponse): Uint8Array {
+    return QueryCampaignResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryCampaignResponse): QueryCampaignResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.QueryCampaignResponse",
+      value: QueryCampaignResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryClaimsRequest(): QueryClaimsRequest {
@@ -402,21 +610,6 @@ export const QueryClaimsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryClaimsRequest {
-    const obj = createBaseQueryClaimsRequest();
-    if (isSet(object.campaignId)) obj.campaignId = BigInt(object.campaignId.toString());
-    if (isSet(object.address)) obj.address = String(object.address);
-    if (isSet(object.pagination)) obj.pagination = PageRequest.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryClaimsRequest): JsonSafe<QueryClaimsRequest> {
-    const obj: any = {};
-    message.campaignId !== undefined && (obj.campaignId = (message.campaignId || BigInt(0)).toString());
-    message.address !== undefined && (obj.address = message.address);
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryClaimsRequest>, I>>(object: I): QueryClaimsRequest {
     const message = createBaseQueryClaimsRequest();
     if (object.campaignId !== undefined && object.campaignId !== null) {
@@ -427,6 +620,41 @@ export const QueryClaimsRequest = {
       message.pagination = PageRequest.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryClaimsRequestAmino): QueryClaimsRequest {
+    const message = createBaseQueryClaimsRequest();
+    if (object.campaign_id !== undefined && object.campaign_id !== null) {
+      message.campaignId = BigInt(object.campaign_id);
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryClaimsRequest): QueryClaimsRequestAmino {
+    const obj: any = {};
+    obj.campaign_id = message.campaignId !== BigInt(0) ? message.campaignId?.toString() : undefined;
+    obj.address = message.address === "" ? undefined : message.address;
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryClaimsRequestAminoMsg): QueryClaimsRequest {
+    return QueryClaimsRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryClaimsRequestProtoMsg): QueryClaimsRequest {
+    return QueryClaimsRequest.decode(message.value);
+  },
+  toProto(message: QueryClaimsRequest): Uint8Array {
+    return QueryClaimsRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryClaimsRequest): QueryClaimsRequestProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.QueryClaimsRequest",
+      value: QueryClaimsRequest.encode(message).finish(),
+    };
   },
 };
 function createBaseQueryClaimsResponse(): QueryClaimsResponse {
@@ -466,23 +694,6 @@ export const QueryClaimsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryClaimsResponse {
-    const obj = createBaseQueryClaimsResponse();
-    if (Array.isArray(object?.claims)) obj.claims = object.claims.map((e: any) => Claim.fromJSON(e));
-    if (isSet(object.pagination)) obj.pagination = PageResponse.fromJSON(object.pagination);
-    return obj;
-  },
-  toJSON(message: QueryClaimsResponse): JsonSafe<QueryClaimsResponse> {
-    const obj: any = {};
-    if (message.claims) {
-      obj.claims = message.claims.map((e) => (e ? Claim.toJSON(e) : undefined));
-    } else {
-      obj.claims = [];
-    }
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<QueryClaimsResponse>, I>>(object: I): QueryClaimsResponse {
     const message = createBaseQueryClaimsResponse();
     message.claims = object.claims?.map((e) => Claim.fromPartial(e)) || [];
@@ -490,6 +701,39 @@ export const QueryClaimsResponse = {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
     return message;
+  },
+  fromAmino(object: QueryClaimsResponseAmino): QueryClaimsResponse {
+    const message = createBaseQueryClaimsResponse();
+    message.claims = object.claims?.map((e) => Claim.fromAmino(e)) || [];
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryClaimsResponse): QueryClaimsResponseAmino {
+    const obj: any = {};
+    if (message.claims) {
+      obj.claims = message.claims.map((e) => (e ? Claim.toAmino(e) : undefined));
+    } else {
+      obj.claims = message.claims;
+    }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryClaimsResponseAminoMsg): QueryClaimsResponse {
+    return QueryClaimsResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryClaimsResponseProtoMsg): QueryClaimsResponse {
+    return QueryClaimsResponse.decode(message.value);
+  },
+  toProto(message: QueryClaimsResponse): Uint8Array {
+    return QueryClaimsResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryClaimsResponse): QueryClaimsResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.QueryClaimsResponse",
+      value: QueryClaimsResponse.encode(message).finish(),
+    };
   },
 };
 /** Query defines the gRPC querier service. */

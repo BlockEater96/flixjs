@@ -1,10 +1,10 @@
+//@ts-nocheck
 /* eslint-disable */
-import { Listing } from "./listing";
-import { Params } from "./params";
-import { AuctionListing, Bid } from "./auction";
+import { Listing, ListingAmino } from "./listing";
+import { Params, ParamsAmino } from "./params";
+import { AuctionListing, AuctionListingAmino, Bid, BidAmino } from "./auction";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "OmniFlix.marketplace.v1beta1";
 export interface GenesisState {
   /** NFTs that are listed in marketplace */
@@ -14,6 +14,23 @@ export interface GenesisState {
   auctions: AuctionListing[];
   bids: Bid[];
   nextAuctionNumber: bigint;
+}
+export interface GenesisStateProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.GenesisState";
+  value: Uint8Array;
+}
+export interface GenesisStateAmino {
+  /** NFTs that are listed in marketplace */
+  listings?: ListingAmino[];
+  ListingCount?: string;
+  params?: ParamsAmino;
+  auctions?: AuctionListingAmino[];
+  bids?: BidAmino[];
+  next_auction_number?: string;
+}
+export interface GenesisStateAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.GenesisState";
+  value: GenesisStateAmino;
 }
 function createBaseGenesisState(): GenesisState {
   return {
@@ -80,40 +97,6 @@ export const GenesisState = {
     }
     return message;
   },
-  fromJSON(object: any): GenesisState {
-    const obj = createBaseGenesisState();
-    if (Array.isArray(object?.listings)) obj.listings = object.listings.map((e: any) => Listing.fromJSON(e));
-    if (isSet(object.listingCount)) obj.listingCount = BigInt(object.listingCount.toString());
-    if (isSet(object.params)) obj.params = Params.fromJSON(object.params);
-    if (Array.isArray(object?.auctions))
-      obj.auctions = object.auctions.map((e: any) => AuctionListing.fromJSON(e));
-    if (Array.isArray(object?.bids)) obj.bids = object.bids.map((e: any) => Bid.fromJSON(e));
-    if (isSet(object.nextAuctionNumber)) obj.nextAuctionNumber = BigInt(object.nextAuctionNumber.toString());
-    return obj;
-  },
-  toJSON(message: GenesisState): JsonSafe<GenesisState> {
-    const obj: any = {};
-    if (message.listings) {
-      obj.listings = message.listings.map((e) => (e ? Listing.toJSON(e) : undefined));
-    } else {
-      obj.listings = [];
-    }
-    message.listingCount !== undefined && (obj.listingCount = (message.listingCount || BigInt(0)).toString());
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    if (message.auctions) {
-      obj.auctions = message.auctions.map((e) => (e ? AuctionListing.toJSON(e) : undefined));
-    } else {
-      obj.auctions = [];
-    }
-    if (message.bids) {
-      obj.bids = message.bids.map((e) => (e ? Bid.toJSON(e) : undefined));
-    } else {
-      obj.bids = [];
-    }
-    message.nextAuctionNumber !== undefined &&
-      (obj.nextAuctionNumber = (message.nextAuctionNumber || BigInt(0)).toString());
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.listings = object.listings?.map((e) => Listing.fromPartial(e)) || [];
@@ -129,5 +112,59 @@ export const GenesisState = {
       message.nextAuctionNumber = BigInt(object.nextAuctionNumber.toString());
     }
     return message;
+  },
+  fromAmino(object: GenesisStateAmino): GenesisState {
+    const message = createBaseGenesisState();
+    message.listings = object.listings?.map((e) => Listing.fromAmino(e)) || [];
+    if (object.ListingCount !== undefined && object.ListingCount !== null) {
+      message.listingCount = BigInt(object.ListingCount);
+    }
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    message.auctions = object.auctions?.map((e) => AuctionListing.fromAmino(e)) || [];
+    message.bids = object.bids?.map((e) => Bid.fromAmino(e)) || [];
+    if (object.next_auction_number !== undefined && object.next_auction_number !== null) {
+      message.nextAuctionNumber = BigInt(object.next_auction_number);
+    }
+    return message;
+  },
+  toAmino(message: GenesisState): GenesisStateAmino {
+    const obj: any = {};
+    if (message.listings) {
+      obj.listings = message.listings.map((e) => (e ? Listing.toAmino(e) : undefined));
+    } else {
+      obj.listings = message.listings;
+    }
+    obj.ListingCount = message.listingCount !== BigInt(0) ? message.listingCount?.toString() : undefined;
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    if (message.auctions) {
+      obj.auctions = message.auctions.map((e) => (e ? AuctionListing.toAmino(e) : undefined));
+    } else {
+      obj.auctions = message.auctions;
+    }
+    if (message.bids) {
+      obj.bids = message.bids.map((e) => (e ? Bid.toAmino(e) : undefined));
+    } else {
+      obj.bids = message.bids;
+    }
+    obj.next_auction_number =
+      message.nextAuctionNumber !== BigInt(0) ? message.nextAuctionNumber?.toString() : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
+    return GenesisState.fromAmino(object.value);
+  },
+  fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
+    return GenesisState.decode(message.value);
+  },
+  toProto(message: GenesisState): Uint8Array {
+    return GenesisState.encode(message).finish();
+  },
+  toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.GenesisState",
+      value: GenesisState.encode(message).finish(),
+    };
   },
 };

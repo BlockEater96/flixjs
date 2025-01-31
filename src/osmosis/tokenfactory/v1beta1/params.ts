@@ -1,8 +1,8 @@
+//@ts-nocheck
 /* eslint-disable */
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
+import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "osmosis.tokenfactory.v1beta1";
 /** Params defines the parameters for the tokenfactory module. */
 export interface Params {
@@ -13,6 +13,24 @@ export interface Params {
    * https://github.com/CosmWasm/token-factory/issues/11
    */
   denomCreationGasConsume?: bigint;
+}
+export interface ParamsProtoMsg {
+  typeUrl: "/osmosis.tokenfactory.v1beta1.Params";
+  value: Uint8Array;
+}
+/** Params defines the parameters for the tokenfactory module. */
+export interface ParamsAmino {
+  denom_creation_fee?: CoinAmino[];
+  /**
+   * if denom_creation_fee is an empty array, then this field is used to add more gas consumption
+   * to the base cost.
+   * https://github.com/CosmWasm/token-factory/issues/11
+   */
+  denom_creation_gas_consume?: string;
+}
+export interface ParamsAminoMsg {
+  type: "osmosis/tokenfactory/params";
+  value: ParamsAmino;
 }
 function createBaseParams(): Params {
   return {
@@ -51,26 +69,6 @@ export const Params = {
     }
     return message;
   },
-  fromJSON(object: any): Params {
-    const obj = createBaseParams();
-    if (Array.isArray(object?.denomCreationFee))
-      obj.denomCreationFee = object.denomCreationFee.map((e: any) => Coin.fromJSON(e));
-    if (isSet(object.denomCreationGasConsume))
-      obj.denomCreationGasConsume = BigInt(object.denomCreationGasConsume.toString());
-    return obj;
-  },
-  toJSON(message: Params): JsonSafe<Params> {
-    const obj: any = {};
-    if (message.denomCreationFee) {
-      obj.denomCreationFee = message.denomCreationFee.map((e) => (e ? Coin.toJSON(e) : undefined));
-    } else {
-      obj.denomCreationFee = [];
-    }
-    if (message.denomCreationGasConsume !== undefined) {
-      obj.denomCreationGasConsume = message.denomCreationGasConsume.toString();
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
     message.denomCreationFee = object.denomCreationFee?.map((e) => Coin.fromPartial(e)) || [];
@@ -78,5 +76,45 @@ export const Params = {
       message.denomCreationGasConsume = BigInt(object.denomCreationGasConsume.toString());
     }
     return message;
+  },
+  fromAmino(object: ParamsAmino): Params {
+    const message = createBaseParams();
+    message.denomCreationFee = object.denom_creation_fee?.map((e) => Coin.fromAmino(e)) || [];
+    if (object.denom_creation_gas_consume !== undefined && object.denom_creation_gas_consume !== null) {
+      message.denomCreationGasConsume = BigInt(object.denom_creation_gas_consume);
+    }
+    return message;
+  },
+  toAmino(message: Params): ParamsAmino {
+    const obj: any = {};
+    if (message.denomCreationFee) {
+      obj.denom_creation_fee = message.denomCreationFee.map((e) => (e ? Coin.toAmino(e) : undefined));
+    } else {
+      obj.denom_creation_fee = message.denomCreationFee;
+    }
+    obj.denom_creation_gas_consume =
+      message.denomCreationGasConsume !== BigInt(0) ? message.denomCreationGasConsume?.toString() : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: ParamsAminoMsg): Params {
+    return Params.fromAmino(object.value);
+  },
+  toAminoMsg(message: Params): ParamsAminoMsg {
+    return {
+      type: "osmosis/tokenfactory/params",
+      value: Params.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: ParamsProtoMsg): Params {
+    return Params.decode(message.value);
+  },
+  toProto(message: Params): Uint8Array {
+    return Params.encode(message).finish();
+  },
+  toProtoMsg(message: Params): ParamsProtoMsg {
+    return {
+      typeUrl: "/osmosis.tokenfactory.v1beta1.Params",
+      value: Params.encode(message).finish(),
+    };
   },
 };

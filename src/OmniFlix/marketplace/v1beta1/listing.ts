@@ -1,8 +1,8 @@
+//@ts-nocheck
 /* eslint-disable */
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
+import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "OmniFlix.marketplace.v1beta1";
 export interface Listing {
   id: string;
@@ -12,9 +12,37 @@ export interface Listing {
   owner: string;
   splitShares: WeightedAddress[];
 }
+export interface ListingProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.Listing";
+  value: Uint8Array;
+}
+export interface ListingAmino {
+  id?: string;
+  nft_id?: string;
+  denom_id?: string;
+  price?: CoinAmino;
+  owner?: string;
+  split_shares?: WeightedAddressAmino[];
+}
+export interface ListingAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.Listing";
+  value: ListingAmino;
+}
 export interface WeightedAddress {
   address: string;
   weight: string;
+}
+export interface WeightedAddressProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.WeightedAddress";
+  value: Uint8Array;
+}
+export interface WeightedAddressAmino {
+  address?: string;
+  weight?: string;
+}
+export interface WeightedAddressAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.WeightedAddress";
+  value: WeightedAddressAmino;
 }
 function createBaseListing(): Listing {
   return {
@@ -81,31 +109,6 @@ export const Listing = {
     }
     return message;
   },
-  fromJSON(object: any): Listing {
-    const obj = createBaseListing();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.price)) obj.price = Coin.fromJSON(object.price);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    if (Array.isArray(object?.splitShares))
-      obj.splitShares = object.splitShares.map((e: any) => WeightedAddress.fromJSON(e));
-    return obj;
-  },
-  toJSON(message: Listing): JsonSafe<Listing> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.price !== undefined && (obj.price = message.price ? Coin.toJSON(message.price) : undefined);
-    message.owner !== undefined && (obj.owner = message.owner);
-    if (message.splitShares) {
-      obj.splitShares = message.splitShares.map((e) => (e ? WeightedAddress.toJSON(e) : undefined));
-    } else {
-      obj.splitShares = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Listing>, I>>(object: I): Listing {
     const message = createBaseListing();
     message.id = object.id ?? "";
@@ -117,6 +120,55 @@ export const Listing = {
     message.owner = object.owner ?? "";
     message.splitShares = object.splitShares?.map((e) => WeightedAddress.fromPartial(e)) || [];
     return message;
+  },
+  fromAmino(object: ListingAmino): Listing {
+    const message = createBaseListing();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.price !== undefined && object.price !== null) {
+      message.price = Coin.fromAmino(object.price);
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    message.splitShares = object.split_shares?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: Listing): ListingAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.price = message.price ? Coin.toAmino(message.price) : undefined;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    if (message.splitShares) {
+      obj.split_shares = message.splitShares.map((e) => (e ? WeightedAddress.toAmino(e) : undefined));
+    } else {
+      obj.split_shares = message.splitShares;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: ListingAminoMsg): Listing {
+    return Listing.fromAmino(object.value);
+  },
+  fromProtoMsg(message: ListingProtoMsg): Listing {
+    return Listing.decode(message.value);
+  },
+  toProto(message: Listing): Uint8Array {
+    return Listing.encode(message).finish();
+  },
+  toProtoMsg(message: Listing): ListingProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.Listing",
+      value: Listing.encode(message).finish(),
+    };
   },
 };
 function createBaseWeightedAddress(): WeightedAddress {
@@ -156,22 +208,41 @@ export const WeightedAddress = {
     }
     return message;
   },
-  fromJSON(object: any): WeightedAddress {
-    const obj = createBaseWeightedAddress();
-    if (isSet(object.address)) obj.address = String(object.address);
-    if (isSet(object.weight)) obj.weight = String(object.weight);
-    return obj;
-  },
-  toJSON(message: WeightedAddress): JsonSafe<WeightedAddress> {
-    const obj: any = {};
-    message.address !== undefined && (obj.address = message.address);
-    message.weight !== undefined && (obj.weight = message.weight);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<WeightedAddress>, I>>(object: I): WeightedAddress {
     const message = createBaseWeightedAddress();
     message.address = object.address ?? "";
     message.weight = object.weight ?? "";
     return message;
+  },
+  fromAmino(object: WeightedAddressAmino): WeightedAddress {
+    const message = createBaseWeightedAddress();
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = object.weight;
+    }
+    return message;
+  },
+  toAmino(message: WeightedAddress): WeightedAddressAmino {
+    const obj: any = {};
+    obj.address = message.address === "" ? undefined : message.address;
+    obj.weight = message.weight === "" ? undefined : message.weight;
+    return obj;
+  },
+  fromAminoMsg(object: WeightedAddressAminoMsg): WeightedAddress {
+    return WeightedAddress.fromAmino(object.value);
+  },
+  fromProtoMsg(message: WeightedAddressProtoMsg): WeightedAddress {
+    return WeightedAddress.decode(message.value);
+  },
+  toProto(message: WeightedAddress): Uint8Array {
+    return WeightedAddress.encode(message).finish();
+  },
+  toProtoMsg(message: WeightedAddress): WeightedAddressProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.WeightedAddress",
+      value: WeightedAddress.encode(message).finish(),
+    };
   },
 };

@@ -1,10 +1,10 @@
+//@ts-nocheck
 /* eslint-disable */
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
-import { WeightedAddress, Metadata } from "./onft";
-import { Params } from "./params";
+import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
+import { WeightedAddress, WeightedAddressAmino, Metadata, MetadataAmino } from "./onft";
+import { Params, ParamsAmino } from "./params";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact, Rpc } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact, Rpc } from "../../../helpers";
 export const protobufPackage = "OmniFlix.onft.v1beta1";
 export interface MsgCreateDenom {
   id: string;
@@ -20,7 +20,38 @@ export interface MsgCreateDenom {
   data: string;
   royaltyReceivers: WeightedAddress[];
 }
+export interface MsgCreateDenomProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgCreateDenom";
+  value: Uint8Array;
+}
+export interface MsgCreateDenomAmino {
+  id?: string;
+  symbol?: string;
+  name?: string;
+  description?: string;
+  preview_uri?: string;
+  schema?: string;
+  sender?: string;
+  creation_fee?: CoinAmino;
+  uri?: string;
+  uri_hash?: string;
+  data?: string;
+  royalty_receivers?: WeightedAddressAmino[];
+}
+export interface MsgCreateDenomAminoMsg {
+  type: "OmniFlix/onft/MsgCreateDenom";
+  value: MsgCreateDenomAmino;
+}
 export interface MsgCreateDenomResponse {}
+export interface MsgCreateDenomResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgCreateDenomResponse";
+  value: Uint8Array;
+}
+export interface MsgCreateDenomResponseAmino {}
+export interface MsgCreateDenomResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.MsgCreateDenomResponse";
+  value: MsgCreateDenomResponseAmino;
+}
 export interface MsgUpdateDenom {
   id: string;
   name: string;
@@ -29,18 +60,86 @@ export interface MsgUpdateDenom {
   sender: string;
   royaltyReceivers: WeightedAddress[];
 }
+export interface MsgUpdateDenomProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateDenom";
+  value: Uint8Array;
+}
+export interface MsgUpdateDenomAmino {
+  id?: string;
+  name?: string;
+  description?: string;
+  preview_uri?: string;
+  sender?: string;
+  royalty_receivers?: WeightedAddressAmino[];
+}
+export interface MsgUpdateDenomAminoMsg {
+  type: "OmniFlix/onft/MsgUpdateDenom";
+  value: MsgUpdateDenomAmino;
+}
 export interface MsgUpdateDenomResponse {}
+export interface MsgUpdateDenomResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateDenomResponse";
+  value: Uint8Array;
+}
+export interface MsgUpdateDenomResponseAmino {}
+export interface MsgUpdateDenomResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.MsgUpdateDenomResponse";
+  value: MsgUpdateDenomResponseAmino;
+}
 export interface MsgPurgeDenom {
   id: string;
   sender: string;
 }
+export interface MsgPurgeDenomProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgPurgeDenom";
+  value: Uint8Array;
+}
+export interface MsgPurgeDenomAmino {
+  id?: string;
+  sender?: string;
+}
+export interface MsgPurgeDenomAminoMsg {
+  type: "OmniFlix/onft/MsgPurgeDenom";
+  value: MsgPurgeDenomAmino;
+}
 export interface MsgPurgeDenomResponse {}
+export interface MsgPurgeDenomResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgPurgeDenomResponse";
+  value: Uint8Array;
+}
+export interface MsgPurgeDenomResponseAmino {}
+export interface MsgPurgeDenomResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.MsgPurgeDenomResponse";
+  value: MsgPurgeDenomResponseAmino;
+}
 export interface MsgTransferDenom {
   id: string;
   sender: string;
   recipient: string;
 }
+export interface MsgTransferDenomProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferDenom";
+  value: Uint8Array;
+}
+export interface MsgTransferDenomAmino {
+  id?: string;
+  sender?: string;
+  recipient?: string;
+}
+export interface MsgTransferDenomAminoMsg {
+  type: "OmniFlix/onft/MsgTransferDenom";
+  value: MsgTransferDenomAmino;
+}
 export interface MsgTransferDenomResponse {}
+export interface MsgTransferDenomResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferDenomResponse";
+  value: Uint8Array;
+}
+export interface MsgTransferDenomResponseAmino {}
+export interface MsgTransferDenomResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.MsgTransferDenomResponse";
+  value: MsgTransferDenomResponseAmino;
+}
 export interface MsgMintONFT {
   id: string;
   denomId: string;
@@ -53,20 +152,94 @@ export interface MsgMintONFT {
   sender: string;
   recipient: string;
 }
+export interface MsgMintONFTProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgMintONFT";
+  value: Uint8Array;
+}
+export interface MsgMintONFTAmino {
+  id?: string;
+  denom_id?: string;
+  metadata?: MetadataAmino;
+  data?: string;
+  transferable?: boolean;
+  extensible?: boolean;
+  nsfw?: boolean;
+  royalty_share?: string;
+  sender?: string;
+  recipient?: string;
+}
+export interface MsgMintONFTAminoMsg {
+  type: "OmniFlix/onft/MsgMintONFT";
+  value: MsgMintONFTAmino;
+}
 export interface MsgMintONFTResponse {}
+export interface MsgMintONFTResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgMintONFTResponse";
+  value: Uint8Array;
+}
+export interface MsgMintONFTResponseAmino {}
+export interface MsgMintONFTResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.MsgMintONFTResponse";
+  value: MsgMintONFTResponseAmino;
+}
 export interface MsgTransferONFT {
   id: string;
   denomId: string;
   sender: string;
   recipient: string;
 }
+export interface MsgTransferONFTProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferONFT";
+  value: Uint8Array;
+}
+export interface MsgTransferONFTAmino {
+  id?: string;
+  denom_id?: string;
+  sender?: string;
+  recipient?: string;
+}
+export interface MsgTransferONFTAminoMsg {
+  type: "OmniFlix/onft/MsgTransferONFT";
+  value: MsgTransferONFTAmino;
+}
 export interface MsgTransferONFTResponse {}
+export interface MsgTransferONFTResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferONFTResponse";
+  value: Uint8Array;
+}
+export interface MsgTransferONFTResponseAmino {}
+export interface MsgTransferONFTResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.MsgTransferONFTResponse";
+  value: MsgTransferONFTResponseAmino;
+}
 export interface MsgBurnONFT {
   id: string;
   denomId: string;
   sender: string;
 }
+export interface MsgBurnONFTProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgBurnONFT";
+  value: Uint8Array;
+}
+export interface MsgBurnONFTAmino {
+  id?: string;
+  denom_id?: string;
+  sender?: string;
+}
+export interface MsgBurnONFTAminoMsg {
+  type: "OmniFlix/onft/MsgBurnONFT";
+  value: MsgBurnONFTAmino;
+}
 export interface MsgBurnONFTResponse {}
+export interface MsgBurnONFTResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgBurnONFTResponse";
+  value: Uint8Array;
+}
+export interface MsgBurnONFTResponseAmino {}
+export interface MsgBurnONFTResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.MsgBurnONFTResponse";
+  value: MsgBurnONFTResponseAmino;
+}
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
  *
@@ -82,6 +255,29 @@ export interface MsgUpdateParams {
    */
   params: Params;
 }
+export interface MsgUpdateParamsProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateParams";
+  value: Uint8Array;
+}
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ *
+ * Since: cosmos-sdk 0.47
+ */
+export interface MsgUpdateParamsAmino {
+  /** authority is the address of the governance account. */
+  authority?: string;
+  /**
+   * params defines the onft module parameters to update.
+   *
+   * NOTE: All parameters must be supplied.
+   */
+  params?: ParamsAmino;
+}
+export interface MsgUpdateParamsAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.MsgUpdateParams";
+  value: MsgUpdateParamsAmino;
+}
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
@@ -89,6 +285,21 @@ export interface MsgUpdateParams {
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponse {}
+export interface MsgUpdateParamsResponseProtoMsg {
+  typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateParamsResponse";
+  value: Uint8Array;
+}
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ *
+ * Since: cosmos-sdk 0.47
+ */
+export interface MsgUpdateParamsResponseAmino {}
+export interface MsgUpdateParamsResponseAminoMsg {
+  type: "/OmniFlix.onft.v1beta1.MsgUpdateParamsResponse";
+  value: MsgUpdateParamsResponseAmino;
+}
 function createBaseMsgCreateDenom(): MsgCreateDenom {
   return {
     id: "",
@@ -196,44 +407,6 @@ export const MsgCreateDenom = {
     }
     return message;
   },
-  fromJSON(object: any): MsgCreateDenom {
-    const obj = createBaseMsgCreateDenom();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.symbol)) obj.symbol = String(object.symbol);
-    if (isSet(object.name)) obj.name = String(object.name);
-    if (isSet(object.description)) obj.description = String(object.description);
-    if (isSet(object.previewUri)) obj.previewUri = String(object.previewUri);
-    if (isSet(object.schema)) obj.schema = String(object.schema);
-    if (isSet(object.sender)) obj.sender = String(object.sender);
-    if (isSet(object.creationFee)) obj.creationFee = Coin.fromJSON(object.creationFee);
-    if (isSet(object.uri)) obj.uri = String(object.uri);
-    if (isSet(object.uriHash)) obj.uriHash = String(object.uriHash);
-    if (isSet(object.data)) obj.data = String(object.data);
-    if (Array.isArray(object?.royaltyReceivers))
-      obj.royaltyReceivers = object.royaltyReceivers.map((e: any) => WeightedAddress.fromJSON(e));
-    return obj;
-  },
-  toJSON(message: MsgCreateDenom): JsonSafe<MsgCreateDenom> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.symbol !== undefined && (obj.symbol = message.symbol);
-    message.name !== undefined && (obj.name = message.name);
-    message.description !== undefined && (obj.description = message.description);
-    message.previewUri !== undefined && (obj.previewUri = message.previewUri);
-    message.schema !== undefined && (obj.schema = message.schema);
-    message.sender !== undefined && (obj.sender = message.sender);
-    message.creationFee !== undefined &&
-      (obj.creationFee = message.creationFee ? Coin.toJSON(message.creationFee) : undefined);
-    message.uri !== undefined && (obj.uri = message.uri);
-    message.uriHash !== undefined && (obj.uriHash = message.uriHash);
-    message.data !== undefined && (obj.data = message.data);
-    if (message.royaltyReceivers) {
-      obj.royaltyReceivers = message.royaltyReceivers.map((e) => (e ? WeightedAddress.toJSON(e) : undefined));
-    } else {
-      obj.royaltyReceivers = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgCreateDenom>, I>>(object: I): MsgCreateDenom {
     const message = createBaseMsgCreateDenom();
     message.id = object.id ?? "";
@@ -251,6 +424,87 @@ export const MsgCreateDenom = {
     message.data = object.data ?? "";
     message.royaltyReceivers = object.royaltyReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
     return message;
+  },
+  fromAmino(object: MsgCreateDenomAmino): MsgCreateDenom {
+    const message = createBaseMsgCreateDenom();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.symbol !== undefined && object.symbol !== null) {
+      message.symbol = object.symbol;
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    }
+    if (object.preview_uri !== undefined && object.preview_uri !== null) {
+      message.previewUri = object.preview_uri;
+    }
+    if (object.schema !== undefined && object.schema !== null) {
+      message.schema = object.schema;
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    }
+    if (object.creation_fee !== undefined && object.creation_fee !== null) {
+      message.creationFee = Coin.fromAmino(object.creation_fee);
+    }
+    if (object.uri !== undefined && object.uri !== null) {
+      message.uri = object.uri;
+    }
+    if (object.uri_hash !== undefined && object.uri_hash !== null) {
+      message.uriHash = object.uri_hash;
+    }
+    if (object.data !== undefined && object.data !== null) {
+      message.data = object.data;
+    }
+    message.royaltyReceivers = object.royalty_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: MsgCreateDenom): MsgCreateDenomAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.symbol = message.symbol === "" ? undefined : message.symbol;
+    obj.name = message.name === "" ? undefined : message.name;
+    obj.description = message.description === "" ? undefined : message.description;
+    obj.preview_uri = message.previewUri === "" ? undefined : message.previewUri;
+    obj.schema = message.schema === "" ? undefined : message.schema;
+    obj.sender = message.sender === "" ? undefined : message.sender;
+    obj.creation_fee = message.creationFee ? Coin.toAmino(message.creationFee) : undefined;
+    obj.uri = message.uri === "" ? undefined : message.uri;
+    obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
+    obj.data = message.data === "" ? undefined : message.data;
+    if (message.royaltyReceivers) {
+      obj.royalty_receivers = message.royaltyReceivers.map((e) =>
+        e ? WeightedAddress.toAmino(e) : undefined,
+      );
+    } else {
+      obj.royalty_receivers = message.royaltyReceivers;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: MsgCreateDenomAminoMsg): MsgCreateDenom {
+    return MsgCreateDenom.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgCreateDenom): MsgCreateDenomAminoMsg {
+    return {
+      type: "OmniFlix/onft/MsgCreateDenom",
+      value: MsgCreateDenom.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgCreateDenomProtoMsg): MsgCreateDenom {
+    return MsgCreateDenom.decode(message.value);
+  },
+  toProto(message: MsgCreateDenom): Uint8Array {
+    return MsgCreateDenom.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCreateDenom): MsgCreateDenomProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgCreateDenom",
+      value: MsgCreateDenom.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgCreateDenomResponse(): MsgCreateDenomResponse {
@@ -275,17 +529,32 @@ export const MsgCreateDenomResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgCreateDenomResponse {
-    const obj = createBaseMsgCreateDenomResponse();
-    return obj;
-  },
-  toJSON(_: MsgCreateDenomResponse): JsonSafe<MsgCreateDenomResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgCreateDenomResponse>, I>>(_: I): MsgCreateDenomResponse {
     const message = createBaseMsgCreateDenomResponse();
     return message;
+  },
+  fromAmino(_: MsgCreateDenomResponseAmino): MsgCreateDenomResponse {
+    const message = createBaseMsgCreateDenomResponse();
+    return message;
+  },
+  toAmino(_: MsgCreateDenomResponse): MsgCreateDenomResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgCreateDenomResponseAminoMsg): MsgCreateDenomResponse {
+    return MsgCreateDenomResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgCreateDenomResponseProtoMsg): MsgCreateDenomResponse {
+    return MsgCreateDenomResponse.decode(message.value);
+  },
+  toProto(message: MsgCreateDenomResponse): Uint8Array {
+    return MsgCreateDenomResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCreateDenomResponse): MsgCreateDenomResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgCreateDenomResponse",
+      value: MsgCreateDenomResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgUpdateDenom(): MsgUpdateDenom {
@@ -353,31 +622,6 @@ export const MsgUpdateDenom = {
     }
     return message;
   },
-  fromJSON(object: any): MsgUpdateDenom {
-    const obj = createBaseMsgUpdateDenom();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.name)) obj.name = String(object.name);
-    if (isSet(object.description)) obj.description = String(object.description);
-    if (isSet(object.previewUri)) obj.previewUri = String(object.previewUri);
-    if (isSet(object.sender)) obj.sender = String(object.sender);
-    if (Array.isArray(object?.royaltyReceivers))
-      obj.royaltyReceivers = object.royaltyReceivers.map((e: any) => WeightedAddress.fromJSON(e));
-    return obj;
-  },
-  toJSON(message: MsgUpdateDenom): JsonSafe<MsgUpdateDenom> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.name !== undefined && (obj.name = message.name);
-    message.description !== undefined && (obj.description = message.description);
-    message.previewUri !== undefined && (obj.previewUri = message.previewUri);
-    message.sender !== undefined && (obj.sender = message.sender);
-    if (message.royaltyReceivers) {
-      obj.royaltyReceivers = message.royaltyReceivers.map((e) => (e ? WeightedAddress.toJSON(e) : undefined));
-    } else {
-      obj.royaltyReceivers = [];
-    }
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateDenom>, I>>(object: I): MsgUpdateDenom {
     const message = createBaseMsgUpdateDenom();
     message.id = object.id ?? "";
@@ -387,6 +631,63 @@ export const MsgUpdateDenom = {
     message.sender = object.sender ?? "";
     message.royaltyReceivers = object.royaltyReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
     return message;
+  },
+  fromAmino(object: MsgUpdateDenomAmino): MsgUpdateDenom {
+    const message = createBaseMsgUpdateDenom();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    }
+    if (object.preview_uri !== undefined && object.preview_uri !== null) {
+      message.previewUri = object.preview_uri;
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    }
+    message.royaltyReceivers = object.royalty_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: MsgUpdateDenom): MsgUpdateDenomAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.name = message.name === "" ? undefined : message.name;
+    obj.description = message.description === "" ? undefined : message.description;
+    obj.preview_uri = message.previewUri === "" ? undefined : message.previewUri;
+    obj.sender = message.sender === "" ? undefined : message.sender;
+    if (message.royaltyReceivers) {
+      obj.royalty_receivers = message.royaltyReceivers.map((e) =>
+        e ? WeightedAddress.toAmino(e) : undefined,
+      );
+    } else {
+      obj.royalty_receivers = message.royaltyReceivers;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: MsgUpdateDenomAminoMsg): MsgUpdateDenom {
+    return MsgUpdateDenom.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgUpdateDenom): MsgUpdateDenomAminoMsg {
+    return {
+      type: "OmniFlix/onft/MsgUpdateDenom",
+      value: MsgUpdateDenom.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgUpdateDenomProtoMsg): MsgUpdateDenom {
+    return MsgUpdateDenom.decode(message.value);
+  },
+  toProto(message: MsgUpdateDenom): Uint8Array {
+    return MsgUpdateDenom.encode(message).finish();
+  },
+  toProtoMsg(message: MsgUpdateDenom): MsgUpdateDenomProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateDenom",
+      value: MsgUpdateDenom.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgUpdateDenomResponse(): MsgUpdateDenomResponse {
@@ -411,17 +712,32 @@ export const MsgUpdateDenomResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgUpdateDenomResponse {
-    const obj = createBaseMsgUpdateDenomResponse();
-    return obj;
-  },
-  toJSON(_: MsgUpdateDenomResponse): JsonSafe<MsgUpdateDenomResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateDenomResponse>, I>>(_: I): MsgUpdateDenomResponse {
     const message = createBaseMsgUpdateDenomResponse();
     return message;
+  },
+  fromAmino(_: MsgUpdateDenomResponseAmino): MsgUpdateDenomResponse {
+    const message = createBaseMsgUpdateDenomResponse();
+    return message;
+  },
+  toAmino(_: MsgUpdateDenomResponse): MsgUpdateDenomResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgUpdateDenomResponseAminoMsg): MsgUpdateDenomResponse {
+    return MsgUpdateDenomResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgUpdateDenomResponseProtoMsg): MsgUpdateDenomResponse {
+    return MsgUpdateDenomResponse.decode(message.value);
+  },
+  toProto(message: MsgUpdateDenomResponse): Uint8Array {
+    return MsgUpdateDenomResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgUpdateDenomResponse): MsgUpdateDenomResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateDenomResponse",
+      value: MsgUpdateDenomResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgPurgeDenom(): MsgPurgeDenom {
@@ -461,23 +777,48 @@ export const MsgPurgeDenom = {
     }
     return message;
   },
-  fromJSON(object: any): MsgPurgeDenom {
-    const obj = createBaseMsgPurgeDenom();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.sender)) obj.sender = String(object.sender);
-    return obj;
-  },
-  toJSON(message: MsgPurgeDenom): JsonSafe<MsgPurgeDenom> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.sender !== undefined && (obj.sender = message.sender);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgPurgeDenom>, I>>(object: I): MsgPurgeDenom {
     const message = createBaseMsgPurgeDenom();
     message.id = object.id ?? "";
     message.sender = object.sender ?? "";
     return message;
+  },
+  fromAmino(object: MsgPurgeDenomAmino): MsgPurgeDenom {
+    const message = createBaseMsgPurgeDenom();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    }
+    return message;
+  },
+  toAmino(message: MsgPurgeDenom): MsgPurgeDenomAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.sender = message.sender === "" ? undefined : message.sender;
+    return obj;
+  },
+  fromAminoMsg(object: MsgPurgeDenomAminoMsg): MsgPurgeDenom {
+    return MsgPurgeDenom.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgPurgeDenom): MsgPurgeDenomAminoMsg {
+    return {
+      type: "OmniFlix/onft/MsgPurgeDenom",
+      value: MsgPurgeDenom.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgPurgeDenomProtoMsg): MsgPurgeDenom {
+    return MsgPurgeDenom.decode(message.value);
+  },
+  toProto(message: MsgPurgeDenom): Uint8Array {
+    return MsgPurgeDenom.encode(message).finish();
+  },
+  toProtoMsg(message: MsgPurgeDenom): MsgPurgeDenomProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgPurgeDenom",
+      value: MsgPurgeDenom.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgPurgeDenomResponse(): MsgPurgeDenomResponse {
@@ -502,17 +843,32 @@ export const MsgPurgeDenomResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgPurgeDenomResponse {
-    const obj = createBaseMsgPurgeDenomResponse();
-    return obj;
-  },
-  toJSON(_: MsgPurgeDenomResponse): JsonSafe<MsgPurgeDenomResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgPurgeDenomResponse>, I>>(_: I): MsgPurgeDenomResponse {
     const message = createBaseMsgPurgeDenomResponse();
     return message;
+  },
+  fromAmino(_: MsgPurgeDenomResponseAmino): MsgPurgeDenomResponse {
+    const message = createBaseMsgPurgeDenomResponse();
+    return message;
+  },
+  toAmino(_: MsgPurgeDenomResponse): MsgPurgeDenomResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgPurgeDenomResponseAminoMsg): MsgPurgeDenomResponse {
+    return MsgPurgeDenomResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgPurgeDenomResponseProtoMsg): MsgPurgeDenomResponse {
+    return MsgPurgeDenomResponse.decode(message.value);
+  },
+  toProto(message: MsgPurgeDenomResponse): Uint8Array {
+    return MsgPurgeDenomResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgPurgeDenomResponse): MsgPurgeDenomResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgPurgeDenomResponse",
+      value: MsgPurgeDenomResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgTransferDenom(): MsgTransferDenom {
@@ -559,26 +915,53 @@ export const MsgTransferDenom = {
     }
     return message;
   },
-  fromJSON(object: any): MsgTransferDenom {
-    const obj = createBaseMsgTransferDenom();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.sender)) obj.sender = String(object.sender);
-    if (isSet(object.recipient)) obj.recipient = String(object.recipient);
-    return obj;
-  },
-  toJSON(message: MsgTransferDenom): JsonSafe<MsgTransferDenom> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.sender !== undefined && (obj.sender = message.sender);
-    message.recipient !== undefined && (obj.recipient = message.recipient);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgTransferDenom>, I>>(object: I): MsgTransferDenom {
     const message = createBaseMsgTransferDenom();
     message.id = object.id ?? "";
     message.sender = object.sender ?? "";
     message.recipient = object.recipient ?? "";
     return message;
+  },
+  fromAmino(object: MsgTransferDenomAmino): MsgTransferDenom {
+    const message = createBaseMsgTransferDenom();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    }
+    if (object.recipient !== undefined && object.recipient !== null) {
+      message.recipient = object.recipient;
+    }
+    return message;
+  },
+  toAmino(message: MsgTransferDenom): MsgTransferDenomAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.sender = message.sender === "" ? undefined : message.sender;
+    obj.recipient = message.recipient === "" ? undefined : message.recipient;
+    return obj;
+  },
+  fromAminoMsg(object: MsgTransferDenomAminoMsg): MsgTransferDenom {
+    return MsgTransferDenom.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgTransferDenom): MsgTransferDenomAminoMsg {
+    return {
+      type: "OmniFlix/onft/MsgTransferDenom",
+      value: MsgTransferDenom.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgTransferDenomProtoMsg): MsgTransferDenom {
+    return MsgTransferDenom.decode(message.value);
+  },
+  toProto(message: MsgTransferDenom): Uint8Array {
+    return MsgTransferDenom.encode(message).finish();
+  },
+  toProtoMsg(message: MsgTransferDenom): MsgTransferDenomProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferDenom",
+      value: MsgTransferDenom.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgTransferDenomResponse(): MsgTransferDenomResponse {
@@ -603,17 +986,32 @@ export const MsgTransferDenomResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgTransferDenomResponse {
-    const obj = createBaseMsgTransferDenomResponse();
-    return obj;
-  },
-  toJSON(_: MsgTransferDenomResponse): JsonSafe<MsgTransferDenomResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgTransferDenomResponse>, I>>(_: I): MsgTransferDenomResponse {
     const message = createBaseMsgTransferDenomResponse();
     return message;
+  },
+  fromAmino(_: MsgTransferDenomResponseAmino): MsgTransferDenomResponse {
+    const message = createBaseMsgTransferDenomResponse();
+    return message;
+  },
+  toAmino(_: MsgTransferDenomResponse): MsgTransferDenomResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgTransferDenomResponseAminoMsg): MsgTransferDenomResponse {
+    return MsgTransferDenomResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgTransferDenomResponseProtoMsg): MsgTransferDenomResponse {
+    return MsgTransferDenomResponse.decode(message.value);
+  },
+  toProto(message: MsgTransferDenomResponse): Uint8Array {
+    return MsgTransferDenomResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgTransferDenomResponse): MsgTransferDenomResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferDenomResponse",
+      value: MsgTransferDenomResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgMintONFT(): MsgMintONFT {
@@ -709,35 +1107,6 @@ export const MsgMintONFT = {
     }
     return message;
   },
-  fromJSON(object: any): MsgMintONFT {
-    const obj = createBaseMsgMintONFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.metadata)) obj.metadata = Metadata.fromJSON(object.metadata);
-    if (isSet(object.data)) obj.data = String(object.data);
-    if (isSet(object.transferable)) obj.transferable = Boolean(object.transferable);
-    if (isSet(object.extensible)) obj.extensible = Boolean(object.extensible);
-    if (isSet(object.nsfw)) obj.nsfw = Boolean(object.nsfw);
-    if (isSet(object.royaltyShare)) obj.royaltyShare = String(object.royaltyShare);
-    if (isSet(object.sender)) obj.sender = String(object.sender);
-    if (isSet(object.recipient)) obj.recipient = String(object.recipient);
-    return obj;
-  },
-  toJSON(message: MsgMintONFT): JsonSafe<MsgMintONFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.metadata !== undefined &&
-      (obj.metadata = message.metadata ? Metadata.toJSON(message.metadata) : undefined);
-    message.data !== undefined && (obj.data = message.data);
-    message.transferable !== undefined && (obj.transferable = message.transferable);
-    message.extensible !== undefined && (obj.extensible = message.extensible);
-    message.nsfw !== undefined && (obj.nsfw = message.nsfw);
-    message.royaltyShare !== undefined && (obj.royaltyShare = message.royaltyShare);
-    message.sender !== undefined && (obj.sender = message.sender);
-    message.recipient !== undefined && (obj.recipient = message.recipient);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgMintONFT>, I>>(object: I): MsgMintONFT {
     const message = createBaseMsgMintONFT();
     message.id = object.id ?? "";
@@ -753,6 +1122,75 @@ export const MsgMintONFT = {
     message.sender = object.sender ?? "";
     message.recipient = object.recipient ?? "";
     return message;
+  },
+  fromAmino(object: MsgMintONFTAmino): MsgMintONFT {
+    const message = createBaseMsgMintONFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.metadata !== undefined && object.metadata !== null) {
+      message.metadata = Metadata.fromAmino(object.metadata);
+    }
+    if (object.data !== undefined && object.data !== null) {
+      message.data = object.data;
+    }
+    if (object.transferable !== undefined && object.transferable !== null) {
+      message.transferable = object.transferable;
+    }
+    if (object.extensible !== undefined && object.extensible !== null) {
+      message.extensible = object.extensible;
+    }
+    if (object.nsfw !== undefined && object.nsfw !== null) {
+      message.nsfw = object.nsfw;
+    }
+    if (object.royalty_share !== undefined && object.royalty_share !== null) {
+      message.royaltyShare = object.royalty_share;
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    }
+    if (object.recipient !== undefined && object.recipient !== null) {
+      message.recipient = object.recipient;
+    }
+    return message;
+  },
+  toAmino(message: MsgMintONFT): MsgMintONFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
+    obj.data = message.data === "" ? undefined : message.data;
+    obj.transferable = message.transferable === false ? undefined : message.transferable;
+    obj.extensible = message.extensible === false ? undefined : message.extensible;
+    obj.nsfw = message.nsfw === false ? undefined : message.nsfw;
+    obj.royalty_share = message.royaltyShare === "" ? undefined : message.royaltyShare;
+    obj.sender = message.sender === "" ? undefined : message.sender;
+    obj.recipient = message.recipient === "" ? undefined : message.recipient;
+    return obj;
+  },
+  fromAminoMsg(object: MsgMintONFTAminoMsg): MsgMintONFT {
+    return MsgMintONFT.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgMintONFT): MsgMintONFTAminoMsg {
+    return {
+      type: "OmniFlix/onft/MsgMintONFT",
+      value: MsgMintONFT.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgMintONFTProtoMsg): MsgMintONFT {
+    return MsgMintONFT.decode(message.value);
+  },
+  toProto(message: MsgMintONFT): Uint8Array {
+    return MsgMintONFT.encode(message).finish();
+  },
+  toProtoMsg(message: MsgMintONFT): MsgMintONFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgMintONFT",
+      value: MsgMintONFT.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgMintONFTResponse(): MsgMintONFTResponse {
@@ -777,17 +1215,32 @@ export const MsgMintONFTResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgMintONFTResponse {
-    const obj = createBaseMsgMintONFTResponse();
-    return obj;
-  },
-  toJSON(_: MsgMintONFTResponse): JsonSafe<MsgMintONFTResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgMintONFTResponse>, I>>(_: I): MsgMintONFTResponse {
     const message = createBaseMsgMintONFTResponse();
     return message;
+  },
+  fromAmino(_: MsgMintONFTResponseAmino): MsgMintONFTResponse {
+    const message = createBaseMsgMintONFTResponse();
+    return message;
+  },
+  toAmino(_: MsgMintONFTResponse): MsgMintONFTResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgMintONFTResponseAminoMsg): MsgMintONFTResponse {
+    return MsgMintONFTResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgMintONFTResponseProtoMsg): MsgMintONFTResponse {
+    return MsgMintONFTResponse.decode(message.value);
+  },
+  toProto(message: MsgMintONFTResponse): Uint8Array {
+    return MsgMintONFTResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgMintONFTResponse): MsgMintONFTResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgMintONFTResponse",
+      value: MsgMintONFTResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgTransferONFT(): MsgTransferONFT {
@@ -841,22 +1294,6 @@ export const MsgTransferONFT = {
     }
     return message;
   },
-  fromJSON(object: any): MsgTransferONFT {
-    const obj = createBaseMsgTransferONFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.sender)) obj.sender = String(object.sender);
-    if (isSet(object.recipient)) obj.recipient = String(object.recipient);
-    return obj;
-  },
-  toJSON(message: MsgTransferONFT): JsonSafe<MsgTransferONFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.sender !== undefined && (obj.sender = message.sender);
-    message.recipient !== undefined && (obj.recipient = message.recipient);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgTransferONFT>, I>>(object: I): MsgTransferONFT {
     const message = createBaseMsgTransferONFT();
     message.id = object.id ?? "";
@@ -864,6 +1301,51 @@ export const MsgTransferONFT = {
     message.sender = object.sender ?? "";
     message.recipient = object.recipient ?? "";
     return message;
+  },
+  fromAmino(object: MsgTransferONFTAmino): MsgTransferONFT {
+    const message = createBaseMsgTransferONFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    }
+    if (object.recipient !== undefined && object.recipient !== null) {
+      message.recipient = object.recipient;
+    }
+    return message;
+  },
+  toAmino(message: MsgTransferONFT): MsgTransferONFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.sender = message.sender === "" ? undefined : message.sender;
+    obj.recipient = message.recipient === "" ? undefined : message.recipient;
+    return obj;
+  },
+  fromAminoMsg(object: MsgTransferONFTAminoMsg): MsgTransferONFT {
+    return MsgTransferONFT.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgTransferONFT): MsgTransferONFTAminoMsg {
+    return {
+      type: "OmniFlix/onft/MsgTransferONFT",
+      value: MsgTransferONFT.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgTransferONFTProtoMsg): MsgTransferONFT {
+    return MsgTransferONFT.decode(message.value);
+  },
+  toProto(message: MsgTransferONFT): Uint8Array {
+    return MsgTransferONFT.encode(message).finish();
+  },
+  toProtoMsg(message: MsgTransferONFT): MsgTransferONFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferONFT",
+      value: MsgTransferONFT.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgTransferONFTResponse(): MsgTransferONFTResponse {
@@ -888,17 +1370,32 @@ export const MsgTransferONFTResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgTransferONFTResponse {
-    const obj = createBaseMsgTransferONFTResponse();
-    return obj;
-  },
-  toJSON(_: MsgTransferONFTResponse): JsonSafe<MsgTransferONFTResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgTransferONFTResponse>, I>>(_: I): MsgTransferONFTResponse {
     const message = createBaseMsgTransferONFTResponse();
     return message;
+  },
+  fromAmino(_: MsgTransferONFTResponseAmino): MsgTransferONFTResponse {
+    const message = createBaseMsgTransferONFTResponse();
+    return message;
+  },
+  toAmino(_: MsgTransferONFTResponse): MsgTransferONFTResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgTransferONFTResponseAminoMsg): MsgTransferONFTResponse {
+    return MsgTransferONFTResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgTransferONFTResponseProtoMsg): MsgTransferONFTResponse {
+    return MsgTransferONFTResponse.decode(message.value);
+  },
+  toProto(message: MsgTransferONFTResponse): Uint8Array {
+    return MsgTransferONFTResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgTransferONFTResponse): MsgTransferONFTResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferONFTResponse",
+      value: MsgTransferONFTResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgBurnONFT(): MsgBurnONFT {
@@ -945,26 +1442,53 @@ export const MsgBurnONFT = {
     }
     return message;
   },
-  fromJSON(object: any): MsgBurnONFT {
-    const obj = createBaseMsgBurnONFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.sender)) obj.sender = String(object.sender);
-    return obj;
-  },
-  toJSON(message: MsgBurnONFT): JsonSafe<MsgBurnONFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.sender !== undefined && (obj.sender = message.sender);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgBurnONFT>, I>>(object: I): MsgBurnONFT {
     const message = createBaseMsgBurnONFT();
     message.id = object.id ?? "";
     message.denomId = object.denomId ?? "";
     message.sender = object.sender ?? "";
     return message;
+  },
+  fromAmino(object: MsgBurnONFTAmino): MsgBurnONFT {
+    const message = createBaseMsgBurnONFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    }
+    return message;
+  },
+  toAmino(message: MsgBurnONFT): MsgBurnONFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.sender = message.sender === "" ? undefined : message.sender;
+    return obj;
+  },
+  fromAminoMsg(object: MsgBurnONFTAminoMsg): MsgBurnONFT {
+    return MsgBurnONFT.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgBurnONFT): MsgBurnONFTAminoMsg {
+    return {
+      type: "OmniFlix/onft/MsgBurnONFT",
+      value: MsgBurnONFT.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: MsgBurnONFTProtoMsg): MsgBurnONFT {
+    return MsgBurnONFT.decode(message.value);
+  },
+  toProto(message: MsgBurnONFT): Uint8Array {
+    return MsgBurnONFT.encode(message).finish();
+  },
+  toProtoMsg(message: MsgBurnONFT): MsgBurnONFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgBurnONFT",
+      value: MsgBurnONFT.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgBurnONFTResponse(): MsgBurnONFTResponse {
@@ -989,17 +1513,32 @@ export const MsgBurnONFTResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgBurnONFTResponse {
-    const obj = createBaseMsgBurnONFTResponse();
-    return obj;
-  },
-  toJSON(_: MsgBurnONFTResponse): JsonSafe<MsgBurnONFTResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgBurnONFTResponse>, I>>(_: I): MsgBurnONFTResponse {
     const message = createBaseMsgBurnONFTResponse();
     return message;
+  },
+  fromAmino(_: MsgBurnONFTResponseAmino): MsgBurnONFTResponse {
+    const message = createBaseMsgBurnONFTResponse();
+    return message;
+  },
+  toAmino(_: MsgBurnONFTResponse): MsgBurnONFTResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgBurnONFTResponseAminoMsg): MsgBurnONFTResponse {
+    return MsgBurnONFTResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgBurnONFTResponseProtoMsg): MsgBurnONFTResponse {
+    return MsgBurnONFTResponse.decode(message.value);
+  },
+  toProto(message: MsgBurnONFTResponse): Uint8Array {
+    return MsgBurnONFTResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgBurnONFTResponse): MsgBurnONFTResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgBurnONFTResponse",
+      value: MsgBurnONFTResponse.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgUpdateParams(): MsgUpdateParams {
@@ -1039,18 +1578,6 @@ export const MsgUpdateParams = {
     }
     return message;
   },
-  fromJSON(object: any): MsgUpdateParams {
-    const obj = createBaseMsgUpdateParams();
-    if (isSet(object.authority)) obj.authority = String(object.authority);
-    if (isSet(object.params)) obj.params = Params.fromJSON(object.params);
-    return obj;
-  },
-  toJSON(message: MsgUpdateParams): JsonSafe<MsgUpdateParams> {
-    const obj: any = {};
-    message.authority !== undefined && (obj.authority = message.authority);
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? "";
@@ -1058,6 +1585,37 @@ export const MsgUpdateParams = {
       message.params = Params.fromPartial(object.params);
     }
     return message;
+  },
+  fromAmino(object: MsgUpdateParamsAmino): MsgUpdateParams {
+    const message = createBaseMsgUpdateParams();
+    if (object.authority !== undefined && object.authority !== null) {
+      message.authority = object.authority;
+    }
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino {
+    const obj: any = {};
+    obj.authority = message.authority === "" ? undefined : message.authority;
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams {
+    return MsgUpdateParams.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams {
+    return MsgUpdateParams.decode(message.value);
+  },
+  toProto(message: MsgUpdateParams): Uint8Array {
+    return MsgUpdateParams.encode(message).finish();
+  },
+  toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateParams",
+      value: MsgUpdateParams.encode(message).finish(),
+    };
   },
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
@@ -1082,17 +1640,32 @@ export const MsgUpdateParamsResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgUpdateParamsResponse {
-    const obj = createBaseMsgUpdateParamsResponse();
-    return obj;
-  },
-  toJSON(_: MsgUpdateParamsResponse): JsonSafe<MsgUpdateParamsResponse> {
-    const obj: any = {};
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(_: I): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
+  },
+  fromAmino(_: MsgUpdateParamsResponseAmino): MsgUpdateParamsResponse {
+    const message = createBaseMsgUpdateParamsResponse();
+    return message;
+  },
+  toAmino(_: MsgUpdateParamsResponse): MsgUpdateParamsResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgUpdateParamsResponseAminoMsg): MsgUpdateParamsResponse {
+    return MsgUpdateParamsResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse {
+    return MsgUpdateParamsResponse.decode(message.value);
+  },
+  toProto(message: MsgUpdateParamsResponse): Uint8Array {
+    return MsgUpdateParamsResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateParamsResponse",
+      value: MsgUpdateParamsResponse.encode(message).finish(),
+    };
   },
 };
 export interface Msg {

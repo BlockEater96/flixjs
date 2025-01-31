@@ -1,13 +1,25 @@
+//@ts-nocheck
 /* eslint-disable */
-import { Duration } from "../../../google/protobuf/duration";
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
+import { Duration, DurationAmino } from "../../../google/protobuf/duration";
+import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "OmniFlix.itc.v1";
 export interface Params {
   maxCampaignDuration: Duration;
   creationFee: Coin;
+}
+export interface ParamsProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.Params";
+  value: Uint8Array;
+}
+export interface ParamsAmino {
+  max_campaign_duration?: DurationAmino;
+  creation_fee?: CoinAmino;
+}
+export interface ParamsAminoMsg {
+  type: "/OmniFlix.itc.v1.Params";
+  value: ParamsAmino;
 }
 function createBaseParams(): Params {
   return {
@@ -46,23 +58,6 @@ export const Params = {
     }
     return message;
   },
-  fromJSON(object: any): Params {
-    const obj = createBaseParams();
-    if (isSet(object.maxCampaignDuration))
-      obj.maxCampaignDuration = Duration.fromJSON(object.maxCampaignDuration);
-    if (isSet(object.creationFee)) obj.creationFee = Coin.fromJSON(object.creationFee);
-    return obj;
-  },
-  toJSON(message: Params): JsonSafe<Params> {
-    const obj: any = {};
-    message.maxCampaignDuration !== undefined &&
-      (obj.maxCampaignDuration = message.maxCampaignDuration
-        ? Duration.toJSON(message.maxCampaignDuration)
-        : undefined);
-    message.creationFee !== undefined &&
-      (obj.creationFee = message.creationFee ? Coin.toJSON(message.creationFee) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
     if (object.maxCampaignDuration !== undefined && object.maxCampaignDuration !== null) {
@@ -72,5 +67,38 @@ export const Params = {
       message.creationFee = Coin.fromPartial(object.creationFee);
     }
     return message;
+  },
+  fromAmino(object: ParamsAmino): Params {
+    const message = createBaseParams();
+    if (object.max_campaign_duration !== undefined && object.max_campaign_duration !== null) {
+      message.maxCampaignDuration = Duration.fromAmino(object.max_campaign_duration);
+    }
+    if (object.creation_fee !== undefined && object.creation_fee !== null) {
+      message.creationFee = Coin.fromAmino(object.creation_fee);
+    }
+    return message;
+  },
+  toAmino(message: Params): ParamsAmino {
+    const obj: any = {};
+    obj.max_campaign_duration = message.maxCampaignDuration
+      ? Duration.toAmino(message.maxCampaignDuration)
+      : undefined;
+    obj.creation_fee = message.creationFee ? Coin.toAmino(message.creationFee) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: ParamsAminoMsg): Params {
+    return Params.fromAmino(object.value);
+  },
+  fromProtoMsg(message: ParamsProtoMsg): Params {
+    return Params.decode(message.value);
+  },
+  toProto(message: Params): Uint8Array {
+    return Params.encode(message).finish();
+  },
+  toProtoMsg(message: Params): ParamsProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.Params",
+      value: Params.encode(message).finish(),
+    };
   },
 };

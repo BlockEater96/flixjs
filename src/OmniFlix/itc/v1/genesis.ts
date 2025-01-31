@@ -1,9 +1,9 @@
+//@ts-nocheck
 /* eslint-disable */
-import { Campaign, Claim } from "./itc";
-import { Params } from "./params";
+import { Campaign, CampaignAmino, Claim, ClaimAmino } from "./itc";
+import { Params, ParamsAmino } from "./params";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "OmniFlix.itc.v1";
 /** GenesisState defines the itc module's genesis state. */
 export interface GenesisState {
@@ -11,6 +11,21 @@ export interface GenesisState {
   nextCampaignNumber: bigint;
   claims: Claim[];
   params: Params;
+}
+export interface GenesisStateProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.GenesisState";
+  value: Uint8Array;
+}
+/** GenesisState defines the itc module's genesis state. */
+export interface GenesisStateAmino {
+  campaigns?: CampaignAmino[];
+  next_campaign_number?: string;
+  claims?: ClaimAmino[];
+  params?: ParamsAmino;
+}
+export interface GenesisStateAminoMsg {
+  type: "/OmniFlix.itc.v1.GenesisState";
+  value: GenesisStateAmino;
 }
 function createBaseGenesisState(): GenesisState {
   return {
@@ -63,33 +78,6 @@ export const GenesisState = {
     }
     return message;
   },
-  fromJSON(object: any): GenesisState {
-    const obj = createBaseGenesisState();
-    if (Array.isArray(object?.campaigns))
-      obj.campaigns = object.campaigns.map((e: any) => Campaign.fromJSON(e));
-    if (isSet(object.nextCampaignNumber))
-      obj.nextCampaignNumber = BigInt(object.nextCampaignNumber.toString());
-    if (Array.isArray(object?.claims)) obj.claims = object.claims.map((e: any) => Claim.fromJSON(e));
-    if (isSet(object.params)) obj.params = Params.fromJSON(object.params);
-    return obj;
-  },
-  toJSON(message: GenesisState): JsonSafe<GenesisState> {
-    const obj: any = {};
-    if (message.campaigns) {
-      obj.campaigns = message.campaigns.map((e) => (e ? Campaign.toJSON(e) : undefined));
-    } else {
-      obj.campaigns = [];
-    }
-    message.nextCampaignNumber !== undefined &&
-      (obj.nextCampaignNumber = (message.nextCampaignNumber || BigInt(0)).toString());
-    if (message.claims) {
-      obj.claims = message.claims.map((e) => (e ? Claim.toJSON(e) : undefined));
-    } else {
-      obj.claims = [];
-    }
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.campaigns = object.campaigns?.map((e) => Campaign.fromPartial(e)) || [];
@@ -101,5 +89,49 @@ export const GenesisState = {
       message.params = Params.fromPartial(object.params);
     }
     return message;
+  },
+  fromAmino(object: GenesisStateAmino): GenesisState {
+    const message = createBaseGenesisState();
+    message.campaigns = object.campaigns?.map((e) => Campaign.fromAmino(e)) || [];
+    if (object.next_campaign_number !== undefined && object.next_campaign_number !== null) {
+      message.nextCampaignNumber = BigInt(object.next_campaign_number);
+    }
+    message.claims = object.claims?.map((e) => Claim.fromAmino(e)) || [];
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message: GenesisState): GenesisStateAmino {
+    const obj: any = {};
+    if (message.campaigns) {
+      obj.campaigns = message.campaigns.map((e) => (e ? Campaign.toAmino(e) : undefined));
+    } else {
+      obj.campaigns = message.campaigns;
+    }
+    obj.next_campaign_number =
+      message.nextCampaignNumber !== BigInt(0) ? message.nextCampaignNumber?.toString() : undefined;
+    if (message.claims) {
+      obj.claims = message.claims.map((e) => (e ? Claim.toAmino(e) : undefined));
+    } else {
+      obj.claims = message.claims;
+    }
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
+    return GenesisState.fromAmino(object.value);
+  },
+  fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
+    return GenesisState.decode(message.value);
+  },
+  toProto(message: GenesisState): Uint8Array {
+    return GenesisState.encode(message).finish();
+  },
+  toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.GenesisState",
+      value: GenesisState.encode(message).finish(),
+    };
   },
 };

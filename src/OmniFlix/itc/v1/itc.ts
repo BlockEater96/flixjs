@@ -1,16 +1,17 @@
+//@ts-nocheck
 /* eslint-disable */
 import { Timestamp } from "../../../google/protobuf/timestamp";
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
-import { Duration } from "../../../google/protobuf/duration";
+import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
+import { Duration, DurationAmino } from "../../../google/protobuf/duration";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, fromJsonTimestamp, fromTimestamp, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "OmniFlix.itc.v1";
 export enum DistributionType {
   DISTRIBUTION_TYPE_INSTANT = 0,
   DISTRIBUTION_TYPE_STREAM = 1,
   UNRECOGNIZED = -1,
 }
+export const DistributionTypeAmino = DistributionType;
 export function distributionTypeFromJSON(object: any): DistributionType {
   switch (object) {
     case 0:
@@ -42,6 +43,7 @@ export enum InteractionType {
   INTERACTION_TYPE_HOLD = 2,
   UNRECOGNIZED = -1,
 }
+export const InteractionTypeAmino = InteractionType;
 export function interactionTypeFromJSON(object: any): InteractionType {
   switch (object) {
     case 0:
@@ -78,6 +80,7 @@ export enum CampaignStatus {
   CAMPAIGN_STATUS_ACTIVE = 2,
   UNRECOGNIZED = -1,
 }
+export const CampaignStatusAmino = CampaignStatus;
 export function campaignStatusFromJSON(object: any): CampaignStatus {
   switch (object) {
     case 0:
@@ -114,6 +117,7 @@ export enum ClaimType {
   CLAIM_TYPE_FT_AND_NFT = 2,
   UNRECOGNIZED = -1,
 }
+export const ClaimTypeAmino = ClaimType;
 export function claimTypeFromJSON(object: any): ClaimType {
   switch (object) {
     case 0:
@@ -164,9 +168,49 @@ export interface Campaign {
   mintCount: bigint;
   claimCount: bigint;
 }
+export interface CampaignProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.Campaign";
+  value: Uint8Array;
+}
+export interface CampaignAmino {
+  id?: string;
+  name?: string;
+  description?: string;
+  start_time?: string;
+  end_time?: string;
+  creator?: string;
+  nft_denom_id?: string;
+  max_allowed_claims?: string;
+  interaction?: InteractionType;
+  claim_type?: ClaimType;
+  tokens_per_claim?: CoinAmino;
+  total_tokens?: CoinAmino;
+  available_tokens?: CoinAmino;
+  received_nft_ids?: string[];
+  nft_mint_details?: NFTDetailsAmino;
+  distribution?: DistributionAmino;
+  mint_count?: string;
+  claim_count?: string;
+}
+export interface CampaignAminoMsg {
+  type: "/OmniFlix.itc.v1.Campaign";
+  value: CampaignAmino;
+}
 export interface Distribution {
   type: DistributionType;
   streamDuration: Duration;
+}
+export interface DistributionProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.Distribution";
+  value: Uint8Array;
+}
+export interface DistributionAmino {
+  type?: DistributionType;
+  stream_duration?: DurationAmino;
+}
+export interface DistributionAminoMsg {
+  type: "/OmniFlix.itc.v1.Distribution";
+  value: DistributionAmino;
 }
 export interface NFTDetails {
   denomId: string;
@@ -183,11 +227,48 @@ export interface NFTDetails {
   startIndex: bigint;
   nameDelimiter: string;
 }
+export interface NFTDetailsProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.NFTDetails";
+  value: Uint8Array;
+}
+export interface NFTDetailsAmino {
+  denom_id?: string;
+  name?: string;
+  description?: string;
+  media_uri?: string;
+  preview_uri?: string;
+  royalty_share?: string;
+  transferable?: boolean;
+  extensible?: boolean;
+  nsfw?: boolean;
+  data?: string;
+  uri_hash?: string;
+  start_index?: string;
+  name_delimiter?: string;
+}
+export interface NFTDetailsAminoMsg {
+  type: "/OmniFlix.itc.v1.NFTDetails";
+  value: NFTDetailsAmino;
+}
 export interface Claim {
   campaignId: bigint;
   address: string;
   nftId: string;
   interaction: InteractionType;
+}
+export interface ClaimProtoMsg {
+  typeUrl: "/OmniFlix.itc.v1.Claim";
+  value: Uint8Array;
+}
+export interface ClaimAmino {
+  campaign_id?: string;
+  address?: string;
+  nft_id?: string;
+  interaction?: InteractionType;
+}
+export interface ClaimAminoMsg {
+  type: "/OmniFlix.itc.v1.Claim";
+  value: ClaimAmino;
 }
 function createBaseCampaign(): Campaign {
   return {
@@ -338,61 +419,6 @@ export const Campaign = {
     }
     return message;
   },
-  fromJSON(object: any): Campaign {
-    const obj = createBaseCampaign();
-    if (isSet(object.id)) obj.id = BigInt(object.id.toString());
-    if (isSet(object.name)) obj.name = String(object.name);
-    if (isSet(object.description)) obj.description = String(object.description);
-    if (isSet(object.startTime)) obj.startTime = fromJsonTimestamp(object.startTime);
-    if (isSet(object.endTime)) obj.endTime = fromJsonTimestamp(object.endTime);
-    if (isSet(object.creator)) obj.creator = String(object.creator);
-    if (isSet(object.nftDenomId)) obj.nftDenomId = String(object.nftDenomId);
-    if (isSet(object.maxAllowedClaims)) obj.maxAllowedClaims = BigInt(object.maxAllowedClaims.toString());
-    if (isSet(object.interaction)) obj.interaction = interactionTypeFromJSON(object.interaction);
-    if (isSet(object.claimType)) obj.claimType = claimTypeFromJSON(object.claimType);
-    if (isSet(object.tokensPerClaim)) obj.tokensPerClaim = Coin.fromJSON(object.tokensPerClaim);
-    if (isSet(object.totalTokens)) obj.totalTokens = Coin.fromJSON(object.totalTokens);
-    if (isSet(object.availableTokens)) obj.availableTokens = Coin.fromJSON(object.availableTokens);
-    if (Array.isArray(object?.receivedNftIds))
-      obj.receivedNftIds = object.receivedNftIds.map((e: any) => String(e));
-    if (isSet(object.nftMintDetails)) obj.nftMintDetails = NFTDetails.fromJSON(object.nftMintDetails);
-    if (isSet(object.distribution)) obj.distribution = Distribution.fromJSON(object.distribution);
-    if (isSet(object.mintCount)) obj.mintCount = BigInt(object.mintCount.toString());
-    if (isSet(object.claimCount)) obj.claimCount = BigInt(object.claimCount.toString());
-    return obj;
-  },
-  toJSON(message: Campaign): JsonSafe<Campaign> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = (message.id || BigInt(0)).toString());
-    message.name !== undefined && (obj.name = message.name);
-    message.description !== undefined && (obj.description = message.description);
-    message.startTime !== undefined && (obj.startTime = fromTimestamp(message.startTime).toISOString());
-    message.endTime !== undefined && (obj.endTime = fromTimestamp(message.endTime).toISOString());
-    message.creator !== undefined && (obj.creator = message.creator);
-    message.nftDenomId !== undefined && (obj.nftDenomId = message.nftDenomId);
-    message.maxAllowedClaims !== undefined &&
-      (obj.maxAllowedClaims = (message.maxAllowedClaims || BigInt(0)).toString());
-    message.interaction !== undefined && (obj.interaction = interactionTypeToJSON(message.interaction));
-    message.claimType !== undefined && (obj.claimType = claimTypeToJSON(message.claimType));
-    message.tokensPerClaim !== undefined &&
-      (obj.tokensPerClaim = message.tokensPerClaim ? Coin.toJSON(message.tokensPerClaim) : undefined);
-    message.totalTokens !== undefined &&
-      (obj.totalTokens = message.totalTokens ? Coin.toJSON(message.totalTokens) : undefined);
-    message.availableTokens !== undefined &&
-      (obj.availableTokens = message.availableTokens ? Coin.toJSON(message.availableTokens) : undefined);
-    if (message.receivedNftIds) {
-      obj.receivedNftIds = message.receivedNftIds.map((e) => e);
-    } else {
-      obj.receivedNftIds = [];
-    }
-    message.nftMintDetails !== undefined &&
-      (obj.nftMintDetails = message.nftMintDetails ? NFTDetails.toJSON(message.nftMintDetails) : undefined);
-    message.distribution !== undefined &&
-      (obj.distribution = message.distribution ? Distribution.toJSON(message.distribution) : undefined);
-    message.mintCount !== undefined && (obj.mintCount = (message.mintCount || BigInt(0)).toString());
-    message.claimCount !== undefined && (obj.claimCount = (message.claimCount || BigInt(0)).toString());
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Campaign>, I>>(object: I): Campaign {
     const message = createBaseCampaign();
     if (object.id !== undefined && object.id !== null) {
@@ -437,6 +463,104 @@ export const Campaign = {
     }
     return message;
   },
+  fromAmino(object: CampaignAmino): Campaign {
+    const message = createBaseCampaign();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = BigInt(object.id);
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    }
+    if (object.start_time !== undefined && object.start_time !== null) {
+      message.startTime = Timestamp.fromAmino(object.start_time);
+    }
+    if (object.end_time !== undefined && object.end_time !== null) {
+      message.endTime = Timestamp.fromAmino(object.end_time);
+    }
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    }
+    if (object.nft_denom_id !== undefined && object.nft_denom_id !== null) {
+      message.nftDenomId = object.nft_denom_id;
+    }
+    if (object.max_allowed_claims !== undefined && object.max_allowed_claims !== null) {
+      message.maxAllowedClaims = BigInt(object.max_allowed_claims);
+    }
+    if (object.interaction !== undefined && object.interaction !== null) {
+      message.interaction = object.interaction;
+    }
+    if (object.claim_type !== undefined && object.claim_type !== null) {
+      message.claimType = object.claim_type;
+    }
+    if (object.tokens_per_claim !== undefined && object.tokens_per_claim !== null) {
+      message.tokensPerClaim = Coin.fromAmino(object.tokens_per_claim);
+    }
+    if (object.total_tokens !== undefined && object.total_tokens !== null) {
+      message.totalTokens = Coin.fromAmino(object.total_tokens);
+    }
+    if (object.available_tokens !== undefined && object.available_tokens !== null) {
+      message.availableTokens = Coin.fromAmino(object.available_tokens);
+    }
+    message.receivedNftIds = object.received_nft_ids?.map((e) => e) || [];
+    if (object.nft_mint_details !== undefined && object.nft_mint_details !== null) {
+      message.nftMintDetails = NFTDetails.fromAmino(object.nft_mint_details);
+    }
+    if (object.distribution !== undefined && object.distribution !== null) {
+      message.distribution = Distribution.fromAmino(object.distribution);
+    }
+    if (object.mint_count !== undefined && object.mint_count !== null) {
+      message.mintCount = BigInt(object.mint_count);
+    }
+    if (object.claim_count !== undefined && object.claim_count !== null) {
+      message.claimCount = BigInt(object.claim_count);
+    }
+    return message;
+  },
+  toAmino(message: Campaign): CampaignAmino {
+    const obj: any = {};
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
+    obj.name = message.name === "" ? undefined : message.name;
+    obj.description = message.description === "" ? undefined : message.description;
+    obj.start_time = message.startTime ? Timestamp.toAmino(message.startTime) : undefined;
+    obj.end_time = message.endTime ? Timestamp.toAmino(message.endTime) : undefined;
+    obj.creator = message.creator === "" ? undefined : message.creator;
+    obj.nft_denom_id = message.nftDenomId === "" ? undefined : message.nftDenomId;
+    obj.max_allowed_claims =
+      message.maxAllowedClaims !== BigInt(0) ? message.maxAllowedClaims?.toString() : undefined;
+    obj.interaction = message.interaction === 0 ? undefined : message.interaction;
+    obj.claim_type = message.claimType === 0 ? undefined : message.claimType;
+    obj.tokens_per_claim = message.tokensPerClaim ? Coin.toAmino(message.tokensPerClaim) : undefined;
+    obj.total_tokens = message.totalTokens ? Coin.toAmino(message.totalTokens) : undefined;
+    obj.available_tokens = message.availableTokens ? Coin.toAmino(message.availableTokens) : undefined;
+    if (message.receivedNftIds) {
+      obj.received_nft_ids = message.receivedNftIds.map((e) => e);
+    } else {
+      obj.received_nft_ids = message.receivedNftIds;
+    }
+    obj.nft_mint_details = message.nftMintDetails ? NFTDetails.toAmino(message.nftMintDetails) : undefined;
+    obj.distribution = message.distribution ? Distribution.toAmino(message.distribution) : undefined;
+    obj.mint_count = message.mintCount !== BigInt(0) ? message.mintCount?.toString() : undefined;
+    obj.claim_count = message.claimCount !== BigInt(0) ? message.claimCount?.toString() : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: CampaignAminoMsg): Campaign {
+    return Campaign.fromAmino(object.value);
+  },
+  fromProtoMsg(message: CampaignProtoMsg): Campaign {
+    return Campaign.decode(message.value);
+  },
+  toProto(message: Campaign): Uint8Array {
+    return Campaign.encode(message).finish();
+  },
+  toProtoMsg(message: Campaign): CampaignProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.Campaign",
+      value: Campaign.encode(message).finish(),
+    };
+  },
 };
 function createBaseDistribution(): Distribution {
   return {
@@ -475,19 +599,6 @@ export const Distribution = {
     }
     return message;
   },
-  fromJSON(object: any): Distribution {
-    const obj = createBaseDistribution();
-    if (isSet(object.type)) obj.type = distributionTypeFromJSON(object.type);
-    if (isSet(object.streamDuration)) obj.streamDuration = Duration.fromJSON(object.streamDuration);
-    return obj;
-  },
-  toJSON(message: Distribution): JsonSafe<Distribution> {
-    const obj: any = {};
-    message.type !== undefined && (obj.type = distributionTypeToJSON(message.type));
-    message.streamDuration !== undefined &&
-      (obj.streamDuration = message.streamDuration ? Duration.toJSON(message.streamDuration) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Distribution>, I>>(object: I): Distribution {
     const message = createBaseDistribution();
     message.type = object.type ?? 0;
@@ -495,6 +606,37 @@ export const Distribution = {
       message.streamDuration = Duration.fromPartial(object.streamDuration);
     }
     return message;
+  },
+  fromAmino(object: DistributionAmino): Distribution {
+    const message = createBaseDistribution();
+    if (object.type !== undefined && object.type !== null) {
+      message.type = object.type;
+    }
+    if (object.stream_duration !== undefined && object.stream_duration !== null) {
+      message.streamDuration = Duration.fromAmino(object.stream_duration);
+    }
+    return message;
+  },
+  toAmino(message: Distribution): DistributionAmino {
+    const obj: any = {};
+    obj.type = message.type === 0 ? undefined : message.type;
+    obj.stream_duration = message.streamDuration ? Duration.toAmino(message.streamDuration) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: DistributionAminoMsg): Distribution {
+    return Distribution.fromAmino(object.value);
+  },
+  fromProtoMsg(message: DistributionProtoMsg): Distribution {
+    return Distribution.decode(message.value);
+  },
+  toProto(message: Distribution): Uint8Array {
+    return Distribution.encode(message).finish();
+  },
+  toProtoMsg(message: Distribution): DistributionProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.Distribution",
+      value: Distribution.encode(message).finish(),
+    };
   },
 };
 function createBaseNFTDetails(): NFTDetails {
@@ -611,40 +753,6 @@ export const NFTDetails = {
     }
     return message;
   },
-  fromJSON(object: any): NFTDetails {
-    const obj = createBaseNFTDetails();
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.name)) obj.name = String(object.name);
-    if (isSet(object.description)) obj.description = String(object.description);
-    if (isSet(object.mediaUri)) obj.mediaUri = String(object.mediaUri);
-    if (isSet(object.previewUri)) obj.previewUri = String(object.previewUri);
-    if (isSet(object.royaltyShare)) obj.royaltyShare = String(object.royaltyShare);
-    if (isSet(object.transferable)) obj.transferable = Boolean(object.transferable);
-    if (isSet(object.extensible)) obj.extensible = Boolean(object.extensible);
-    if (isSet(object.nsfw)) obj.nsfw = Boolean(object.nsfw);
-    if (isSet(object.data)) obj.data = String(object.data);
-    if (isSet(object.uriHash)) obj.uriHash = String(object.uriHash);
-    if (isSet(object.startIndex)) obj.startIndex = BigInt(object.startIndex.toString());
-    if (isSet(object.nameDelimiter)) obj.nameDelimiter = String(object.nameDelimiter);
-    return obj;
-  },
-  toJSON(message: NFTDetails): JsonSafe<NFTDetails> {
-    const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.name !== undefined && (obj.name = message.name);
-    message.description !== undefined && (obj.description = message.description);
-    message.mediaUri !== undefined && (obj.mediaUri = message.mediaUri);
-    message.previewUri !== undefined && (obj.previewUri = message.previewUri);
-    message.royaltyShare !== undefined && (obj.royaltyShare = message.royaltyShare);
-    message.transferable !== undefined && (obj.transferable = message.transferable);
-    message.extensible !== undefined && (obj.extensible = message.extensible);
-    message.nsfw !== undefined && (obj.nsfw = message.nsfw);
-    message.data !== undefined && (obj.data = message.data);
-    message.uriHash !== undefined && (obj.uriHash = message.uriHash);
-    message.startIndex !== undefined && (obj.startIndex = (message.startIndex || BigInt(0)).toString());
-    message.nameDelimiter !== undefined && (obj.nameDelimiter = message.nameDelimiter);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<NFTDetails>, I>>(object: I): NFTDetails {
     const message = createBaseNFTDetails();
     message.denomId = object.denomId ?? "";
@@ -663,6 +771,81 @@ export const NFTDetails = {
     }
     message.nameDelimiter = object.nameDelimiter ?? "";
     return message;
+  },
+  fromAmino(object: NFTDetailsAmino): NFTDetails {
+    const message = createBaseNFTDetails();
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    }
+    if (object.media_uri !== undefined && object.media_uri !== null) {
+      message.mediaUri = object.media_uri;
+    }
+    if (object.preview_uri !== undefined && object.preview_uri !== null) {
+      message.previewUri = object.preview_uri;
+    }
+    if (object.royalty_share !== undefined && object.royalty_share !== null) {
+      message.royaltyShare = object.royalty_share;
+    }
+    if (object.transferable !== undefined && object.transferable !== null) {
+      message.transferable = object.transferable;
+    }
+    if (object.extensible !== undefined && object.extensible !== null) {
+      message.extensible = object.extensible;
+    }
+    if (object.nsfw !== undefined && object.nsfw !== null) {
+      message.nsfw = object.nsfw;
+    }
+    if (object.data !== undefined && object.data !== null) {
+      message.data = object.data;
+    }
+    if (object.uri_hash !== undefined && object.uri_hash !== null) {
+      message.uriHash = object.uri_hash;
+    }
+    if (object.start_index !== undefined && object.start_index !== null) {
+      message.startIndex = BigInt(object.start_index);
+    }
+    if (object.name_delimiter !== undefined && object.name_delimiter !== null) {
+      message.nameDelimiter = object.name_delimiter;
+    }
+    return message;
+  },
+  toAmino(message: NFTDetails): NFTDetailsAmino {
+    const obj: any = {};
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.name = message.name === "" ? undefined : message.name;
+    obj.description = message.description === "" ? undefined : message.description;
+    obj.media_uri = message.mediaUri === "" ? undefined : message.mediaUri;
+    obj.preview_uri = message.previewUri === "" ? undefined : message.previewUri;
+    obj.royalty_share = message.royaltyShare === "" ? undefined : message.royaltyShare;
+    obj.transferable = message.transferable === false ? undefined : message.transferable;
+    obj.extensible = message.extensible === false ? undefined : message.extensible;
+    obj.nsfw = message.nsfw === false ? undefined : message.nsfw;
+    obj.data = message.data === "" ? undefined : message.data;
+    obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
+    obj.start_index = message.startIndex !== BigInt(0) ? message.startIndex?.toString() : undefined;
+    obj.name_delimiter = message.nameDelimiter === "" ? undefined : message.nameDelimiter;
+    return obj;
+  },
+  fromAminoMsg(object: NFTDetailsAminoMsg): NFTDetails {
+    return NFTDetails.fromAmino(object.value);
+  },
+  fromProtoMsg(message: NFTDetailsProtoMsg): NFTDetails {
+    return NFTDetails.decode(message.value);
+  },
+  toProto(message: NFTDetails): Uint8Array {
+    return NFTDetails.encode(message).finish();
+  },
+  toProtoMsg(message: NFTDetails): NFTDetailsProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.NFTDetails",
+      value: NFTDetails.encode(message).finish(),
+    };
   },
 };
 function createBaseClaim(): Claim {
@@ -716,22 +899,6 @@ export const Claim = {
     }
     return message;
   },
-  fromJSON(object: any): Claim {
-    const obj = createBaseClaim();
-    if (isSet(object.campaignId)) obj.campaignId = BigInt(object.campaignId.toString());
-    if (isSet(object.address)) obj.address = String(object.address);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.interaction)) obj.interaction = interactionTypeFromJSON(object.interaction);
-    return obj;
-  },
-  toJSON(message: Claim): JsonSafe<Claim> {
-    const obj: any = {};
-    message.campaignId !== undefined && (obj.campaignId = (message.campaignId || BigInt(0)).toString());
-    message.address !== undefined && (obj.address = message.address);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.interaction !== undefined && (obj.interaction = interactionTypeToJSON(message.interaction));
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Claim>, I>>(object: I): Claim {
     const message = createBaseClaim();
     if (object.campaignId !== undefined && object.campaignId !== null) {
@@ -741,5 +908,44 @@ export const Claim = {
     message.nftId = object.nftId ?? "";
     message.interaction = object.interaction ?? 0;
     return message;
+  },
+  fromAmino(object: ClaimAmino): Claim {
+    const message = createBaseClaim();
+    if (object.campaign_id !== undefined && object.campaign_id !== null) {
+      message.campaignId = BigInt(object.campaign_id);
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.interaction !== undefined && object.interaction !== null) {
+      message.interaction = object.interaction;
+    }
+    return message;
+  },
+  toAmino(message: Claim): ClaimAmino {
+    const obj: any = {};
+    obj.campaign_id = message.campaignId !== BigInt(0) ? message.campaignId?.toString() : undefined;
+    obj.address = message.address === "" ? undefined : message.address;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.interaction = message.interaction === 0 ? undefined : message.interaction;
+    return obj;
+  },
+  fromAminoMsg(object: ClaimAminoMsg): Claim {
+    return Claim.fromAmino(object.value);
+  },
+  fromProtoMsg(message: ClaimProtoMsg): Claim {
+    return Claim.decode(message.value);
+  },
+  toProto(message: Claim): Uint8Array {
+    return Claim.encode(message).finish();
+  },
+  toProtoMsg(message: Claim): ClaimProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.itc.v1.Claim",
+      value: Claim.encode(message).finish(),
+    };
   },
 };

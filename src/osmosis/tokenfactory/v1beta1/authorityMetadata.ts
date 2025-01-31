@@ -1,7 +1,7 @@
+//@ts-nocheck
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "osmosis.tokenfactory.v1beta1";
 /**
  * DenomAuthorityMetadata specifies metadata for addresses that have specific
@@ -11,6 +11,23 @@ export const protobufPackage = "osmosis.tokenfactory.v1beta1";
 export interface DenomAuthorityMetadata {
   /** Can be empty for no admin, or a valid osmosis address */
   admin: string;
+}
+export interface DenomAuthorityMetadataProtoMsg {
+  typeUrl: "/osmosis.tokenfactory.v1beta1.DenomAuthorityMetadata";
+  value: Uint8Array;
+}
+/**
+ * DenomAuthorityMetadata specifies metadata for addresses that have specific
+ * capabilities over a token factory denom. Right now there is only one Admin
+ * permission, but is planned to be extended to the future.
+ */
+export interface DenomAuthorityMetadataAmino {
+  /** Can be empty for no admin, or a valid osmosis address */
+  admin?: string;
+}
+export interface DenomAuthorityMetadataAminoMsg {
+  type: "osmosis/tokenfactory/denom-authority-metadata";
+  value: DenomAuthorityMetadataAmino;
 }
 function createBaseDenomAuthorityMetadata(): DenomAuthorityMetadata {
   return {
@@ -42,19 +59,42 @@ export const DenomAuthorityMetadata = {
     }
     return message;
   },
-  fromJSON(object: any): DenomAuthorityMetadata {
-    const obj = createBaseDenomAuthorityMetadata();
-    if (isSet(object.admin)) obj.admin = String(object.admin);
-    return obj;
-  },
-  toJSON(message: DenomAuthorityMetadata): JsonSafe<DenomAuthorityMetadata> {
-    const obj: any = {};
-    message.admin !== undefined && (obj.admin = message.admin);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<DenomAuthorityMetadata>, I>>(object: I): DenomAuthorityMetadata {
     const message = createBaseDenomAuthorityMetadata();
     message.admin = object.admin ?? "";
     return message;
+  },
+  fromAmino(object: DenomAuthorityMetadataAmino): DenomAuthorityMetadata {
+    const message = createBaseDenomAuthorityMetadata();
+    if (object.admin !== undefined && object.admin !== null) {
+      message.admin = object.admin;
+    }
+    return message;
+  },
+  toAmino(message: DenomAuthorityMetadata): DenomAuthorityMetadataAmino {
+    const obj: any = {};
+    obj.admin = message.admin === "" ? undefined : message.admin;
+    return obj;
+  },
+  fromAminoMsg(object: DenomAuthorityMetadataAminoMsg): DenomAuthorityMetadata {
+    return DenomAuthorityMetadata.fromAmino(object.value);
+  },
+  toAminoMsg(message: DenomAuthorityMetadata): DenomAuthorityMetadataAminoMsg {
+    return {
+      type: "osmosis/tokenfactory/denom-authority-metadata",
+      value: DenomAuthorityMetadata.toAmino(message),
+    };
+  },
+  fromProtoMsg(message: DenomAuthorityMetadataProtoMsg): DenomAuthorityMetadata {
+    return DenomAuthorityMetadata.decode(message.value);
+  },
+  toProto(message: DenomAuthorityMetadata): Uint8Array {
+    return DenomAuthorityMetadata.encode(message).finish();
+  },
+  toProtoMsg(message: DenomAuthorityMetadata): DenomAuthorityMetadataProtoMsg {
+    return {
+      typeUrl: "/osmosis.tokenfactory.v1beta1.DenomAuthorityMetadata",
+      value: DenomAuthorityMetadata.encode(message).finish(),
+    };
   },
 };

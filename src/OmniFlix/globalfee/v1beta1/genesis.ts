@@ -1,13 +1,26 @@
+//@ts-nocheck
 /* eslint-disable */
-import { DecCoin } from "../../../cosmos/base/v1beta1/coin";
+import { DecCoin, DecCoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "OmniFlix.globalfee.v1beta1";
 /** GenesisState - initial state of module */
 export interface GenesisState {
   /** Params of this module */
   params: Params;
+}
+export interface GenesisStateProtoMsg {
+  typeUrl: "/OmniFlix.globalfee.v1beta1.GenesisState";
+  value: Uint8Array;
+}
+/** GenesisState - initial state of module */
+export interface GenesisStateAmino {
+  /** Params of this module */
+  params?: ParamsAmino;
+}
+export interface GenesisStateAminoMsg {
+  type: "/OmniFlix.globalfee.v1beta1.GenesisState";
+  value: GenesisStateAmino;
 }
 /** Params defines the set of module parameters. */
 export interface Params {
@@ -30,6 +43,36 @@ export interface Params {
    * to bypass fee charge.
    */
   maxTotalBypassMinFeeMsgGasUsage: bigint;
+}
+export interface ParamsProtoMsg {
+  typeUrl: "/OmniFlix.globalfee.v1beta1.Params";
+  value: Uint8Array;
+}
+/** Params defines the set of module parameters. */
+export interface ParamsAmino {
+  /**
+   * minimum_gas_prices stores the minimum gas price(s) for all TX on the chain.
+   * When multiple coins are defined then they are accepted alternatively.
+   * The list must be sorted by denoms asc. No duplicate denoms or zero amount
+   * values allowed. For more information see
+   * https://docs.cosmos.network/main/modules/auth#concepts
+   */
+  minimum_gas_prices?: DecCoinAmino[];
+  /**
+   * bypass_min_fee_msg_types defines a list of message type urls
+   * that are free of fee charge.
+   */
+  bypass_min_fee_msg_types?: string[];
+  /**
+   * max_total_bypass_min_fee_msg_gas_usage defines the total maximum gas usage
+   * allowed for a transaction containing only messages of types in bypass_min_fee_msg_types
+   * to bypass fee charge.
+   */
+  max_total_bypass_min_fee_msg_gas_usage?: string;
+}
+export interface ParamsAminoMsg {
+  type: "/OmniFlix.globalfee.v1beta1.Params";
+  value: ParamsAmino;
 }
 function createBaseGenesisState(): GenesisState {
   return {
@@ -61,22 +104,39 @@ export const GenesisState = {
     }
     return message;
   },
-  fromJSON(object: any): GenesisState {
-    const obj = createBaseGenesisState();
-    if (isSet(object.params)) obj.params = Params.fromJSON(object.params);
-    return obj;
-  },
-  toJSON(message: GenesisState): JsonSafe<GenesisState> {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
     return message;
+  },
+  fromAmino(object: GenesisStateAmino): GenesisState {
+    const message = createBaseGenesisState();
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message: GenesisState): GenesisStateAmino {
+    const obj: any = {};
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
+    return GenesisState.fromAmino(object.value);
+  },
+  fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
+    return GenesisState.decode(message.value);
+  },
+  toProto(message: GenesisState): Uint8Array {
+    return GenesisState.encode(message).finish();
+  },
+  toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.globalfee.v1beta1.GenesisState",
+      value: GenesisState.encode(message).finish(),
+    };
   },
 };
 function createBaseParams(): Params {
@@ -123,34 +183,6 @@ export const Params = {
     }
     return message;
   },
-  fromJSON(object: any): Params {
-    const obj = createBaseParams();
-    if (Array.isArray(object?.minimumGasPrices))
-      obj.minimumGasPrices = object.minimumGasPrices.map((e: any) => DecCoin.fromJSON(e));
-    if (Array.isArray(object?.bypassMinFeeMsgTypes))
-      obj.bypassMinFeeMsgTypes = object.bypassMinFeeMsgTypes.map((e: any) => String(e));
-    if (isSet(object.maxTotalBypassMinFeeMsgGasUsage))
-      obj.maxTotalBypassMinFeeMsgGasUsage = BigInt(object.maxTotalBypassMinFeeMsgGasUsage.toString());
-    return obj;
-  },
-  toJSON(message: Params): JsonSafe<Params> {
-    const obj: any = {};
-    if (message.minimumGasPrices) {
-      obj.minimumGasPrices = message.minimumGasPrices.map((e) => (e ? DecCoin.toJSON(e) : undefined));
-    } else {
-      obj.minimumGasPrices = [];
-    }
-    if (message.bypassMinFeeMsgTypes) {
-      obj.bypassMinFeeMsgTypes = message.bypassMinFeeMsgTypes.map((e) => e);
-    } else {
-      obj.bypassMinFeeMsgTypes = [];
-    }
-    message.maxTotalBypassMinFeeMsgGasUsage !== undefined &&
-      (obj.maxTotalBypassMinFeeMsgGasUsage = (
-        message.maxTotalBypassMinFeeMsgGasUsage || BigInt(0)
-      ).toString());
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
     message.minimumGasPrices = object.minimumGasPrices?.map((e) => DecCoin.fromPartial(e)) || [];
@@ -162,5 +194,50 @@ export const Params = {
       message.maxTotalBypassMinFeeMsgGasUsage = BigInt(object.maxTotalBypassMinFeeMsgGasUsage.toString());
     }
     return message;
+  },
+  fromAmino(object: ParamsAmino): Params {
+    const message = createBaseParams();
+    message.minimumGasPrices = object.minimum_gas_prices?.map((e) => DecCoin.fromAmino(e)) || [];
+    message.bypassMinFeeMsgTypes = object.bypass_min_fee_msg_types?.map((e) => e) || [];
+    if (
+      object.max_total_bypass_min_fee_msg_gas_usage !== undefined &&
+      object.max_total_bypass_min_fee_msg_gas_usage !== null
+    ) {
+      message.maxTotalBypassMinFeeMsgGasUsage = BigInt(object.max_total_bypass_min_fee_msg_gas_usage);
+    }
+    return message;
+  },
+  toAmino(message: Params): ParamsAmino {
+    const obj: any = {};
+    if (message.minimumGasPrices) {
+      obj.minimum_gas_prices = message.minimumGasPrices.map((e) => (e ? DecCoin.toAmino(e) : undefined));
+    } else {
+      obj.minimum_gas_prices = message.minimumGasPrices;
+    }
+    if (message.bypassMinFeeMsgTypes) {
+      obj.bypass_min_fee_msg_types = message.bypassMinFeeMsgTypes.map((e) => e);
+    } else {
+      obj.bypass_min_fee_msg_types = message.bypassMinFeeMsgTypes;
+    }
+    obj.max_total_bypass_min_fee_msg_gas_usage =
+      message.maxTotalBypassMinFeeMsgGasUsage !== BigInt(0)
+        ? message.maxTotalBypassMinFeeMsgGasUsage?.toString()
+        : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: ParamsAminoMsg): Params {
+    return Params.fromAmino(object.value);
+  },
+  fromProtoMsg(message: ParamsProtoMsg): Params {
+    return Params.decode(message.value);
+  },
+  toProto(message: Params): Uint8Array {
+    return Params.encode(message).finish();
+  },
+  toProtoMsg(message: Params): ParamsProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.globalfee.v1beta1.Params",
+      value: Params.encode(message).finish(),
+    };
   },
 };

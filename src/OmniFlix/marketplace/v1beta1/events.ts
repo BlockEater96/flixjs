@@ -1,7 +1,7 @@
+//@ts-nocheck
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, Exact } from "../../../helpers";
-import { JsonSafe } from "../../../json-safe";
+import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "OmniFlix.marketplace.v1beta1";
 /** EventListONFT is emitted on NFT Listing on market */
 export interface EventListNFT {
@@ -10,6 +10,21 @@ export interface EventListNFT {
   denomId: string;
   owner: string;
 }
+export interface EventListNFTProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.EventListNFT";
+  value: Uint8Array;
+}
+/** EventListONFT is emitted on NFT Listing on market */
+export interface EventListNFTAmino {
+  id?: string;
+  nft_id?: string;
+  denom_id?: string;
+  owner?: string;
+}
+export interface EventListNFTAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.EventListNFT";
+  value: EventListNFTAmino;
+}
 /** EventEditListing is emitted on edit Listing on market */
 export interface EventEditListing {
   id: string;
@@ -17,12 +32,42 @@ export interface EventEditListing {
   denomId: string;
   owner: string;
 }
+export interface EventEditListingProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.EventEditListing";
+  value: Uint8Array;
+}
+/** EventEditListing is emitted on edit Listing on market */
+export interface EventEditListingAmino {
+  id?: string;
+  nft_id?: string;
+  denom_id?: string;
+  owner?: string;
+}
+export interface EventEditListingAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.EventEditListing";
+  value: EventEditListingAmino;
+}
 /** EventDeListONFT is emitted on NFT DeListing from market */
 export interface EventDeListNFT {
   id: string;
   nftId: string;
   denomId: string;
   owner: string;
+}
+export interface EventDeListNFTProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.EventDeListNFT";
+  value: Uint8Array;
+}
+/** EventDeListONFT is emitted on NFT DeListing from market */
+export interface EventDeListNFTAmino {
+  id?: string;
+  nft_id?: string;
+  denom_id?: string;
+  owner?: string;
+}
+export interface EventDeListNFTAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.EventDeListNFT";
+  value: EventDeListNFTAmino;
 }
 /** EventBuyONFT is emitted on NFT Buy */
 export interface EventBuyNFT {
@@ -32,6 +77,22 @@ export interface EventBuyNFT {
   owner: string;
   buyer: string;
 }
+export interface EventBuyNFTProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.EventBuyNFT";
+  value: Uint8Array;
+}
+/** EventBuyONFT is emitted on NFT Buy */
+export interface EventBuyNFTAmino {
+  id?: string;
+  nft_id?: string;
+  denom_id?: string;
+  owner?: string;
+  buyer?: string;
+}
+export interface EventBuyNFTAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.EventBuyNFT";
+  value: EventBuyNFTAmino;
+}
 /** EventCreateAuction is emitted on creating auction */
 export interface EventCreateAuction {
   id: string;
@@ -40,12 +101,43 @@ export interface EventCreateAuction {
   owner: string;
   minPrice: string;
 }
+export interface EventCreateAuctionProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.EventCreateAuction";
+  value: Uint8Array;
+}
+/** EventCreateAuction is emitted on creating auction */
+export interface EventCreateAuctionAmino {
+  id?: string;
+  nft_id?: string;
+  denom_id?: string;
+  owner?: string;
+  min_price?: string;
+}
+export interface EventCreateAuctionAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.EventCreateAuction";
+  value: EventCreateAuctionAmino;
+}
 /** EventCancelAuction is emitted on canceling auction */
 export interface EventCancelAuction {
   id: string;
   nftId: string;
   denomId: string;
   owner: string;
+}
+export interface EventCancelAuctionProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.EventCancelAuction";
+  value: Uint8Array;
+}
+/** EventCancelAuction is emitted on canceling auction */
+export interface EventCancelAuctionAmino {
+  id?: string;
+  nft_id?: string;
+  denom_id?: string;
+  owner?: string;
+}
+export interface EventCancelAuctionAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.EventCancelAuction";
+  value: EventCancelAuctionAmino;
 }
 /** EventPlaceBid is emitted on placing bid for an auction */
 export interface EventPlaceBid {
@@ -54,6 +146,22 @@ export interface EventPlaceBid {
   denomId: string;
   bidder: string;
   amount: string;
+}
+export interface EventPlaceBidProtoMsg {
+  typeUrl: "/OmniFlix.marketplace.v1beta1.EventPlaceBid";
+  value: Uint8Array;
+}
+/** EventPlaceBid is emitted on placing bid for an auction */
+export interface EventPlaceBidAmino {
+  auction_id?: string;
+  nft_id?: string;
+  denom_id?: string;
+  bidder?: string;
+  amount?: string;
+}
+export interface EventPlaceBidAminoMsg {
+  type: "/OmniFlix.marketplace.v1beta1.EventPlaceBid";
+  value: EventPlaceBidAmino;
 }
 function createBaseEventListNFT(): EventListNFT {
   return {
@@ -106,22 +214,6 @@ export const EventListNFT = {
     }
     return message;
   },
-  fromJSON(object: any): EventListNFT {
-    const obj = createBaseEventListNFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: EventListNFT): JsonSafe<EventListNFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<EventListNFT>, I>>(object: I): EventListNFT {
     const message = createBaseEventListNFT();
     message.id = object.id ?? "";
@@ -129,6 +221,45 @@ export const EventListNFT = {
     message.denomId = object.denomId ?? "";
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: EventListNFTAmino): EventListNFT {
+    const message = createBaseEventListNFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: EventListNFT): EventListNFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: EventListNFTAminoMsg): EventListNFT {
+    return EventListNFT.fromAmino(object.value);
+  },
+  fromProtoMsg(message: EventListNFTProtoMsg): EventListNFT {
+    return EventListNFT.decode(message.value);
+  },
+  toProto(message: EventListNFT): Uint8Array {
+    return EventListNFT.encode(message).finish();
+  },
+  toProtoMsg(message: EventListNFT): EventListNFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.EventListNFT",
+      value: EventListNFT.encode(message).finish(),
+    };
   },
 };
 function createBaseEventEditListing(): EventEditListing {
@@ -182,22 +313,6 @@ export const EventEditListing = {
     }
     return message;
   },
-  fromJSON(object: any): EventEditListing {
-    const obj = createBaseEventEditListing();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: EventEditListing): JsonSafe<EventEditListing> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<EventEditListing>, I>>(object: I): EventEditListing {
     const message = createBaseEventEditListing();
     message.id = object.id ?? "";
@@ -205,6 +320,45 @@ export const EventEditListing = {
     message.denomId = object.denomId ?? "";
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: EventEditListingAmino): EventEditListing {
+    const message = createBaseEventEditListing();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: EventEditListing): EventEditListingAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: EventEditListingAminoMsg): EventEditListing {
+    return EventEditListing.fromAmino(object.value);
+  },
+  fromProtoMsg(message: EventEditListingProtoMsg): EventEditListing {
+    return EventEditListing.decode(message.value);
+  },
+  toProto(message: EventEditListing): Uint8Array {
+    return EventEditListing.encode(message).finish();
+  },
+  toProtoMsg(message: EventEditListing): EventEditListingProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.EventEditListing",
+      value: EventEditListing.encode(message).finish(),
+    };
   },
 };
 function createBaseEventDeListNFT(): EventDeListNFT {
@@ -258,22 +412,6 @@ export const EventDeListNFT = {
     }
     return message;
   },
-  fromJSON(object: any): EventDeListNFT {
-    const obj = createBaseEventDeListNFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: EventDeListNFT): JsonSafe<EventDeListNFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<EventDeListNFT>, I>>(object: I): EventDeListNFT {
     const message = createBaseEventDeListNFT();
     message.id = object.id ?? "";
@@ -281,6 +419,45 @@ export const EventDeListNFT = {
     message.denomId = object.denomId ?? "";
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: EventDeListNFTAmino): EventDeListNFT {
+    const message = createBaseEventDeListNFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: EventDeListNFT): EventDeListNFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: EventDeListNFTAminoMsg): EventDeListNFT {
+    return EventDeListNFT.fromAmino(object.value);
+  },
+  fromProtoMsg(message: EventDeListNFTProtoMsg): EventDeListNFT {
+    return EventDeListNFT.decode(message.value);
+  },
+  toProto(message: EventDeListNFT): Uint8Array {
+    return EventDeListNFT.encode(message).finish();
+  },
+  toProtoMsg(message: EventDeListNFT): EventDeListNFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.EventDeListNFT",
+      value: EventDeListNFT.encode(message).finish(),
+    };
   },
 };
 function createBaseEventBuyNFT(): EventBuyNFT {
@@ -341,24 +518,6 @@ export const EventBuyNFT = {
     }
     return message;
   },
-  fromJSON(object: any): EventBuyNFT {
-    const obj = createBaseEventBuyNFT();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    if (isSet(object.buyer)) obj.buyer = String(object.buyer);
-    return obj;
-  },
-  toJSON(message: EventBuyNFT): JsonSafe<EventBuyNFT> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.owner !== undefined && (obj.owner = message.owner);
-    message.buyer !== undefined && (obj.buyer = message.buyer);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<EventBuyNFT>, I>>(object: I): EventBuyNFT {
     const message = createBaseEventBuyNFT();
     message.id = object.id ?? "";
@@ -367,6 +526,49 @@ export const EventBuyNFT = {
     message.owner = object.owner ?? "";
     message.buyer = object.buyer ?? "";
     return message;
+  },
+  fromAmino(object: EventBuyNFTAmino): EventBuyNFT {
+    const message = createBaseEventBuyNFT();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    if (object.buyer !== undefined && object.buyer !== null) {
+      message.buyer = object.buyer;
+    }
+    return message;
+  },
+  toAmino(message: EventBuyNFT): EventBuyNFTAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    obj.buyer = message.buyer === "" ? undefined : message.buyer;
+    return obj;
+  },
+  fromAminoMsg(object: EventBuyNFTAminoMsg): EventBuyNFT {
+    return EventBuyNFT.fromAmino(object.value);
+  },
+  fromProtoMsg(message: EventBuyNFTProtoMsg): EventBuyNFT {
+    return EventBuyNFT.decode(message.value);
+  },
+  toProto(message: EventBuyNFT): Uint8Array {
+    return EventBuyNFT.encode(message).finish();
+  },
+  toProtoMsg(message: EventBuyNFT): EventBuyNFTProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.EventBuyNFT",
+      value: EventBuyNFT.encode(message).finish(),
+    };
   },
 };
 function createBaseEventCreateAuction(): EventCreateAuction {
@@ -427,24 +629,6 @@ export const EventCreateAuction = {
     }
     return message;
   },
-  fromJSON(object: any): EventCreateAuction {
-    const obj = createBaseEventCreateAuction();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    if (isSet(object.minPrice)) obj.minPrice = String(object.minPrice);
-    return obj;
-  },
-  toJSON(message: EventCreateAuction): JsonSafe<EventCreateAuction> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.owner !== undefined && (obj.owner = message.owner);
-    message.minPrice !== undefined && (obj.minPrice = message.minPrice);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<EventCreateAuction>, I>>(object: I): EventCreateAuction {
     const message = createBaseEventCreateAuction();
     message.id = object.id ?? "";
@@ -453,6 +637,49 @@ export const EventCreateAuction = {
     message.owner = object.owner ?? "";
     message.minPrice = object.minPrice ?? "";
     return message;
+  },
+  fromAmino(object: EventCreateAuctionAmino): EventCreateAuction {
+    const message = createBaseEventCreateAuction();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    if (object.min_price !== undefined && object.min_price !== null) {
+      message.minPrice = object.min_price;
+    }
+    return message;
+  },
+  toAmino(message: EventCreateAuction): EventCreateAuctionAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    obj.min_price = message.minPrice === "" ? undefined : message.minPrice;
+    return obj;
+  },
+  fromAminoMsg(object: EventCreateAuctionAminoMsg): EventCreateAuction {
+    return EventCreateAuction.fromAmino(object.value);
+  },
+  fromProtoMsg(message: EventCreateAuctionProtoMsg): EventCreateAuction {
+    return EventCreateAuction.decode(message.value);
+  },
+  toProto(message: EventCreateAuction): Uint8Array {
+    return EventCreateAuction.encode(message).finish();
+  },
+  toProtoMsg(message: EventCreateAuction): EventCreateAuctionProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.EventCreateAuction",
+      value: EventCreateAuction.encode(message).finish(),
+    };
   },
 };
 function createBaseEventCancelAuction(): EventCancelAuction {
@@ -506,22 +733,6 @@ export const EventCancelAuction = {
     }
     return message;
   },
-  fromJSON(object: any): EventCancelAuction {
-    const obj = createBaseEventCancelAuction();
-    if (isSet(object.id)) obj.id = String(object.id);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.owner)) obj.owner = String(object.owner);
-    return obj;
-  },
-  toJSON(message: EventCancelAuction): JsonSafe<EventCancelAuction> {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.owner !== undefined && (obj.owner = message.owner);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<EventCancelAuction>, I>>(object: I): EventCancelAuction {
     const message = createBaseEventCancelAuction();
     message.id = object.id ?? "";
@@ -529,6 +740,45 @@ export const EventCancelAuction = {
     message.denomId = object.denomId ?? "";
     message.owner = object.owner ?? "";
     return message;
+  },
+  fromAmino(object: EventCancelAuctionAmino): EventCancelAuction {
+    const message = createBaseEventCancelAuction();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message: EventCancelAuction): EventCancelAuctionAmino {
+    const obj: any = {};
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.owner = message.owner === "" ? undefined : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object: EventCancelAuctionAminoMsg): EventCancelAuction {
+    return EventCancelAuction.fromAmino(object.value);
+  },
+  fromProtoMsg(message: EventCancelAuctionProtoMsg): EventCancelAuction {
+    return EventCancelAuction.decode(message.value);
+  },
+  toProto(message: EventCancelAuction): Uint8Array {
+    return EventCancelAuction.encode(message).finish();
+  },
+  toProtoMsg(message: EventCancelAuction): EventCancelAuctionProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.EventCancelAuction",
+      value: EventCancelAuction.encode(message).finish(),
+    };
   },
 };
 function createBaseEventPlaceBid(): EventPlaceBid {
@@ -589,24 +839,6 @@ export const EventPlaceBid = {
     }
     return message;
   },
-  fromJSON(object: any): EventPlaceBid {
-    const obj = createBaseEventPlaceBid();
-    if (isSet(object.auctionId)) obj.auctionId = String(object.auctionId);
-    if (isSet(object.nftId)) obj.nftId = String(object.nftId);
-    if (isSet(object.denomId)) obj.denomId = String(object.denomId);
-    if (isSet(object.bidder)) obj.bidder = String(object.bidder);
-    if (isSet(object.amount)) obj.amount = String(object.amount);
-    return obj;
-  },
-  toJSON(message: EventPlaceBid): JsonSafe<EventPlaceBid> {
-    const obj: any = {};
-    message.auctionId !== undefined && (obj.auctionId = message.auctionId);
-    message.nftId !== undefined && (obj.nftId = message.nftId);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.bidder !== undefined && (obj.bidder = message.bidder);
-    message.amount !== undefined && (obj.amount = message.amount);
-    return obj;
-  },
   fromPartial<I extends Exact<DeepPartial<EventPlaceBid>, I>>(object: I): EventPlaceBid {
     const message = createBaseEventPlaceBid();
     message.auctionId = object.auctionId ?? "";
@@ -615,5 +847,48 @@ export const EventPlaceBid = {
     message.bidder = object.bidder ?? "";
     message.amount = object.amount ?? "";
     return message;
+  },
+  fromAmino(object: EventPlaceBidAmino): EventPlaceBid {
+    const message = createBaseEventPlaceBid();
+    if (object.auction_id !== undefined && object.auction_id !== null) {
+      message.auctionId = object.auction_id;
+    }
+    if (object.nft_id !== undefined && object.nft_id !== null) {
+      message.nftId = object.nft_id;
+    }
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denomId = object.denom_id;
+    }
+    if (object.bidder !== undefined && object.bidder !== null) {
+      message.bidder = object.bidder;
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = object.amount;
+    }
+    return message;
+  },
+  toAmino(message: EventPlaceBid): EventPlaceBidAmino {
+    const obj: any = {};
+    obj.auction_id = message.auctionId === "" ? undefined : message.auctionId;
+    obj.nft_id = message.nftId === "" ? undefined : message.nftId;
+    obj.denom_id = message.denomId === "" ? undefined : message.denomId;
+    obj.bidder = message.bidder === "" ? undefined : message.bidder;
+    obj.amount = message.amount === "" ? undefined : message.amount;
+    return obj;
+  },
+  fromAminoMsg(object: EventPlaceBidAminoMsg): EventPlaceBid {
+    return EventPlaceBid.fromAmino(object.value);
+  },
+  fromProtoMsg(message: EventPlaceBidProtoMsg): EventPlaceBid {
+    return EventPlaceBid.decode(message.value);
+  },
+  toProto(message: EventPlaceBid): Uint8Array {
+    return EventPlaceBid.encode(message).finish();
+  },
+  toProtoMsg(message: EventPlaceBid): EventPlaceBidProtoMsg {
+    return {
+      typeUrl: "/OmniFlix.marketplace.v1beta1.EventPlaceBid",
+      value: EventPlaceBid.encode(message).finish(),
+    };
   },
 };

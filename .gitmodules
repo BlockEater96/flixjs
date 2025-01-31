@@ -10,3 +10,6 @@
 [submodule "protos/cosmos-sdk"]
 	path = protos/cosmos-sdk
 	url = https://github.com/cosmos/cosmos-sdk
+[submodule "protos/streampay-src"]
+	path = protos/streampay-src
+	url = https://github.com/OmniFlix/streampay.git
