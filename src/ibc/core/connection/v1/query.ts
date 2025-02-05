@@ -1,25 +1,8 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  PageRequest,
-  PageRequestAmino,
-  PageResponse,
-  PageResponseAmino,
-} from "../../../../cosmos/base/query/v1beta1/pagination";
-import {
-  ConnectionEnd,
-  ConnectionEndAmino,
-  IdentifiedConnection,
-  IdentifiedConnectionAmino,
-} from "./connection";
-import {
-  Height,
-  HeightAmino,
-  IdentifiedClientState,
-  IdentifiedClientStateAmino,
-  Params,
-  ParamsAmino,
-} from "../../client/v1/client";
+import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../../../cosmos/base/query/v1beta1/pagination";
+import { ConnectionEnd, ConnectionEndAmino, IdentifiedConnection, IdentifiedConnectionAmino } from "./connection";
+import { Height, HeightAmino, IdentifiedClientState, IdentifiedClientStateAmino, Params, ParamsAmino } from "../../client/v1/client";
 import { Any, AnyAmino } from "../../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { DeepPartial, Exact, bytesFromBase64, base64FromBytes, Rpc } from "../../../../helpers";
@@ -344,7 +327,7 @@ export interface QueryConnectionParamsResponseAminoMsg {
 }
 function createBaseQueryConnectionRequest(): QueryConnectionRequest {
   return {
-    connectionId: "",
+    connectionId: ""
   };
 }
 export const QueryConnectionRequest = {
@@ -395,7 +378,7 @@ export const QueryConnectionRequest = {
   toAminoMsg(message: QueryConnectionRequest): QueryConnectionRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionRequest",
-      value: QueryConnectionRequest.toAmino(message),
+      value: QueryConnectionRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConnectionRequestProtoMsg): QueryConnectionRequest {
@@ -407,15 +390,15 @@ export const QueryConnectionRequest = {
   toProtoMsg(message: QueryConnectionRequest): QueryConnectionRequestProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionRequest",
-      value: QueryConnectionRequest.encode(message).finish(),
+      value: QueryConnectionRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConnectionResponse(): QueryConnectionResponse {
   return {
     connection: undefined,
     proof: new Uint8Array(),
-    proofHeight: Height.fromPartial({}),
+    proofHeight: Height.fromPartial({})
   };
 }
 export const QueryConnectionResponse = {
@@ -492,7 +475,7 @@ export const QueryConnectionResponse = {
   toAminoMsg(message: QueryConnectionResponse): QueryConnectionResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionResponse",
-      value: QueryConnectionResponse.toAmino(message),
+      value: QueryConnectionResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConnectionResponseProtoMsg): QueryConnectionResponse {
@@ -504,13 +487,13 @@ export const QueryConnectionResponse = {
   toProtoMsg(message: QueryConnectionResponse): QueryConnectionResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionResponse",
-      value: QueryConnectionResponse.encode(message).finish(),
+      value: QueryConnectionResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConnectionsRequest(): QueryConnectionsRequest {
   return {
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryConnectionsRequest = {
@@ -563,7 +546,7 @@ export const QueryConnectionsRequest = {
   toAminoMsg(message: QueryConnectionsRequest): QueryConnectionsRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionsRequest",
-      value: QueryConnectionsRequest.toAmino(message),
+      value: QueryConnectionsRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConnectionsRequestProtoMsg): QueryConnectionsRequest {
@@ -575,15 +558,15 @@ export const QueryConnectionsRequest = {
   toProtoMsg(message: QueryConnectionsRequest): QueryConnectionsRequestProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionsRequest",
-      value: QueryConnectionsRequest.encode(message).finish(),
+      value: QueryConnectionsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConnectionsResponse(): QueryConnectionsResponse {
   return {
     connections: [],
     pagination: undefined,
-    height: Height.fromPartial({}),
+    height: Height.fromPartial({})
   };
 }
 export const QueryConnectionsResponse = {
@@ -623,11 +606,9 @@ export const QueryConnectionsResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryConnectionsResponse>, I>>(
-    object: I,
-  ): QueryConnectionsResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryConnectionsResponse>, I>>(object: I): QueryConnectionsResponse {
     const message = createBaseQueryConnectionsResponse();
-    message.connections = object.connections?.map((e) => IdentifiedConnection.fromPartial(e)) || [];
+    message.connections = object.connections?.map(e => IdentifiedConnection.fromPartial(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
@@ -638,7 +619,7 @@ export const QueryConnectionsResponse = {
   },
   fromAmino(object: QueryConnectionsResponseAmino): QueryConnectionsResponse {
     const message = createBaseQueryConnectionsResponse();
-    message.connections = object.connections?.map((e) => IdentifiedConnection.fromAmino(e)) || [];
+    message.connections = object.connections?.map(e => IdentifiedConnection.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -650,7 +631,7 @@ export const QueryConnectionsResponse = {
   toAmino(message: QueryConnectionsResponse): QueryConnectionsResponseAmino {
     const obj: any = {};
     if (message.connections) {
-      obj.connections = message.connections.map((e) => (e ? IdentifiedConnection.toAmino(e) : undefined));
+      obj.connections = message.connections.map(e => e ? IdentifiedConnection.toAmino(e) : undefined);
     } else {
       obj.connections = message.connections;
     }
@@ -664,7 +645,7 @@ export const QueryConnectionsResponse = {
   toAminoMsg(message: QueryConnectionsResponse): QueryConnectionsResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionsResponse",
-      value: QueryConnectionsResponse.toAmino(message),
+      value: QueryConnectionsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConnectionsResponseProtoMsg): QueryConnectionsResponse {
@@ -676,13 +657,13 @@ export const QueryConnectionsResponse = {
   toProtoMsg(message: QueryConnectionsResponse): QueryConnectionsResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionsResponse",
-      value: QueryConnectionsResponse.encode(message).finish(),
+      value: QueryConnectionsResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryClientConnectionsRequest(): QueryClientConnectionsRequest {
   return {
-    clientId: "",
+    clientId: ""
   };
 }
 export const QueryClientConnectionsRequest = {
@@ -710,9 +691,7 @@ export const QueryClientConnectionsRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryClientConnectionsRequest>, I>>(
-    object: I,
-  ): QueryClientConnectionsRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryClientConnectionsRequest>, I>>(object: I): QueryClientConnectionsRequest {
     const message = createBaseQueryClientConnectionsRequest();
     message.clientId = object.clientId ?? "";
     return message;
@@ -735,7 +714,7 @@ export const QueryClientConnectionsRequest = {
   toAminoMsg(message: QueryClientConnectionsRequest): QueryClientConnectionsRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryClientConnectionsRequest",
-      value: QueryClientConnectionsRequest.toAmino(message),
+      value: QueryClientConnectionsRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryClientConnectionsRequestProtoMsg): QueryClientConnectionsRequest {
@@ -747,23 +726,20 @@ export const QueryClientConnectionsRequest = {
   toProtoMsg(message: QueryClientConnectionsRequest): QueryClientConnectionsRequestProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryClientConnectionsRequest",
-      value: QueryClientConnectionsRequest.encode(message).finish(),
+      value: QueryClientConnectionsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryClientConnectionsResponse(): QueryClientConnectionsResponse {
   return {
     connectionPaths: [],
     proof: new Uint8Array(),
-    proofHeight: Height.fromPartial({}),
+    proofHeight: Height.fromPartial({})
   };
 }
 export const QueryClientConnectionsResponse = {
   typeUrl: "/ibc.core.connection.v1.QueryClientConnectionsResponse",
-  encode(
-    message: QueryClientConnectionsResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryClientConnectionsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     for (const v of message.connectionPaths) {
       writer.uint32(10).string(v!);
     }
@@ -798,11 +774,9 @@ export const QueryClientConnectionsResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryClientConnectionsResponse>, I>>(
-    object: I,
-  ): QueryClientConnectionsResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryClientConnectionsResponse>, I>>(object: I): QueryClientConnectionsResponse {
     const message = createBaseQueryClientConnectionsResponse();
-    message.connectionPaths = object.connectionPaths?.map((e) => e) || [];
+    message.connectionPaths = object.connectionPaths?.map(e => e) || [];
     message.proof = object.proof ?? new Uint8Array();
     if (object.proofHeight !== undefined && object.proofHeight !== null) {
       message.proofHeight = Height.fromPartial(object.proofHeight);
@@ -811,7 +785,7 @@ export const QueryClientConnectionsResponse = {
   },
   fromAmino(object: QueryClientConnectionsResponseAmino): QueryClientConnectionsResponse {
     const message = createBaseQueryClientConnectionsResponse();
-    message.connectionPaths = object.connection_paths?.map((e) => e) || [];
+    message.connectionPaths = object.connection_paths?.map(e => e) || [];
     if (object.proof !== undefined && object.proof !== null) {
       message.proof = bytesFromBase64(object.proof);
     }
@@ -823,7 +797,7 @@ export const QueryClientConnectionsResponse = {
   toAmino(message: QueryClientConnectionsResponse): QueryClientConnectionsResponseAmino {
     const obj: any = {};
     if (message.connectionPaths) {
-      obj.connection_paths = message.connectionPaths.map((e) => e);
+      obj.connection_paths = message.connectionPaths.map(e => e);
     } else {
       obj.connection_paths = message.connectionPaths;
     }
@@ -837,7 +811,7 @@ export const QueryClientConnectionsResponse = {
   toAminoMsg(message: QueryClientConnectionsResponse): QueryClientConnectionsResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryClientConnectionsResponse",
-      value: QueryClientConnectionsResponse.toAmino(message),
+      value: QueryClientConnectionsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryClientConnectionsResponseProtoMsg): QueryClientConnectionsResponse {
@@ -849,21 +823,18 @@ export const QueryClientConnectionsResponse = {
   toProtoMsg(message: QueryClientConnectionsResponse): QueryClientConnectionsResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryClientConnectionsResponse",
-      value: QueryClientConnectionsResponse.encode(message).finish(),
+      value: QueryClientConnectionsResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConnectionClientStateRequest(): QueryConnectionClientStateRequest {
   return {
-    connectionId: "",
+    connectionId: ""
   };
 }
 export const QueryConnectionClientStateRequest = {
   typeUrl: "/ibc.core.connection.v1.QueryConnectionClientStateRequest",
-  encode(
-    message: QueryConnectionClientStateRequest,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryConnectionClientStateRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.connectionId !== "") {
       writer.uint32(10).string(message.connectionId);
     }
@@ -886,9 +857,7 @@ export const QueryConnectionClientStateRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryConnectionClientStateRequest>, I>>(
-    object: I,
-  ): QueryConnectionClientStateRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryConnectionClientStateRequest>, I>>(object: I): QueryConnectionClientStateRequest {
     const message = createBaseQueryConnectionClientStateRequest();
     message.connectionId = object.connectionId ?? "";
     return message;
@@ -911,7 +880,7 @@ export const QueryConnectionClientStateRequest = {
   toAminoMsg(message: QueryConnectionClientStateRequest): QueryConnectionClientStateRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionClientStateRequest",
-      value: QueryConnectionClientStateRequest.toAmino(message),
+      value: QueryConnectionClientStateRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConnectionClientStateRequestProtoMsg): QueryConnectionClientStateRequest {
@@ -923,23 +892,20 @@ export const QueryConnectionClientStateRequest = {
   toProtoMsg(message: QueryConnectionClientStateRequest): QueryConnectionClientStateRequestProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionClientStateRequest",
-      value: QueryConnectionClientStateRequest.encode(message).finish(),
+      value: QueryConnectionClientStateRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConnectionClientStateResponse(): QueryConnectionClientStateResponse {
   return {
     identifiedClientState: undefined,
     proof: new Uint8Array(),
-    proofHeight: Height.fromPartial({}),
+    proofHeight: Height.fromPartial({})
   };
 }
 export const QueryConnectionClientStateResponse = {
   typeUrl: "/ibc.core.connection.v1.QueryConnectionClientStateResponse",
-  encode(
-    message: QueryConnectionClientStateResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryConnectionClientStateResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.identifiedClientState !== undefined) {
       IdentifiedClientState.encode(message.identifiedClientState, writer.uint32(10).fork()).ldelim();
     }
@@ -974,9 +940,7 @@ export const QueryConnectionClientStateResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryConnectionClientStateResponse>, I>>(
-    object: I,
-  ): QueryConnectionClientStateResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryConnectionClientStateResponse>, I>>(object: I): QueryConnectionClientStateResponse {
     const message = createBaseQueryConnectionClientStateResponse();
     if (object.identifiedClientState !== undefined && object.identifiedClientState !== null) {
       message.identifiedClientState = IdentifiedClientState.fromPartial(object.identifiedClientState);
@@ -1002,9 +966,7 @@ export const QueryConnectionClientStateResponse = {
   },
   toAmino(message: QueryConnectionClientStateResponse): QueryConnectionClientStateResponseAmino {
     const obj: any = {};
-    obj.identified_client_state = message.identifiedClientState
-      ? IdentifiedClientState.toAmino(message.identifiedClientState)
-      : undefined;
+    obj.identified_client_state = message.identifiedClientState ? IdentifiedClientState.toAmino(message.identifiedClientState) : undefined;
     obj.proof = message.proof ? base64FromBytes(message.proof) : undefined;
     obj.proof_height = message.proofHeight ? Height.toAmino(message.proofHeight) : {};
     return obj;
@@ -1015,7 +977,7 @@ export const QueryConnectionClientStateResponse = {
   toAminoMsg(message: QueryConnectionClientStateResponse): QueryConnectionClientStateResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionClientStateResponse",
-      value: QueryConnectionClientStateResponse.toAmino(message),
+      value: QueryConnectionClientStateResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConnectionClientStateResponseProtoMsg): QueryConnectionClientStateResponse {
@@ -1027,23 +989,20 @@ export const QueryConnectionClientStateResponse = {
   toProtoMsg(message: QueryConnectionClientStateResponse): QueryConnectionClientStateResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionClientStateResponse",
-      value: QueryConnectionClientStateResponse.encode(message).finish(),
+      value: QueryConnectionClientStateResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConnectionConsensusStateRequest(): QueryConnectionConsensusStateRequest {
   return {
     connectionId: "",
     revisionNumber: BigInt(0),
-    revisionHeight: BigInt(0),
+    revisionHeight: BigInt(0)
   };
 }
 export const QueryConnectionConsensusStateRequest = {
   typeUrl: "/ibc.core.connection.v1.QueryConnectionConsensusStateRequest",
-  encode(
-    message: QueryConnectionConsensusStateRequest,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryConnectionConsensusStateRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.connectionId !== "") {
       writer.uint32(10).string(message.connectionId);
     }
@@ -1078,9 +1037,7 @@ export const QueryConnectionConsensusStateRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryConnectionConsensusStateRequest>, I>>(
-    object: I,
-  ): QueryConnectionConsensusStateRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryConnectionConsensusStateRequest>, I>>(object: I): QueryConnectionConsensusStateRequest {
     const message = createBaseQueryConnectionConsensusStateRequest();
     message.connectionId = object.connectionId ?? "";
     if (object.revisionNumber !== undefined && object.revisionNumber !== null) {
@@ -1107,10 +1064,8 @@ export const QueryConnectionConsensusStateRequest = {
   toAmino(message: QueryConnectionConsensusStateRequest): QueryConnectionConsensusStateRequestAmino {
     const obj: any = {};
     obj.connection_id = message.connectionId === "" ? undefined : message.connectionId;
-    obj.revision_number =
-      message.revisionNumber !== BigInt(0) ? message.revisionNumber?.toString() : undefined;
-    obj.revision_height =
-      message.revisionHeight !== BigInt(0) ? message.revisionHeight?.toString() : undefined;
+    obj.revision_number = message.revisionNumber !== BigInt(0) ? message.revisionNumber?.toString() : undefined;
+    obj.revision_height = message.revisionHeight !== BigInt(0) ? message.revisionHeight?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryConnectionConsensusStateRequestAminoMsg): QueryConnectionConsensusStateRequest {
@@ -1119,7 +1074,7 @@ export const QueryConnectionConsensusStateRequest = {
   toAminoMsg(message: QueryConnectionConsensusStateRequest): QueryConnectionConsensusStateRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionConsensusStateRequest",
-      value: QueryConnectionConsensusStateRequest.toAmino(message),
+      value: QueryConnectionConsensusStateRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConnectionConsensusStateRequestProtoMsg): QueryConnectionConsensusStateRequest {
@@ -1131,24 +1086,21 @@ export const QueryConnectionConsensusStateRequest = {
   toProtoMsg(message: QueryConnectionConsensusStateRequest): QueryConnectionConsensusStateRequestProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionConsensusStateRequest",
-      value: QueryConnectionConsensusStateRequest.encode(message).finish(),
+      value: QueryConnectionConsensusStateRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConnectionConsensusStateResponse(): QueryConnectionConsensusStateResponse {
   return {
     consensusState: undefined,
     clientId: "",
     proof: new Uint8Array(),
-    proofHeight: Height.fromPartial({}),
+    proofHeight: Height.fromPartial({})
   };
 }
 export const QueryConnectionConsensusStateResponse = {
   typeUrl: "/ibc.core.connection.v1.QueryConnectionConsensusStateResponse",
-  encode(
-    message: QueryConnectionConsensusStateResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryConnectionConsensusStateResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.consensusState !== undefined) {
       Any.encode(message.consensusState, writer.uint32(10).fork()).ldelim();
     }
@@ -1189,9 +1141,7 @@ export const QueryConnectionConsensusStateResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryConnectionConsensusStateResponse>, I>>(
-    object: I,
-  ): QueryConnectionConsensusStateResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryConnectionConsensusStateResponse>, I>>(object: I): QueryConnectionConsensusStateResponse {
     const message = createBaseQueryConnectionConsensusStateResponse();
     if (object.consensusState !== undefined && object.consensusState !== null) {
       message.consensusState = Any.fromPartial(object.consensusState);
@@ -1233,12 +1183,10 @@ export const QueryConnectionConsensusStateResponse = {
   toAminoMsg(message: QueryConnectionConsensusStateResponse): QueryConnectionConsensusStateResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionConsensusStateResponse",
-      value: QueryConnectionConsensusStateResponse.toAmino(message),
+      value: QueryConnectionConsensusStateResponse.toAmino(message)
     };
   },
-  fromProtoMsg(
-    message: QueryConnectionConsensusStateResponseProtoMsg,
-  ): QueryConnectionConsensusStateResponse {
+  fromProtoMsg(message: QueryConnectionConsensusStateResponseProtoMsg): QueryConnectionConsensusStateResponse {
     return QueryConnectionConsensusStateResponse.decode(message.value);
   },
   toProto(message: QueryConnectionConsensusStateResponse): Uint8Array {
@@ -1247,9 +1195,9 @@ export const QueryConnectionConsensusStateResponse = {
   toProtoMsg(message: QueryConnectionConsensusStateResponse): QueryConnectionConsensusStateResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionConsensusStateResponse",
-      value: QueryConnectionConsensusStateResponse.encode(message).finish(),
+      value: QueryConnectionConsensusStateResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConnectionParamsRequest(): QueryConnectionParamsRequest {
   return {};
@@ -1273,9 +1221,7 @@ export const QueryConnectionParamsRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryConnectionParamsRequest>, I>>(
-    _: I,
-  ): QueryConnectionParamsRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryConnectionParamsRequest>, I>>(_: I): QueryConnectionParamsRequest {
     const message = createBaseQueryConnectionParamsRequest();
     return message;
   },
@@ -1293,7 +1239,7 @@ export const QueryConnectionParamsRequest = {
   toAminoMsg(message: QueryConnectionParamsRequest): QueryConnectionParamsRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionParamsRequest",
-      value: QueryConnectionParamsRequest.toAmino(message),
+      value: QueryConnectionParamsRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConnectionParamsRequestProtoMsg): QueryConnectionParamsRequest {
@@ -1305,13 +1251,13 @@ export const QueryConnectionParamsRequest = {
   toProtoMsg(message: QueryConnectionParamsRequest): QueryConnectionParamsRequestProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionParamsRequest",
-      value: QueryConnectionParamsRequest.encode(message).finish(),
+      value: QueryConnectionParamsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConnectionParamsResponse(): QueryConnectionParamsResponse {
   return {
-    params: undefined,
+    params: undefined
   };
 }
 export const QueryConnectionParamsResponse = {
@@ -1339,9 +1285,7 @@ export const QueryConnectionParamsResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryConnectionParamsResponse>, I>>(
-    object: I,
-  ): QueryConnectionParamsResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryConnectionParamsResponse>, I>>(object: I): QueryConnectionParamsResponse {
     const message = createBaseQueryConnectionParamsResponse();
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
@@ -1366,7 +1310,7 @@ export const QueryConnectionParamsResponse = {
   toAminoMsg(message: QueryConnectionParamsResponse): QueryConnectionParamsResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryConnectionParamsResponse",
-      value: QueryConnectionParamsResponse.toAmino(message),
+      value: QueryConnectionParamsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConnectionParamsResponseProtoMsg): QueryConnectionParamsResponse {
@@ -1378,9 +1322,9 @@ export const QueryConnectionParamsResponse = {
   toProtoMsg(message: QueryConnectionParamsResponse): QueryConnectionParamsResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.QueryConnectionParamsResponse",
-      value: QueryConnectionParamsResponse.encode(message).finish(),
+      value: QueryConnectionParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Query provides defines the gRPC querier service */
 export interface Query {
@@ -1397,16 +1341,12 @@ export interface Query {
    * ConnectionClientState queries the client state associated with the
    * connection.
    */
-  ConnectionClientState(
-    request: QueryConnectionClientStateRequest,
-  ): Promise<QueryConnectionClientStateResponse>;
+  ConnectionClientState(request: QueryConnectionClientStateRequest): Promise<QueryConnectionClientStateResponse>;
   /**
    * ConnectionConsensusState queries the consensus state associated with the
    * connection.
    */
-  ConnectionConsensusState(
-    request: QueryConnectionConsensusStateRequest,
-  ): Promise<QueryConnectionConsensusStateResponse>;
+  ConnectionConsensusState(request: QueryConnectionConsensusStateRequest): Promise<QueryConnectionConsensusStateResponse>;
   /** ConnectionParams queries all parameters of the ibc connection submodule. */
   ConnectionParams(request?: QueryConnectionParamsRequest): Promise<QueryConnectionParamsResponse>;
 }
@@ -1424,39 +1364,33 @@ export class QueryClientImpl implements Query {
   Connection(request: QueryConnectionRequest): Promise<QueryConnectionResponse> {
     const data = QueryConnectionRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.core.connection.v1.Query", "Connection", data);
-    return promise.then((data) => QueryConnectionResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryConnectionResponse.decode(new BinaryReader(data)));
   }
-  Connections(
-    request: QueryConnectionsRequest = {
-      pagination: PageRequest.fromPartial({}),
-    },
-  ): Promise<QueryConnectionsResponse> {
+  Connections(request: QueryConnectionsRequest = {
+    pagination: PageRequest.fromPartial({})
+  }): Promise<QueryConnectionsResponse> {
     const data = QueryConnectionsRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.core.connection.v1.Query", "Connections", data);
-    return promise.then((data) => QueryConnectionsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryConnectionsResponse.decode(new BinaryReader(data)));
   }
   ClientConnections(request: QueryClientConnectionsRequest): Promise<QueryClientConnectionsResponse> {
     const data = QueryClientConnectionsRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.core.connection.v1.Query", "ClientConnections", data);
-    return promise.then((data) => QueryClientConnectionsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryClientConnectionsResponse.decode(new BinaryReader(data)));
   }
-  ConnectionClientState(
-    request: QueryConnectionClientStateRequest,
-  ): Promise<QueryConnectionClientStateResponse> {
+  ConnectionClientState(request: QueryConnectionClientStateRequest): Promise<QueryConnectionClientStateResponse> {
     const data = QueryConnectionClientStateRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.core.connection.v1.Query", "ConnectionClientState", data);
-    return promise.then((data) => QueryConnectionClientStateResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryConnectionClientStateResponse.decode(new BinaryReader(data)));
   }
-  ConnectionConsensusState(
-    request: QueryConnectionConsensusStateRequest,
-  ): Promise<QueryConnectionConsensusStateResponse> {
+  ConnectionConsensusState(request: QueryConnectionConsensusStateRequest): Promise<QueryConnectionConsensusStateResponse> {
     const data = QueryConnectionConsensusStateRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.core.connection.v1.Query", "ConnectionConsensusState", data);
-    return promise.then((data) => QueryConnectionConsensusStateResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryConnectionConsensusStateResponse.decode(new BinaryReader(data)));
   }
   ConnectionParams(request: QueryConnectionParamsRequest = {}): Promise<QueryConnectionParamsResponse> {
     const data = QueryConnectionParamsRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.core.connection.v1.Query", "ConnectionParams", data);
-    return promise.then((data) => QueryConnectionParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryConnectionParamsResponse.decode(new BinaryReader(data)));
   }
 }

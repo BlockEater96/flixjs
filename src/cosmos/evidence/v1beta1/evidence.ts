@@ -45,7 +45,7 @@ function createBaseEquivocation(): Equivocation {
     height: BigInt(0),
     time: Timestamp.fromPartial({}),
     power: BigInt(0),
-    consensusAddress: "",
+    consensusAddress: ""
   };
 }
 export const Equivocation = {
@@ -135,7 +135,7 @@ export const Equivocation = {
   toAminoMsg(message: Equivocation): EquivocationAminoMsg {
     return {
       type: "cosmos-sdk/Equivocation",
-      value: Equivocation.toAmino(message),
+      value: Equivocation.toAmino(message)
     };
   },
   fromProtoMsg(message: EquivocationProtoMsg): Equivocation {
@@ -147,7 +147,7 @@ export const Equivocation = {
   toProtoMsg(message: Equivocation): EquivocationProtoMsg {
     return {
       typeUrl: "/cosmos.evidence.v1beta1.Equivocation",
-      value: Equivocation.encode(message).finish(),
+      value: Equivocation.encode(message).finish()
     };
-  },
+  }
 };

@@ -112,7 +112,7 @@ function createBaseRecord(): Record {
     local: undefined,
     ledger: undefined,
     multi: undefined,
-    offline: undefined,
+    offline: undefined
   };
 }
 export const Record = {
@@ -228,7 +228,7 @@ export const Record = {
   toAminoMsg(message: Record): RecordAminoMsg {
     return {
       type: "cosmos-sdk/Record",
-      value: Record.toAmino(message),
+      value: Record.toAmino(message)
     };
   },
   fromProtoMsg(message: RecordProtoMsg): Record {
@@ -240,13 +240,13 @@ export const Record = {
   toProtoMsg(message: Record): RecordProtoMsg {
     return {
       typeUrl: "/cosmos.crypto.keyring.v1.Record",
-      value: Record.encode(message).finish(),
+      value: Record.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseRecord_Local(): Record_Local {
   return {
-    privKey: undefined,
+    privKey: undefined
   };
 }
 export const Record_Local = {
@@ -299,7 +299,7 @@ export const Record_Local = {
   toAminoMsg(message: Record_Local): Record_LocalAminoMsg {
     return {
       type: "cosmos-sdk/Local",
-      value: Record_Local.toAmino(message),
+      value: Record_Local.toAmino(message)
     };
   },
   fromProtoMsg(message: Record_LocalProtoMsg): Record_Local {
@@ -311,13 +311,13 @@ export const Record_Local = {
   toProtoMsg(message: Record_Local): Record_LocalProtoMsg {
     return {
       typeUrl: "/cosmos.crypto.keyring.v1.Local",
-      value: Record_Local.encode(message).finish(),
+      value: Record_Local.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseRecord_Ledger(): Record_Ledger {
   return {
-    path: undefined,
+    path: undefined
   };
 }
 export const Record_Ledger = {
@@ -370,7 +370,7 @@ export const Record_Ledger = {
   toAminoMsg(message: Record_Ledger): Record_LedgerAminoMsg {
     return {
       type: "cosmos-sdk/Ledger",
-      value: Record_Ledger.toAmino(message),
+      value: Record_Ledger.toAmino(message)
     };
   },
   fromProtoMsg(message: Record_LedgerProtoMsg): Record_Ledger {
@@ -382,9 +382,9 @@ export const Record_Ledger = {
   toProtoMsg(message: Record_Ledger): Record_LedgerProtoMsg {
     return {
       typeUrl: "/cosmos.crypto.keyring.v1.Ledger",
-      value: Record_Ledger.encode(message).finish(),
+      value: Record_Ledger.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseRecord_Multi(): Record_Multi {
   return {};
@@ -426,7 +426,7 @@ export const Record_Multi = {
   toAminoMsg(message: Record_Multi): Record_MultiAminoMsg {
     return {
       type: "cosmos-sdk/Multi",
-      value: Record_Multi.toAmino(message),
+      value: Record_Multi.toAmino(message)
     };
   },
   fromProtoMsg(message: Record_MultiProtoMsg): Record_Multi {
@@ -438,9 +438,9 @@ export const Record_Multi = {
   toProtoMsg(message: Record_Multi): Record_MultiProtoMsg {
     return {
       typeUrl: "/cosmos.crypto.keyring.v1.Multi",
-      value: Record_Multi.encode(message).finish(),
+      value: Record_Multi.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseRecord_Offline(): Record_Offline {
   return {};
@@ -482,7 +482,7 @@ export const Record_Offline = {
   toAminoMsg(message: Record_Offline): Record_OfflineAminoMsg {
     return {
       type: "cosmos-sdk/Offline",
-      value: Record_Offline.toAmino(message),
+      value: Record_Offline.toAmino(message)
     };
   },
   fromProtoMsg(message: Record_OfflineProtoMsg): Record_Offline {
@@ -494,7 +494,7 @@ export const Record_Offline = {
   toProtoMsg(message: Record_Offline): Record_OfflineProtoMsg {
     return {
       typeUrl: "/cosmos.crypto.keyring.v1.Offline",
-      value: Record_Offline.encode(message).finish(),
+      value: Record_Offline.encode(message).finish()
     };
-  },
+  }
 };

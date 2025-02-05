@@ -28,7 +28,7 @@ function createBaseGenesisState(): GenesisState {
   return {
     portId: "",
     denomTraces: [],
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const GenesisState = {
@@ -71,7 +71,7 @@ export const GenesisState = {
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.portId = object.portId ?? "";
-    message.denomTraces = object.denomTraces?.map((e) => DenomTrace.fromPartial(e)) || [];
+    message.denomTraces = object.denomTraces?.map(e => DenomTrace.fromPartial(e)) || [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
@@ -82,7 +82,7 @@ export const GenesisState = {
     if (object.port_id !== undefined && object.port_id !== null) {
       message.portId = object.port_id;
     }
-    message.denomTraces = object.denom_traces?.map((e) => DenomTrace.fromAmino(e)) || [];
+    message.denomTraces = object.denom_traces?.map(e => DenomTrace.fromAmino(e)) || [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
@@ -92,7 +92,7 @@ export const GenesisState = {
     const obj: any = {};
     obj.port_id = message.portId === "" ? undefined : message.portId;
     if (message.denomTraces) {
-      obj.denom_traces = message.denomTraces.map((e) => (e ? DenomTrace.toAmino(e) : undefined));
+      obj.denom_traces = message.denomTraces.map(e => e ? DenomTrace.toAmino(e) : undefined);
     } else {
       obj.denom_traces = message.denomTraces;
     }
@@ -105,7 +105,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -117,7 +117,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/ibc.applications.transfer.v1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

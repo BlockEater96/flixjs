@@ -86,7 +86,7 @@ function createBaseMsgGrantAllowance(): MsgGrantAllowance {
   return {
     granter: "",
     grantee: "",
-    allowance: undefined,
+    allowance: undefined
   };
 }
 export const MsgGrantAllowance = {
@@ -161,7 +161,7 @@ export const MsgGrantAllowance = {
   toAminoMsg(message: MsgGrantAllowance): MsgGrantAllowanceAminoMsg {
     return {
       type: "cosmos-sdk/MsgGrantAllowance",
-      value: MsgGrantAllowance.toAmino(message),
+      value: MsgGrantAllowance.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgGrantAllowanceProtoMsg): MsgGrantAllowance {
@@ -173,9 +173,9 @@ export const MsgGrantAllowance = {
   toProtoMsg(message: MsgGrantAllowance): MsgGrantAllowanceProtoMsg {
     return {
       typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowance",
-      value: MsgGrantAllowance.encode(message).finish(),
+      value: MsgGrantAllowance.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgGrantAllowanceResponse(): MsgGrantAllowanceResponse {
   return {};
@@ -217,7 +217,7 @@ export const MsgGrantAllowanceResponse = {
   toAminoMsg(message: MsgGrantAllowanceResponse): MsgGrantAllowanceResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgGrantAllowanceResponse",
-      value: MsgGrantAllowanceResponse.toAmino(message),
+      value: MsgGrantAllowanceResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgGrantAllowanceResponseProtoMsg): MsgGrantAllowanceResponse {
@@ -229,14 +229,14 @@ export const MsgGrantAllowanceResponse = {
   toProtoMsg(message: MsgGrantAllowanceResponse): MsgGrantAllowanceResponseProtoMsg {
     return {
       typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowanceResponse",
-      value: MsgGrantAllowanceResponse.encode(message).finish(),
+      value: MsgGrantAllowanceResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgRevokeAllowance(): MsgRevokeAllowance {
   return {
     granter: "",
-    grantee: "",
+    grantee: ""
   };
 }
 export const MsgRevokeAllowance = {
@@ -298,7 +298,7 @@ export const MsgRevokeAllowance = {
   toAminoMsg(message: MsgRevokeAllowance): MsgRevokeAllowanceAminoMsg {
     return {
       type: "cosmos-sdk/MsgRevokeAllowance",
-      value: MsgRevokeAllowance.toAmino(message),
+      value: MsgRevokeAllowance.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRevokeAllowanceProtoMsg): MsgRevokeAllowance {
@@ -310,9 +310,9 @@ export const MsgRevokeAllowance = {
   toProtoMsg(message: MsgRevokeAllowance): MsgRevokeAllowanceProtoMsg {
     return {
       typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance",
-      value: MsgRevokeAllowance.encode(message).finish(),
+      value: MsgRevokeAllowance.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgRevokeAllowanceResponse(): MsgRevokeAllowanceResponse {
   return {};
@@ -354,7 +354,7 @@ export const MsgRevokeAllowanceResponse = {
   toAminoMsg(message: MsgRevokeAllowanceResponse): MsgRevokeAllowanceResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgRevokeAllowanceResponse",
-      value: MsgRevokeAllowanceResponse.toAmino(message),
+      value: MsgRevokeAllowanceResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRevokeAllowanceResponseProtoMsg): MsgRevokeAllowanceResponse {
@@ -366,9 +366,9 @@ export const MsgRevokeAllowanceResponse = {
   toProtoMsg(message: MsgRevokeAllowanceResponse): MsgRevokeAllowanceResponseProtoMsg {
     return {
       typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowanceResponse",
-      value: MsgRevokeAllowanceResponse.encode(message).finish(),
+      value: MsgRevokeAllowanceResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the feegrant msg service. */
 export interface Msg {
@@ -393,11 +393,11 @@ export class MsgClientImpl implements Msg {
   GrantAllowance(request: MsgGrantAllowance): Promise<MsgGrantAllowanceResponse> {
     const data = MsgGrantAllowance.encode(request).finish();
     const promise = this.rpc.request("cosmos.feegrant.v1beta1.Msg", "GrantAllowance", data);
-    return promise.then((data) => MsgGrantAllowanceResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgGrantAllowanceResponse.decode(new BinaryReader(data)));
   }
   RevokeAllowance(request: MsgRevokeAllowance): Promise<MsgRevokeAllowanceResponse> {
     const data = MsgRevokeAllowance.encode(request).finish();
     const promise = this.rpc.request("cosmos.feegrant.v1beta1.Msg", "RevokeAllowance", data);
-    return promise.then((data) => MsgRevokeAllowanceResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgRevokeAllowanceResponse.decode(new BinaryReader(data)));
   }
 }

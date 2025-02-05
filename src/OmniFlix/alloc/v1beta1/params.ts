@@ -72,7 +72,7 @@ export interface ParamsAminoMsg {
 function createBaseWeightedAddress(): WeightedAddress {
   return {
     address: "",
-    weight: "",
+    weight: ""
   };
 }
 export const WeightedAddress = {
@@ -140,9 +140,9 @@ export const WeightedAddress = {
   toProtoMsg(message: WeightedAddress): WeightedAddressProtoMsg {
     return {
       typeUrl: "/OmniFlix.alloc.v1beta1.WeightedAddress",
-      value: WeightedAddress.encode(message).finish(),
+      value: WeightedAddress.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseDistributionProportions(): DistributionProportions {
   return {
@@ -150,7 +150,7 @@ function createBaseDistributionProportions(): DistributionProportions {
     nftIncentives: "",
     nodeHostsIncentives: "",
     developerRewards: "",
-    communityPool: "",
+    communityPool: ""
   };
 }
 export const DistributionProportions = {
@@ -251,16 +251,16 @@ export const DistributionProportions = {
   toProtoMsg(message: DistributionProportions): DistributionProportionsProtoMsg {
     return {
       typeUrl: "/OmniFlix.alloc.v1beta1.DistributionProportions",
-      value: DistributionProportions.encode(message).finish(),
+      value: DistributionProportions.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseParams(): Params {
   return {
     distributionProportions: DistributionProportions.fromPartial({}),
     weightedDeveloperRewardsReceivers: [],
     weightedNftIncentivesReceivers: [],
-    weightedNodeHostsIncentivesReceivers: [],
+    weightedNodeHostsIncentivesReceivers: []
   };
 }
 export const Params = {
@@ -311,12 +311,9 @@ export const Params = {
     if (object.distributionProportions !== undefined && object.distributionProportions !== null) {
       message.distributionProportions = DistributionProportions.fromPartial(object.distributionProportions);
     }
-    message.weightedDeveloperRewardsReceivers =
-      object.weightedDeveloperRewardsReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
-    message.weightedNftIncentivesReceivers =
-      object.weightedNftIncentivesReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
-    message.weightedNodeHostsIncentivesReceivers =
-      object.weightedNodeHostsIncentivesReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
+    message.weightedDeveloperRewardsReceivers = object.weightedDeveloperRewardsReceivers?.map(e => WeightedAddress.fromPartial(e)) || [];
+    message.weightedNftIncentivesReceivers = object.weightedNftIncentivesReceivers?.map(e => WeightedAddress.fromPartial(e)) || [];
+    message.weightedNodeHostsIncentivesReceivers = object.weightedNodeHostsIncentivesReceivers?.map(e => WeightedAddress.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
@@ -324,37 +321,26 @@ export const Params = {
     if (object.distribution_proportions !== undefined && object.distribution_proportions !== null) {
       message.distributionProportions = DistributionProportions.fromAmino(object.distribution_proportions);
     }
-    message.weightedDeveloperRewardsReceivers =
-      object.weighted_developer_rewards_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
-    message.weightedNftIncentivesReceivers =
-      object.weighted_nft_incentives_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
-    message.weightedNodeHostsIncentivesReceivers =
-      object.weighted_node_hosts_incentives_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    message.weightedDeveloperRewardsReceivers = object.weighted_developer_rewards_receivers?.map(e => WeightedAddress.fromAmino(e)) || [];
+    message.weightedNftIncentivesReceivers = object.weighted_nft_incentives_receivers?.map(e => WeightedAddress.fromAmino(e)) || [];
+    message.weightedNodeHostsIncentivesReceivers = object.weighted_node_hosts_incentives_receivers?.map(e => WeightedAddress.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.distribution_proportions = message.distributionProportions
-      ? DistributionProportions.toAmino(message.distributionProportions)
-      : undefined;
+    obj.distribution_proportions = message.distributionProportions ? DistributionProportions.toAmino(message.distributionProportions) : undefined;
     if (message.weightedDeveloperRewardsReceivers) {
-      obj.weighted_developer_rewards_receivers = message.weightedDeveloperRewardsReceivers.map((e) =>
-        e ? WeightedAddress.toAmino(e) : undefined,
-      );
+      obj.weighted_developer_rewards_receivers = message.weightedDeveloperRewardsReceivers.map(e => e ? WeightedAddress.toAmino(e) : undefined);
     } else {
       obj.weighted_developer_rewards_receivers = message.weightedDeveloperRewardsReceivers;
     }
     if (message.weightedNftIncentivesReceivers) {
-      obj.weighted_nft_incentives_receivers = message.weightedNftIncentivesReceivers.map((e) =>
-        e ? WeightedAddress.toAmino(e) : undefined,
-      );
+      obj.weighted_nft_incentives_receivers = message.weightedNftIncentivesReceivers.map(e => e ? WeightedAddress.toAmino(e) : undefined);
     } else {
       obj.weighted_nft_incentives_receivers = message.weightedNftIncentivesReceivers;
     }
     if (message.weightedNodeHostsIncentivesReceivers) {
-      obj.weighted_node_hosts_incentives_receivers = message.weightedNodeHostsIncentivesReceivers.map((e) =>
-        e ? WeightedAddress.toAmino(e) : undefined,
-      );
+      obj.weighted_node_hosts_incentives_receivers = message.weightedNodeHostsIncentivesReceivers.map(e => e ? WeightedAddress.toAmino(e) : undefined);
     } else {
       obj.weighted_node_hosts_incentives_receivers = message.weightedNodeHostsIncentivesReceivers;
     }
@@ -372,7 +358,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/OmniFlix.alloc.v1beta1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

@@ -1,13 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  InteractionType,
-  ClaimType,
-  NFTDetails,
-  NFTDetailsAmino,
-  Distribution,
-  DistributionAmino,
-} from "./itc";
+import { InteractionType, ClaimType, NFTDetails, NFTDetailsAmino, Distribution, DistributionAmino } from "./itc";
 import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { Timestamp } from "../../../google/protobuf/timestamp";
 import { Duration, DurationAmino } from "../../../google/protobuf/duration";
@@ -151,7 +144,7 @@ export interface MsgDepositCampaignResponseAminoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParams {
@@ -159,7 +152,7 @@ export interface MsgUpdateParams {
   authority: string;
   /**
    * params defines the x/itc parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params: Params;
@@ -170,7 +163,7 @@ export interface MsgUpdateParamsProtoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsAmino {
@@ -178,7 +171,7 @@ export interface MsgUpdateParamsAmino {
   authority?: string;
   /**
    * params defines the x/itc parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params?: ParamsAmino;
@@ -190,7 +183,7 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponse {}
@@ -201,7 +194,7 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponseAmino {}
@@ -224,7 +217,7 @@ function createBaseMsgCreateCampaign(): MsgCreateCampaign {
     duration: Duration.fromPartial({}),
     distribution: undefined,
     creator: "",
-    creationFee: Coin.fromPartial({}),
+    creationFee: Coin.fromPartial({})
   };
 }
 export const MsgCreateCampaign = {
@@ -418,8 +411,7 @@ export const MsgCreateCampaign = {
     obj.claim_type = message.claimType === 0 ? undefined : message.claimType;
     obj.nft_denom_id = message.nftDenomId === "" ? undefined : message.nftDenomId;
     obj.tokens_per_claim = message.tokensPerClaim ? Coin.toAmino(message.tokensPerClaim) : undefined;
-    obj.max_allowed_claims =
-      message.maxAllowedClaims !== BigInt(0) ? message.maxAllowedClaims?.toString() : undefined;
+    obj.max_allowed_claims = message.maxAllowedClaims !== BigInt(0) ? message.maxAllowedClaims?.toString() : undefined;
     obj.deposit = message.deposit ? Coin.toAmino(message.deposit) : undefined;
     obj.nft_mint_details = message.nftMintDetails ? NFTDetails.toAmino(message.nftMintDetails) : undefined;
     obj.start_time = message.startTime ? Timestamp.toAmino(message.startTime) : undefined;
@@ -435,7 +427,7 @@ export const MsgCreateCampaign = {
   toAminoMsg(message: MsgCreateCampaign): MsgCreateCampaignAminoMsg {
     return {
       type: "OmniFlix/itc/MsgCreateCampaign",
-      value: MsgCreateCampaign.toAmino(message),
+      value: MsgCreateCampaign.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateCampaignProtoMsg): MsgCreateCampaign {
@@ -447,9 +439,9 @@ export const MsgCreateCampaign = {
   toProtoMsg(message: MsgCreateCampaign): MsgCreateCampaignProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgCreateCampaign",
-      value: MsgCreateCampaign.encode(message).finish(),
+      value: MsgCreateCampaign.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCreateCampaignResponse(): MsgCreateCampaignResponse {
   return {};
@@ -497,14 +489,14 @@ export const MsgCreateCampaignResponse = {
   toProtoMsg(message: MsgCreateCampaignResponse): MsgCreateCampaignResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgCreateCampaignResponse",
-      value: MsgCreateCampaignResponse.encode(message).finish(),
+      value: MsgCreateCampaignResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCancelCampaign(): MsgCancelCampaign {
   return {
     campaignId: BigInt(0),
-    creator: "",
+    creator: ""
   };
 }
 export const MsgCancelCampaign = {
@@ -568,7 +560,7 @@ export const MsgCancelCampaign = {
   toAminoMsg(message: MsgCancelCampaign): MsgCancelCampaignAminoMsg {
     return {
       type: "OmniFlix/itc/MsgCancelCampaign",
-      value: MsgCancelCampaign.toAmino(message),
+      value: MsgCancelCampaign.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCancelCampaignProtoMsg): MsgCancelCampaign {
@@ -580,9 +572,9 @@ export const MsgCancelCampaign = {
   toProtoMsg(message: MsgCancelCampaign): MsgCancelCampaignProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgCancelCampaign",
-      value: MsgCancelCampaign.encode(message).finish(),
+      value: MsgCancelCampaign.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCancelCampaignResponse(): MsgCancelCampaignResponse {
   return {};
@@ -630,16 +622,16 @@ export const MsgCancelCampaignResponse = {
   toProtoMsg(message: MsgCancelCampaignResponse): MsgCancelCampaignResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgCancelCampaignResponse",
-      value: MsgCancelCampaignResponse.encode(message).finish(),
+      value: MsgCancelCampaignResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgClaim(): MsgClaim {
   return {
     campaignId: BigInt(0),
     nftId: "",
     interaction: 0,
-    claimer: "",
+    claimer: ""
   };
 }
 export const MsgClaim = {
@@ -725,7 +717,7 @@ export const MsgClaim = {
   toAminoMsg(message: MsgClaim): MsgClaimAminoMsg {
     return {
       type: "OmniFlix/itc/MsgClaim",
-      value: MsgClaim.toAmino(message),
+      value: MsgClaim.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgClaimProtoMsg): MsgClaim {
@@ -737,9 +729,9 @@ export const MsgClaim = {
   toProtoMsg(message: MsgClaim): MsgClaimProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgClaim",
-      value: MsgClaim.encode(message).finish(),
+      value: MsgClaim.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgClaimResponse(): MsgClaimResponse {
   return {};
@@ -787,15 +779,15 @@ export const MsgClaimResponse = {
   toProtoMsg(message: MsgClaimResponse): MsgClaimResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgClaimResponse",
-      value: MsgClaimResponse.encode(message).finish(),
+      value: MsgClaimResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgDepositCampaign(): MsgDepositCampaign {
   return {
     campaignId: BigInt(0),
     amount: Coin.fromPartial({}),
-    depositor: "",
+    depositor: ""
   };
 }
 export const MsgDepositCampaign = {
@@ -872,7 +864,7 @@ export const MsgDepositCampaign = {
   toAminoMsg(message: MsgDepositCampaign): MsgDepositCampaignAminoMsg {
     return {
       type: "OmniFlix/itc/MsgDepositCampaign",
-      value: MsgDepositCampaign.toAmino(message),
+      value: MsgDepositCampaign.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgDepositCampaignProtoMsg): MsgDepositCampaign {
@@ -884,9 +876,9 @@ export const MsgDepositCampaign = {
   toProtoMsg(message: MsgDepositCampaign): MsgDepositCampaignProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgDepositCampaign",
-      value: MsgDepositCampaign.encode(message).finish(),
+      value: MsgDepositCampaign.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgDepositCampaignResponse(): MsgDepositCampaignResponse {
   return {};
@@ -934,14 +926,14 @@ export const MsgDepositCampaignResponse = {
   toProtoMsg(message: MsgDepositCampaignResponse): MsgDepositCampaignResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgDepositCampaignResponse",
-      value: MsgDepositCampaignResponse.encode(message).finish(),
+      value: MsgDepositCampaignResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const MsgUpdateParams = {
@@ -1011,9 +1003,9 @@ export const MsgUpdateParams = {
   toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgUpdateParams",
-      value: MsgUpdateParams.encode(message).finish(),
+      value: MsgUpdateParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
@@ -1061,9 +1053,9 @@ export const MsgUpdateParamsResponse = {
   toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.encode(message).finish(),
+      value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 export interface Msg {
   CreateCampaign(request: MsgCreateCampaign): Promise<MsgCreateCampaignResponse>;
@@ -1073,7 +1065,7 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/itc module
    * parameters. The authority is hard-coded to the x/gov module account.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
@@ -1091,26 +1083,26 @@ export class MsgClientImpl implements Msg {
   CreateCampaign(request: MsgCreateCampaign): Promise<MsgCreateCampaignResponse> {
     const data = MsgCreateCampaign.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.itc.v1.Msg", "CreateCampaign", data);
-    return promise.then((data) => MsgCreateCampaignResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgCreateCampaignResponse.decode(new BinaryReader(data)));
   }
   CancelCampaign(request: MsgCancelCampaign): Promise<MsgCancelCampaignResponse> {
     const data = MsgCancelCampaign.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.itc.v1.Msg", "CancelCampaign", data);
-    return promise.then((data) => MsgCancelCampaignResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgCancelCampaignResponse.decode(new BinaryReader(data)));
   }
   Claim(request: MsgClaim): Promise<MsgClaimResponse> {
     const data = MsgClaim.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.itc.v1.Msg", "Claim", data);
-    return promise.then((data) => MsgClaimResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgClaimResponse.decode(new BinaryReader(data)));
   }
   DepositCampaign(request: MsgDepositCampaign): Promise<MsgDepositCampaignResponse> {
     const data = MsgDepositCampaign.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.itc.v1.Msg", "DepositCampaign", data);
-    return promise.then((data) => MsgDepositCampaignResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgDepositCampaignResponse.decode(new BinaryReader(data)));
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.itc.v1.Msg", "UpdateParams", data);
-    return promise.then((data) => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
   }
 }

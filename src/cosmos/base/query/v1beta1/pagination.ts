@@ -6,7 +6,7 @@ export const protobufPackage = "cosmos.base.query.v1beta1";
 /**
  * PageRequest is to be embedded in gRPC request messages for efficient
  * pagination. Ex:
- *
+ * 
  *  message SomeRequest {
  *          Foo some_parameter = 1;
  *          PageRequest pagination = 2;
@@ -39,7 +39,7 @@ export interface PageRequest {
   countTotal: boolean;
   /**
    * reverse is set to true if results are to be returned in the descending order.
-   *
+   * 
    * Since: cosmos-sdk 0.43
    */
   reverse: boolean;
@@ -51,7 +51,7 @@ export interface PageRequestProtoMsg {
 /**
  * PageRequest is to be embedded in gRPC request messages for efficient
  * pagination. Ex:
- *
+ * 
  *  message SomeRequest {
  *          Foo some_parameter = 1;
  *          PageRequest pagination = 2;
@@ -84,7 +84,7 @@ export interface PageRequestAmino {
   count_total?: boolean;
   /**
    * reverse is set to true if results are to be returned in the descending order.
-   *
+   * 
    * Since: cosmos-sdk 0.43
    */
   reverse?: boolean;
@@ -96,7 +96,7 @@ export interface PageRequestAminoMsg {
 /**
  * PageResponse is to be embedded in gRPC response messages where the
  * corresponding request message has used PageRequest.
- *
+ * 
  *  message SomeResponse {
  *          repeated Bar results = 1;
  *          PageResponse page = 2;
@@ -122,7 +122,7 @@ export interface PageResponseProtoMsg {
 /**
  * PageResponse is to be embedded in gRPC response messages where the
  * corresponding request message has used PageRequest.
- *
+ * 
  *  message SomeResponse {
  *          repeated Bar results = 1;
  *          PageResponse page = 2;
@@ -151,7 +151,7 @@ function createBasePageRequest(): PageRequest {
     offset: BigInt(0),
     limit: BigInt(0),
     countTotal: false,
-    reverse: false,
+    reverse: false
   };
 }
 export const PageRequest = {
@@ -250,7 +250,7 @@ export const PageRequest = {
   toAminoMsg(message: PageRequest): PageRequestAminoMsg {
     return {
       type: "cosmos-sdk/PageRequest",
-      value: PageRequest.toAmino(message),
+      value: PageRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: PageRequestProtoMsg): PageRequest {
@@ -262,14 +262,14 @@ export const PageRequest = {
   toProtoMsg(message: PageRequest): PageRequestProtoMsg {
     return {
       typeUrl: "/cosmos.base.query.v1beta1.PageRequest",
-      value: PageRequest.encode(message).finish(),
+      value: PageRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePageResponse(): PageResponse {
   return {
     nextKey: new Uint8Array(),
-    total: BigInt(0),
+    total: BigInt(0)
   };
 }
 export const PageResponse = {
@@ -333,7 +333,7 @@ export const PageResponse = {
   toAminoMsg(message: PageResponse): PageResponseAminoMsg {
     return {
       type: "cosmos-sdk/PageResponse",
-      value: PageResponse.toAmino(message),
+      value: PageResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: PageResponseProtoMsg): PageResponse {
@@ -345,7 +345,7 @@ export const PageResponse = {
   toProtoMsg(message: PageResponse): PageResponseProtoMsg {
     return {
       typeUrl: "/cosmos.base.query.v1beta1.PageResponse",
-      value: PageResponse.encode(message).finish(),
+      value: PageResponse.encode(message).finish()
     };
-  },
+  }
 };

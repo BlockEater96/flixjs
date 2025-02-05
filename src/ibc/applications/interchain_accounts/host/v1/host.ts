@@ -34,7 +34,7 @@ export interface ParamsAminoMsg {
 function createBaseParams(): Params {
   return {
     hostEnabled: false,
-    allowMessages: [],
+    allowMessages: []
   };
 }
 export const Params = {
@@ -71,7 +71,7 @@ export const Params = {
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
     message.hostEnabled = object.hostEnabled ?? false;
-    message.allowMessages = object.allowMessages?.map((e) => e) || [];
+    message.allowMessages = object.allowMessages?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
@@ -79,14 +79,14 @@ export const Params = {
     if (object.host_enabled !== undefined && object.host_enabled !== null) {
       message.hostEnabled = object.host_enabled;
     }
-    message.allowMessages = object.allow_messages?.map((e) => e) || [];
+    message.allowMessages = object.allow_messages?.map(e => e) || [];
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
     obj.host_enabled = message.hostEnabled === false ? undefined : message.hostEnabled;
     if (message.allowMessages) {
-      obj.allow_messages = message.allowMessages.map((e) => e);
+      obj.allow_messages = message.allowMessages.map(e => e);
     } else {
       obj.allow_messages = message.allowMessages;
     }
@@ -98,7 +98,7 @@ export const Params = {
   toAminoMsg(message: Params): ParamsAminoMsg {
     return {
       type: "cosmos-sdk/Params",
-      value: Params.toAmino(message),
+      value: Params.toAmino(message)
     };
   },
   fromProtoMsg(message: ParamsProtoMsg): Params {
@@ -110,7 +110,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.host.v1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

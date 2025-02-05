@@ -460,13 +460,13 @@ export interface MsgSubmitProposal {
   exec: Exec;
   /**
    * title is the title of the proposal.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   title: string;
   /**
    * summary is the summary of the proposal.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   summary: string;
@@ -496,13 +496,13 @@ export interface MsgSubmitProposalAmino {
   exec?: Exec;
   /**
    * title is the title of the proposal.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   title?: string;
   /**
    * summary is the summary of the proposal.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   summary?: string;
@@ -693,7 +693,7 @@ function createBaseMsgCreateGroup(): MsgCreateGroup {
   return {
     admin: "",
     members: [],
-    metadata: "",
+    metadata: ""
   };
 }
 export const MsgCreateGroup = {
@@ -736,7 +736,7 @@ export const MsgCreateGroup = {
   fromPartial<I extends Exact<DeepPartial<MsgCreateGroup>, I>>(object: I): MsgCreateGroup {
     const message = createBaseMsgCreateGroup();
     message.admin = object.admin ?? "";
-    message.members = object.members?.map((e) => MemberRequest.fromPartial(e)) || [];
+    message.members = object.members?.map(e => MemberRequest.fromPartial(e)) || [];
     message.metadata = object.metadata ?? "";
     return message;
   },
@@ -745,7 +745,7 @@ export const MsgCreateGroup = {
     if (object.admin !== undefined && object.admin !== null) {
       message.admin = object.admin;
     }
-    message.members = object.members?.map((e) => MemberRequest.fromAmino(e)) || [];
+    message.members = object.members?.map(e => MemberRequest.fromAmino(e)) || [];
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = object.metadata;
     }
@@ -755,7 +755,7 @@ export const MsgCreateGroup = {
     const obj: any = {};
     obj.admin = message.admin === "" ? undefined : message.admin;
     if (message.members) {
-      obj.members = message.members.map((e) => (e ? MemberRequest.toAmino(e) : undefined));
+      obj.members = message.members.map(e => e ? MemberRequest.toAmino(e) : undefined);
     } else {
       obj.members = message.members;
     }
@@ -768,7 +768,7 @@ export const MsgCreateGroup = {
   toAminoMsg(message: MsgCreateGroup): MsgCreateGroupAminoMsg {
     return {
       type: "cosmos-sdk/MsgCreateGroup",
-      value: MsgCreateGroup.toAmino(message),
+      value: MsgCreateGroup.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateGroupProtoMsg): MsgCreateGroup {
@@ -780,13 +780,13 @@ export const MsgCreateGroup = {
   toProtoMsg(message: MsgCreateGroup): MsgCreateGroupProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgCreateGroup",
-      value: MsgCreateGroup.encode(message).finish(),
+      value: MsgCreateGroup.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCreateGroupResponse(): MsgCreateGroupResponse {
   return {
-    groupId: BigInt(0),
+    groupId: BigInt(0)
   };
 }
 export const MsgCreateGroupResponse = {
@@ -839,7 +839,7 @@ export const MsgCreateGroupResponse = {
   toAminoMsg(message: MsgCreateGroupResponse): MsgCreateGroupResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgCreateGroupResponse",
-      value: MsgCreateGroupResponse.toAmino(message),
+      value: MsgCreateGroupResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateGroupResponseProtoMsg): MsgCreateGroupResponse {
@@ -851,15 +851,15 @@ export const MsgCreateGroupResponse = {
   toProtoMsg(message: MsgCreateGroupResponse): MsgCreateGroupResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgCreateGroupResponse",
-      value: MsgCreateGroupResponse.encode(message).finish(),
+      value: MsgCreateGroupResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupMembers(): MsgUpdateGroupMembers {
   return {
     admin: "",
     groupId: BigInt(0),
-    memberUpdates: [],
+    memberUpdates: []
   };
 }
 export const MsgUpdateGroupMembers = {
@@ -905,7 +905,7 @@ export const MsgUpdateGroupMembers = {
     if (object.groupId !== undefined && object.groupId !== null) {
       message.groupId = BigInt(object.groupId.toString());
     }
-    message.memberUpdates = object.memberUpdates?.map((e) => MemberRequest.fromPartial(e)) || [];
+    message.memberUpdates = object.memberUpdates?.map(e => MemberRequest.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: MsgUpdateGroupMembersAmino): MsgUpdateGroupMembers {
@@ -916,7 +916,7 @@ export const MsgUpdateGroupMembers = {
     if (object.group_id !== undefined && object.group_id !== null) {
       message.groupId = BigInt(object.group_id);
     }
-    message.memberUpdates = object.member_updates?.map((e) => MemberRequest.fromAmino(e)) || [];
+    message.memberUpdates = object.member_updates?.map(e => MemberRequest.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: MsgUpdateGroupMembers): MsgUpdateGroupMembersAmino {
@@ -924,7 +924,7 @@ export const MsgUpdateGroupMembers = {
     obj.admin = message.admin === "" ? undefined : message.admin;
     obj.group_id = message.groupId !== BigInt(0) ? message.groupId?.toString() : undefined;
     if (message.memberUpdates) {
-      obj.member_updates = message.memberUpdates.map((e) => (e ? MemberRequest.toAmino(e) : undefined));
+      obj.member_updates = message.memberUpdates.map(e => e ? MemberRequest.toAmino(e) : undefined);
     } else {
       obj.member_updates = message.memberUpdates;
     }
@@ -936,7 +936,7 @@ export const MsgUpdateGroupMembers = {
   toAminoMsg(message: MsgUpdateGroupMembers): MsgUpdateGroupMembersAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupMembers",
-      value: MsgUpdateGroupMembers.toAmino(message),
+      value: MsgUpdateGroupMembers.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupMembersProtoMsg): MsgUpdateGroupMembers {
@@ -948,9 +948,9 @@ export const MsgUpdateGroupMembers = {
   toProtoMsg(message: MsgUpdateGroupMembers): MsgUpdateGroupMembersProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupMembers",
-      value: MsgUpdateGroupMembers.encode(message).finish(),
+      value: MsgUpdateGroupMembers.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupMembersResponse(): MsgUpdateGroupMembersResponse {
   return {};
@@ -974,9 +974,7 @@ export const MsgUpdateGroupMembersResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupMembersResponse>, I>>(
-    _: I,
-  ): MsgUpdateGroupMembersResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupMembersResponse>, I>>(_: I): MsgUpdateGroupMembersResponse {
     const message = createBaseMsgUpdateGroupMembersResponse();
     return message;
   },
@@ -994,7 +992,7 @@ export const MsgUpdateGroupMembersResponse = {
   toAminoMsg(message: MsgUpdateGroupMembersResponse): MsgUpdateGroupMembersResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupMembersResponse",
-      value: MsgUpdateGroupMembersResponse.toAmino(message),
+      value: MsgUpdateGroupMembersResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupMembersResponseProtoMsg): MsgUpdateGroupMembersResponse {
@@ -1006,15 +1004,15 @@ export const MsgUpdateGroupMembersResponse = {
   toProtoMsg(message: MsgUpdateGroupMembersResponse): MsgUpdateGroupMembersResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupMembersResponse",
-      value: MsgUpdateGroupMembersResponse.encode(message).finish(),
+      value: MsgUpdateGroupMembersResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupAdmin(): MsgUpdateGroupAdmin {
   return {
     admin: "",
     groupId: BigInt(0),
-    newAdmin: "",
+    newAdmin: ""
   };
 }
 export const MsgUpdateGroupAdmin = {
@@ -1089,7 +1087,7 @@ export const MsgUpdateGroupAdmin = {
   toAminoMsg(message: MsgUpdateGroupAdmin): MsgUpdateGroupAdminAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupAdmin",
-      value: MsgUpdateGroupAdmin.toAmino(message),
+      value: MsgUpdateGroupAdmin.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupAdminProtoMsg): MsgUpdateGroupAdmin {
@@ -1101,9 +1099,9 @@ export const MsgUpdateGroupAdmin = {
   toProtoMsg(message: MsgUpdateGroupAdmin): MsgUpdateGroupAdminProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupAdmin",
-      value: MsgUpdateGroupAdmin.encode(message).finish(),
+      value: MsgUpdateGroupAdmin.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupAdminResponse(): MsgUpdateGroupAdminResponse {
   return {};
@@ -1127,9 +1125,7 @@ export const MsgUpdateGroupAdminResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupAdminResponse>, I>>(
-    _: I,
-  ): MsgUpdateGroupAdminResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupAdminResponse>, I>>(_: I): MsgUpdateGroupAdminResponse {
     const message = createBaseMsgUpdateGroupAdminResponse();
     return message;
   },
@@ -1147,7 +1143,7 @@ export const MsgUpdateGroupAdminResponse = {
   toAminoMsg(message: MsgUpdateGroupAdminResponse): MsgUpdateGroupAdminResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupAdminResponse",
-      value: MsgUpdateGroupAdminResponse.toAmino(message),
+      value: MsgUpdateGroupAdminResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupAdminResponseProtoMsg): MsgUpdateGroupAdminResponse {
@@ -1159,15 +1155,15 @@ export const MsgUpdateGroupAdminResponse = {
   toProtoMsg(message: MsgUpdateGroupAdminResponse): MsgUpdateGroupAdminResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupAdminResponse",
-      value: MsgUpdateGroupAdminResponse.encode(message).finish(),
+      value: MsgUpdateGroupAdminResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupMetadata(): MsgUpdateGroupMetadata {
   return {
     admin: "",
     groupId: BigInt(0),
-    metadata: "",
+    metadata: ""
   };
 }
 export const MsgUpdateGroupMetadata = {
@@ -1242,7 +1238,7 @@ export const MsgUpdateGroupMetadata = {
   toAminoMsg(message: MsgUpdateGroupMetadata): MsgUpdateGroupMetadataAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupMetadata",
-      value: MsgUpdateGroupMetadata.toAmino(message),
+      value: MsgUpdateGroupMetadata.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupMetadataProtoMsg): MsgUpdateGroupMetadata {
@@ -1254,9 +1250,9 @@ export const MsgUpdateGroupMetadata = {
   toProtoMsg(message: MsgUpdateGroupMetadata): MsgUpdateGroupMetadataProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupMetadata",
-      value: MsgUpdateGroupMetadata.encode(message).finish(),
+      value: MsgUpdateGroupMetadata.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupMetadataResponse(): MsgUpdateGroupMetadataResponse {
   return {};
@@ -1280,9 +1276,7 @@ export const MsgUpdateGroupMetadataResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupMetadataResponse>, I>>(
-    _: I,
-  ): MsgUpdateGroupMetadataResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupMetadataResponse>, I>>(_: I): MsgUpdateGroupMetadataResponse {
     const message = createBaseMsgUpdateGroupMetadataResponse();
     return message;
   },
@@ -1300,7 +1294,7 @@ export const MsgUpdateGroupMetadataResponse = {
   toAminoMsg(message: MsgUpdateGroupMetadataResponse): MsgUpdateGroupMetadataResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupMetadataResponse",
-      value: MsgUpdateGroupMetadataResponse.toAmino(message),
+      value: MsgUpdateGroupMetadataResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupMetadataResponseProtoMsg): MsgUpdateGroupMetadataResponse {
@@ -1312,16 +1306,16 @@ export const MsgUpdateGroupMetadataResponse = {
   toProtoMsg(message: MsgUpdateGroupMetadataResponse): MsgUpdateGroupMetadataResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupMetadataResponse",
-      value: MsgUpdateGroupMetadataResponse.encode(message).finish(),
+      value: MsgUpdateGroupMetadataResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCreateGroupPolicy(): MsgCreateGroupPolicy {
   return {
     admin: "",
     groupId: BigInt(0),
     metadata: "",
-    decisionPolicy: undefined,
+    decisionPolicy: undefined
   };
 }
 export const MsgCreateGroupPolicy = {
@@ -1409,7 +1403,7 @@ export const MsgCreateGroupPolicy = {
   toAminoMsg(message: MsgCreateGroupPolicy): MsgCreateGroupPolicyAminoMsg {
     return {
       type: "cosmos-sdk/MsgCreateGroupPolicy",
-      value: MsgCreateGroupPolicy.toAmino(message),
+      value: MsgCreateGroupPolicy.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateGroupPolicyProtoMsg): MsgCreateGroupPolicy {
@@ -1421,13 +1415,13 @@ export const MsgCreateGroupPolicy = {
   toProtoMsg(message: MsgCreateGroupPolicy): MsgCreateGroupPolicyProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgCreateGroupPolicy",
-      value: MsgCreateGroupPolicy.encode(message).finish(),
+      value: MsgCreateGroupPolicy.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCreateGroupPolicyResponse(): MsgCreateGroupPolicyResponse {
   return {
-    address: "",
+    address: ""
   };
 }
 export const MsgCreateGroupPolicyResponse = {
@@ -1455,9 +1449,7 @@ export const MsgCreateGroupPolicyResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgCreateGroupPolicyResponse>, I>>(
-    object: I,
-  ): MsgCreateGroupPolicyResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateGroupPolicyResponse>, I>>(object: I): MsgCreateGroupPolicyResponse {
     const message = createBaseMsgCreateGroupPolicyResponse();
     message.address = object.address ?? "";
     return message;
@@ -1480,7 +1472,7 @@ export const MsgCreateGroupPolicyResponse = {
   toAminoMsg(message: MsgCreateGroupPolicyResponse): MsgCreateGroupPolicyResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgCreateGroupPolicyResponse",
-      value: MsgCreateGroupPolicyResponse.toAmino(message),
+      value: MsgCreateGroupPolicyResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateGroupPolicyResponseProtoMsg): MsgCreateGroupPolicyResponse {
@@ -1492,15 +1484,15 @@ export const MsgCreateGroupPolicyResponse = {
   toProtoMsg(message: MsgCreateGroupPolicyResponse): MsgCreateGroupPolicyResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgCreateGroupPolicyResponse",
-      value: MsgCreateGroupPolicyResponse.encode(message).finish(),
+      value: MsgCreateGroupPolicyResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupPolicyAdmin(): MsgUpdateGroupPolicyAdmin {
   return {
     admin: "",
     groupPolicyAddress: "",
-    newAdmin: "",
+    newAdmin: ""
   };
 }
 export const MsgUpdateGroupPolicyAdmin = {
@@ -1540,9 +1532,7 @@ export const MsgUpdateGroupPolicyAdmin = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyAdmin>, I>>(
-    object: I,
-  ): MsgUpdateGroupPolicyAdmin {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyAdmin>, I>>(object: I): MsgUpdateGroupPolicyAdmin {
     const message = createBaseMsgUpdateGroupPolicyAdmin();
     message.admin = object.admin ?? "";
     message.groupPolicyAddress = object.groupPolicyAddress ?? "";
@@ -1575,7 +1565,7 @@ export const MsgUpdateGroupPolicyAdmin = {
   toAminoMsg(message: MsgUpdateGroupPolicyAdmin): MsgUpdateGroupPolicyAdminAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupPolicyAdmin",
-      value: MsgUpdateGroupPolicyAdmin.toAmino(message),
+      value: MsgUpdateGroupPolicyAdmin.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupPolicyAdminProtoMsg): MsgUpdateGroupPolicyAdmin {
@@ -1587,9 +1577,9 @@ export const MsgUpdateGroupPolicyAdmin = {
   toProtoMsg(message: MsgUpdateGroupPolicyAdmin): MsgUpdateGroupPolicyAdminProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyAdmin",
-      value: MsgUpdateGroupPolicyAdmin.encode(message).finish(),
+      value: MsgUpdateGroupPolicyAdmin.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupPolicyAdminResponse(): MsgUpdateGroupPolicyAdminResponse {
   return {};
@@ -1613,9 +1603,7 @@ export const MsgUpdateGroupPolicyAdminResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyAdminResponse>, I>>(
-    _: I,
-  ): MsgUpdateGroupPolicyAdminResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyAdminResponse>, I>>(_: I): MsgUpdateGroupPolicyAdminResponse {
     const message = createBaseMsgUpdateGroupPolicyAdminResponse();
     return message;
   },
@@ -1633,7 +1621,7 @@ export const MsgUpdateGroupPolicyAdminResponse = {
   toAminoMsg(message: MsgUpdateGroupPolicyAdminResponse): MsgUpdateGroupPolicyAdminResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupPolicyAdminResponse",
-      value: MsgUpdateGroupPolicyAdminResponse.toAmino(message),
+      value: MsgUpdateGroupPolicyAdminResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupPolicyAdminResponseProtoMsg): MsgUpdateGroupPolicyAdminResponse {
@@ -1645,9 +1633,9 @@ export const MsgUpdateGroupPolicyAdminResponse = {
   toProtoMsg(message: MsgUpdateGroupPolicyAdminResponse): MsgUpdateGroupPolicyAdminResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse",
-      value: MsgUpdateGroupPolicyAdminResponse.encode(message).finish(),
+      value: MsgUpdateGroupPolicyAdminResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCreateGroupWithPolicy(): MsgCreateGroupWithPolicy {
   return {
@@ -1656,7 +1644,7 @@ function createBaseMsgCreateGroupWithPolicy(): MsgCreateGroupWithPolicy {
     groupMetadata: "",
     groupPolicyMetadata: "",
     groupPolicyAsAdmin: false,
-    decisionPolicy: undefined,
+    decisionPolicy: undefined
   };
 }
 export const MsgCreateGroupWithPolicy = {
@@ -1714,12 +1702,10 @@ export const MsgCreateGroupWithPolicy = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgCreateGroupWithPolicy>, I>>(
-    object: I,
-  ): MsgCreateGroupWithPolicy {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateGroupWithPolicy>, I>>(object: I): MsgCreateGroupWithPolicy {
     const message = createBaseMsgCreateGroupWithPolicy();
     message.admin = object.admin ?? "";
-    message.members = object.members?.map((e) => MemberRequest.fromPartial(e)) || [];
+    message.members = object.members?.map(e => MemberRequest.fromPartial(e)) || [];
     message.groupMetadata = object.groupMetadata ?? "";
     message.groupPolicyMetadata = object.groupPolicyMetadata ?? "";
     message.groupPolicyAsAdmin = object.groupPolicyAsAdmin ?? false;
@@ -1733,7 +1719,7 @@ export const MsgCreateGroupWithPolicy = {
     if (object.admin !== undefined && object.admin !== null) {
       message.admin = object.admin;
     }
-    message.members = object.members?.map((e) => MemberRequest.fromAmino(e)) || [];
+    message.members = object.members?.map(e => MemberRequest.fromAmino(e)) || [];
     if (object.group_metadata !== undefined && object.group_metadata !== null) {
       message.groupMetadata = object.group_metadata;
     }
@@ -1752,7 +1738,7 @@ export const MsgCreateGroupWithPolicy = {
     const obj: any = {};
     obj.admin = message.admin === "" ? undefined : message.admin;
     if (message.members) {
-      obj.members = message.members.map((e) => (e ? MemberRequest.toAmino(e) : undefined));
+      obj.members = message.members.map(e => e ? MemberRequest.toAmino(e) : undefined);
     } else {
       obj.members = message.members;
     }
@@ -1768,7 +1754,7 @@ export const MsgCreateGroupWithPolicy = {
   toAminoMsg(message: MsgCreateGroupWithPolicy): MsgCreateGroupWithPolicyAminoMsg {
     return {
       type: "cosmos-sdk/MsgCreateGroupWithPolicy",
-      value: MsgCreateGroupWithPolicy.toAmino(message),
+      value: MsgCreateGroupWithPolicy.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateGroupWithPolicyProtoMsg): MsgCreateGroupWithPolicy {
@@ -1780,22 +1766,19 @@ export const MsgCreateGroupWithPolicy = {
   toProtoMsg(message: MsgCreateGroupWithPolicy): MsgCreateGroupWithPolicyProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgCreateGroupWithPolicy",
-      value: MsgCreateGroupWithPolicy.encode(message).finish(),
+      value: MsgCreateGroupWithPolicy.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCreateGroupWithPolicyResponse(): MsgCreateGroupWithPolicyResponse {
   return {
     groupId: BigInt(0),
-    groupPolicyAddress: "",
+    groupPolicyAddress: ""
   };
 }
 export const MsgCreateGroupWithPolicyResponse = {
   typeUrl: "/cosmos.group.v1.MsgCreateGroupWithPolicyResponse",
-  encode(
-    message: MsgCreateGroupWithPolicyResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: MsgCreateGroupWithPolicyResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.groupId !== BigInt(0)) {
       writer.uint32(8).uint64(message.groupId);
     }
@@ -1824,9 +1807,7 @@ export const MsgCreateGroupWithPolicyResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgCreateGroupWithPolicyResponse>, I>>(
-    object: I,
-  ): MsgCreateGroupWithPolicyResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateGroupWithPolicyResponse>, I>>(object: I): MsgCreateGroupWithPolicyResponse {
     const message = createBaseMsgCreateGroupWithPolicyResponse();
     if (object.groupId !== undefined && object.groupId !== null) {
       message.groupId = BigInt(object.groupId.toString());
@@ -1856,7 +1837,7 @@ export const MsgCreateGroupWithPolicyResponse = {
   toAminoMsg(message: MsgCreateGroupWithPolicyResponse): MsgCreateGroupWithPolicyResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgCreateGroupWithPolicyResponse",
-      value: MsgCreateGroupWithPolicyResponse.toAmino(message),
+      value: MsgCreateGroupWithPolicyResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateGroupWithPolicyResponseProtoMsg): MsgCreateGroupWithPolicyResponse {
@@ -1868,23 +1849,20 @@ export const MsgCreateGroupWithPolicyResponse = {
   toProtoMsg(message: MsgCreateGroupWithPolicyResponse): MsgCreateGroupWithPolicyResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgCreateGroupWithPolicyResponse",
-      value: MsgCreateGroupWithPolicyResponse.encode(message).finish(),
+      value: MsgCreateGroupWithPolicyResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupPolicyDecisionPolicy(): MsgUpdateGroupPolicyDecisionPolicy {
   return {
     admin: "",
     groupPolicyAddress: "",
-    decisionPolicy: undefined,
+    decisionPolicy: undefined
   };
 }
 export const MsgUpdateGroupPolicyDecisionPolicy = {
   typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy",
-  encode(
-    message: MsgUpdateGroupPolicyDecisionPolicy,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: MsgUpdateGroupPolicyDecisionPolicy, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.admin !== "") {
       writer.uint32(10).string(message.admin);
     }
@@ -1919,9 +1897,7 @@ export const MsgUpdateGroupPolicyDecisionPolicy = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyDecisionPolicy>, I>>(
-    object: I,
-  ): MsgUpdateGroupPolicyDecisionPolicy {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyDecisionPolicy>, I>>(object: I): MsgUpdateGroupPolicyDecisionPolicy {
     const message = createBaseMsgUpdateGroupPolicyDecisionPolicy();
     message.admin = object.admin ?? "";
     message.groupPolicyAddress = object.groupPolicyAddress ?? "";
@@ -1956,7 +1932,7 @@ export const MsgUpdateGroupPolicyDecisionPolicy = {
   toAminoMsg(message: MsgUpdateGroupPolicyDecisionPolicy): MsgUpdateGroupPolicyDecisionPolicyAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupDecisionPolicy",
-      value: MsgUpdateGroupPolicyDecisionPolicy.toAmino(message),
+      value: MsgUpdateGroupPolicyDecisionPolicy.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupPolicyDecisionPolicyProtoMsg): MsgUpdateGroupPolicyDecisionPolicy {
@@ -1968,19 +1944,16 @@ export const MsgUpdateGroupPolicyDecisionPolicy = {
   toProtoMsg(message: MsgUpdateGroupPolicyDecisionPolicy): MsgUpdateGroupPolicyDecisionPolicyProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy",
-      value: MsgUpdateGroupPolicyDecisionPolicy.encode(message).finish(),
+      value: MsgUpdateGroupPolicyDecisionPolicy.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupPolicyDecisionPolicyResponse(): MsgUpdateGroupPolicyDecisionPolicyResponse {
   return {};
 }
 export const MsgUpdateGroupPolicyDecisionPolicyResponse = {
   typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse",
-  encode(
-    _: MsgUpdateGroupPolicyDecisionPolicyResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(_: MsgUpdateGroupPolicyDecisionPolicyResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     return writer;
   },
   decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateGroupPolicyDecisionPolicyResponse {
@@ -1997,9 +1970,7 @@ export const MsgUpdateGroupPolicyDecisionPolicyResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyDecisionPolicyResponse>, I>>(
-    _: I,
-  ): MsgUpdateGroupPolicyDecisionPolicyResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyDecisionPolicyResponse>, I>>(_: I): MsgUpdateGroupPolicyDecisionPolicyResponse {
     const message = createBaseMsgUpdateGroupPolicyDecisionPolicyResponse();
     return message;
   },
@@ -2011,41 +1982,33 @@ export const MsgUpdateGroupPolicyDecisionPolicyResponse = {
     const obj: any = {};
     return obj;
   },
-  fromAminoMsg(
-    object: MsgUpdateGroupPolicyDecisionPolicyResponseAminoMsg,
-  ): MsgUpdateGroupPolicyDecisionPolicyResponse {
+  fromAminoMsg(object: MsgUpdateGroupPolicyDecisionPolicyResponseAminoMsg): MsgUpdateGroupPolicyDecisionPolicyResponse {
     return MsgUpdateGroupPolicyDecisionPolicyResponse.fromAmino(object.value);
   },
-  toAminoMsg(
-    message: MsgUpdateGroupPolicyDecisionPolicyResponse,
-  ): MsgUpdateGroupPolicyDecisionPolicyResponseAminoMsg {
+  toAminoMsg(message: MsgUpdateGroupPolicyDecisionPolicyResponse): MsgUpdateGroupPolicyDecisionPolicyResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupPolicyDecisionPolicyResponse",
-      value: MsgUpdateGroupPolicyDecisionPolicyResponse.toAmino(message),
+      value: MsgUpdateGroupPolicyDecisionPolicyResponse.toAmino(message)
     };
   },
-  fromProtoMsg(
-    message: MsgUpdateGroupPolicyDecisionPolicyResponseProtoMsg,
-  ): MsgUpdateGroupPolicyDecisionPolicyResponse {
+  fromProtoMsg(message: MsgUpdateGroupPolicyDecisionPolicyResponseProtoMsg): MsgUpdateGroupPolicyDecisionPolicyResponse {
     return MsgUpdateGroupPolicyDecisionPolicyResponse.decode(message.value);
   },
   toProto(message: MsgUpdateGroupPolicyDecisionPolicyResponse): Uint8Array {
     return MsgUpdateGroupPolicyDecisionPolicyResponse.encode(message).finish();
   },
-  toProtoMsg(
-    message: MsgUpdateGroupPolicyDecisionPolicyResponse,
-  ): MsgUpdateGroupPolicyDecisionPolicyResponseProtoMsg {
+  toProtoMsg(message: MsgUpdateGroupPolicyDecisionPolicyResponse): MsgUpdateGroupPolicyDecisionPolicyResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse",
-      value: MsgUpdateGroupPolicyDecisionPolicyResponse.encode(message).finish(),
+      value: MsgUpdateGroupPolicyDecisionPolicyResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupPolicyMetadata(): MsgUpdateGroupPolicyMetadata {
   return {
     admin: "",
     groupPolicyAddress: "",
-    metadata: "",
+    metadata: ""
   };
 }
 export const MsgUpdateGroupPolicyMetadata = {
@@ -2085,9 +2048,7 @@ export const MsgUpdateGroupPolicyMetadata = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyMetadata>, I>>(
-    object: I,
-  ): MsgUpdateGroupPolicyMetadata {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyMetadata>, I>>(object: I): MsgUpdateGroupPolicyMetadata {
     const message = createBaseMsgUpdateGroupPolicyMetadata();
     message.admin = object.admin ?? "";
     message.groupPolicyAddress = object.groupPolicyAddress ?? "";
@@ -2120,7 +2081,7 @@ export const MsgUpdateGroupPolicyMetadata = {
   toAminoMsg(message: MsgUpdateGroupPolicyMetadata): MsgUpdateGroupPolicyMetadataAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupPolicyMetadata",
-      value: MsgUpdateGroupPolicyMetadata.toAmino(message),
+      value: MsgUpdateGroupPolicyMetadata.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupPolicyMetadataProtoMsg): MsgUpdateGroupPolicyMetadata {
@@ -2132,19 +2093,16 @@ export const MsgUpdateGroupPolicyMetadata = {
   toProtoMsg(message: MsgUpdateGroupPolicyMetadata): MsgUpdateGroupPolicyMetadataProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyMetadata",
-      value: MsgUpdateGroupPolicyMetadata.encode(message).finish(),
+      value: MsgUpdateGroupPolicyMetadata.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateGroupPolicyMetadataResponse(): MsgUpdateGroupPolicyMetadataResponse {
   return {};
 }
 export const MsgUpdateGroupPolicyMetadataResponse = {
   typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse",
-  encode(
-    _: MsgUpdateGroupPolicyMetadataResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(_: MsgUpdateGroupPolicyMetadataResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     return writer;
   },
   decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateGroupPolicyMetadataResponse {
@@ -2161,9 +2119,7 @@ export const MsgUpdateGroupPolicyMetadataResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyMetadataResponse>, I>>(
-    _: I,
-  ): MsgUpdateGroupPolicyMetadataResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyMetadataResponse>, I>>(_: I): MsgUpdateGroupPolicyMetadataResponse {
     const message = createBaseMsgUpdateGroupPolicyMetadataResponse();
     return message;
   },
@@ -2181,7 +2137,7 @@ export const MsgUpdateGroupPolicyMetadataResponse = {
   toAminoMsg(message: MsgUpdateGroupPolicyMetadataResponse): MsgUpdateGroupPolicyMetadataResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateGroupPolicyMetadataResponse",
-      value: MsgUpdateGroupPolicyMetadataResponse.toAmino(message),
+      value: MsgUpdateGroupPolicyMetadataResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateGroupPolicyMetadataResponseProtoMsg): MsgUpdateGroupPolicyMetadataResponse {
@@ -2193,9 +2149,9 @@ export const MsgUpdateGroupPolicyMetadataResponse = {
   toProtoMsg(message: MsgUpdateGroupPolicyMetadataResponse): MsgUpdateGroupPolicyMetadataResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse",
-      value: MsgUpdateGroupPolicyMetadataResponse.encode(message).finish(),
+      value: MsgUpdateGroupPolicyMetadataResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgSubmitProposal(): MsgSubmitProposal {
   return {
@@ -2205,7 +2161,7 @@ function createBaseMsgSubmitProposal(): MsgSubmitProposal {
     messages: [],
     exec: 0,
     title: "",
-    summary: "",
+    summary: ""
   };
 }
 export const MsgSubmitProposal = {
@@ -2272,9 +2228,9 @@ export const MsgSubmitProposal = {
   fromPartial<I extends Exact<DeepPartial<MsgSubmitProposal>, I>>(object: I): MsgSubmitProposal {
     const message = createBaseMsgSubmitProposal();
     message.groupPolicyAddress = object.groupPolicyAddress ?? "";
-    message.proposers = object.proposers?.map((e) => e) || [];
+    message.proposers = object.proposers?.map(e => e) || [];
     message.metadata = object.metadata ?? "";
-    message.messages = object.messages?.map((e) => Any.fromPartial(e)) || [];
+    message.messages = object.messages?.map(e => Any.fromPartial(e)) || [];
     message.exec = object.exec ?? 0;
     message.title = object.title ?? "";
     message.summary = object.summary ?? "";
@@ -2285,11 +2241,11 @@ export const MsgSubmitProposal = {
     if (object.group_policy_address !== undefined && object.group_policy_address !== null) {
       message.groupPolicyAddress = object.group_policy_address;
     }
-    message.proposers = object.proposers?.map((e) => e) || [];
+    message.proposers = object.proposers?.map(e => e) || [];
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = object.metadata;
     }
-    message.messages = object.messages?.map((e) => Any.fromAmino(e)) || [];
+    message.messages = object.messages?.map(e => Any.fromAmino(e)) || [];
     if (object.exec !== undefined && object.exec !== null) {
       message.exec = object.exec;
     }
@@ -2305,13 +2261,13 @@ export const MsgSubmitProposal = {
     const obj: any = {};
     obj.group_policy_address = message.groupPolicyAddress === "" ? undefined : message.groupPolicyAddress;
     if (message.proposers) {
-      obj.proposers = message.proposers.map((e) => e);
+      obj.proposers = message.proposers.map(e => e);
     } else {
       obj.proposers = message.proposers;
     }
     obj.metadata = message.metadata === "" ? undefined : message.metadata;
     if (message.messages) {
-      obj.messages = message.messages.map((e) => (e ? Any.toAmino(e) : undefined));
+      obj.messages = message.messages.map(e => e ? Any.toAmino(e) : undefined);
     } else {
       obj.messages = message.messages;
     }
@@ -2326,7 +2282,7 @@ export const MsgSubmitProposal = {
   toAminoMsg(message: MsgSubmitProposal): MsgSubmitProposalAminoMsg {
     return {
       type: "cosmos-sdk/group/MsgSubmitProposal",
-      value: MsgSubmitProposal.toAmino(message),
+      value: MsgSubmitProposal.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSubmitProposalProtoMsg): MsgSubmitProposal {
@@ -2338,13 +2294,13 @@ export const MsgSubmitProposal = {
   toProtoMsg(message: MsgSubmitProposal): MsgSubmitProposalProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgSubmitProposal",
-      value: MsgSubmitProposal.encode(message).finish(),
+      value: MsgSubmitProposal.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgSubmitProposalResponse(): MsgSubmitProposalResponse {
   return {
-    proposalId: BigInt(0),
+    proposalId: BigInt(0)
   };
 }
 export const MsgSubmitProposalResponse = {
@@ -2372,9 +2328,7 @@ export const MsgSubmitProposalResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitProposalResponse>, I>>(
-    object: I,
-  ): MsgSubmitProposalResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitProposalResponse>, I>>(object: I): MsgSubmitProposalResponse {
     const message = createBaseMsgSubmitProposalResponse();
     if (object.proposalId !== undefined && object.proposalId !== null) {
       message.proposalId = BigInt(object.proposalId.toString());
@@ -2399,7 +2353,7 @@ export const MsgSubmitProposalResponse = {
   toAminoMsg(message: MsgSubmitProposalResponse): MsgSubmitProposalResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgSubmitProposalResponse",
-      value: MsgSubmitProposalResponse.toAmino(message),
+      value: MsgSubmitProposalResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSubmitProposalResponseProtoMsg): MsgSubmitProposalResponse {
@@ -2411,14 +2365,14 @@ export const MsgSubmitProposalResponse = {
   toProtoMsg(message: MsgSubmitProposalResponse): MsgSubmitProposalResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgSubmitProposalResponse",
-      value: MsgSubmitProposalResponse.encode(message).finish(),
+      value: MsgSubmitProposalResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgWithdrawProposal(): MsgWithdrawProposal {
   return {
     proposalId: BigInt(0),
-    address: "",
+    address: ""
   };
 }
 export const MsgWithdrawProposal = {
@@ -2482,7 +2436,7 @@ export const MsgWithdrawProposal = {
   toAminoMsg(message: MsgWithdrawProposal): MsgWithdrawProposalAminoMsg {
     return {
       type: "cosmos-sdk/group/MsgWithdrawProposal",
-      value: MsgWithdrawProposal.toAmino(message),
+      value: MsgWithdrawProposal.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgWithdrawProposalProtoMsg): MsgWithdrawProposal {
@@ -2494,9 +2448,9 @@ export const MsgWithdrawProposal = {
   toProtoMsg(message: MsgWithdrawProposal): MsgWithdrawProposalProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgWithdrawProposal",
-      value: MsgWithdrawProposal.encode(message).finish(),
+      value: MsgWithdrawProposal.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgWithdrawProposalResponse(): MsgWithdrawProposalResponse {
   return {};
@@ -2520,9 +2474,7 @@ export const MsgWithdrawProposalResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgWithdrawProposalResponse>, I>>(
-    _: I,
-  ): MsgWithdrawProposalResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgWithdrawProposalResponse>, I>>(_: I): MsgWithdrawProposalResponse {
     const message = createBaseMsgWithdrawProposalResponse();
     return message;
   },
@@ -2540,7 +2492,7 @@ export const MsgWithdrawProposalResponse = {
   toAminoMsg(message: MsgWithdrawProposalResponse): MsgWithdrawProposalResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgWithdrawProposalResponse",
-      value: MsgWithdrawProposalResponse.toAmino(message),
+      value: MsgWithdrawProposalResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgWithdrawProposalResponseProtoMsg): MsgWithdrawProposalResponse {
@@ -2552,9 +2504,9 @@ export const MsgWithdrawProposalResponse = {
   toProtoMsg(message: MsgWithdrawProposalResponse): MsgWithdrawProposalResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgWithdrawProposalResponse",
-      value: MsgWithdrawProposalResponse.encode(message).finish(),
+      value: MsgWithdrawProposalResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgVote(): MsgVote {
   return {
@@ -2562,7 +2514,7 @@ function createBaseMsgVote(): MsgVote {
     voter: "",
     option: 0,
     metadata: "",
-    exec: 0,
+    exec: 0
   };
 }
 export const MsgVote = {
@@ -2659,7 +2611,7 @@ export const MsgVote = {
   toAminoMsg(message: MsgVote): MsgVoteAminoMsg {
     return {
       type: "cosmos-sdk/group/MsgVote",
-      value: MsgVote.toAmino(message),
+      value: MsgVote.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgVoteProtoMsg): MsgVote {
@@ -2671,9 +2623,9 @@ export const MsgVote = {
   toProtoMsg(message: MsgVote): MsgVoteProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgVote",
-      value: MsgVote.encode(message).finish(),
+      value: MsgVote.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgVoteResponse(): MsgVoteResponse {
   return {};
@@ -2715,7 +2667,7 @@ export const MsgVoteResponse = {
   toAminoMsg(message: MsgVoteResponse): MsgVoteResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgVoteResponse",
-      value: MsgVoteResponse.toAmino(message),
+      value: MsgVoteResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgVoteResponseProtoMsg): MsgVoteResponse {
@@ -2727,14 +2679,14 @@ export const MsgVoteResponse = {
   toProtoMsg(message: MsgVoteResponse): MsgVoteResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgVoteResponse",
-      value: MsgVoteResponse.encode(message).finish(),
+      value: MsgVoteResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgExec(): MsgExec {
   return {
     proposalId: BigInt(0),
-    executor: "",
+    executor: ""
   };
 }
 export const MsgExec = {
@@ -2798,7 +2750,7 @@ export const MsgExec = {
   toAminoMsg(message: MsgExec): MsgExecAminoMsg {
     return {
       type: "cosmos-sdk/group/MsgExec",
-      value: MsgExec.toAmino(message),
+      value: MsgExec.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgExecProtoMsg): MsgExec {
@@ -2810,13 +2762,13 @@ export const MsgExec = {
   toProtoMsg(message: MsgExec): MsgExecProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgExec",
-      value: MsgExec.encode(message).finish(),
+      value: MsgExec.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgExecResponse(): MsgExecResponse {
   return {
-    result: 0,
+    result: 0
   };
 }
 export const MsgExecResponse = {
@@ -2867,7 +2819,7 @@ export const MsgExecResponse = {
   toAminoMsg(message: MsgExecResponse): MsgExecResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgExecResponse",
-      value: MsgExecResponse.toAmino(message),
+      value: MsgExecResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgExecResponseProtoMsg): MsgExecResponse {
@@ -2879,14 +2831,14 @@ export const MsgExecResponse = {
   toProtoMsg(message: MsgExecResponse): MsgExecResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgExecResponse",
-      value: MsgExecResponse.encode(message).finish(),
+      value: MsgExecResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgLeaveGroup(): MsgLeaveGroup {
   return {
     address: "",
-    groupId: BigInt(0),
+    groupId: BigInt(0)
   };
 }
 export const MsgLeaveGroup = {
@@ -2950,7 +2902,7 @@ export const MsgLeaveGroup = {
   toAminoMsg(message: MsgLeaveGroup): MsgLeaveGroupAminoMsg {
     return {
       type: "cosmos-sdk/group/MsgLeaveGroup",
-      value: MsgLeaveGroup.toAmino(message),
+      value: MsgLeaveGroup.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgLeaveGroupProtoMsg): MsgLeaveGroup {
@@ -2962,9 +2914,9 @@ export const MsgLeaveGroup = {
   toProtoMsg(message: MsgLeaveGroup): MsgLeaveGroupProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgLeaveGroup",
-      value: MsgLeaveGroup.encode(message).finish(),
+      value: MsgLeaveGroup.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgLeaveGroupResponse(): MsgLeaveGroupResponse {
   return {};
@@ -3006,7 +2958,7 @@ export const MsgLeaveGroupResponse = {
   toAminoMsg(message: MsgLeaveGroupResponse): MsgLeaveGroupResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgLeaveGroupResponse",
-      value: MsgLeaveGroupResponse.toAmino(message),
+      value: MsgLeaveGroupResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgLeaveGroupResponseProtoMsg): MsgLeaveGroupResponse {
@@ -3018,9 +2970,9 @@ export const MsgLeaveGroupResponse = {
   toProtoMsg(message: MsgLeaveGroupResponse): MsgLeaveGroupResponseProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.MsgLeaveGroupResponse",
-      value: MsgLeaveGroupResponse.encode(message).finish(),
+      value: MsgLeaveGroupResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg is the cosmos.group.v1 Msg service. */
 export interface Msg {
@@ -3039,13 +2991,9 @@ export interface Msg {
   /** UpdateGroupPolicyAdmin updates a group policy admin. */
   UpdateGroupPolicyAdmin(request: MsgUpdateGroupPolicyAdmin): Promise<MsgUpdateGroupPolicyAdminResponse>;
   /** UpdateGroupPolicyDecisionPolicy allows a group policy's decision policy to be updated. */
-  UpdateGroupPolicyDecisionPolicy(
-    request: MsgUpdateGroupPolicyDecisionPolicy,
-  ): Promise<MsgUpdateGroupPolicyDecisionPolicyResponse>;
+  UpdateGroupPolicyDecisionPolicy(request: MsgUpdateGroupPolicyDecisionPolicy): Promise<MsgUpdateGroupPolicyDecisionPolicyResponse>;
   /** UpdateGroupPolicyMetadata updates a group policy metadata. */
-  UpdateGroupPolicyMetadata(
-    request: MsgUpdateGroupPolicyMetadata,
-  ): Promise<MsgUpdateGroupPolicyMetadataResponse>;
+  UpdateGroupPolicyMetadata(request: MsgUpdateGroupPolicyMetadata): Promise<MsgUpdateGroupPolicyMetadataResponse>;
   /** SubmitProposal submits a new proposal. */
   SubmitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse>;
   /** WithdrawProposal withdraws a proposal. */
@@ -3079,75 +3027,71 @@ export class MsgClientImpl implements Msg {
   CreateGroup(request: MsgCreateGroup): Promise<MsgCreateGroupResponse> {
     const data = MsgCreateGroup.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "CreateGroup", data);
-    return promise.then((data) => MsgCreateGroupResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgCreateGroupResponse.decode(new BinaryReader(data)));
   }
   UpdateGroupMembers(request: MsgUpdateGroupMembers): Promise<MsgUpdateGroupMembersResponse> {
     const data = MsgUpdateGroupMembers.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "UpdateGroupMembers", data);
-    return promise.then((data) => MsgUpdateGroupMembersResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateGroupMembersResponse.decode(new BinaryReader(data)));
   }
   UpdateGroupAdmin(request: MsgUpdateGroupAdmin): Promise<MsgUpdateGroupAdminResponse> {
     const data = MsgUpdateGroupAdmin.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "UpdateGroupAdmin", data);
-    return promise.then((data) => MsgUpdateGroupAdminResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateGroupAdminResponse.decode(new BinaryReader(data)));
   }
   UpdateGroupMetadata(request: MsgUpdateGroupMetadata): Promise<MsgUpdateGroupMetadataResponse> {
     const data = MsgUpdateGroupMetadata.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "UpdateGroupMetadata", data);
-    return promise.then((data) => MsgUpdateGroupMetadataResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateGroupMetadataResponse.decode(new BinaryReader(data)));
   }
   CreateGroupPolicy(request: MsgCreateGroupPolicy): Promise<MsgCreateGroupPolicyResponse> {
     const data = MsgCreateGroupPolicy.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "CreateGroupPolicy", data);
-    return promise.then((data) => MsgCreateGroupPolicyResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgCreateGroupPolicyResponse.decode(new BinaryReader(data)));
   }
   CreateGroupWithPolicy(request: MsgCreateGroupWithPolicy): Promise<MsgCreateGroupWithPolicyResponse> {
     const data = MsgCreateGroupWithPolicy.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "CreateGroupWithPolicy", data);
-    return promise.then((data) => MsgCreateGroupWithPolicyResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgCreateGroupWithPolicyResponse.decode(new BinaryReader(data)));
   }
   UpdateGroupPolicyAdmin(request: MsgUpdateGroupPolicyAdmin): Promise<MsgUpdateGroupPolicyAdminResponse> {
     const data = MsgUpdateGroupPolicyAdmin.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "UpdateGroupPolicyAdmin", data);
-    return promise.then((data) => MsgUpdateGroupPolicyAdminResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateGroupPolicyAdminResponse.decode(new BinaryReader(data)));
   }
-  UpdateGroupPolicyDecisionPolicy(
-    request: MsgUpdateGroupPolicyDecisionPolicy,
-  ): Promise<MsgUpdateGroupPolicyDecisionPolicyResponse> {
+  UpdateGroupPolicyDecisionPolicy(request: MsgUpdateGroupPolicyDecisionPolicy): Promise<MsgUpdateGroupPolicyDecisionPolicyResponse> {
     const data = MsgUpdateGroupPolicyDecisionPolicy.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "UpdateGroupPolicyDecisionPolicy", data);
-    return promise.then((data) => MsgUpdateGroupPolicyDecisionPolicyResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateGroupPolicyDecisionPolicyResponse.decode(new BinaryReader(data)));
   }
-  UpdateGroupPolicyMetadata(
-    request: MsgUpdateGroupPolicyMetadata,
-  ): Promise<MsgUpdateGroupPolicyMetadataResponse> {
+  UpdateGroupPolicyMetadata(request: MsgUpdateGroupPolicyMetadata): Promise<MsgUpdateGroupPolicyMetadataResponse> {
     const data = MsgUpdateGroupPolicyMetadata.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "UpdateGroupPolicyMetadata", data);
-    return promise.then((data) => MsgUpdateGroupPolicyMetadataResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateGroupPolicyMetadataResponse.decode(new BinaryReader(data)));
   }
   SubmitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse> {
     const data = MsgSubmitProposal.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "SubmitProposal", data);
-    return promise.then((data) => MsgSubmitProposalResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgSubmitProposalResponse.decode(new BinaryReader(data)));
   }
   WithdrawProposal(request: MsgWithdrawProposal): Promise<MsgWithdrawProposalResponse> {
     const data = MsgWithdrawProposal.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "WithdrawProposal", data);
-    return promise.then((data) => MsgWithdrawProposalResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgWithdrawProposalResponse.decode(new BinaryReader(data)));
   }
   Vote(request: MsgVote): Promise<MsgVoteResponse> {
     const data = MsgVote.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "Vote", data);
-    return promise.then((data) => MsgVoteResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgVoteResponse.decode(new BinaryReader(data)));
   }
   Exec(request: MsgExec): Promise<MsgExecResponse> {
     const data = MsgExec.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "Exec", data);
-    return promise.then((data) => MsgExecResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgExecResponse.decode(new BinaryReader(data)));
   }
   LeaveGroup(request: MsgLeaveGroup): Promise<MsgLeaveGroupResponse> {
     const data = MsgLeaveGroup.encode(request).finish();
     const promise = this.rpc.request("cosmos.group.v1.Msg", "LeaveGroup", data);
-    return promise.then((data) => MsgLeaveGroupResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgLeaveGroupResponse.decode(new BinaryReader(data)));
   }
 }

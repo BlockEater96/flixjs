@@ -56,7 +56,7 @@ export interface ModuleConfig {
    * name is the unique name of the module within the app. It should be a name
    * that persists between different versions of a module so that modules
    * can be smoothly upgraded to new versions.
-   *
+   * 
    * For example, for the module cosmos.bank.module.v1.Module, we may chose
    * to simply name the module "bank" in the app. When we upgrade to
    * cosmos.bank.module.v2.Module, the app-specific name "bank" stays the same
@@ -87,7 +87,7 @@ export interface ModuleConfigAmino {
    * name is the unique name of the module within the app. It should be a name
    * that persists between different versions of a module so that modules
    * can be smoothly upgraded to new versions.
-   *
+   * 
    * For example, for the module cosmos.bank.module.v1.Module, we may chose
    * to simply name the module "bank" in the app. When we upgrade to
    * cosmos.bank.module.v2.Module, the app-specific name "bank" stays the same
@@ -137,7 +137,7 @@ export interface GolangBindingAminoMsg {
 function createBaseConfig(): Config {
   return {
     modules: [],
-    golangBindings: [],
+    golangBindings: []
   };
 }
 export const Config = {
@@ -173,25 +173,25 @@ export const Config = {
   },
   fromPartial<I extends Exact<DeepPartial<Config>, I>>(object: I): Config {
     const message = createBaseConfig();
-    message.modules = object.modules?.map((e) => ModuleConfig.fromPartial(e)) || [];
-    message.golangBindings = object.golangBindings?.map((e) => GolangBinding.fromPartial(e)) || [];
+    message.modules = object.modules?.map(e => ModuleConfig.fromPartial(e)) || [];
+    message.golangBindings = object.golangBindings?.map(e => GolangBinding.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ConfigAmino): Config {
     const message = createBaseConfig();
-    message.modules = object.modules?.map((e) => ModuleConfig.fromAmino(e)) || [];
-    message.golangBindings = object.golang_bindings?.map((e) => GolangBinding.fromAmino(e)) || [];
+    message.modules = object.modules?.map(e => ModuleConfig.fromAmino(e)) || [];
+    message.golangBindings = object.golang_bindings?.map(e => GolangBinding.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Config): ConfigAmino {
     const obj: any = {};
     if (message.modules) {
-      obj.modules = message.modules.map((e) => (e ? ModuleConfig.toAmino(e) : undefined));
+      obj.modules = message.modules.map(e => e ? ModuleConfig.toAmino(e) : undefined);
     } else {
       obj.modules = message.modules;
     }
     if (message.golangBindings) {
-      obj.golang_bindings = message.golangBindings.map((e) => (e ? GolangBinding.toAmino(e) : undefined));
+      obj.golang_bindings = message.golangBindings.map(e => e ? GolangBinding.toAmino(e) : undefined);
     } else {
       obj.golang_bindings = message.golangBindings;
     }
@@ -203,7 +203,7 @@ export const Config = {
   toAminoMsg(message: Config): ConfigAminoMsg {
     return {
       type: "cosmos-sdk/Config",
-      value: Config.toAmino(message),
+      value: Config.toAmino(message)
     };
   },
   fromProtoMsg(message: ConfigProtoMsg): Config {
@@ -215,15 +215,15 @@ export const Config = {
   toProtoMsg(message: Config): ConfigProtoMsg {
     return {
       typeUrl: "/cosmos.app.v1alpha1.Config",
-      value: Config.encode(message).finish(),
+      value: Config.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseModuleConfig(): ModuleConfig {
   return {
     name: "",
     config: undefined,
-    golangBindings: [],
+    golangBindings: []
   };
 }
 export const ModuleConfig = {
@@ -269,7 +269,7 @@ export const ModuleConfig = {
     if (object.config !== undefined && object.config !== null) {
       message.config = Any.fromPartial(object.config);
     }
-    message.golangBindings = object.golangBindings?.map((e) => GolangBinding.fromPartial(e)) || [];
+    message.golangBindings = object.golangBindings?.map(e => GolangBinding.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ModuleConfigAmino): ModuleConfig {
@@ -280,7 +280,7 @@ export const ModuleConfig = {
     if (object.config !== undefined && object.config !== null) {
       message.config = Any.fromAmino(object.config);
     }
-    message.golangBindings = object.golang_bindings?.map((e) => GolangBinding.fromAmino(e)) || [];
+    message.golangBindings = object.golang_bindings?.map(e => GolangBinding.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ModuleConfig): ModuleConfigAmino {
@@ -288,7 +288,7 @@ export const ModuleConfig = {
     obj.name = message.name === "" ? undefined : message.name;
     obj.config = message.config ? Any.toAmino(message.config) : undefined;
     if (message.golangBindings) {
-      obj.golang_bindings = message.golangBindings.map((e) => (e ? GolangBinding.toAmino(e) : undefined));
+      obj.golang_bindings = message.golangBindings.map(e => e ? GolangBinding.toAmino(e) : undefined);
     } else {
       obj.golang_bindings = message.golangBindings;
     }
@@ -300,7 +300,7 @@ export const ModuleConfig = {
   toAminoMsg(message: ModuleConfig): ModuleConfigAminoMsg {
     return {
       type: "cosmos-sdk/ModuleConfig",
-      value: ModuleConfig.toAmino(message),
+      value: ModuleConfig.toAmino(message)
     };
   },
   fromProtoMsg(message: ModuleConfigProtoMsg): ModuleConfig {
@@ -312,14 +312,14 @@ export const ModuleConfig = {
   toProtoMsg(message: ModuleConfig): ModuleConfigProtoMsg {
     return {
       typeUrl: "/cosmos.app.v1alpha1.ModuleConfig",
-      value: ModuleConfig.encode(message).finish(),
+      value: ModuleConfig.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseGolangBinding(): GolangBinding {
   return {
     interfaceType: "",
-    implementation: "",
+    implementation: ""
   };
 }
 export const GolangBinding = {
@@ -381,7 +381,7 @@ export const GolangBinding = {
   toAminoMsg(message: GolangBinding): GolangBindingAminoMsg {
     return {
       type: "cosmos-sdk/GolangBinding",
-      value: GolangBinding.toAmino(message),
+      value: GolangBinding.toAmino(message)
     };
   },
   fromProtoMsg(message: GolangBindingProtoMsg): GolangBinding {
@@ -393,7 +393,7 @@ export const GolangBinding = {
   toProtoMsg(message: GolangBinding): GolangBindingProtoMsg {
     return {
       typeUrl: "/cosmos.app.v1alpha1.GolangBinding",
-      value: GolangBinding.encode(message).finish(),
+      value: GolangBinding.encode(message).finish()
     };
-  },
+  }
 };

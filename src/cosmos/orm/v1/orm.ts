@@ -64,10 +64,10 @@ export interface PrimaryKeyDescriptor {
    *   - enum fields are encoded using varint encoding and do not support sorted
    *   iteration.
    *   - bool fields are encoded as a single byte 0 or 1.
-   *
+   * 
    * All other fields types are unsupported in keys including repeated and
    * oneof fields.
-   *
+   * 
    * Primary keys are prefixed by the varint encoded table id and the byte 0x0
    * plus any additional prefix specified by the schema.
    */
@@ -110,10 +110,10 @@ export interface PrimaryKeyDescriptorAmino {
    *   - enum fields are encoded using varint encoding and do not support sorted
    *   iteration.
    *   - bool fields are encoded as a single byte 0 or 1.
-   *
+   * 
    * All other fields types are unsupported in keys including repeated and
    * oneof fields.
-   *
+   * 
    * Primary keys are prefixed by the varint encoded table id and the byte 0x0
    * plus any additional prefix specified by the schema.
    */
@@ -136,7 +136,7 @@ export interface SecondaryIndexDescriptor {
    * field types are the same as those for PrimaryKeyDescriptor.fields.
    * Index keys are prefixed by the varint encoded table id and the varint
    * encoded index id plus any additional prefix specified by the schema.
-   *
+   * 
    * In addition the field segments, non-unique index keys are suffixed with
    * any additional primary key fields not present in the index fields so that the
    * primary key can be reconstructed. Unique indexes instead of being suffixed
@@ -163,7 +163,7 @@ export interface SecondaryIndexDescriptorAmino {
    * field types are the same as those for PrimaryKeyDescriptor.fields.
    * Index keys are prefixed by the varint encoded table id and the varint
    * encoded index id plus any additional prefix specified by the schema.
-   *
+   * 
    * In addition the field segments, non-unique index keys are suffixed with
    * any additional primary key fields not present in the index fields so that the
    * primary key can be reconstructed. Unique indexes instead of being suffixed
@@ -213,7 +213,7 @@ function createBaseTableDescriptor(): TableDescriptor {
   return {
     primaryKey: undefined,
     index: [],
-    id: 0,
+    id: 0
   };
 }
 export const TableDescriptor = {
@@ -258,7 +258,7 @@ export const TableDescriptor = {
     if (object.primaryKey !== undefined && object.primaryKey !== null) {
       message.primaryKey = PrimaryKeyDescriptor.fromPartial(object.primaryKey);
     }
-    message.index = object.index?.map((e) => SecondaryIndexDescriptor.fromPartial(e)) || [];
+    message.index = object.index?.map(e => SecondaryIndexDescriptor.fromPartial(e)) || [];
     message.id = object.id ?? 0;
     return message;
   },
@@ -267,7 +267,7 @@ export const TableDescriptor = {
     if (object.primary_key !== undefined && object.primary_key !== null) {
       message.primaryKey = PrimaryKeyDescriptor.fromAmino(object.primary_key);
     }
-    message.index = object.index?.map((e) => SecondaryIndexDescriptor.fromAmino(e)) || [];
+    message.index = object.index?.map(e => SecondaryIndexDescriptor.fromAmino(e)) || [];
     if (object.id !== undefined && object.id !== null) {
       message.id = object.id;
     }
@@ -277,7 +277,7 @@ export const TableDescriptor = {
     const obj: any = {};
     obj.primary_key = message.primaryKey ? PrimaryKeyDescriptor.toAmino(message.primaryKey) : undefined;
     if (message.index) {
-      obj.index = message.index.map((e) => (e ? SecondaryIndexDescriptor.toAmino(e) : undefined));
+      obj.index = message.index.map(e => e ? SecondaryIndexDescriptor.toAmino(e) : undefined);
     } else {
       obj.index = message.index;
     }
@@ -290,7 +290,7 @@ export const TableDescriptor = {
   toAminoMsg(message: TableDescriptor): TableDescriptorAminoMsg {
     return {
       type: "cosmos-sdk/TableDescriptor",
-      value: TableDescriptor.toAmino(message),
+      value: TableDescriptor.toAmino(message)
     };
   },
   fromProtoMsg(message: TableDescriptorProtoMsg): TableDescriptor {
@@ -302,14 +302,14 @@ export const TableDescriptor = {
   toProtoMsg(message: TableDescriptor): TableDescriptorProtoMsg {
     return {
       typeUrl: "/cosmos.orm.v1.TableDescriptor",
-      value: TableDescriptor.encode(message).finish(),
+      value: TableDescriptor.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePrimaryKeyDescriptor(): PrimaryKeyDescriptor {
   return {
     fields: "",
-    autoIncrement: false,
+    autoIncrement: false
   };
 }
 export const PrimaryKeyDescriptor = {
@@ -371,7 +371,7 @@ export const PrimaryKeyDescriptor = {
   toAminoMsg(message: PrimaryKeyDescriptor): PrimaryKeyDescriptorAminoMsg {
     return {
       type: "cosmos-sdk/PrimaryKeyDescriptor",
-      value: PrimaryKeyDescriptor.toAmino(message),
+      value: PrimaryKeyDescriptor.toAmino(message)
     };
   },
   fromProtoMsg(message: PrimaryKeyDescriptorProtoMsg): PrimaryKeyDescriptor {
@@ -383,15 +383,15 @@ export const PrimaryKeyDescriptor = {
   toProtoMsg(message: PrimaryKeyDescriptor): PrimaryKeyDescriptorProtoMsg {
     return {
       typeUrl: "/cosmos.orm.v1.PrimaryKeyDescriptor",
-      value: PrimaryKeyDescriptor.encode(message).finish(),
+      value: PrimaryKeyDescriptor.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseSecondaryIndexDescriptor(): SecondaryIndexDescriptor {
   return {
     fields: "",
     id: 0,
-    unique: false,
+    unique: false
   };
 }
 export const SecondaryIndexDescriptor = {
@@ -431,9 +431,7 @@ export const SecondaryIndexDescriptor = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<SecondaryIndexDescriptor>, I>>(
-    object: I,
-  ): SecondaryIndexDescriptor {
+  fromPartial<I extends Exact<DeepPartial<SecondaryIndexDescriptor>, I>>(object: I): SecondaryIndexDescriptor {
     const message = createBaseSecondaryIndexDescriptor();
     message.fields = object.fields ?? "";
     message.id = object.id ?? 0;
@@ -466,7 +464,7 @@ export const SecondaryIndexDescriptor = {
   toAminoMsg(message: SecondaryIndexDescriptor): SecondaryIndexDescriptorAminoMsg {
     return {
       type: "cosmos-sdk/SecondaryIndexDescriptor",
-      value: SecondaryIndexDescriptor.toAmino(message),
+      value: SecondaryIndexDescriptor.toAmino(message)
     };
   },
   fromProtoMsg(message: SecondaryIndexDescriptorProtoMsg): SecondaryIndexDescriptor {
@@ -478,13 +476,13 @@ export const SecondaryIndexDescriptor = {
   toProtoMsg(message: SecondaryIndexDescriptor): SecondaryIndexDescriptorProtoMsg {
     return {
       typeUrl: "/cosmos.orm.v1.SecondaryIndexDescriptor",
-      value: SecondaryIndexDescriptor.encode(message).finish(),
+      value: SecondaryIndexDescriptor.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseSingletonDescriptor(): SingletonDescriptor {
   return {
-    id: 0,
+    id: 0
   };
 }
 export const SingletonDescriptor = {
@@ -535,7 +533,7 @@ export const SingletonDescriptor = {
   toAminoMsg(message: SingletonDescriptor): SingletonDescriptorAminoMsg {
     return {
       type: "cosmos-sdk/SingletonDescriptor",
-      value: SingletonDescriptor.toAmino(message),
+      value: SingletonDescriptor.toAmino(message)
     };
   },
   fromProtoMsg(message: SingletonDescriptorProtoMsg): SingletonDescriptor {
@@ -547,7 +545,7 @@ export const SingletonDescriptor = {
   toProtoMsg(message: SingletonDescriptor): SingletonDescriptorProtoMsg {
     return {
       typeUrl: "/cosmos.orm.v1.SingletonDescriptor",
-      value: SingletonDescriptor.encode(message).finish(),
+      value: SingletonDescriptor.encode(message).finish()
     };
-  },
+  }
 };

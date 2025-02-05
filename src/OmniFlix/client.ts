@@ -21,18 +21,11 @@ export const omniFlixAminoConverters = {
   ...omniflixItcV1TxAmino.AminoConverter,
   ...omniflixMarketplaceV1beta1TxAmino.AminoConverter,
   ...omniflixOnftV1beta1TxAmino.AminoConverter,
-  ...omniflixStreampayV1TxAmino.AminoConverter,
+  ...omniflixStreampayV1TxAmino.AminoConverter
 };
-export const omniFlixProtoRegistry: ReadonlyArray<[string, GeneratedType]> = [
-  ...omniflixAllocV1beta1TxRegistry.registry,
-  ...omniflixGlobalfeeV1beta1TxRegistry.registry,
-  ...omniflixItcV1TxRegistry.registry,
-  ...omniflixMarketplaceV1beta1TxRegistry.registry,
-  ...omniflixOnftV1beta1TxRegistry.registry,
-  ...omniflixStreampayV1TxRegistry.registry,
-];
+export const omniFlixProtoRegistry: ReadonlyArray<[string, GeneratedType]> = [...omniflixAllocV1beta1TxRegistry.registry, ...omniflixGlobalfeeV1beta1TxRegistry.registry, ...omniflixItcV1TxRegistry.registry, ...omniflixMarketplaceV1beta1TxRegistry.registry, ...omniflixOnftV1beta1TxRegistry.registry, ...omniflixStreampayV1TxRegistry.registry];
 export const getSigningOmniFlixClientOptions = ({
-  defaultTypes = defaultRegistryTypes,
+  defaultTypes = defaultRegistryTypes
 }: {
   defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 } = {}): {
@@ -41,28 +34,31 @@ export const getSigningOmniFlixClientOptions = ({
 } => {
   const registry = new Registry([...defaultTypes, ...omniFlixProtoRegistry]);
   const aminoTypes = new AminoTypes({
-    ...omniFlixAminoConverters,
+    ...omniFlixAminoConverters
   });
   return {
     registry,
-    aminoTypes,
+    aminoTypes
   };
 };
 export const getSigningOmniFlixClient = async ({
   rpcEndpoint,
   signer,
-  defaultTypes = defaultRegistryTypes,
+  defaultTypes = defaultRegistryTypes
 }: {
   rpcEndpoint: string | HttpEndpoint;
   signer: OfflineSigner;
   defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 }) => {
-  const { registry, aminoTypes } = getSigningOmniFlixClientOptions({
-    defaultTypes,
+  const {
+    registry,
+    aminoTypes
+  } = getSigningOmniFlixClientOptions({
+    defaultTypes
   });
   const client = await SigningStargateClient.connectWithSigner(rpcEndpoint, signer, {
     registry: registry as any,
-    aminoTypes,
+    aminoTypes
   });
   return client;
 };

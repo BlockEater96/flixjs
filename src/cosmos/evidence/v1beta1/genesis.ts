@@ -24,7 +24,7 @@ export interface GenesisStateAminoMsg {
 }
 function createBaseGenesisState(): GenesisState {
   return {
-    evidence: [],
+    evidence: []
   };
 }
 export const GenesisState = {
@@ -54,18 +54,18 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.evidence = object.evidence?.map((e) => Any.fromPartial(e)) || [];
+    message.evidence = object.evidence?.map(e => Any.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
-    message.evidence = object.evidence?.map((e) => Any.fromAmino(e)) || [];
+    message.evidence = object.evidence?.map(e => Any.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     if (message.evidence) {
-      obj.evidence = message.evidence.map((e) => (e ? Any.toAmino(e) : undefined));
+      obj.evidence = message.evidence.map(e => e ? Any.toAmino(e) : undefined);
     } else {
       obj.evidence = message.evidence;
     }
@@ -77,7 +77,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -89,7 +89,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/cosmos.evidence.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

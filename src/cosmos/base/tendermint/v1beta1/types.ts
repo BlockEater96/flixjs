@@ -1,13 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  Data,
-  DataAmino,
-  Commit,
-  CommitAmino,
-  BlockID,
-  BlockIDAmino,
-} from "../../../../tendermint/types/types";
+import { Data, DataAmino, Commit, CommitAmino, BlockID, BlockIDAmino } from "../../../../tendermint/types/types";
 import { EvidenceList, EvidenceListAmino } from "../../../../tendermint/types/evidence";
 import { Consensus, ConsensusAmino } from "../../../../tendermint/version/types";
 import { Timestamp } from "../../../../google/protobuf/timestamp";
@@ -119,7 +112,7 @@ function createBaseBlock(): Block {
     header: Header.fromPartial({}),
     data: Data.fromPartial({}),
     evidence: EvidenceList.fromPartial({}),
-    lastCommit: undefined,
+    lastCommit: undefined
   };
 }
 export const Block = {
@@ -201,9 +194,7 @@ export const Block = {
     const obj: any = {};
     obj.header = message.header ? Header.toAmino(message.header) : Header.toAmino(Header.fromPartial({}));
     obj.data = message.data ? Data.toAmino(message.data) : Data.toAmino(Data.fromPartial({}));
-    obj.evidence = message.evidence
-      ? EvidenceList.toAmino(message.evidence)
-      : EvidenceList.toAmino(EvidenceList.fromPartial({}));
+    obj.evidence = message.evidence ? EvidenceList.toAmino(message.evidence) : EvidenceList.toAmino(EvidenceList.fromPartial({}));
     obj.last_commit = message.lastCommit ? Commit.toAmino(message.lastCommit) : undefined;
     return obj;
   },
@@ -213,7 +204,7 @@ export const Block = {
   toAminoMsg(message: Block): BlockAminoMsg {
     return {
       type: "cosmos-sdk/Block",
-      value: Block.toAmino(message),
+      value: Block.toAmino(message)
     };
   },
   fromProtoMsg(message: BlockProtoMsg): Block {
@@ -225,9 +216,9 @@ export const Block = {
   toProtoMsg(message: Block): BlockProtoMsg {
     return {
       typeUrl: "/cosmos.base.tendermint.v1beta1.Block",
-      value: Block.encode(message).finish(),
+      value: Block.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseHeader(): Header {
   return {
@@ -244,7 +235,7 @@ function createBaseHeader(): Header {
     appHash: new Uint8Array(),
     lastResultsHash: new Uint8Array(),
     evidenceHash: new Uint8Array(),
-    proposerAddress: "",
+    proposerAddress: ""
   };
 }
 export const Header = {
@@ -424,21 +415,15 @@ export const Header = {
   },
   toAmino(message: Header): HeaderAmino {
     const obj: any = {};
-    obj.version = message.version
-      ? Consensus.toAmino(message.version)
-      : Consensus.toAmino(Consensus.fromPartial({}));
+    obj.version = message.version ? Consensus.toAmino(message.version) : Consensus.toAmino(Consensus.fromPartial({}));
     obj.chain_id = message.chainId === "" ? undefined : message.chainId;
     obj.height = message.height !== BigInt(0) ? message.height?.toString() : undefined;
     obj.time = message.time ? Timestamp.toAmino(message.time) : Timestamp.toAmino(Timestamp.fromPartial({}));
-    obj.last_block_id = message.lastBlockId
-      ? BlockID.toAmino(message.lastBlockId)
-      : BlockID.toAmino(BlockID.fromPartial({}));
+    obj.last_block_id = message.lastBlockId ? BlockID.toAmino(message.lastBlockId) : BlockID.toAmino(BlockID.fromPartial({}));
     obj.last_commit_hash = message.lastCommitHash ? base64FromBytes(message.lastCommitHash) : undefined;
     obj.data_hash = message.dataHash ? base64FromBytes(message.dataHash) : undefined;
     obj.validators_hash = message.validatorsHash ? base64FromBytes(message.validatorsHash) : undefined;
-    obj.next_validators_hash = message.nextValidatorsHash
-      ? base64FromBytes(message.nextValidatorsHash)
-      : undefined;
+    obj.next_validators_hash = message.nextValidatorsHash ? base64FromBytes(message.nextValidatorsHash) : undefined;
     obj.consensus_hash = message.consensusHash ? base64FromBytes(message.consensusHash) : undefined;
     obj.app_hash = message.appHash ? base64FromBytes(message.appHash) : undefined;
     obj.last_results_hash = message.lastResultsHash ? base64FromBytes(message.lastResultsHash) : undefined;
@@ -452,7 +437,7 @@ export const Header = {
   toAminoMsg(message: Header): HeaderAminoMsg {
     return {
       type: "cosmos-sdk/Header",
-      value: Header.toAmino(message),
+      value: Header.toAmino(message)
     };
   },
   fromProtoMsg(message: HeaderProtoMsg): Header {
@@ -464,7 +449,7 @@ export const Header = {
   toProtoMsg(message: Header): HeaderProtoMsg {
     return {
       typeUrl: "/cosmos.base.tendermint.v1beta1.Header",
-      value: Header.encode(message).finish(),
+      value: Header.encode(message).finish()
     };
-  },
+  }
 };

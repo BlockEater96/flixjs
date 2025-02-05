@@ -31,7 +31,7 @@ export interface DenomAuthorityMetadataAminoMsg {
 }
 function createBaseDenomAuthorityMetadata(): DenomAuthorityMetadata {
   return {
-    admin: "",
+    admin: ""
   };
 }
 export const DenomAuthorityMetadata = {
@@ -82,7 +82,7 @@ export const DenomAuthorityMetadata = {
   toAminoMsg(message: DenomAuthorityMetadata): DenomAuthorityMetadataAminoMsg {
     return {
       type: "osmosis/tokenfactory/denom-authority-metadata",
-      value: DenomAuthorityMetadata.toAmino(message),
+      value: DenomAuthorityMetadata.toAmino(message)
     };
   },
   fromProtoMsg(message: DenomAuthorityMetadataProtoMsg): DenomAuthorityMetadata {
@@ -94,7 +94,7 @@ export const DenomAuthorityMetadata = {
   toProtoMsg(message: DenomAuthorityMetadata): DenomAuthorityMetadataProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.DenomAuthorityMetadata",
-      value: DenomAuthorityMetadata.encode(message).finish(),
+      value: DenomAuthorityMetadata.encode(message).finish()
     };
-  },
+  }
 };

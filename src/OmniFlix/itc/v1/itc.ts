@@ -289,7 +289,7 @@ function createBaseCampaign(): Campaign {
     nftMintDetails: undefined,
     distribution: undefined,
     mintCount: BigInt(0),
-    claimCount: BigInt(0),
+    claimCount: BigInt(0)
   };
 }
 export const Campaign = {
@@ -448,7 +448,7 @@ export const Campaign = {
     if (object.availableTokens !== undefined && object.availableTokens !== null) {
       message.availableTokens = Coin.fromPartial(object.availableTokens);
     }
-    message.receivedNftIds = object.receivedNftIds?.map((e) => e) || [];
+    message.receivedNftIds = object.receivedNftIds?.map(e => e) || [];
     if (object.nftMintDetails !== undefined && object.nftMintDetails !== null) {
       message.nftMintDetails = NFTDetails.fromPartial(object.nftMintDetails);
     }
@@ -504,7 +504,7 @@ export const Campaign = {
     if (object.available_tokens !== undefined && object.available_tokens !== null) {
       message.availableTokens = Coin.fromAmino(object.available_tokens);
     }
-    message.receivedNftIds = object.received_nft_ids?.map((e) => e) || [];
+    message.receivedNftIds = object.received_nft_ids?.map(e => e) || [];
     if (object.nft_mint_details !== undefined && object.nft_mint_details !== null) {
       message.nftMintDetails = NFTDetails.fromAmino(object.nft_mint_details);
     }
@@ -528,15 +528,14 @@ export const Campaign = {
     obj.end_time = message.endTime ? Timestamp.toAmino(message.endTime) : undefined;
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.nft_denom_id = message.nftDenomId === "" ? undefined : message.nftDenomId;
-    obj.max_allowed_claims =
-      message.maxAllowedClaims !== BigInt(0) ? message.maxAllowedClaims?.toString() : undefined;
+    obj.max_allowed_claims = message.maxAllowedClaims !== BigInt(0) ? message.maxAllowedClaims?.toString() : undefined;
     obj.interaction = message.interaction === 0 ? undefined : message.interaction;
     obj.claim_type = message.claimType === 0 ? undefined : message.claimType;
     obj.tokens_per_claim = message.tokensPerClaim ? Coin.toAmino(message.tokensPerClaim) : undefined;
     obj.total_tokens = message.totalTokens ? Coin.toAmino(message.totalTokens) : undefined;
     obj.available_tokens = message.availableTokens ? Coin.toAmino(message.availableTokens) : undefined;
     if (message.receivedNftIds) {
-      obj.received_nft_ids = message.receivedNftIds.map((e) => e);
+      obj.received_nft_ids = message.receivedNftIds.map(e => e);
     } else {
       obj.received_nft_ids = message.receivedNftIds;
     }
@@ -558,14 +557,14 @@ export const Campaign = {
   toProtoMsg(message: Campaign): CampaignProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.Campaign",
-      value: Campaign.encode(message).finish(),
+      value: Campaign.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseDistribution(): Distribution {
   return {
     type: 0,
-    streamDuration: Duration.fromPartial({}),
+    streamDuration: Duration.fromPartial({})
   };
 }
 export const Distribution = {
@@ -635,9 +634,9 @@ export const Distribution = {
   toProtoMsg(message: Distribution): DistributionProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.Distribution",
-      value: Distribution.encode(message).finish(),
+      value: Distribution.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseNFTDetails(): NFTDetails {
   return {
@@ -653,7 +652,7 @@ function createBaseNFTDetails(): NFTDetails {
     data: "",
     uriHash: "",
     startIndex: BigInt(0),
-    nameDelimiter: "",
+    nameDelimiter: ""
   };
 }
 export const NFTDetails = {
@@ -844,16 +843,16 @@ export const NFTDetails = {
   toProtoMsg(message: NFTDetails): NFTDetailsProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.NFTDetails",
-      value: NFTDetails.encode(message).finish(),
+      value: NFTDetails.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseClaim(): Claim {
   return {
     campaignId: BigInt(0),
     address: "",
     nftId: "",
-    interaction: 0,
+    interaction: 0
   };
 }
 export const Claim = {
@@ -945,7 +944,7 @@ export const Claim = {
   toProtoMsg(message: Claim): ClaimProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.Claim",
-      value: Claim.encode(message).finish(),
+      value: Claim.encode(message).finish()
     };
-  },
+  }
 };

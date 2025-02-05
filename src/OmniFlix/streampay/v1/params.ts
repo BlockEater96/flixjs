@@ -19,7 +19,7 @@ export interface ParamsAminoMsg {
 }
 function createBaseParams(): Params {
   return {
-    streamPaymentFeePercentage: "",
+    streamPaymentFeePercentage: ""
   };
 }
 export const Params = {
@@ -61,8 +61,7 @@ export const Params = {
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.stream_payment_fee_percentage =
-      message.streamPaymentFeePercentage === "" ? undefined : message.streamPaymentFeePercentage;
+    obj.stream_payment_fee_percentage = message.streamPaymentFeePercentage === "" ? undefined : message.streamPaymentFeePercentage;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -77,7 +76,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

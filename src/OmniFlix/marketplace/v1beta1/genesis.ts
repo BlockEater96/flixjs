@@ -39,7 +39,7 @@ function createBaseGenesisState(): GenesisState {
     params: Params.fromPartial({}),
     auctions: [],
     bids: [],
-    nextAuctionNumber: BigInt(0),
+    nextAuctionNumber: BigInt(0)
   };
 }
 export const GenesisState = {
@@ -99,15 +99,15 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.listings = object.listings?.map((e) => Listing.fromPartial(e)) || [];
+    message.listings = object.listings?.map(e => Listing.fromPartial(e)) || [];
     if (object.listingCount !== undefined && object.listingCount !== null) {
       message.listingCount = BigInt(object.listingCount.toString());
     }
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
-    message.auctions = object.auctions?.map((e) => AuctionListing.fromPartial(e)) || [];
-    message.bids = object.bids?.map((e) => Bid.fromPartial(e)) || [];
+    message.auctions = object.auctions?.map(e => AuctionListing.fromPartial(e)) || [];
+    message.bids = object.bids?.map(e => Bid.fromPartial(e)) || [];
     if (object.nextAuctionNumber !== undefined && object.nextAuctionNumber !== null) {
       message.nextAuctionNumber = BigInt(object.nextAuctionNumber.toString());
     }
@@ -115,15 +115,15 @@ export const GenesisState = {
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
-    message.listings = object.listings?.map((e) => Listing.fromAmino(e)) || [];
+    message.listings = object.listings?.map(e => Listing.fromAmino(e)) || [];
     if (object.ListingCount !== undefined && object.ListingCount !== null) {
       message.listingCount = BigInt(object.ListingCount);
     }
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
-    message.auctions = object.auctions?.map((e) => AuctionListing.fromAmino(e)) || [];
-    message.bids = object.bids?.map((e) => Bid.fromAmino(e)) || [];
+    message.auctions = object.auctions?.map(e => AuctionListing.fromAmino(e)) || [];
+    message.bids = object.bids?.map(e => Bid.fromAmino(e)) || [];
     if (object.next_auction_number !== undefined && object.next_auction_number !== null) {
       message.nextAuctionNumber = BigInt(object.next_auction_number);
     }
@@ -132,24 +132,23 @@ export const GenesisState = {
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     if (message.listings) {
-      obj.listings = message.listings.map((e) => (e ? Listing.toAmino(e) : undefined));
+      obj.listings = message.listings.map(e => e ? Listing.toAmino(e) : undefined);
     } else {
       obj.listings = message.listings;
     }
     obj.ListingCount = message.listingCount !== BigInt(0) ? message.listingCount?.toString() : undefined;
     obj.params = message.params ? Params.toAmino(message.params) : undefined;
     if (message.auctions) {
-      obj.auctions = message.auctions.map((e) => (e ? AuctionListing.toAmino(e) : undefined));
+      obj.auctions = message.auctions.map(e => e ? AuctionListing.toAmino(e) : undefined);
     } else {
       obj.auctions = message.auctions;
     }
     if (message.bids) {
-      obj.bids = message.bids.map((e) => (e ? Bid.toAmino(e) : undefined));
+      obj.bids = message.bids.map(e => e ? Bid.toAmino(e) : undefined);
     } else {
       obj.bids = message.bids;
     }
-    obj.next_auction_number =
-      message.nextAuctionNumber !== BigInt(0) ? message.nextAuctionNumber?.toString() : undefined;
+    obj.next_auction_number = message.nextAuctionNumber !== BigInt(0) ? message.nextAuctionNumber?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
@@ -164,7 +163,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

@@ -137,7 +137,7 @@ function createBaseMsgGrant(): MsgGrant {
   return {
     granter: "",
     grantee: "",
-    grant: Grant.fromPartial({}),
+    grant: Grant.fromPartial({})
   };
 }
 export const MsgGrant = {
@@ -212,7 +212,7 @@ export const MsgGrant = {
   toAminoMsg(message: MsgGrant): MsgGrantAminoMsg {
     return {
       type: "cosmos-sdk/MsgGrant",
-      value: MsgGrant.toAmino(message),
+      value: MsgGrant.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgGrantProtoMsg): MsgGrant {
@@ -224,13 +224,13 @@ export const MsgGrant = {
   toProtoMsg(message: MsgGrant): MsgGrantProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.MsgGrant",
-      value: MsgGrant.encode(message).finish(),
+      value: MsgGrant.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgExecResponse(): MsgExecResponse {
   return {
-    results: [],
+    results: []
   };
 }
 export const MsgExecResponse = {
@@ -260,18 +260,18 @@ export const MsgExecResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgExecResponse>, I>>(object: I): MsgExecResponse {
     const message = createBaseMsgExecResponse();
-    message.results = object.results?.map((e) => e) || [];
+    message.results = object.results?.map(e => e) || [];
     return message;
   },
   fromAmino(object: MsgExecResponseAmino): MsgExecResponse {
     const message = createBaseMsgExecResponse();
-    message.results = object.results?.map((e) => bytesFromBase64(e)) || [];
+    message.results = object.results?.map(e => bytesFromBase64(e)) || [];
     return message;
   },
   toAmino(message: MsgExecResponse): MsgExecResponseAmino {
     const obj: any = {};
     if (message.results) {
-      obj.results = message.results.map((e) => base64FromBytes(e));
+      obj.results = message.results.map(e => base64FromBytes(e));
     } else {
       obj.results = message.results;
     }
@@ -283,7 +283,7 @@ export const MsgExecResponse = {
   toAminoMsg(message: MsgExecResponse): MsgExecResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgExecResponse",
-      value: MsgExecResponse.toAmino(message),
+      value: MsgExecResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgExecResponseProtoMsg): MsgExecResponse {
@@ -295,14 +295,14 @@ export const MsgExecResponse = {
   toProtoMsg(message: MsgExecResponse): MsgExecResponseProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.MsgExecResponse",
-      value: MsgExecResponse.encode(message).finish(),
+      value: MsgExecResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgExec(): MsgExec {
   return {
     grantee: "",
-    msgs: [],
+    msgs: []
   };
 }
 export const MsgExec = {
@@ -339,7 +339,7 @@ export const MsgExec = {
   fromPartial<I extends Exact<DeepPartial<MsgExec>, I>>(object: I): MsgExec {
     const message = createBaseMsgExec();
     message.grantee = object.grantee ?? "";
-    message.msgs = object.msgs?.map((e) => Any.fromPartial(e)) || [];
+    message.msgs = object.msgs?.map(e => Any.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: MsgExecAmino): MsgExec {
@@ -347,14 +347,14 @@ export const MsgExec = {
     if (object.grantee !== undefined && object.grantee !== null) {
       message.grantee = object.grantee;
     }
-    message.msgs = object.msgs?.map((e) => Any.fromAmino(e)) || [];
+    message.msgs = object.msgs?.map(e => Any.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: MsgExec): MsgExecAmino {
     const obj: any = {};
     obj.grantee = message.grantee === "" ? undefined : message.grantee;
     if (message.msgs) {
-      obj.msgs = message.msgs.map((e) => (e ? Any.toAmino(e) : undefined));
+      obj.msgs = message.msgs.map(e => e ? Any.toAmino(e) : undefined);
     } else {
       obj.msgs = message.msgs;
     }
@@ -366,7 +366,7 @@ export const MsgExec = {
   toAminoMsg(message: MsgExec): MsgExecAminoMsg {
     return {
       type: "cosmos-sdk/MsgExec",
-      value: MsgExec.toAmino(message),
+      value: MsgExec.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgExecProtoMsg): MsgExec {
@@ -378,9 +378,9 @@ export const MsgExec = {
   toProtoMsg(message: MsgExec): MsgExecProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.MsgExec",
-      value: MsgExec.encode(message).finish(),
+      value: MsgExec.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgGrantResponse(): MsgGrantResponse {
   return {};
@@ -422,7 +422,7 @@ export const MsgGrantResponse = {
   toAminoMsg(message: MsgGrantResponse): MsgGrantResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgGrantResponse",
-      value: MsgGrantResponse.toAmino(message),
+      value: MsgGrantResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgGrantResponseProtoMsg): MsgGrantResponse {
@@ -434,15 +434,15 @@ export const MsgGrantResponse = {
   toProtoMsg(message: MsgGrantResponse): MsgGrantResponseProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.MsgGrantResponse",
-      value: MsgGrantResponse.encode(message).finish(),
+      value: MsgGrantResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgRevoke(): MsgRevoke {
   return {
     granter: "",
     grantee: "",
-    msgTypeUrl: "",
+    msgTypeUrl: ""
   };
 }
 export const MsgRevoke = {
@@ -515,7 +515,7 @@ export const MsgRevoke = {
   toAminoMsg(message: MsgRevoke): MsgRevokeAminoMsg {
     return {
       type: "cosmos-sdk/MsgRevoke",
-      value: MsgRevoke.toAmino(message),
+      value: MsgRevoke.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRevokeProtoMsg): MsgRevoke {
@@ -527,9 +527,9 @@ export const MsgRevoke = {
   toProtoMsg(message: MsgRevoke): MsgRevokeProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.MsgRevoke",
-      value: MsgRevoke.encode(message).finish(),
+      value: MsgRevoke.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgRevokeResponse(): MsgRevokeResponse {
   return {};
@@ -571,7 +571,7 @@ export const MsgRevokeResponse = {
   toAminoMsg(message: MsgRevokeResponse): MsgRevokeResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgRevokeResponse",
-      value: MsgRevokeResponse.toAmino(message),
+      value: MsgRevokeResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRevokeResponseProtoMsg): MsgRevokeResponse {
@@ -583,9 +583,9 @@ export const MsgRevokeResponse = {
   toProtoMsg(message: MsgRevokeResponse): MsgRevokeResponseProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.MsgRevokeResponse",
-      value: MsgRevokeResponse.encode(message).finish(),
+      value: MsgRevokeResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the authz Msg service. */
 export interface Msg {
@@ -619,16 +619,16 @@ export class MsgClientImpl implements Msg {
   Grant(request: MsgGrant): Promise<MsgGrantResponse> {
     const data = MsgGrant.encode(request).finish();
     const promise = this.rpc.request("cosmos.authz.v1beta1.Msg", "Grant", data);
-    return promise.then((data) => MsgGrantResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgGrantResponse.decode(new BinaryReader(data)));
   }
   Exec(request: MsgExec): Promise<MsgExecResponse> {
     const data = MsgExec.encode(request).finish();
     const promise = this.rpc.request("cosmos.authz.v1beta1.Msg", "Exec", data);
-    return promise.then((data) => MsgExecResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgExecResponse.decode(new BinaryReader(data)));
   }
   Revoke(request: MsgRevoke): Promise<MsgRevokeResponse> {
     const data = MsgRevoke.encode(request).finish();
     const promise = this.rpc.request("cosmos.authz.v1beta1.Msg", "Revoke", data);
-    return promise.then((data) => MsgRevokeResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgRevokeResponse.decode(new BinaryReader(data)));
   }
 }

@@ -240,7 +240,7 @@ function createBaseClientState(): ClientState {
     proofSpecs: [],
     upgradePath: [],
     allowUpdateAfterExpiry: false,
-    allowUpdateAfterMisbehaviour: false,
+    allowUpdateAfterMisbehaviour: false
   };
 }
 export const ClientState = {
@@ -349,8 +349,8 @@ export const ClientState = {
     if (object.latestHeight !== undefined && object.latestHeight !== null) {
       message.latestHeight = Height.fromPartial(object.latestHeight);
     }
-    message.proofSpecs = object.proofSpecs?.map((e) => ProofSpec.fromPartial(e)) || [];
-    message.upgradePath = object.upgradePath?.map((e) => e) || [];
+    message.proofSpecs = object.proofSpecs?.map(e => ProofSpec.fromPartial(e)) || [];
+    message.upgradePath = object.upgradePath?.map(e => e) || [];
     message.allowUpdateAfterExpiry = object.allowUpdateAfterExpiry ?? false;
     message.allowUpdateAfterMisbehaviour = object.allowUpdateAfterMisbehaviour ?? false;
     return message;
@@ -378,15 +378,12 @@ export const ClientState = {
     if (object.latest_height !== undefined && object.latest_height !== null) {
       message.latestHeight = Height.fromAmino(object.latest_height);
     }
-    message.proofSpecs = object.proof_specs?.map((e) => ProofSpec.fromAmino(e)) || [];
-    message.upgradePath = object.upgrade_path?.map((e) => e) || [];
+    message.proofSpecs = object.proof_specs?.map(e => ProofSpec.fromAmino(e)) || [];
+    message.upgradePath = object.upgrade_path?.map(e => e) || [];
     if (object.allow_update_after_expiry !== undefined && object.allow_update_after_expiry !== null) {
       message.allowUpdateAfterExpiry = object.allow_update_after_expiry;
     }
-    if (
-      object.allow_update_after_misbehaviour !== undefined &&
-      object.allow_update_after_misbehaviour !== null
-    ) {
+    if (object.allow_update_after_misbehaviour !== undefined && object.allow_update_after_misbehaviour !== null) {
       message.allowUpdateAfterMisbehaviour = object.allow_update_after_misbehaviour;
     }
     return message;
@@ -401,19 +398,17 @@ export const ClientState = {
     obj.frozen_height = message.frozenHeight ? Height.toAmino(message.frozenHeight) : {};
     obj.latest_height = message.latestHeight ? Height.toAmino(message.latestHeight) : {};
     if (message.proofSpecs) {
-      obj.proof_specs = message.proofSpecs.map((e) => (e ? ProofSpec.toAmino(e) : undefined));
+      obj.proof_specs = message.proofSpecs.map(e => e ? ProofSpec.toAmino(e) : undefined);
     } else {
       obj.proof_specs = message.proofSpecs;
     }
     if (message.upgradePath) {
-      obj.upgrade_path = message.upgradePath.map((e) => e);
+      obj.upgrade_path = message.upgradePath.map(e => e);
     } else {
       obj.upgrade_path = message.upgradePath;
     }
-    obj.allow_update_after_expiry =
-      message.allowUpdateAfterExpiry === false ? undefined : message.allowUpdateAfterExpiry;
-    obj.allow_update_after_misbehaviour =
-      message.allowUpdateAfterMisbehaviour === false ? undefined : message.allowUpdateAfterMisbehaviour;
+    obj.allow_update_after_expiry = message.allowUpdateAfterExpiry === false ? undefined : message.allowUpdateAfterExpiry;
+    obj.allow_update_after_misbehaviour = message.allowUpdateAfterMisbehaviour === false ? undefined : message.allowUpdateAfterMisbehaviour;
     return obj;
   },
   fromAminoMsg(object: ClientStateAminoMsg): ClientState {
@@ -422,7 +417,7 @@ export const ClientState = {
   toAminoMsg(message: ClientState): ClientStateAminoMsg {
     return {
       type: "cosmos-sdk/ClientState",
-      value: ClientState.toAmino(message),
+      value: ClientState.toAmino(message)
     };
   },
   fromProtoMsg(message: ClientStateProtoMsg): ClientState {
@@ -434,15 +429,15 @@ export const ClientState = {
   toProtoMsg(message: ClientState): ClientStateProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.tendermint.v1.ClientState",
-      value: ClientState.encode(message).finish(),
+      value: ClientState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseConsensusState(): ConsensusState {
   return {
     timestamp: Timestamp.fromPartial({}),
     root: MerkleRoot.fromPartial({}),
-    nextValidatorsHash: new Uint8Array(),
+    nextValidatorsHash: new Uint8Array()
   };
 }
 export const ConsensusState = {
@@ -510,9 +505,7 @@ export const ConsensusState = {
     const obj: any = {};
     obj.timestamp = message.timestamp ? Timestamp.toAmino(message.timestamp) : undefined;
     obj.root = message.root ? MerkleRoot.toAmino(message.root) : undefined;
-    obj.next_validators_hash = message.nextValidatorsHash
-      ? base64FromBytes(message.nextValidatorsHash)
-      : undefined;
+    obj.next_validators_hash = message.nextValidatorsHash ? base64FromBytes(message.nextValidatorsHash) : undefined;
     return obj;
   },
   fromAminoMsg(object: ConsensusStateAminoMsg): ConsensusState {
@@ -521,7 +514,7 @@ export const ConsensusState = {
   toAminoMsg(message: ConsensusState): ConsensusStateAminoMsg {
     return {
       type: "cosmos-sdk/ConsensusState",
-      value: ConsensusState.toAmino(message),
+      value: ConsensusState.toAmino(message)
     };
   },
   fromProtoMsg(message: ConsensusStateProtoMsg): ConsensusState {
@@ -533,15 +526,15 @@ export const ConsensusState = {
   toProtoMsg(message: ConsensusState): ConsensusStateProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.tendermint.v1.ConsensusState",
-      value: ConsensusState.encode(message).finish(),
+      value: ConsensusState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMisbehaviour(): Misbehaviour {
   return {
     clientId: "",
     header1: undefined,
-    header2: undefined,
+    header2: undefined
   };
 }
 export const Misbehaviour = {
@@ -618,7 +611,7 @@ export const Misbehaviour = {
   toAminoMsg(message: Misbehaviour): MisbehaviourAminoMsg {
     return {
       type: "cosmos-sdk/Misbehaviour",
-      value: Misbehaviour.toAmino(message),
+      value: Misbehaviour.toAmino(message)
     };
   },
   fromProtoMsg(message: MisbehaviourProtoMsg): Misbehaviour {
@@ -630,16 +623,16 @@ export const Misbehaviour = {
   toProtoMsg(message: Misbehaviour): MisbehaviourProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.tendermint.v1.Misbehaviour",
-      value: Misbehaviour.encode(message).finish(),
+      value: Misbehaviour.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseHeader(): Header {
   return {
     signedHeader: undefined,
     validatorSet: undefined,
     trustedHeight: Height.fromPartial({}),
-    trustedValidators: undefined,
+    trustedValidators: undefined
   };
 }
 export const Header = {
@@ -722,9 +715,7 @@ export const Header = {
     obj.signed_header = message.signedHeader ? SignedHeader.toAmino(message.signedHeader) : undefined;
     obj.validator_set = message.validatorSet ? ValidatorSet.toAmino(message.validatorSet) : undefined;
     obj.trusted_height = message.trustedHeight ? Height.toAmino(message.trustedHeight) : {};
-    obj.trusted_validators = message.trustedValidators
-      ? ValidatorSet.toAmino(message.trustedValidators)
-      : undefined;
+    obj.trusted_validators = message.trustedValidators ? ValidatorSet.toAmino(message.trustedValidators) : undefined;
     return obj;
   },
   fromAminoMsg(object: HeaderAminoMsg): Header {
@@ -733,7 +724,7 @@ export const Header = {
   toAminoMsg(message: Header): HeaderAminoMsg {
     return {
       type: "cosmos-sdk/Header",
-      value: Header.toAmino(message),
+      value: Header.toAmino(message)
     };
   },
   fromProtoMsg(message: HeaderProtoMsg): Header {
@@ -745,14 +736,14 @@ export const Header = {
   toProtoMsg(message: Header): HeaderProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.tendermint.v1.Header",
-      value: Header.encode(message).finish(),
+      value: Header.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseFraction(): Fraction {
   return {
     numerator: BigInt(0),
-    denominator: BigInt(0),
+    denominator: BigInt(0)
   };
 }
 export const Fraction = {
@@ -818,7 +809,7 @@ export const Fraction = {
   toAminoMsg(message: Fraction): FractionAminoMsg {
     return {
       type: "cosmos-sdk/Fraction",
-      value: Fraction.toAmino(message),
+      value: Fraction.toAmino(message)
     };
   },
   fromProtoMsg(message: FractionProtoMsg): Fraction {
@@ -830,7 +821,7 @@ export const Fraction = {
   toProtoMsg(message: Fraction): FractionProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.tendermint.v1.Fraction",
-      value: Fraction.encode(message).finish(),
+      value: Fraction.encode(message).finish()
     };
-  },
+  }
 };

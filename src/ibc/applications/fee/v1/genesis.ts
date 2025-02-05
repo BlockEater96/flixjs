@@ -147,7 +147,7 @@ function createBaseGenesisState(): GenesisState {
     feeEnabledChannels: [],
     registeredPayees: [],
     registeredCounterpartyPayees: [],
-    forwardRelayers: [],
+    forwardRelayers: []
   };
 }
 export const GenesisState = {
@@ -187,9 +187,7 @@ export const GenesisState = {
           message.registeredPayees.push(RegisteredPayee.decode(reader, reader.uint32()));
           break;
         case 4:
-          message.registeredCounterpartyPayees.push(
-            RegisteredCounterpartyPayee.decode(reader, reader.uint32()),
-          );
+          message.registeredCounterpartyPayees.push(RegisteredCounterpartyPayee.decode(reader, reader.uint32()));
           break;
         case 5:
           message.forwardRelayers.push(ForwardRelayerAddress.decode(reader, reader.uint32()));
@@ -203,60 +201,46 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.identifiedFees = object.identifiedFees?.map((e) => IdentifiedPacketFees.fromPartial(e)) || [];
-    message.feeEnabledChannels =
-      object.feeEnabledChannels?.map((e) => FeeEnabledChannel.fromPartial(e)) || [];
-    message.registeredPayees = object.registeredPayees?.map((e) => RegisteredPayee.fromPartial(e)) || [];
-    message.registeredCounterpartyPayees =
-      object.registeredCounterpartyPayees?.map((e) => RegisteredCounterpartyPayee.fromPartial(e)) || [];
-    message.forwardRelayers = object.forwardRelayers?.map((e) => ForwardRelayerAddress.fromPartial(e)) || [];
+    message.identifiedFees = object.identifiedFees?.map(e => IdentifiedPacketFees.fromPartial(e)) || [];
+    message.feeEnabledChannels = object.feeEnabledChannels?.map(e => FeeEnabledChannel.fromPartial(e)) || [];
+    message.registeredPayees = object.registeredPayees?.map(e => RegisteredPayee.fromPartial(e)) || [];
+    message.registeredCounterpartyPayees = object.registeredCounterpartyPayees?.map(e => RegisteredCounterpartyPayee.fromPartial(e)) || [];
+    message.forwardRelayers = object.forwardRelayers?.map(e => ForwardRelayerAddress.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
-    message.identifiedFees = object.identified_fees?.map((e) => IdentifiedPacketFees.fromAmino(e)) || [];
-    message.feeEnabledChannels =
-      object.fee_enabled_channels?.map((e) => FeeEnabledChannel.fromAmino(e)) || [];
-    message.registeredPayees = object.registered_payees?.map((e) => RegisteredPayee.fromAmino(e)) || [];
-    message.registeredCounterpartyPayees =
-      object.registered_counterparty_payees?.map((e) => RegisteredCounterpartyPayee.fromAmino(e)) || [];
-    message.forwardRelayers = object.forward_relayers?.map((e) => ForwardRelayerAddress.fromAmino(e)) || [];
+    message.identifiedFees = object.identified_fees?.map(e => IdentifiedPacketFees.fromAmino(e)) || [];
+    message.feeEnabledChannels = object.fee_enabled_channels?.map(e => FeeEnabledChannel.fromAmino(e)) || [];
+    message.registeredPayees = object.registered_payees?.map(e => RegisteredPayee.fromAmino(e)) || [];
+    message.registeredCounterpartyPayees = object.registered_counterparty_payees?.map(e => RegisteredCounterpartyPayee.fromAmino(e)) || [];
+    message.forwardRelayers = object.forward_relayers?.map(e => ForwardRelayerAddress.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     if (message.identifiedFees) {
-      obj.identified_fees = message.identifiedFees.map((e) =>
-        e ? IdentifiedPacketFees.toAmino(e) : undefined,
-      );
+      obj.identified_fees = message.identifiedFees.map(e => e ? IdentifiedPacketFees.toAmino(e) : undefined);
     } else {
       obj.identified_fees = message.identifiedFees;
     }
     if (message.feeEnabledChannels) {
-      obj.fee_enabled_channels = message.feeEnabledChannels.map((e) =>
-        e ? FeeEnabledChannel.toAmino(e) : undefined,
-      );
+      obj.fee_enabled_channels = message.feeEnabledChannels.map(e => e ? FeeEnabledChannel.toAmino(e) : undefined);
     } else {
       obj.fee_enabled_channels = message.feeEnabledChannels;
     }
     if (message.registeredPayees) {
-      obj.registered_payees = message.registeredPayees.map((e) =>
-        e ? RegisteredPayee.toAmino(e) : undefined,
-      );
+      obj.registered_payees = message.registeredPayees.map(e => e ? RegisteredPayee.toAmino(e) : undefined);
     } else {
       obj.registered_payees = message.registeredPayees;
     }
     if (message.registeredCounterpartyPayees) {
-      obj.registered_counterparty_payees = message.registeredCounterpartyPayees.map((e) =>
-        e ? RegisteredCounterpartyPayee.toAmino(e) : undefined,
-      );
+      obj.registered_counterparty_payees = message.registeredCounterpartyPayees.map(e => e ? RegisteredCounterpartyPayee.toAmino(e) : undefined);
     } else {
       obj.registered_counterparty_payees = message.registeredCounterpartyPayees;
     }
     if (message.forwardRelayers) {
-      obj.forward_relayers = message.forwardRelayers.map((e) =>
-        e ? ForwardRelayerAddress.toAmino(e) : undefined,
-      );
+      obj.forward_relayers = message.forwardRelayers.map(e => e ? ForwardRelayerAddress.toAmino(e) : undefined);
     } else {
       obj.forward_relayers = message.forwardRelayers;
     }
@@ -268,7 +252,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -280,14 +264,14 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseFeeEnabledChannel(): FeeEnabledChannel {
   return {
     portId: "",
-    channelId: "",
+    channelId: ""
   };
 }
 export const FeeEnabledChannel = {
@@ -349,7 +333,7 @@ export const FeeEnabledChannel = {
   toAminoMsg(message: FeeEnabledChannel): FeeEnabledChannelAminoMsg {
     return {
       type: "cosmos-sdk/FeeEnabledChannel",
-      value: FeeEnabledChannel.toAmino(message),
+      value: FeeEnabledChannel.toAmino(message)
     };
   },
   fromProtoMsg(message: FeeEnabledChannelProtoMsg): FeeEnabledChannel {
@@ -361,15 +345,15 @@ export const FeeEnabledChannel = {
   toProtoMsg(message: FeeEnabledChannel): FeeEnabledChannelProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.FeeEnabledChannel",
-      value: FeeEnabledChannel.encode(message).finish(),
+      value: FeeEnabledChannel.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseRegisteredPayee(): RegisteredPayee {
   return {
     channelId: "",
     relayer: "",
-    payee: "",
+    payee: ""
   };
 }
 export const RegisteredPayee = {
@@ -442,7 +426,7 @@ export const RegisteredPayee = {
   toAminoMsg(message: RegisteredPayee): RegisteredPayeeAminoMsg {
     return {
       type: "cosmos-sdk/RegisteredPayee",
-      value: RegisteredPayee.toAmino(message),
+      value: RegisteredPayee.toAmino(message)
     };
   },
   fromProtoMsg(message: RegisteredPayeeProtoMsg): RegisteredPayee {
@@ -454,15 +438,15 @@ export const RegisteredPayee = {
   toProtoMsg(message: RegisteredPayee): RegisteredPayeeProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.RegisteredPayee",
-      value: RegisteredPayee.encode(message).finish(),
+      value: RegisteredPayee.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseRegisteredCounterpartyPayee(): RegisteredCounterpartyPayee {
   return {
     channelId: "",
     relayer: "",
-    counterpartyPayee: "",
+    counterpartyPayee: ""
   };
 }
 export const RegisteredCounterpartyPayee = {
@@ -502,9 +486,7 @@ export const RegisteredCounterpartyPayee = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<RegisteredCounterpartyPayee>, I>>(
-    object: I,
-  ): RegisteredCounterpartyPayee {
+  fromPartial<I extends Exact<DeepPartial<RegisteredCounterpartyPayee>, I>>(object: I): RegisteredCounterpartyPayee {
     const message = createBaseRegisteredCounterpartyPayee();
     message.channelId = object.channelId ?? "";
     message.relayer = object.relayer ?? "";
@@ -537,7 +519,7 @@ export const RegisteredCounterpartyPayee = {
   toAminoMsg(message: RegisteredCounterpartyPayee): RegisteredCounterpartyPayeeAminoMsg {
     return {
       type: "cosmos-sdk/RegisteredCounterpartyPayee",
-      value: RegisteredCounterpartyPayee.toAmino(message),
+      value: RegisteredCounterpartyPayee.toAmino(message)
     };
   },
   fromProtoMsg(message: RegisteredCounterpartyPayeeProtoMsg): RegisteredCounterpartyPayee {
@@ -549,14 +531,14 @@ export const RegisteredCounterpartyPayee = {
   toProtoMsg(message: RegisteredCounterpartyPayee): RegisteredCounterpartyPayeeProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.RegisteredCounterpartyPayee",
-      value: RegisteredCounterpartyPayee.encode(message).finish(),
+      value: RegisteredCounterpartyPayee.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseForwardRelayerAddress(): ForwardRelayerAddress {
   return {
     address: "",
-    packetId: PacketId.fromPartial({}),
+    packetId: PacketId.fromPartial({})
   };
 }
 export const ForwardRelayerAddress = {
@@ -620,7 +602,7 @@ export const ForwardRelayerAddress = {
   toAminoMsg(message: ForwardRelayerAddress): ForwardRelayerAddressAminoMsg {
     return {
       type: "cosmos-sdk/ForwardRelayerAddress",
-      value: ForwardRelayerAddress.toAmino(message),
+      value: ForwardRelayerAddress.toAmino(message)
     };
   },
   fromProtoMsg(message: ForwardRelayerAddressProtoMsg): ForwardRelayerAddress {
@@ -632,7 +614,7 @@ export const ForwardRelayerAddress = {
   toProtoMsg(message: ForwardRelayerAddress): ForwardRelayerAddressProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.ForwardRelayerAddress",
-      value: ForwardRelayerAddress.encode(message).finish(),
+      value: ForwardRelayerAddress.encode(message).finish()
     };
-  },
+  }
 };

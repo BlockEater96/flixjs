@@ -71,7 +71,7 @@ function createBaseGenesisState(): GenesisState {
     sendSequences: [],
     recvSequences: [],
     ackSequences: [],
-    nextChannelSequence: BigInt(0),
+    nextChannelSequence: BigInt(0)
   };
 }
 export const GenesisState = {
@@ -143,13 +143,13 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.channels = object.channels?.map((e) => IdentifiedChannel.fromPartial(e)) || [];
-    message.acknowledgements = object.acknowledgements?.map((e) => PacketState.fromPartial(e)) || [];
-    message.commitments = object.commitments?.map((e) => PacketState.fromPartial(e)) || [];
-    message.receipts = object.receipts?.map((e) => PacketState.fromPartial(e)) || [];
-    message.sendSequences = object.sendSequences?.map((e) => PacketSequence.fromPartial(e)) || [];
-    message.recvSequences = object.recvSequences?.map((e) => PacketSequence.fromPartial(e)) || [];
-    message.ackSequences = object.ackSequences?.map((e) => PacketSequence.fromPartial(e)) || [];
+    message.channels = object.channels?.map(e => IdentifiedChannel.fromPartial(e)) || [];
+    message.acknowledgements = object.acknowledgements?.map(e => PacketState.fromPartial(e)) || [];
+    message.commitments = object.commitments?.map(e => PacketState.fromPartial(e)) || [];
+    message.receipts = object.receipts?.map(e => PacketState.fromPartial(e)) || [];
+    message.sendSequences = object.sendSequences?.map(e => PacketSequence.fromPartial(e)) || [];
+    message.recvSequences = object.recvSequences?.map(e => PacketSequence.fromPartial(e)) || [];
+    message.ackSequences = object.ackSequences?.map(e => PacketSequence.fromPartial(e)) || [];
     if (object.nextChannelSequence !== undefined && object.nextChannelSequence !== null) {
       message.nextChannelSequence = BigInt(object.nextChannelSequence.toString());
     }
@@ -157,13 +157,13 @@ export const GenesisState = {
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
-    message.channels = object.channels?.map((e) => IdentifiedChannel.fromAmino(e)) || [];
-    message.acknowledgements = object.acknowledgements?.map((e) => PacketState.fromAmino(e)) || [];
-    message.commitments = object.commitments?.map((e) => PacketState.fromAmino(e)) || [];
-    message.receipts = object.receipts?.map((e) => PacketState.fromAmino(e)) || [];
-    message.sendSequences = object.send_sequences?.map((e) => PacketSequence.fromAmino(e)) || [];
-    message.recvSequences = object.recv_sequences?.map((e) => PacketSequence.fromAmino(e)) || [];
-    message.ackSequences = object.ack_sequences?.map((e) => PacketSequence.fromAmino(e)) || [];
+    message.channels = object.channels?.map(e => IdentifiedChannel.fromAmino(e)) || [];
+    message.acknowledgements = object.acknowledgements?.map(e => PacketState.fromAmino(e)) || [];
+    message.commitments = object.commitments?.map(e => PacketState.fromAmino(e)) || [];
+    message.receipts = object.receipts?.map(e => PacketState.fromAmino(e)) || [];
+    message.sendSequences = object.send_sequences?.map(e => PacketSequence.fromAmino(e)) || [];
+    message.recvSequences = object.recv_sequences?.map(e => PacketSequence.fromAmino(e)) || [];
+    message.ackSequences = object.ack_sequences?.map(e => PacketSequence.fromAmino(e)) || [];
     if (object.next_channel_sequence !== undefined && object.next_channel_sequence !== null) {
       message.nextChannelSequence = BigInt(object.next_channel_sequence);
     }
@@ -172,42 +172,41 @@ export const GenesisState = {
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     if (message.channels) {
-      obj.channels = message.channels.map((e) => (e ? IdentifiedChannel.toAmino(e) : undefined));
+      obj.channels = message.channels.map(e => e ? IdentifiedChannel.toAmino(e) : undefined);
     } else {
       obj.channels = message.channels;
     }
     if (message.acknowledgements) {
-      obj.acknowledgements = message.acknowledgements.map((e) => (e ? PacketState.toAmino(e) : undefined));
+      obj.acknowledgements = message.acknowledgements.map(e => e ? PacketState.toAmino(e) : undefined);
     } else {
       obj.acknowledgements = message.acknowledgements;
     }
     if (message.commitments) {
-      obj.commitments = message.commitments.map((e) => (e ? PacketState.toAmino(e) : undefined));
+      obj.commitments = message.commitments.map(e => e ? PacketState.toAmino(e) : undefined);
     } else {
       obj.commitments = message.commitments;
     }
     if (message.receipts) {
-      obj.receipts = message.receipts.map((e) => (e ? PacketState.toAmino(e) : undefined));
+      obj.receipts = message.receipts.map(e => e ? PacketState.toAmino(e) : undefined);
     } else {
       obj.receipts = message.receipts;
     }
     if (message.sendSequences) {
-      obj.send_sequences = message.sendSequences.map((e) => (e ? PacketSequence.toAmino(e) : undefined));
+      obj.send_sequences = message.sendSequences.map(e => e ? PacketSequence.toAmino(e) : undefined);
     } else {
       obj.send_sequences = message.sendSequences;
     }
     if (message.recvSequences) {
-      obj.recv_sequences = message.recvSequences.map((e) => (e ? PacketSequence.toAmino(e) : undefined));
+      obj.recv_sequences = message.recvSequences.map(e => e ? PacketSequence.toAmino(e) : undefined);
     } else {
       obj.recv_sequences = message.recvSequences;
     }
     if (message.ackSequences) {
-      obj.ack_sequences = message.ackSequences.map((e) => (e ? PacketSequence.toAmino(e) : undefined));
+      obj.ack_sequences = message.ackSequences.map(e => e ? PacketSequence.toAmino(e) : undefined);
     } else {
       obj.ack_sequences = message.ackSequences;
     }
-    obj.next_channel_sequence =
-      message.nextChannelSequence !== BigInt(0) ? message.nextChannelSequence?.toString() : undefined;
+    obj.next_channel_sequence = message.nextChannelSequence !== BigInt(0) ? message.nextChannelSequence?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
@@ -216,7 +215,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -228,15 +227,15 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePacketSequence(): PacketSequence {
   return {
     portId: "",
     channelId: "",
-    sequence: BigInt(0),
+    sequence: BigInt(0)
   };
 }
 export const PacketSequence = {
@@ -311,7 +310,7 @@ export const PacketSequence = {
   toAminoMsg(message: PacketSequence): PacketSequenceAminoMsg {
     return {
       type: "cosmos-sdk/PacketSequence",
-      value: PacketSequence.toAmino(message),
+      value: PacketSequence.toAmino(message)
     };
   },
   fromProtoMsg(message: PacketSequenceProtoMsg): PacketSequence {
@@ -323,7 +322,7 @@ export const PacketSequence = {
   toProtoMsg(message: PacketSequence): PacketSequenceProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.PacketSequence",
-      value: PacketSequence.encode(message).finish(),
+      value: PacketSequence.encode(message).finish()
     };
-  },
+  }
 };

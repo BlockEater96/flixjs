@@ -24,7 +24,7 @@ export interface ParamsAminoMsg {
 function createBaseParams(): Params {
   return {
     maxCampaignDuration: Duration.fromPartial({}),
-    creationFee: Coin.fromPartial({}),
+    creationFee: Coin.fromPartial({})
   };
 }
 export const Params = {
@@ -80,9 +80,7 @@ export const Params = {
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.max_campaign_duration = message.maxCampaignDuration
-      ? Duration.toAmino(message.maxCampaignDuration)
-      : undefined;
+    obj.max_campaign_duration = message.maxCampaignDuration ? Duration.toAmino(message.maxCampaignDuration) : undefined;
     obj.creation_fee = message.creationFee ? Coin.toAmino(message.creationFee) : undefined;
     return obj;
   },
@@ -98,7 +96,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

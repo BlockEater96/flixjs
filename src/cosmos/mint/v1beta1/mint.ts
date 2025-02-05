@@ -66,7 +66,7 @@ export interface ParamsAminoMsg {
 function createBaseMinter(): Minter {
   return {
     inflation: "",
-    annualProvisions: "",
+    annualProvisions: ""
   };
 }
 export const Minter = {
@@ -128,7 +128,7 @@ export const Minter = {
   toAminoMsg(message: Minter): MinterAminoMsg {
     return {
       type: "cosmos-sdk/Minter",
-      value: Minter.toAmino(message),
+      value: Minter.toAmino(message)
     };
   },
   fromProtoMsg(message: MinterProtoMsg): Minter {
@@ -140,9 +140,9 @@ export const Minter = {
   toProtoMsg(message: Minter): MinterProtoMsg {
     return {
       typeUrl: "/cosmos.mint.v1beta1.Minter",
-      value: Minter.encode(message).finish(),
+      value: Minter.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseParams(): Params {
   return {
@@ -151,7 +151,7 @@ function createBaseParams(): Params {
     inflationMax: "",
     inflationMin: "",
     goalBonded: "",
-    blocksPerYear: BigInt(0),
+    blocksPerYear: BigInt(0)
   };
 }
 export const Params = {
@@ -259,7 +259,7 @@ export const Params = {
   toAminoMsg(message: Params): ParamsAminoMsg {
     return {
       type: "cosmos-sdk/x/mint/Params",
-      value: Params.toAmino(message),
+      value: Params.toAmino(message)
     };
   },
   fromProtoMsg(message: ParamsProtoMsg): Params {
@@ -271,7 +271,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/cosmos.mint.v1beta1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

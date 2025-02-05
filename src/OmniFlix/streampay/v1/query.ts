@@ -1,11 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  PageRequest,
-  PageRequestAmino,
-  PageResponse,
-  PageResponseAmino,
-} from "../../../cosmos/base/query/v1beta1/pagination";
+import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../../cosmos/base/query/v1beta1/pagination";
 import { StreamPayment, StreamPaymentAmino } from "./streampay";
 import { Params, ParamsAmino } from "./params";
 import { BinaryReader, BinaryWriter } from "../../../binary";
@@ -101,7 +96,7 @@ function createBaseQueryStreamPaymentsRequest(): QueryStreamPaymentsRequest {
   return {
     sender: "",
     recipient: "",
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryStreamPaymentsRequest = {
@@ -141,9 +136,7 @@ export const QueryStreamPaymentsRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryStreamPaymentsRequest>, I>>(
-    object: I,
-  ): QueryStreamPaymentsRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryStreamPaymentsRequest>, I>>(object: I): QueryStreamPaymentsRequest {
     const message = createBaseQueryStreamPaymentsRequest();
     message.sender = object.sender ?? "";
     message.recipient = object.recipient ?? "";
@@ -184,14 +177,14 @@ export const QueryStreamPaymentsRequest = {
   toProtoMsg(message: QueryStreamPaymentsRequest): QueryStreamPaymentsRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.QueryStreamPaymentsRequest",
-      value: QueryStreamPaymentsRequest.encode(message).finish(),
+      value: QueryStreamPaymentsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryStreamPaymentsResponse(): QueryStreamPaymentsResponse {
   return {
     streamPayments: [],
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryStreamPaymentsResponse = {
@@ -225,11 +218,9 @@ export const QueryStreamPaymentsResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryStreamPaymentsResponse>, I>>(
-    object: I,
-  ): QueryStreamPaymentsResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryStreamPaymentsResponse>, I>>(object: I): QueryStreamPaymentsResponse {
     const message = createBaseQueryStreamPaymentsResponse();
-    message.streamPayments = object.streamPayments?.map((e) => StreamPayment.fromPartial(e)) || [];
+    message.streamPayments = object.streamPayments?.map(e => StreamPayment.fromPartial(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
@@ -237,7 +228,7 @@ export const QueryStreamPaymentsResponse = {
   },
   fromAmino(object: QueryStreamPaymentsResponseAmino): QueryStreamPaymentsResponse {
     const message = createBaseQueryStreamPaymentsResponse();
-    message.streamPayments = object.stream_payments?.map((e) => StreamPayment.fromAmino(e)) || [];
+    message.streamPayments = object.stream_payments?.map(e => StreamPayment.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -246,7 +237,7 @@ export const QueryStreamPaymentsResponse = {
   toAmino(message: QueryStreamPaymentsResponse): QueryStreamPaymentsResponseAmino {
     const obj: any = {};
     if (message.streamPayments) {
-      obj.stream_payments = message.streamPayments.map((e) => (e ? StreamPayment.toAmino(e) : undefined));
+      obj.stream_payments = message.streamPayments.map(e => e ? StreamPayment.toAmino(e) : undefined);
     } else {
       obj.stream_payments = message.streamPayments;
     }
@@ -265,13 +256,13 @@ export const QueryStreamPaymentsResponse = {
   toProtoMsg(message: QueryStreamPaymentsResponse): QueryStreamPaymentsResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.QueryStreamPaymentsResponse",
-      value: QueryStreamPaymentsResponse.encode(message).finish(),
+      value: QueryStreamPaymentsResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryStreamPaymentRequest(): QueryStreamPaymentRequest {
   return {
-    id: "",
+    id: ""
   };
 }
 export const QueryStreamPaymentRequest = {
@@ -299,9 +290,7 @@ export const QueryStreamPaymentRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryStreamPaymentRequest>, I>>(
-    object: I,
-  ): QueryStreamPaymentRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryStreamPaymentRequest>, I>>(object: I): QueryStreamPaymentRequest {
     const message = createBaseQueryStreamPaymentRequest();
     message.id = object.id ?? "";
     return message;
@@ -330,13 +319,13 @@ export const QueryStreamPaymentRequest = {
   toProtoMsg(message: QueryStreamPaymentRequest): QueryStreamPaymentRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.QueryStreamPaymentRequest",
-      value: QueryStreamPaymentRequest.encode(message).finish(),
+      value: QueryStreamPaymentRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryStreamPaymentResponse(): QueryStreamPaymentResponse {
   return {
-    streamPayment: undefined,
+    streamPayment: undefined
   };
 }
 export const QueryStreamPaymentResponse = {
@@ -364,9 +353,7 @@ export const QueryStreamPaymentResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryStreamPaymentResponse>, I>>(
-    object: I,
-  ): QueryStreamPaymentResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryStreamPaymentResponse>, I>>(object: I): QueryStreamPaymentResponse {
     const message = createBaseQueryStreamPaymentResponse();
     if (object.streamPayment !== undefined && object.streamPayment !== null) {
       message.streamPayment = StreamPayment.fromPartial(object.streamPayment);
@@ -397,9 +384,9 @@ export const QueryStreamPaymentResponse = {
   toProtoMsg(message: QueryStreamPaymentResponse): QueryStreamPaymentResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.QueryStreamPaymentResponse",
-      value: QueryStreamPaymentResponse.encode(message).finish(),
+      value: QueryStreamPaymentResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
@@ -447,13 +434,13 @@ export const QueryParamsRequest = {
   toProtoMsg(message: QueryParamsRequest): QueryParamsRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.QueryParamsRequest",
-      value: QueryParamsRequest.encode(message).finish(),
+      value: QueryParamsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryParamsResponse(): QueryParamsResponse {
   return {
-    params: undefined,
+    params: undefined
   };
 }
 export const QueryParamsResponse = {
@@ -512,9 +499,9 @@ export const QueryParamsResponse = {
   toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.QueryParamsResponse",
-      value: QueryParamsResponse.encode(message).finish(),
+      value: QueryParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Query defines the gRPC querier service. */
 export interface Query {
@@ -533,16 +520,16 @@ export class QueryClientImpl implements Query {
   StreamingPayments(request: QueryStreamPaymentsRequest): Promise<QueryStreamPaymentsResponse> {
     const data = QueryStreamPaymentsRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.streampay.v1.Query", "StreamingPayments", data);
-    return promise.then((data) => QueryStreamPaymentsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryStreamPaymentsResponse.decode(new BinaryReader(data)));
   }
   StreamingPayment(request: QueryStreamPaymentRequest): Promise<QueryStreamPaymentResponse> {
     const data = QueryStreamPaymentRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.streampay.v1.Query", "StreamingPayment", data);
-    return promise.then((data) => QueryStreamPaymentResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryStreamPaymentResponse.decode(new BinaryReader(data)));
   }
   Params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.streampay.v1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
   }
 }

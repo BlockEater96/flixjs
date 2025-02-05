@@ -2,9 +2,7 @@
 /* eslint-disable */
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
 import { MsgUpdateParams } from "./tx";
-export const registry: ReadonlyArray<[string, GeneratedType]> = [
-  ["/OmniFlix.alloc.v1beta1.MsgUpdateParams", MsgUpdateParams],
-];
+export const registry: ReadonlyArray<[string, GeneratedType]> = [["/OmniFlix.alloc.v1beta1.MsgUpdateParams", MsgUpdateParams]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -15,24 +13,24 @@ export const MessageComposer = {
     updateParams(value: MsgUpdateParams) {
       return {
         typeUrl: "/OmniFlix.alloc.v1beta1.MsgUpdateParams",
-        value: MsgUpdateParams.encode(value).finish(),
+        value: MsgUpdateParams.encode(value).finish()
       };
-    },
+    }
   },
   withTypeUrl: {
     updateParams(value: MsgUpdateParams) {
       return {
         typeUrl: "/OmniFlix.alloc.v1beta1.MsgUpdateParams",
-        value,
+        value
       };
-    },
+    }
   },
   fromPartial: {
     updateParams(value: MsgUpdateParams) {
       return {
         typeUrl: "/OmniFlix.alloc.v1beta1.MsgUpdateParams",
-        value: MsgUpdateParams.fromPartial(value),
+        value: MsgUpdateParams.fromPartial(value)
       };
-    },
-  },
+    }
+  }
 };

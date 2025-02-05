@@ -71,7 +71,7 @@ export const ConfigRequest = {
   toAminoMsg(message: ConfigRequest): ConfigRequestAminoMsg {
     return {
       type: "cosmos-sdk/ConfigRequest",
-      value: ConfigRequest.toAmino(message),
+      value: ConfigRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: ConfigRequestProtoMsg): ConfigRequest {
@@ -83,13 +83,13 @@ export const ConfigRequest = {
   toProtoMsg(message: ConfigRequest): ConfigRequestProtoMsg {
     return {
       typeUrl: "/cosmos.base.node.v1beta1.ConfigRequest",
-      value: ConfigRequest.encode(message).finish(),
+      value: ConfigRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseConfigResponse(): ConfigResponse {
   return {
-    minimumGasPrice: "",
+    minimumGasPrice: ""
   };
 }
 export const ConfigResponse = {
@@ -140,7 +140,7 @@ export const ConfigResponse = {
   toAminoMsg(message: ConfigResponse): ConfigResponseAminoMsg {
     return {
       type: "cosmos-sdk/ConfigResponse",
-      value: ConfigResponse.toAmino(message),
+      value: ConfigResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: ConfigResponseProtoMsg): ConfigResponse {
@@ -152,9 +152,9 @@ export const ConfigResponse = {
   toProtoMsg(message: ConfigResponse): ConfigResponseProtoMsg {
     return {
       typeUrl: "/cosmos.base.node.v1beta1.ConfigResponse",
-      value: ConfigResponse.encode(message).finish(),
+      value: ConfigResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Service defines the gRPC querier service for node related queries. */
 export interface Service {
@@ -170,6 +170,6 @@ export class ServiceClientImpl implements Service {
   Config(request: ConfigRequest = {}): Promise<ConfigResponse> {
     const data = ConfigRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.node.v1beta1.Service", "Config", data);
-    return promise.then((data) => ConfigResponse.decode(new BinaryReader(data)));
+    return promise.then(data => ConfigResponse.decode(new BinaryReader(data)));
   }
 }

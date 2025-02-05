@@ -34,7 +34,7 @@ export interface MsgUnjailResponseAminoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParams {
@@ -42,7 +42,7 @@ export interface MsgUpdateParams {
   authority: string;
   /**
    * params defines the x/slashing parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params: Params;
@@ -53,7 +53,7 @@ export interface MsgUpdateParamsProtoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsAmino {
@@ -61,7 +61,7 @@ export interface MsgUpdateParamsAmino {
   authority?: string;
   /**
    * params defines the x/slashing parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params: ParamsAmino;
@@ -73,7 +73,7 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponse {}
@@ -84,7 +84,7 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponseAmino {}
@@ -94,7 +94,7 @@ export interface MsgUpdateParamsResponseAminoMsg {
 }
 function createBaseMsgUnjail(): MsgUnjail {
   return {
-    validatorAddr: "",
+    validatorAddr: ""
   };
 }
 export const MsgUnjail = {
@@ -145,7 +145,7 @@ export const MsgUnjail = {
   toAminoMsg(message: MsgUnjail): MsgUnjailAminoMsg {
     return {
       type: "cosmos-sdk/MsgUnjail",
-      value: MsgUnjail.toAmino(message),
+      value: MsgUnjail.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUnjailProtoMsg): MsgUnjail {
@@ -157,9 +157,9 @@ export const MsgUnjail = {
   toProtoMsg(message: MsgUnjail): MsgUnjailProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.MsgUnjail",
-      value: MsgUnjail.encode(message).finish(),
+      value: MsgUnjail.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUnjailResponse(): MsgUnjailResponse {
   return {};
@@ -201,7 +201,7 @@ export const MsgUnjailResponse = {
   toAminoMsg(message: MsgUnjailResponse): MsgUnjailResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgUnjailResponse",
-      value: MsgUnjailResponse.toAmino(message),
+      value: MsgUnjailResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUnjailResponseProtoMsg): MsgUnjailResponse {
@@ -213,14 +213,14 @@ export const MsgUnjailResponse = {
   toProtoMsg(message: MsgUnjailResponse): MsgUnjailResponseProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.MsgUnjailResponse",
-      value: MsgUnjailResponse.encode(message).finish(),
+      value: MsgUnjailResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const MsgUpdateParams = {
@@ -284,7 +284,7 @@ export const MsgUpdateParams = {
   toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg {
     return {
       type: "cosmos-sdk/x/slashing/MsgUpdateParams",
-      value: MsgUpdateParams.toAmino(message),
+      value: MsgUpdateParams.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams {
@@ -296,9 +296,9 @@ export const MsgUpdateParams = {
   toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.MsgUpdateParams",
-      value: MsgUpdateParams.encode(message).finish(),
+      value: MsgUpdateParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
@@ -340,7 +340,7 @@ export const MsgUpdateParamsResponse = {
   toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.toAmino(message),
+      value: MsgUpdateParamsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse {
@@ -352,9 +352,9 @@ export const MsgUpdateParamsResponse = {
   toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.encode(message).finish(),
+      value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the slashing Msg service. */
 export interface Msg {
@@ -367,7 +367,7 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/slashing module
    * parameters. The authority defaults to the x/gov module account.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
@@ -382,11 +382,11 @@ export class MsgClientImpl implements Msg {
   Unjail(request: MsgUnjail): Promise<MsgUnjailResponse> {
     const data = MsgUnjail.encode(request).finish();
     const promise = this.rpc.request("cosmos.slashing.v1beta1.Msg", "Unjail", data);
-    return promise.then((data) => MsgUnjailResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUnjailResponse.decode(new BinaryReader(data)));
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.slashing.v1beta1.Msg", "UpdateParams", data);
-    return promise.then((data) => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
   }
 }

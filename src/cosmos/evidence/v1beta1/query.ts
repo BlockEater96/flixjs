@@ -1,11 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  PageRequest,
-  PageRequestAmino,
-  PageResponse,
-  PageResponseAmino,
-} from "../../base/query/v1beta1/pagination";
+import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../base/query/v1beta1/pagination";
 import { Any, AnyAmino } from "../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, Exact, bytesFromBase64, base64FromBytes, Rpc } from "../../../helpers";
@@ -20,7 +15,7 @@ export interface QueryEvidenceRequest {
   evidenceHash: Uint8Array;
   /**
    * hash defines the evidence hash of the requested evidence.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   hash: string;
@@ -39,7 +34,7 @@ export interface QueryEvidenceRequestAmino {
   evidence_hash?: string;
   /**
    * hash defines the evidence hash of the requested evidence.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   hash?: string;
@@ -121,7 +116,7 @@ export interface QueryAllEvidenceResponseAminoMsg {
 function createBaseQueryEvidenceRequest(): QueryEvidenceRequest {
   return {
     evidenceHash: new Uint8Array(),
-    hash: "",
+    hash: ""
   };
 }
 export const QueryEvidenceRequest = {
@@ -183,7 +178,7 @@ export const QueryEvidenceRequest = {
   toAminoMsg(message: QueryEvidenceRequest): QueryEvidenceRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryEvidenceRequest",
-      value: QueryEvidenceRequest.toAmino(message),
+      value: QueryEvidenceRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryEvidenceRequestProtoMsg): QueryEvidenceRequest {
@@ -195,13 +190,13 @@ export const QueryEvidenceRequest = {
   toProtoMsg(message: QueryEvidenceRequest): QueryEvidenceRequestProtoMsg {
     return {
       typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceRequest",
-      value: QueryEvidenceRequest.encode(message).finish(),
+      value: QueryEvidenceRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryEvidenceResponse(): QueryEvidenceResponse {
   return {
-    evidence: undefined,
+    evidence: undefined
   };
 }
 export const QueryEvidenceResponse = {
@@ -254,7 +249,7 @@ export const QueryEvidenceResponse = {
   toAminoMsg(message: QueryEvidenceResponse): QueryEvidenceResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryEvidenceResponse",
-      value: QueryEvidenceResponse.toAmino(message),
+      value: QueryEvidenceResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryEvidenceResponseProtoMsg): QueryEvidenceResponse {
@@ -266,13 +261,13 @@ export const QueryEvidenceResponse = {
   toProtoMsg(message: QueryEvidenceResponse): QueryEvidenceResponseProtoMsg {
     return {
       typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceResponse",
-      value: QueryEvidenceResponse.encode(message).finish(),
+      value: QueryEvidenceResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAllEvidenceRequest(): QueryAllEvidenceRequest {
   return {
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryAllEvidenceRequest = {
@@ -325,7 +320,7 @@ export const QueryAllEvidenceRequest = {
   toAminoMsg(message: QueryAllEvidenceRequest): QueryAllEvidenceRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryAllEvidenceRequest",
-      value: QueryAllEvidenceRequest.toAmino(message),
+      value: QueryAllEvidenceRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryAllEvidenceRequestProtoMsg): QueryAllEvidenceRequest {
@@ -337,14 +332,14 @@ export const QueryAllEvidenceRequest = {
   toProtoMsg(message: QueryAllEvidenceRequest): QueryAllEvidenceRequestProtoMsg {
     return {
       typeUrl: "/cosmos.evidence.v1beta1.QueryAllEvidenceRequest",
-      value: QueryAllEvidenceRequest.encode(message).finish(),
+      value: QueryAllEvidenceRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAllEvidenceResponse(): QueryAllEvidenceResponse {
   return {
     evidence: [],
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryAllEvidenceResponse = {
@@ -378,11 +373,9 @@ export const QueryAllEvidenceResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryAllEvidenceResponse>, I>>(
-    object: I,
-  ): QueryAllEvidenceResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryAllEvidenceResponse>, I>>(object: I): QueryAllEvidenceResponse {
     const message = createBaseQueryAllEvidenceResponse();
-    message.evidence = object.evidence?.map((e) => Any.fromPartial(e)) || [];
+    message.evidence = object.evidence?.map(e => Any.fromPartial(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
@@ -390,7 +383,7 @@ export const QueryAllEvidenceResponse = {
   },
   fromAmino(object: QueryAllEvidenceResponseAmino): QueryAllEvidenceResponse {
     const message = createBaseQueryAllEvidenceResponse();
-    message.evidence = object.evidence?.map((e) => Any.fromAmino(e)) || [];
+    message.evidence = object.evidence?.map(e => Any.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -399,7 +392,7 @@ export const QueryAllEvidenceResponse = {
   toAmino(message: QueryAllEvidenceResponse): QueryAllEvidenceResponseAmino {
     const obj: any = {};
     if (message.evidence) {
-      obj.evidence = message.evidence.map((e) => (e ? Any.toAmino(e) : undefined));
+      obj.evidence = message.evidence.map(e => e ? Any.toAmino(e) : undefined);
     } else {
       obj.evidence = message.evidence;
     }
@@ -412,7 +405,7 @@ export const QueryAllEvidenceResponse = {
   toAminoMsg(message: QueryAllEvidenceResponse): QueryAllEvidenceResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryAllEvidenceResponse",
-      value: QueryAllEvidenceResponse.toAmino(message),
+      value: QueryAllEvidenceResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryAllEvidenceResponseProtoMsg): QueryAllEvidenceResponse {
@@ -424,9 +417,9 @@ export const QueryAllEvidenceResponse = {
   toProtoMsg(message: QueryAllEvidenceResponse): QueryAllEvidenceResponseProtoMsg {
     return {
       typeUrl: "/cosmos.evidence.v1beta1.QueryAllEvidenceResponse",
-      value: QueryAllEvidenceResponse.encode(message).finish(),
+      value: QueryAllEvidenceResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Query defines the gRPC querier service. */
 export interface Query {
@@ -445,15 +438,13 @@ export class QueryClientImpl implements Query {
   Evidence(request: QueryEvidenceRequest): Promise<QueryEvidenceResponse> {
     const data = QueryEvidenceRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.evidence.v1beta1.Query", "Evidence", data);
-    return promise.then((data) => QueryEvidenceResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryEvidenceResponse.decode(new BinaryReader(data)));
   }
-  AllEvidence(
-    request: QueryAllEvidenceRequest = {
-      pagination: PageRequest.fromPartial({}),
-    },
-  ): Promise<QueryAllEvidenceResponse> {
+  AllEvidence(request: QueryAllEvidenceRequest = {
+    pagination: PageRequest.fromPartial({})
+  }): Promise<QueryAllEvidenceResponse> {
     const data = QueryAllEvidenceRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.evidence.v1beta1.Query", "AllEvidence", data);
-    return promise.then((data) => QueryAllEvidenceResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryAllEvidenceResponse.decode(new BinaryReader(data)));
   }
 }

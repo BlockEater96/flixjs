@@ -106,7 +106,7 @@ function createBaseAuctionListing(): AuctionListing {
     owner: "",
     incrementPercentage: "",
     whitelistAccounts: [],
-    splitShares: [],
+    splitShares: []
   };
 }
 export const AuctionListing = {
@@ -206,8 +206,8 @@ export const AuctionListing = {
     }
     message.owner = object.owner ?? "";
     message.incrementPercentage = object.incrementPercentage ?? "";
-    message.whitelistAccounts = object.whitelistAccounts?.map((e) => e) || [];
-    message.splitShares = object.splitShares?.map((e) => WeightedAddress.fromPartial(e)) || [];
+    message.whitelistAccounts = object.whitelistAccounts?.map(e => e) || [];
+    message.splitShares = object.splitShares?.map(e => WeightedAddress.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: AuctionListingAmino): AuctionListing {
@@ -236,8 +236,8 @@ export const AuctionListing = {
     if (object.increment_percentage !== undefined && object.increment_percentage !== null) {
       message.incrementPercentage = object.increment_percentage;
     }
-    message.whitelistAccounts = object.whitelist_accounts?.map((e) => e) || [];
-    message.splitShares = object.split_shares?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    message.whitelistAccounts = object.whitelist_accounts?.map(e => e) || [];
+    message.splitShares = object.split_shares?.map(e => WeightedAddress.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: AuctionListing): AuctionListingAmino {
@@ -251,12 +251,12 @@ export const AuctionListing = {
     obj.owner = message.owner === "" ? undefined : message.owner;
     obj.increment_percentage = message.incrementPercentage === "" ? undefined : message.incrementPercentage;
     if (message.whitelistAccounts) {
-      obj.whitelist_accounts = message.whitelistAccounts.map((e) => e);
+      obj.whitelist_accounts = message.whitelistAccounts.map(e => e);
     } else {
       obj.whitelist_accounts = message.whitelistAccounts;
     }
     if (message.splitShares) {
-      obj.split_shares = message.splitShares.map((e) => (e ? WeightedAddress.toAmino(e) : undefined));
+      obj.split_shares = message.splitShares.map(e => e ? WeightedAddress.toAmino(e) : undefined);
     } else {
       obj.split_shares = message.splitShares;
     }
@@ -274,16 +274,16 @@ export const AuctionListing = {
   toProtoMsg(message: AuctionListing): AuctionListingProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.AuctionListing",
-      value: AuctionListing.encode(message).finish(),
+      value: AuctionListing.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseBid(): Bid {
   return {
     auctionId: BigInt(0),
     bidder: "",
     amount: Coin.fromPartial({}),
-    time: Timestamp.fromPartial({}),
+    time: Timestamp.fromPartial({})
   };
 }
 export const Bid = {
@@ -379,7 +379,7 @@ export const Bid = {
   toProtoMsg(message: Bid): BidProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.Bid",
-      value: Bid.encode(message).finish(),
+      value: Bid.encode(message).finish()
     };
-  },
+  }
 };

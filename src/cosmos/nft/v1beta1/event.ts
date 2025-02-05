@@ -90,7 +90,7 @@ function createBaseEventSend(): EventSend {
     classId: "",
     id: "",
     sender: "",
-    receiver: "",
+    receiver: ""
   };
 }
 export const EventSend = {
@@ -174,7 +174,7 @@ export const EventSend = {
   toAminoMsg(message: EventSend): EventSendAminoMsg {
     return {
       type: "cosmos-sdk/EventSend",
-      value: EventSend.toAmino(message),
+      value: EventSend.toAmino(message)
     };
   },
   fromProtoMsg(message: EventSendProtoMsg): EventSend {
@@ -186,15 +186,15 @@ export const EventSend = {
   toProtoMsg(message: EventSend): EventSendProtoMsg {
     return {
       typeUrl: "/cosmos.nft.v1beta1.EventSend",
-      value: EventSend.encode(message).finish(),
+      value: EventSend.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEventMint(): EventMint {
   return {
     classId: "",
     id: "",
-    owner: "",
+    owner: ""
   };
 }
 export const EventMint = {
@@ -267,7 +267,7 @@ export const EventMint = {
   toAminoMsg(message: EventMint): EventMintAminoMsg {
     return {
       type: "cosmos-sdk/EventMint",
-      value: EventMint.toAmino(message),
+      value: EventMint.toAmino(message)
     };
   },
   fromProtoMsg(message: EventMintProtoMsg): EventMint {
@@ -279,15 +279,15 @@ export const EventMint = {
   toProtoMsg(message: EventMint): EventMintProtoMsg {
     return {
       typeUrl: "/cosmos.nft.v1beta1.EventMint",
-      value: EventMint.encode(message).finish(),
+      value: EventMint.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEventBurn(): EventBurn {
   return {
     classId: "",
     id: "",
-    owner: "",
+    owner: ""
   };
 }
 export const EventBurn = {
@@ -360,7 +360,7 @@ export const EventBurn = {
   toAminoMsg(message: EventBurn): EventBurnAminoMsg {
     return {
       type: "cosmos-sdk/EventBurn",
-      value: EventBurn.toAmino(message),
+      value: EventBurn.toAmino(message)
     };
   },
   fromProtoMsg(message: EventBurnProtoMsg): EventBurn {
@@ -372,7 +372,7 @@ export const EventBurn = {
   toProtoMsg(message: EventBurn): EventBurnProtoMsg {
     return {
       typeUrl: "/cosmos.nft.v1beta1.EventBurn",
-      value: EventBurn.encode(message).finish(),
+      value: EventBurn.encode(message).finish()
     };
-  },
+  }
 };

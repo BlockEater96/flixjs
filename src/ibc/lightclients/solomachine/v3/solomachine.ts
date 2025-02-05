@@ -234,7 +234,7 @@ function createBaseClientState(): ClientState {
   return {
     sequence: BigInt(0),
     isFrozen: false,
-    consensusState: undefined,
+    consensusState: undefined
   };
 }
 export const ClientState = {
@@ -311,7 +311,7 @@ export const ClientState = {
   toAminoMsg(message: ClientState): ClientStateAminoMsg {
     return {
       type: "cosmos-sdk/ClientState",
-      value: ClientState.toAmino(message),
+      value: ClientState.toAmino(message)
     };
   },
   fromProtoMsg(message: ClientStateProtoMsg): ClientState {
@@ -323,15 +323,15 @@ export const ClientState = {
   toProtoMsg(message: ClientState): ClientStateProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.solomachine.v3.ClientState",
-      value: ClientState.encode(message).finish(),
+      value: ClientState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseConsensusState(): ConsensusState {
   return {
     publicKey: undefined,
     diversifier: "",
-    timestamp: BigInt(0),
+    timestamp: BigInt(0)
   };
 }
 export const ConsensusState = {
@@ -408,7 +408,7 @@ export const ConsensusState = {
   toAminoMsg(message: ConsensusState): ConsensusStateAminoMsg {
     return {
       type: "cosmos-sdk/ConsensusState",
-      value: ConsensusState.toAmino(message),
+      value: ConsensusState.toAmino(message)
     };
   },
   fromProtoMsg(message: ConsensusStateProtoMsg): ConsensusState {
@@ -420,16 +420,16 @@ export const ConsensusState = {
   toProtoMsg(message: ConsensusState): ConsensusStateProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.solomachine.v3.ConsensusState",
-      value: ConsensusState.encode(message).finish(),
+      value: ConsensusState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseHeader(): Header {
   return {
     timestamp: BigInt(0),
     signature: new Uint8Array(),
     newPublicKey: undefined,
-    newDiversifier: "",
+    newDiversifier: ""
   };
 }
 export const Header = {
@@ -517,7 +517,7 @@ export const Header = {
   toAminoMsg(message: Header): HeaderAminoMsg {
     return {
       type: "cosmos-sdk/Header",
-      value: Header.toAmino(message),
+      value: Header.toAmino(message)
     };
   },
   fromProtoMsg(message: HeaderProtoMsg): Header {
@@ -529,15 +529,15 @@ export const Header = {
   toProtoMsg(message: Header): HeaderProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.solomachine.v3.Header",
-      value: Header.encode(message).finish(),
+      value: Header.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMisbehaviour(): Misbehaviour {
   return {
     sequence: BigInt(0),
     signatureOne: undefined,
-    signatureTwo: undefined,
+    signatureTwo: undefined
   };
 }
 export const Misbehaviour = {
@@ -616,7 +616,7 @@ export const Misbehaviour = {
   toAminoMsg(message: Misbehaviour): MisbehaviourAminoMsg {
     return {
       type: "cosmos-sdk/Misbehaviour",
-      value: Misbehaviour.toAmino(message),
+      value: Misbehaviour.toAmino(message)
     };
   },
   fromProtoMsg(message: MisbehaviourProtoMsg): Misbehaviour {
@@ -628,16 +628,16 @@ export const Misbehaviour = {
   toProtoMsg(message: Misbehaviour): MisbehaviourProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.solomachine.v3.Misbehaviour",
-      value: Misbehaviour.encode(message).finish(),
+      value: Misbehaviour.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseSignatureAndData(): SignatureAndData {
   return {
     signature: new Uint8Array(),
     path: new Uint8Array(),
     data: new Uint8Array(),
-    timestamp: BigInt(0),
+    timestamp: BigInt(0)
   };
 }
 export const SignatureAndData = {
@@ -723,7 +723,7 @@ export const SignatureAndData = {
   toAminoMsg(message: SignatureAndData): SignatureAndDataAminoMsg {
     return {
       type: "cosmos-sdk/SignatureAndData",
-      value: SignatureAndData.toAmino(message),
+      value: SignatureAndData.toAmino(message)
     };
   },
   fromProtoMsg(message: SignatureAndDataProtoMsg): SignatureAndData {
@@ -735,14 +735,14 @@ export const SignatureAndData = {
   toProtoMsg(message: SignatureAndData): SignatureAndDataProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.solomachine.v3.SignatureAndData",
-      value: SignatureAndData.encode(message).finish(),
+      value: SignatureAndData.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseTimestampedSignatureData(): TimestampedSignatureData {
   return {
     signatureData: new Uint8Array(),
-    timestamp: BigInt(0),
+    timestamp: BigInt(0)
   };
 }
 export const TimestampedSignatureData = {
@@ -776,9 +776,7 @@ export const TimestampedSignatureData = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<TimestampedSignatureData>, I>>(
-    object: I,
-  ): TimestampedSignatureData {
+  fromPartial<I extends Exact<DeepPartial<TimestampedSignatureData>, I>>(object: I): TimestampedSignatureData {
     const message = createBaseTimestampedSignatureData();
     message.signatureData = object.signatureData ?? new Uint8Array();
     if (object.timestamp !== undefined && object.timestamp !== null) {
@@ -808,7 +806,7 @@ export const TimestampedSignatureData = {
   toAminoMsg(message: TimestampedSignatureData): TimestampedSignatureDataAminoMsg {
     return {
       type: "cosmos-sdk/TimestampedSignatureData",
-      value: TimestampedSignatureData.toAmino(message),
+      value: TimestampedSignatureData.toAmino(message)
     };
   },
   fromProtoMsg(message: TimestampedSignatureDataProtoMsg): TimestampedSignatureData {
@@ -820,9 +818,9 @@ export const TimestampedSignatureData = {
   toProtoMsg(message: TimestampedSignatureData): TimestampedSignatureDataProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.solomachine.v3.TimestampedSignatureData",
-      value: TimestampedSignatureData.encode(message).finish(),
+      value: TimestampedSignatureData.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseSignBytes(): SignBytes {
   return {
@@ -830,7 +828,7 @@ function createBaseSignBytes(): SignBytes {
     timestamp: BigInt(0),
     diversifier: "",
     path: new Uint8Array(),
-    data: new Uint8Array(),
+    data: new Uint8Array()
   };
 }
 export const SignBytes = {
@@ -929,7 +927,7 @@ export const SignBytes = {
   toAminoMsg(message: SignBytes): SignBytesAminoMsg {
     return {
       type: "cosmos-sdk/SignBytes",
-      value: SignBytes.toAmino(message),
+      value: SignBytes.toAmino(message)
     };
   },
   fromProtoMsg(message: SignBytesProtoMsg): SignBytes {
@@ -941,14 +939,14 @@ export const SignBytes = {
   toProtoMsg(message: SignBytes): SignBytesProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.solomachine.v3.SignBytes",
-      value: SignBytes.encode(message).finish(),
+      value: SignBytes.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseHeaderData(): HeaderData {
   return {
     newPubKey: undefined,
-    newDiversifier: "",
+    newDiversifier: ""
   };
 }
 export const HeaderData = {
@@ -1012,7 +1010,7 @@ export const HeaderData = {
   toAminoMsg(message: HeaderData): HeaderDataAminoMsg {
     return {
       type: "cosmos-sdk/HeaderData",
-      value: HeaderData.toAmino(message),
+      value: HeaderData.toAmino(message)
     };
   },
   fromProtoMsg(message: HeaderDataProtoMsg): HeaderData {
@@ -1024,7 +1022,7 @@ export const HeaderData = {
   toProtoMsg(message: HeaderData): HeaderDataProtoMsg {
     return {
       typeUrl: "/ibc.lightclients.solomachine.v3.HeaderData",
-      value: HeaderData.encode(message).finish(),
+      value: HeaderData.encode(message).finish()
     };
-  },
+  }
 };

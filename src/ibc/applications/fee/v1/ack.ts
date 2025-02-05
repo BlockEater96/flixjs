@@ -33,7 +33,7 @@ function createBaseIncentivizedAcknowledgement(): IncentivizedAcknowledgement {
   return {
     appAcknowledgement: new Uint8Array(),
     forwardRelayerAddress: "",
-    underlyingAppSuccess: false,
+    underlyingAppSuccess: false
   };
 }
 export const IncentivizedAcknowledgement = {
@@ -73,9 +73,7 @@ export const IncentivizedAcknowledgement = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<IncentivizedAcknowledgement>, I>>(
-    object: I,
-  ): IncentivizedAcknowledgement {
+  fromPartial<I extends Exact<DeepPartial<IncentivizedAcknowledgement>, I>>(object: I): IncentivizedAcknowledgement {
     const message = createBaseIncentivizedAcknowledgement();
     message.appAcknowledgement = object.appAcknowledgement ?? new Uint8Array();
     message.forwardRelayerAddress = object.forwardRelayerAddress ?? "";
@@ -97,13 +95,9 @@ export const IncentivizedAcknowledgement = {
   },
   toAmino(message: IncentivizedAcknowledgement): IncentivizedAcknowledgementAmino {
     const obj: any = {};
-    obj.app_acknowledgement = message.appAcknowledgement
-      ? base64FromBytes(message.appAcknowledgement)
-      : undefined;
-    obj.forward_relayer_address =
-      message.forwardRelayerAddress === "" ? undefined : message.forwardRelayerAddress;
-    obj.underlying_app_success =
-      message.underlyingAppSuccess === false ? undefined : message.underlyingAppSuccess;
+    obj.app_acknowledgement = message.appAcknowledgement ? base64FromBytes(message.appAcknowledgement) : undefined;
+    obj.forward_relayer_address = message.forwardRelayerAddress === "" ? undefined : message.forwardRelayerAddress;
+    obj.underlying_app_success = message.underlyingAppSuccess === false ? undefined : message.underlyingAppSuccess;
     return obj;
   },
   fromAminoMsg(object: IncentivizedAcknowledgementAminoMsg): IncentivizedAcknowledgement {
@@ -112,7 +106,7 @@ export const IncentivizedAcknowledgement = {
   toAminoMsg(message: IncentivizedAcknowledgement): IncentivizedAcknowledgementAminoMsg {
     return {
       type: "cosmos-sdk/IncentivizedAcknowledgement",
-      value: IncentivizedAcknowledgement.toAmino(message),
+      value: IncentivizedAcknowledgement.toAmino(message)
     };
   },
   fromProtoMsg(message: IncentivizedAcknowledgementProtoMsg): IncentivizedAcknowledgement {
@@ -124,7 +118,7 @@ export const IncentivizedAcknowledgement = {
   toProtoMsg(message: IncentivizedAcknowledgement): IncentivizedAcknowledgementProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.IncentivizedAcknowledgement",
-      value: IncentivizedAcknowledgement.encode(message).finish(),
+      value: IncentivizedAcknowledgement.encode(message).finish()
     };
-  },
+  }
 };

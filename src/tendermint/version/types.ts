@@ -58,7 +58,7 @@ export interface ConsensusAminoMsg {
 function createBaseApp(): App {
   return {
     protocol: BigInt(0),
-    software: "",
+    software: ""
   };
 }
 export const App = {
@@ -128,14 +128,14 @@ export const App = {
   toProtoMsg(message: App): AppProtoMsg {
     return {
       typeUrl: "/tendermint.version.App",
-      value: App.encode(message).finish(),
+      value: App.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseConsensus(): Consensus {
   return {
     block: BigInt(0),
-    app: BigInt(0),
+    app: BigInt(0)
   };
 }
 export const Consensus = {
@@ -207,7 +207,7 @@ export const Consensus = {
   toProtoMsg(message: Consensus): ConsensusProtoMsg {
     return {
       typeUrl: "/tendermint.version.Consensus",
-      value: Consensus.encode(message).finish(),
+      value: Consensus.encode(message).finish()
     };
-  },
+  }
 };

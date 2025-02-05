@@ -1,11 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  PageRequest,
-  PageRequestAmino,
-  PageResponse,
-  PageResponseAmino,
-} from "../../../base/query/v1beta1/pagination";
+import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../../base/query/v1beta1/pagination";
 import { Any, AnyAmino } from "../../../../google/protobuf/any";
 import { Timestamp } from "../../../../google/protobuf/timestamp";
 import { Duration, DurationAmino } from "../../../../google/protobuf/duration";
@@ -266,7 +261,7 @@ function createBaseGetRequest(): GetRequest {
   return {
     messageName: "",
     index: "",
-    values: [],
+    values: []
   };
 }
 export const GetRequest = {
@@ -310,7 +305,7 @@ export const GetRequest = {
     const message = createBaseGetRequest();
     message.messageName = object.messageName ?? "";
     message.index = object.index ?? "";
-    message.values = object.values?.map((e) => IndexValue.fromPartial(e)) || [];
+    message.values = object.values?.map(e => IndexValue.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GetRequestAmino): GetRequest {
@@ -321,7 +316,7 @@ export const GetRequest = {
     if (object.index !== undefined && object.index !== null) {
       message.index = object.index;
     }
-    message.values = object.values?.map((e) => IndexValue.fromAmino(e)) || [];
+    message.values = object.values?.map(e => IndexValue.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GetRequest): GetRequestAmino {
@@ -329,7 +324,7 @@ export const GetRequest = {
     obj.message_name = message.messageName === "" ? undefined : message.messageName;
     obj.index = message.index === "" ? undefined : message.index;
     if (message.values) {
-      obj.values = message.values.map((e) => (e ? IndexValue.toAmino(e) : undefined));
+      obj.values = message.values.map(e => e ? IndexValue.toAmino(e) : undefined);
     } else {
       obj.values = message.values;
     }
@@ -341,7 +336,7 @@ export const GetRequest = {
   toAminoMsg(message: GetRequest): GetRequestAminoMsg {
     return {
       type: "cosmos-sdk/GetRequest",
-      value: GetRequest.toAmino(message),
+      value: GetRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: GetRequestProtoMsg): GetRequest {
@@ -353,13 +348,13 @@ export const GetRequest = {
   toProtoMsg(message: GetRequest): GetRequestProtoMsg {
     return {
       typeUrl: "/cosmos.orm.query.v1alpha1.GetRequest",
-      value: GetRequest.encode(message).finish(),
+      value: GetRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseGetResponse(): GetResponse {
   return {
-    result: undefined,
+    result: undefined
   };
 }
 export const GetResponse = {
@@ -412,7 +407,7 @@ export const GetResponse = {
   toAminoMsg(message: GetResponse): GetResponseAminoMsg {
     return {
       type: "cosmos-sdk/GetResponse",
-      value: GetResponse.toAmino(message),
+      value: GetResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: GetResponseProtoMsg): GetResponse {
@@ -424,9 +419,9 @@ export const GetResponse = {
   toProtoMsg(message: GetResponse): GetResponseProtoMsg {
     return {
       typeUrl: "/cosmos.orm.query.v1alpha1.GetResponse",
-      value: GetResponse.encode(message).finish(),
+      value: GetResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseListRequest(): ListRequest {
   return {
@@ -434,7 +429,7 @@ function createBaseListRequest(): ListRequest {
     index: "",
     prefix: undefined,
     range: undefined,
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const ListRequest = {
@@ -535,7 +530,7 @@ export const ListRequest = {
   toAminoMsg(message: ListRequest): ListRequestAminoMsg {
     return {
       type: "cosmos-sdk/ListRequest",
-      value: ListRequest.toAmino(message),
+      value: ListRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: ListRequestProtoMsg): ListRequest {
@@ -547,13 +542,13 @@ export const ListRequest = {
   toProtoMsg(message: ListRequest): ListRequestProtoMsg {
     return {
       typeUrl: "/cosmos.orm.query.v1alpha1.ListRequest",
-      value: ListRequest.encode(message).finish(),
+      value: ListRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseListRequest_Prefix(): ListRequest_Prefix {
   return {
-    values: [],
+    values: []
   };
 }
 export const ListRequest_Prefix = {
@@ -583,18 +578,18 @@ export const ListRequest_Prefix = {
   },
   fromPartial<I extends Exact<DeepPartial<ListRequest_Prefix>, I>>(object: I): ListRequest_Prefix {
     const message = createBaseListRequest_Prefix();
-    message.values = object.values?.map((e) => IndexValue.fromPartial(e)) || [];
+    message.values = object.values?.map(e => IndexValue.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ListRequest_PrefixAmino): ListRequest_Prefix {
     const message = createBaseListRequest_Prefix();
-    message.values = object.values?.map((e) => IndexValue.fromAmino(e)) || [];
+    message.values = object.values?.map(e => IndexValue.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ListRequest_Prefix): ListRequest_PrefixAmino {
     const obj: any = {};
     if (message.values) {
-      obj.values = message.values.map((e) => (e ? IndexValue.toAmino(e) : undefined));
+      obj.values = message.values.map(e => e ? IndexValue.toAmino(e) : undefined);
     } else {
       obj.values = message.values;
     }
@@ -606,7 +601,7 @@ export const ListRequest_Prefix = {
   toAminoMsg(message: ListRequest_Prefix): ListRequest_PrefixAminoMsg {
     return {
       type: "cosmos-sdk/Prefix",
-      value: ListRequest_Prefix.toAmino(message),
+      value: ListRequest_Prefix.toAmino(message)
     };
   },
   fromProtoMsg(message: ListRequest_PrefixProtoMsg): ListRequest_Prefix {
@@ -618,14 +613,14 @@ export const ListRequest_Prefix = {
   toProtoMsg(message: ListRequest_Prefix): ListRequest_PrefixProtoMsg {
     return {
       typeUrl: "/cosmos.orm.query.v1alpha1.Prefix",
-      value: ListRequest_Prefix.encode(message).finish(),
+      value: ListRequest_Prefix.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseListRequest_Range(): ListRequest_Range {
   return {
     start: [],
-    end: [],
+    end: []
   };
 }
 export const ListRequest_Range = {
@@ -661,25 +656,25 @@ export const ListRequest_Range = {
   },
   fromPartial<I extends Exact<DeepPartial<ListRequest_Range>, I>>(object: I): ListRequest_Range {
     const message = createBaseListRequest_Range();
-    message.start = object.start?.map((e) => IndexValue.fromPartial(e)) || [];
-    message.end = object.end?.map((e) => IndexValue.fromPartial(e)) || [];
+    message.start = object.start?.map(e => IndexValue.fromPartial(e)) || [];
+    message.end = object.end?.map(e => IndexValue.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ListRequest_RangeAmino): ListRequest_Range {
     const message = createBaseListRequest_Range();
-    message.start = object.start?.map((e) => IndexValue.fromAmino(e)) || [];
-    message.end = object.end?.map((e) => IndexValue.fromAmino(e)) || [];
+    message.start = object.start?.map(e => IndexValue.fromAmino(e)) || [];
+    message.end = object.end?.map(e => IndexValue.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ListRequest_Range): ListRequest_RangeAmino {
     const obj: any = {};
     if (message.start) {
-      obj.start = message.start.map((e) => (e ? IndexValue.toAmino(e) : undefined));
+      obj.start = message.start.map(e => e ? IndexValue.toAmino(e) : undefined);
     } else {
       obj.start = message.start;
     }
     if (message.end) {
-      obj.end = message.end.map((e) => (e ? IndexValue.toAmino(e) : undefined));
+      obj.end = message.end.map(e => e ? IndexValue.toAmino(e) : undefined);
     } else {
       obj.end = message.end;
     }
@@ -691,7 +686,7 @@ export const ListRequest_Range = {
   toAminoMsg(message: ListRequest_Range): ListRequest_RangeAminoMsg {
     return {
       type: "cosmos-sdk/Range",
-      value: ListRequest_Range.toAmino(message),
+      value: ListRequest_Range.toAmino(message)
     };
   },
   fromProtoMsg(message: ListRequest_RangeProtoMsg): ListRequest_Range {
@@ -703,14 +698,14 @@ export const ListRequest_Range = {
   toProtoMsg(message: ListRequest_Range): ListRequest_RangeProtoMsg {
     return {
       typeUrl: "/cosmos.orm.query.v1alpha1.Range",
-      value: ListRequest_Range.encode(message).finish(),
+      value: ListRequest_Range.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseListResponse(): ListResponse {
   return {
     results: [],
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const ListResponse = {
@@ -746,7 +741,7 @@ export const ListResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ListResponse>, I>>(object: I): ListResponse {
     const message = createBaseListResponse();
-    message.results = object.results?.map((e) => Any.fromPartial(e)) || [];
+    message.results = object.results?.map(e => Any.fromPartial(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
@@ -754,7 +749,7 @@ export const ListResponse = {
   },
   fromAmino(object: ListResponseAmino): ListResponse {
     const message = createBaseListResponse();
-    message.results = object.results?.map((e) => Any.fromAmino(e)) || [];
+    message.results = object.results?.map(e => Any.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -763,7 +758,7 @@ export const ListResponse = {
   toAmino(message: ListResponse): ListResponseAmino {
     const obj: any = {};
     if (message.results) {
-      obj.results = message.results.map((e) => (e ? Any.toAmino(e) : undefined));
+      obj.results = message.results.map(e => e ? Any.toAmino(e) : undefined);
     } else {
       obj.results = message.results;
     }
@@ -776,7 +771,7 @@ export const ListResponse = {
   toAminoMsg(message: ListResponse): ListResponseAminoMsg {
     return {
       type: "cosmos-sdk/ListResponse",
-      value: ListResponse.toAmino(message),
+      value: ListResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: ListResponseProtoMsg): ListResponse {
@@ -788,9 +783,9 @@ export const ListResponse = {
   toProtoMsg(message: ListResponse): ListResponseProtoMsg {
     return {
       typeUrl: "/cosmos.orm.query.v1alpha1.ListResponse",
-      value: ListResponse.encode(message).finish(),
+      value: ListResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseIndexValue(): IndexValue {
   return {
@@ -801,7 +796,7 @@ function createBaseIndexValue(): IndexValue {
     enum: undefined,
     bool: undefined,
     timestamp: undefined,
-    duration: undefined,
+    duration: undefined
   };
 }
 export const IndexValue = {
@@ -937,7 +932,7 @@ export const IndexValue = {
   toAminoMsg(message: IndexValue): IndexValueAminoMsg {
     return {
       type: "cosmos-sdk/IndexValue",
-      value: IndexValue.toAmino(message),
+      value: IndexValue.toAmino(message)
     };
   },
   fromProtoMsg(message: IndexValueProtoMsg): IndexValue {
@@ -949,9 +944,9 @@ export const IndexValue = {
   toProtoMsg(message: IndexValue): IndexValueProtoMsg {
     return {
       typeUrl: "/cosmos.orm.query.v1alpha1.IndexValue",
-      value: IndexValue.encode(message).finish(),
+      value: IndexValue.encode(message).finish()
     };
-  },
+  }
 };
 /** Query is a generic gRPC service for querying ORM data. */
 export interface Query {
@@ -970,11 +965,11 @@ export class QueryClientImpl implements Query {
   Get(request: GetRequest): Promise<GetResponse> {
     const data = GetRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.orm.query.v1alpha1.Query", "Get", data);
-    return promise.then((data) => GetResponse.decode(new BinaryReader(data)));
+    return promise.then(data => GetResponse.decode(new BinaryReader(data)));
   }
   List(request: ListRequest): Promise<ListResponse> {
     const data = ListRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.orm.query.v1alpha1.Query", "List", data);
-    return promise.then((data) => ListResponse.decode(new BinaryReader(data)));
+    return promise.then(data => ListResponse.decode(new BinaryReader(data)));
   }
 }

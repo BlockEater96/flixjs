@@ -1,17 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  Params,
-  ParamsAmino,
-  Validator,
-  ValidatorAmino,
-  Delegation,
-  DelegationAmino,
-  UnbondingDelegation,
-  UnbondingDelegationAmino,
-  Redelegation,
-  RedelegationAmino,
-} from "./staking";
+import { Params, ParamsAmino, Validator, ValidatorAmino, Delegation, DelegationAmino, UnbondingDelegation, UnbondingDelegationAmino, Redelegation, RedelegationAmino } from "./staking";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, Exact, bytesFromBase64, base64FromBytes } from "../../../helpers";
 export const protobufPackage = "cosmos.staking.v1beta1";
@@ -102,7 +91,7 @@ function createBaseGenesisState(): GenesisState {
     delegations: [],
     unbondingDelegations: [],
     redelegations: [],
-    exported: false,
+    exported: false
   };
 }
 export const GenesisState = {
@@ -178,13 +167,11 @@ export const GenesisState = {
       message.params = Params.fromPartial(object.params);
     }
     message.lastTotalPower = object.lastTotalPower ?? new Uint8Array();
-    message.lastValidatorPowers =
-      object.lastValidatorPowers?.map((e) => LastValidatorPower.fromPartial(e)) || [];
-    message.validators = object.validators?.map((e) => Validator.fromPartial(e)) || [];
-    message.delegations = object.delegations?.map((e) => Delegation.fromPartial(e)) || [];
-    message.unbondingDelegations =
-      object.unbondingDelegations?.map((e) => UnbondingDelegation.fromPartial(e)) || [];
-    message.redelegations = object.redelegations?.map((e) => Redelegation.fromPartial(e)) || [];
+    message.lastValidatorPowers = object.lastValidatorPowers?.map(e => LastValidatorPower.fromPartial(e)) || [];
+    message.validators = object.validators?.map(e => Validator.fromPartial(e)) || [];
+    message.delegations = object.delegations?.map(e => Delegation.fromPartial(e)) || [];
+    message.unbondingDelegations = object.unbondingDelegations?.map(e => UnbondingDelegation.fromPartial(e)) || [];
+    message.redelegations = object.redelegations?.map(e => Redelegation.fromPartial(e)) || [];
     message.exported = object.exported ?? false;
     return message;
   },
@@ -196,13 +183,11 @@ export const GenesisState = {
     if (object.last_total_power !== undefined && object.last_total_power !== null) {
       message.lastTotalPower = bytesFromBase64(object.last_total_power);
     }
-    message.lastValidatorPowers =
-      object.last_validator_powers?.map((e) => LastValidatorPower.fromAmino(e)) || [];
-    message.validators = object.validators?.map((e) => Validator.fromAmino(e)) || [];
-    message.delegations = object.delegations?.map((e) => Delegation.fromAmino(e)) || [];
-    message.unbondingDelegations =
-      object.unbonding_delegations?.map((e) => UnbondingDelegation.fromAmino(e)) || [];
-    message.redelegations = object.redelegations?.map((e) => Redelegation.fromAmino(e)) || [];
+    message.lastValidatorPowers = object.last_validator_powers?.map(e => LastValidatorPower.fromAmino(e)) || [];
+    message.validators = object.validators?.map(e => Validator.fromAmino(e)) || [];
+    message.delegations = object.delegations?.map(e => Delegation.fromAmino(e)) || [];
+    message.unbondingDelegations = object.unbonding_delegations?.map(e => UnbondingDelegation.fromAmino(e)) || [];
+    message.redelegations = object.redelegations?.map(e => Redelegation.fromAmino(e)) || [];
     if (object.exported !== undefined && object.exported !== null) {
       message.exported = object.exported;
     }
@@ -213,31 +198,27 @@ export const GenesisState = {
     obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
     obj.last_total_power = message.lastTotalPower ? base64FromBytes(message.lastTotalPower) : "";
     if (message.lastValidatorPowers) {
-      obj.last_validator_powers = message.lastValidatorPowers.map((e) =>
-        e ? LastValidatorPower.toAmino(e) : undefined,
-      );
+      obj.last_validator_powers = message.lastValidatorPowers.map(e => e ? LastValidatorPower.toAmino(e) : undefined);
     } else {
       obj.last_validator_powers = message.lastValidatorPowers;
     }
     if (message.validators) {
-      obj.validators = message.validators.map((e) => (e ? Validator.toAmino(e) : undefined));
+      obj.validators = message.validators.map(e => e ? Validator.toAmino(e) : undefined);
     } else {
       obj.validators = message.validators;
     }
     if (message.delegations) {
-      obj.delegations = message.delegations.map((e) => (e ? Delegation.toAmino(e) : undefined));
+      obj.delegations = message.delegations.map(e => e ? Delegation.toAmino(e) : undefined);
     } else {
       obj.delegations = message.delegations;
     }
     if (message.unbondingDelegations) {
-      obj.unbonding_delegations = message.unbondingDelegations.map((e) =>
-        e ? UnbondingDelegation.toAmino(e) : undefined,
-      );
+      obj.unbonding_delegations = message.unbondingDelegations.map(e => e ? UnbondingDelegation.toAmino(e) : undefined);
     } else {
       obj.unbonding_delegations = message.unbondingDelegations;
     }
     if (message.redelegations) {
-      obj.redelegations = message.redelegations.map((e) => (e ? Redelegation.toAmino(e) : undefined));
+      obj.redelegations = message.redelegations.map(e => e ? Redelegation.toAmino(e) : undefined);
     } else {
       obj.redelegations = message.redelegations;
     }
@@ -250,7 +231,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -262,14 +243,14 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/cosmos.staking.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseLastValidatorPower(): LastValidatorPower {
   return {
     address: "",
-    power: BigInt(0),
+    power: BigInt(0)
   };
 }
 export const LastValidatorPower = {
@@ -333,7 +314,7 @@ export const LastValidatorPower = {
   toAminoMsg(message: LastValidatorPower): LastValidatorPowerAminoMsg {
     return {
       type: "cosmos-sdk/LastValidatorPower",
-      value: LastValidatorPower.toAmino(message),
+      value: LastValidatorPower.toAmino(message)
     };
   },
   fromProtoMsg(message: LastValidatorPowerProtoMsg): LastValidatorPower {
@@ -345,7 +326,7 @@ export const LastValidatorPower = {
   toProtoMsg(message: LastValidatorPower): LastValidatorPowerProtoMsg {
     return {
       typeUrl: "/cosmos.staking.v1beta1.LastValidatorPower",
-      value: LastValidatorPower.encode(message).finish(),
+      value: LastValidatorPower.encode(message).finish()
     };
-  },
+  }
 };

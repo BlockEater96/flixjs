@@ -1,17 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  GroupInfo,
-  GroupInfoAmino,
-  GroupMember,
-  GroupMemberAmino,
-  GroupPolicyInfo,
-  GroupPolicyInfoAmino,
-  Proposal,
-  ProposalAmino,
-  Vote,
-  VoteAmino,
-} from "./types";
+import { GroupInfo, GroupInfoAmino, GroupMember, GroupMemberAmino, GroupPolicyInfo, GroupPolicyInfoAmino, Proposal, ProposalAmino, Vote, VoteAmino } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "cosmos.group.v1";
@@ -88,7 +77,7 @@ function createBaseGenesisState(): GenesisState {
     groupPolicies: [],
     proposalSeq: BigInt(0),
     proposals: [],
-    votes: [],
+    votes: []
   };
 }
 export const GenesisState = {
@@ -163,17 +152,17 @@ export const GenesisState = {
     if (object.groupSeq !== undefined && object.groupSeq !== null) {
       message.groupSeq = BigInt(object.groupSeq.toString());
     }
-    message.groups = object.groups?.map((e) => GroupInfo.fromPartial(e)) || [];
-    message.groupMembers = object.groupMembers?.map((e) => GroupMember.fromPartial(e)) || [];
+    message.groups = object.groups?.map(e => GroupInfo.fromPartial(e)) || [];
+    message.groupMembers = object.groupMembers?.map(e => GroupMember.fromPartial(e)) || [];
     if (object.groupPolicySeq !== undefined && object.groupPolicySeq !== null) {
       message.groupPolicySeq = BigInt(object.groupPolicySeq.toString());
     }
-    message.groupPolicies = object.groupPolicies?.map((e) => GroupPolicyInfo.fromPartial(e)) || [];
+    message.groupPolicies = object.groupPolicies?.map(e => GroupPolicyInfo.fromPartial(e)) || [];
     if (object.proposalSeq !== undefined && object.proposalSeq !== null) {
       message.proposalSeq = BigInt(object.proposalSeq.toString());
     }
-    message.proposals = object.proposals?.map((e) => Proposal.fromPartial(e)) || [];
-    message.votes = object.votes?.map((e) => Vote.fromPartial(e)) || [];
+    message.proposals = object.proposals?.map(e => Proposal.fromPartial(e)) || [];
+    message.votes = object.votes?.map(e => Vote.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -181,47 +170,46 @@ export const GenesisState = {
     if (object.group_seq !== undefined && object.group_seq !== null) {
       message.groupSeq = BigInt(object.group_seq);
     }
-    message.groups = object.groups?.map((e) => GroupInfo.fromAmino(e)) || [];
-    message.groupMembers = object.group_members?.map((e) => GroupMember.fromAmino(e)) || [];
+    message.groups = object.groups?.map(e => GroupInfo.fromAmino(e)) || [];
+    message.groupMembers = object.group_members?.map(e => GroupMember.fromAmino(e)) || [];
     if (object.group_policy_seq !== undefined && object.group_policy_seq !== null) {
       message.groupPolicySeq = BigInt(object.group_policy_seq);
     }
-    message.groupPolicies = object.group_policies?.map((e) => GroupPolicyInfo.fromAmino(e)) || [];
+    message.groupPolicies = object.group_policies?.map(e => GroupPolicyInfo.fromAmino(e)) || [];
     if (object.proposal_seq !== undefined && object.proposal_seq !== null) {
       message.proposalSeq = BigInt(object.proposal_seq);
     }
-    message.proposals = object.proposals?.map((e) => Proposal.fromAmino(e)) || [];
-    message.votes = object.votes?.map((e) => Vote.fromAmino(e)) || [];
+    message.proposals = object.proposals?.map(e => Proposal.fromAmino(e)) || [];
+    message.votes = object.votes?.map(e => Vote.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     obj.group_seq = message.groupSeq !== BigInt(0) ? message.groupSeq?.toString() : undefined;
     if (message.groups) {
-      obj.groups = message.groups.map((e) => (e ? GroupInfo.toAmino(e) : undefined));
+      obj.groups = message.groups.map(e => e ? GroupInfo.toAmino(e) : undefined);
     } else {
       obj.groups = message.groups;
     }
     if (message.groupMembers) {
-      obj.group_members = message.groupMembers.map((e) => (e ? GroupMember.toAmino(e) : undefined));
+      obj.group_members = message.groupMembers.map(e => e ? GroupMember.toAmino(e) : undefined);
     } else {
       obj.group_members = message.groupMembers;
     }
-    obj.group_policy_seq =
-      message.groupPolicySeq !== BigInt(0) ? message.groupPolicySeq?.toString() : undefined;
+    obj.group_policy_seq = message.groupPolicySeq !== BigInt(0) ? message.groupPolicySeq?.toString() : undefined;
     if (message.groupPolicies) {
-      obj.group_policies = message.groupPolicies.map((e) => (e ? GroupPolicyInfo.toAmino(e) : undefined));
+      obj.group_policies = message.groupPolicies.map(e => e ? GroupPolicyInfo.toAmino(e) : undefined);
     } else {
       obj.group_policies = message.groupPolicies;
     }
     obj.proposal_seq = message.proposalSeq !== BigInt(0) ? message.proposalSeq?.toString() : undefined;
     if (message.proposals) {
-      obj.proposals = message.proposals.map((e) => (e ? Proposal.toAmino(e) : undefined));
+      obj.proposals = message.proposals.map(e => e ? Proposal.toAmino(e) : undefined);
     } else {
       obj.proposals = message.proposals;
     }
     if (message.votes) {
-      obj.votes = message.votes.map((e) => (e ? Vote.toAmino(e) : undefined));
+      obj.votes = message.votes.map(e => e ? Vote.toAmino(e) : undefined);
     } else {
       obj.votes = message.votes;
     }
@@ -233,7 +221,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -245,7 +233,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/cosmos.group.v1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

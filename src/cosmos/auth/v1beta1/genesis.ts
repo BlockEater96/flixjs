@@ -30,7 +30,7 @@ export interface GenesisStateAminoMsg {
 function createBaseGenesisState(): GenesisState {
   return {
     params: Params.fromPartial({}),
-    accounts: [],
+    accounts: []
   };
 }
 export const GenesisState = {
@@ -69,7 +69,7 @@ export const GenesisState = {
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
-    message.accounts = object.accounts?.map((e) => Any.fromPartial(e)) || [];
+    message.accounts = object.accounts?.map(e => Any.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -77,14 +77,14 @@ export const GenesisState = {
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
-    message.accounts = object.accounts?.map((e) => Any.fromAmino(e)) || [];
+    message.accounts = object.accounts?.map(e => Any.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
     if (message.accounts) {
-      obj.accounts = message.accounts.map((e) => (e ? Any.toAmino(e) : undefined));
+      obj.accounts = message.accounts.map(e => e ? Any.toAmino(e) : undefined);
     } else {
       obj.accounts = message.accounts;
     }
@@ -96,7 +96,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -108,7 +108,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/cosmos.auth.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

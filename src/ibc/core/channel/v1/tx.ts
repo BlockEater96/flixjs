@@ -492,7 +492,7 @@ function createBaseMsgChannelOpenInit(): MsgChannelOpenInit {
   return {
     portId: "",
     channel: Channel.fromPartial({}),
-    signer: "",
+    signer: ""
   };
 }
 export const MsgChannelOpenInit = {
@@ -567,7 +567,7 @@ export const MsgChannelOpenInit = {
   toAminoMsg(message: MsgChannelOpenInit): MsgChannelOpenInitAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelOpenInit",
-      value: MsgChannelOpenInit.toAmino(message),
+      value: MsgChannelOpenInit.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelOpenInitProtoMsg): MsgChannelOpenInit {
@@ -579,14 +579,14 @@ export const MsgChannelOpenInit = {
   toProtoMsg(message: MsgChannelOpenInit): MsgChannelOpenInitProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelOpenInit",
-      value: MsgChannelOpenInit.encode(message).finish(),
+      value: MsgChannelOpenInit.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelOpenInitResponse(): MsgChannelOpenInitResponse {
   return {
     channelId: "",
-    version: "",
+    version: ""
   };
 }
 export const MsgChannelOpenInitResponse = {
@@ -620,9 +620,7 @@ export const MsgChannelOpenInitResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgChannelOpenInitResponse>, I>>(
-    object: I,
-  ): MsgChannelOpenInitResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgChannelOpenInitResponse>, I>>(object: I): MsgChannelOpenInitResponse {
     const message = createBaseMsgChannelOpenInitResponse();
     message.channelId = object.channelId ?? "";
     message.version = object.version ?? "";
@@ -650,7 +648,7 @@ export const MsgChannelOpenInitResponse = {
   toAminoMsg(message: MsgChannelOpenInitResponse): MsgChannelOpenInitResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelOpenInitResponse",
-      value: MsgChannelOpenInitResponse.toAmino(message),
+      value: MsgChannelOpenInitResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelOpenInitResponseProtoMsg): MsgChannelOpenInitResponse {
@@ -662,9 +660,9 @@ export const MsgChannelOpenInitResponse = {
   toProtoMsg(message: MsgChannelOpenInitResponse): MsgChannelOpenInitResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelOpenInitResponse",
-      value: MsgChannelOpenInitResponse.encode(message).finish(),
+      value: MsgChannelOpenInitResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelOpenTry(): MsgChannelOpenTry {
   return {
@@ -674,7 +672,7 @@ function createBaseMsgChannelOpenTry(): MsgChannelOpenTry {
     counterpartyVersion: "",
     proofInit: new Uint8Array(),
     proofHeight: Height.fromPartial({}),
-    signer: "",
+    signer: ""
   };
 }
 export const MsgChannelOpenTry = {
@@ -795,7 +793,7 @@ export const MsgChannelOpenTry = {
   toAminoMsg(message: MsgChannelOpenTry): MsgChannelOpenTryAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelOpenTry",
-      value: MsgChannelOpenTry.toAmino(message),
+      value: MsgChannelOpenTry.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelOpenTryProtoMsg): MsgChannelOpenTry {
@@ -807,13 +805,13 @@ export const MsgChannelOpenTry = {
   toProtoMsg(message: MsgChannelOpenTry): MsgChannelOpenTryProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelOpenTry",
-      value: MsgChannelOpenTry.encode(message).finish(),
+      value: MsgChannelOpenTry.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelOpenTryResponse(): MsgChannelOpenTryResponse {
   return {
-    version: "",
+    version: ""
   };
 }
 export const MsgChannelOpenTryResponse = {
@@ -841,9 +839,7 @@ export const MsgChannelOpenTryResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgChannelOpenTryResponse>, I>>(
-    object: I,
-  ): MsgChannelOpenTryResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgChannelOpenTryResponse>, I>>(object: I): MsgChannelOpenTryResponse {
     const message = createBaseMsgChannelOpenTryResponse();
     message.version = object.version ?? "";
     return message;
@@ -866,7 +862,7 @@ export const MsgChannelOpenTryResponse = {
   toAminoMsg(message: MsgChannelOpenTryResponse): MsgChannelOpenTryResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelOpenTryResponse",
-      value: MsgChannelOpenTryResponse.toAmino(message),
+      value: MsgChannelOpenTryResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelOpenTryResponseProtoMsg): MsgChannelOpenTryResponse {
@@ -878,9 +874,9 @@ export const MsgChannelOpenTryResponse = {
   toProtoMsg(message: MsgChannelOpenTryResponse): MsgChannelOpenTryResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelOpenTryResponse",
-      value: MsgChannelOpenTryResponse.encode(message).finish(),
+      value: MsgChannelOpenTryResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelOpenAck(): MsgChannelOpenAck {
   return {
@@ -890,7 +886,7 @@ function createBaseMsgChannelOpenAck(): MsgChannelOpenAck {
     counterpartyVersion: "",
     proofTry: new Uint8Array(),
     proofHeight: Height.fromPartial({}),
-    signer: "",
+    signer: ""
   };
 }
 export const MsgChannelOpenAck = {
@@ -996,8 +992,7 @@ export const MsgChannelOpenAck = {
     const obj: any = {};
     obj.port_id = message.portId === "" ? undefined : message.portId;
     obj.channel_id = message.channelId === "" ? undefined : message.channelId;
-    obj.counterparty_channel_id =
-      message.counterpartyChannelId === "" ? undefined : message.counterpartyChannelId;
+    obj.counterparty_channel_id = message.counterpartyChannelId === "" ? undefined : message.counterpartyChannelId;
     obj.counterparty_version = message.counterpartyVersion === "" ? undefined : message.counterpartyVersion;
     obj.proof_try = message.proofTry ? base64FromBytes(message.proofTry) : undefined;
     obj.proof_height = message.proofHeight ? Height.toAmino(message.proofHeight) : {};
@@ -1010,7 +1005,7 @@ export const MsgChannelOpenAck = {
   toAminoMsg(message: MsgChannelOpenAck): MsgChannelOpenAckAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelOpenAck",
-      value: MsgChannelOpenAck.toAmino(message),
+      value: MsgChannelOpenAck.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelOpenAckProtoMsg): MsgChannelOpenAck {
@@ -1022,9 +1017,9 @@ export const MsgChannelOpenAck = {
   toProtoMsg(message: MsgChannelOpenAck): MsgChannelOpenAckProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelOpenAck",
-      value: MsgChannelOpenAck.encode(message).finish(),
+      value: MsgChannelOpenAck.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelOpenAckResponse(): MsgChannelOpenAckResponse {
   return {};
@@ -1066,7 +1061,7 @@ export const MsgChannelOpenAckResponse = {
   toAminoMsg(message: MsgChannelOpenAckResponse): MsgChannelOpenAckResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelOpenAckResponse",
-      value: MsgChannelOpenAckResponse.toAmino(message),
+      value: MsgChannelOpenAckResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelOpenAckResponseProtoMsg): MsgChannelOpenAckResponse {
@@ -1078,9 +1073,9 @@ export const MsgChannelOpenAckResponse = {
   toProtoMsg(message: MsgChannelOpenAckResponse): MsgChannelOpenAckResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelOpenAckResponse",
-      value: MsgChannelOpenAckResponse.encode(message).finish(),
+      value: MsgChannelOpenAckResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelOpenConfirm(): MsgChannelOpenConfirm {
   return {
@@ -1088,7 +1083,7 @@ function createBaseMsgChannelOpenConfirm(): MsgChannelOpenConfirm {
     channelId: "",
     proofAck: new Uint8Array(),
     proofHeight: Height.fromPartial({}),
-    signer: "",
+    signer: ""
   };
 }
 export const MsgChannelOpenConfirm = {
@@ -1185,7 +1180,7 @@ export const MsgChannelOpenConfirm = {
   toAminoMsg(message: MsgChannelOpenConfirm): MsgChannelOpenConfirmAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelOpenConfirm",
-      value: MsgChannelOpenConfirm.toAmino(message),
+      value: MsgChannelOpenConfirm.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelOpenConfirmProtoMsg): MsgChannelOpenConfirm {
@@ -1197,9 +1192,9 @@ export const MsgChannelOpenConfirm = {
   toProtoMsg(message: MsgChannelOpenConfirm): MsgChannelOpenConfirmProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelOpenConfirm",
-      value: MsgChannelOpenConfirm.encode(message).finish(),
+      value: MsgChannelOpenConfirm.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelOpenConfirmResponse(): MsgChannelOpenConfirmResponse {
   return {};
@@ -1223,9 +1218,7 @@ export const MsgChannelOpenConfirmResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgChannelOpenConfirmResponse>, I>>(
-    _: I,
-  ): MsgChannelOpenConfirmResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgChannelOpenConfirmResponse>, I>>(_: I): MsgChannelOpenConfirmResponse {
     const message = createBaseMsgChannelOpenConfirmResponse();
     return message;
   },
@@ -1243,7 +1236,7 @@ export const MsgChannelOpenConfirmResponse = {
   toAminoMsg(message: MsgChannelOpenConfirmResponse): MsgChannelOpenConfirmResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelOpenConfirmResponse",
-      value: MsgChannelOpenConfirmResponse.toAmino(message),
+      value: MsgChannelOpenConfirmResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelOpenConfirmResponseProtoMsg): MsgChannelOpenConfirmResponse {
@@ -1255,15 +1248,15 @@ export const MsgChannelOpenConfirmResponse = {
   toProtoMsg(message: MsgChannelOpenConfirmResponse): MsgChannelOpenConfirmResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelOpenConfirmResponse",
-      value: MsgChannelOpenConfirmResponse.encode(message).finish(),
+      value: MsgChannelOpenConfirmResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelCloseInit(): MsgChannelCloseInit {
   return {
     portId: "",
     channelId: "",
-    signer: "",
+    signer: ""
   };
 }
 export const MsgChannelCloseInit = {
@@ -1336,7 +1329,7 @@ export const MsgChannelCloseInit = {
   toAminoMsg(message: MsgChannelCloseInit): MsgChannelCloseInitAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelCloseInit",
-      value: MsgChannelCloseInit.toAmino(message),
+      value: MsgChannelCloseInit.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelCloseInitProtoMsg): MsgChannelCloseInit {
@@ -1348,9 +1341,9 @@ export const MsgChannelCloseInit = {
   toProtoMsg(message: MsgChannelCloseInit): MsgChannelCloseInitProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelCloseInit",
-      value: MsgChannelCloseInit.encode(message).finish(),
+      value: MsgChannelCloseInit.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelCloseInitResponse(): MsgChannelCloseInitResponse {
   return {};
@@ -1374,9 +1367,7 @@ export const MsgChannelCloseInitResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgChannelCloseInitResponse>, I>>(
-    _: I,
-  ): MsgChannelCloseInitResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgChannelCloseInitResponse>, I>>(_: I): MsgChannelCloseInitResponse {
     const message = createBaseMsgChannelCloseInitResponse();
     return message;
   },
@@ -1394,7 +1385,7 @@ export const MsgChannelCloseInitResponse = {
   toAminoMsg(message: MsgChannelCloseInitResponse): MsgChannelCloseInitResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelCloseInitResponse",
-      value: MsgChannelCloseInitResponse.toAmino(message),
+      value: MsgChannelCloseInitResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelCloseInitResponseProtoMsg): MsgChannelCloseInitResponse {
@@ -1406,9 +1397,9 @@ export const MsgChannelCloseInitResponse = {
   toProtoMsg(message: MsgChannelCloseInitResponse): MsgChannelCloseInitResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelCloseInitResponse",
-      value: MsgChannelCloseInitResponse.encode(message).finish(),
+      value: MsgChannelCloseInitResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelCloseConfirm(): MsgChannelCloseConfirm {
   return {
@@ -1416,7 +1407,7 @@ function createBaseMsgChannelCloseConfirm(): MsgChannelCloseConfirm {
     channelId: "",
     proofInit: new Uint8Array(),
     proofHeight: Height.fromPartial({}),
-    signer: "",
+    signer: ""
   };
 }
 export const MsgChannelCloseConfirm = {
@@ -1513,7 +1504,7 @@ export const MsgChannelCloseConfirm = {
   toAminoMsg(message: MsgChannelCloseConfirm): MsgChannelCloseConfirmAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelCloseConfirm",
-      value: MsgChannelCloseConfirm.toAmino(message),
+      value: MsgChannelCloseConfirm.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelCloseConfirmProtoMsg): MsgChannelCloseConfirm {
@@ -1525,9 +1516,9 @@ export const MsgChannelCloseConfirm = {
   toProtoMsg(message: MsgChannelCloseConfirm): MsgChannelCloseConfirmProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelCloseConfirm",
-      value: MsgChannelCloseConfirm.encode(message).finish(),
+      value: MsgChannelCloseConfirm.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChannelCloseConfirmResponse(): MsgChannelCloseConfirmResponse {
   return {};
@@ -1551,9 +1542,7 @@ export const MsgChannelCloseConfirmResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgChannelCloseConfirmResponse>, I>>(
-    _: I,
-  ): MsgChannelCloseConfirmResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgChannelCloseConfirmResponse>, I>>(_: I): MsgChannelCloseConfirmResponse {
     const message = createBaseMsgChannelCloseConfirmResponse();
     return message;
   },
@@ -1571,7 +1560,7 @@ export const MsgChannelCloseConfirmResponse = {
   toAminoMsg(message: MsgChannelCloseConfirmResponse): MsgChannelCloseConfirmResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgChannelCloseConfirmResponse",
-      value: MsgChannelCloseConfirmResponse.toAmino(message),
+      value: MsgChannelCloseConfirmResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChannelCloseConfirmResponseProtoMsg): MsgChannelCloseConfirmResponse {
@@ -1583,16 +1572,16 @@ export const MsgChannelCloseConfirmResponse = {
   toProtoMsg(message: MsgChannelCloseConfirmResponse): MsgChannelCloseConfirmResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgChannelCloseConfirmResponse",
-      value: MsgChannelCloseConfirmResponse.encode(message).finish(),
+      value: MsgChannelCloseConfirmResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgRecvPacket(): MsgRecvPacket {
   return {
     packet: Packet.fromPartial({}),
     proofCommitment: new Uint8Array(),
     proofHeight: Height.fromPartial({}),
-    signer: "",
+    signer: ""
   };
 }
 export const MsgRecvPacket = {
@@ -1680,7 +1669,7 @@ export const MsgRecvPacket = {
   toAminoMsg(message: MsgRecvPacket): MsgRecvPacketAminoMsg {
     return {
       type: "cosmos-sdk/MsgRecvPacket",
-      value: MsgRecvPacket.toAmino(message),
+      value: MsgRecvPacket.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRecvPacketProtoMsg): MsgRecvPacket {
@@ -1692,13 +1681,13 @@ export const MsgRecvPacket = {
   toProtoMsg(message: MsgRecvPacket): MsgRecvPacketProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgRecvPacket",
-      value: MsgRecvPacket.encode(message).finish(),
+      value: MsgRecvPacket.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgRecvPacketResponse(): MsgRecvPacketResponse {
   return {
-    result: 0,
+    result: 0
   };
 }
 export const MsgRecvPacketResponse = {
@@ -1749,7 +1738,7 @@ export const MsgRecvPacketResponse = {
   toAminoMsg(message: MsgRecvPacketResponse): MsgRecvPacketResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgRecvPacketResponse",
-      value: MsgRecvPacketResponse.toAmino(message),
+      value: MsgRecvPacketResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRecvPacketResponseProtoMsg): MsgRecvPacketResponse {
@@ -1761,9 +1750,9 @@ export const MsgRecvPacketResponse = {
   toProtoMsg(message: MsgRecvPacketResponse): MsgRecvPacketResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgRecvPacketResponse",
-      value: MsgRecvPacketResponse.encode(message).finish(),
+      value: MsgRecvPacketResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgTimeout(): MsgTimeout {
   return {
@@ -1771,7 +1760,7 @@ function createBaseMsgTimeout(): MsgTimeout {
     proofUnreceived: new Uint8Array(),
     proofHeight: Height.fromPartial({}),
     nextSequenceRecv: BigInt(0),
-    signer: "",
+    signer: ""
   };
 }
 export const MsgTimeout = {
@@ -1862,8 +1851,7 @@ export const MsgTimeout = {
     obj.packet = message.packet ? Packet.toAmino(message.packet) : undefined;
     obj.proof_unreceived = message.proofUnreceived ? base64FromBytes(message.proofUnreceived) : undefined;
     obj.proof_height = message.proofHeight ? Height.toAmino(message.proofHeight) : {};
-    obj.next_sequence_recv =
-      message.nextSequenceRecv !== BigInt(0) ? message.nextSequenceRecv?.toString() : undefined;
+    obj.next_sequence_recv = message.nextSequenceRecv !== BigInt(0) ? message.nextSequenceRecv?.toString() : undefined;
     obj.signer = message.signer === "" ? undefined : message.signer;
     return obj;
   },
@@ -1873,7 +1861,7 @@ export const MsgTimeout = {
   toAminoMsg(message: MsgTimeout): MsgTimeoutAminoMsg {
     return {
       type: "cosmos-sdk/MsgTimeout",
-      value: MsgTimeout.toAmino(message),
+      value: MsgTimeout.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgTimeoutProtoMsg): MsgTimeout {
@@ -1885,13 +1873,13 @@ export const MsgTimeout = {
   toProtoMsg(message: MsgTimeout): MsgTimeoutProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgTimeout",
-      value: MsgTimeout.encode(message).finish(),
+      value: MsgTimeout.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgTimeoutResponse(): MsgTimeoutResponse {
   return {
-    result: 0,
+    result: 0
   };
 }
 export const MsgTimeoutResponse = {
@@ -1942,7 +1930,7 @@ export const MsgTimeoutResponse = {
   toAminoMsg(message: MsgTimeoutResponse): MsgTimeoutResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgTimeoutResponse",
-      value: MsgTimeoutResponse.toAmino(message),
+      value: MsgTimeoutResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgTimeoutResponseProtoMsg): MsgTimeoutResponse {
@@ -1954,9 +1942,9 @@ export const MsgTimeoutResponse = {
   toProtoMsg(message: MsgTimeoutResponse): MsgTimeoutResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgTimeoutResponse",
-      value: MsgTimeoutResponse.encode(message).finish(),
+      value: MsgTimeoutResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgTimeoutOnClose(): MsgTimeoutOnClose {
   return {
@@ -1965,7 +1953,7 @@ function createBaseMsgTimeoutOnClose(): MsgTimeoutOnClose {
     proofClose: new Uint8Array(),
     proofHeight: Height.fromPartial({}),
     nextSequenceRecv: BigInt(0),
-    signer: "",
+    signer: ""
   };
 }
 export const MsgTimeoutOnClose = {
@@ -2067,8 +2055,7 @@ export const MsgTimeoutOnClose = {
     obj.proof_unreceived = message.proofUnreceived ? base64FromBytes(message.proofUnreceived) : undefined;
     obj.proof_close = message.proofClose ? base64FromBytes(message.proofClose) : undefined;
     obj.proof_height = message.proofHeight ? Height.toAmino(message.proofHeight) : {};
-    obj.next_sequence_recv =
-      message.nextSequenceRecv !== BigInt(0) ? message.nextSequenceRecv?.toString() : undefined;
+    obj.next_sequence_recv = message.nextSequenceRecv !== BigInt(0) ? message.nextSequenceRecv?.toString() : undefined;
     obj.signer = message.signer === "" ? undefined : message.signer;
     return obj;
   },
@@ -2078,7 +2065,7 @@ export const MsgTimeoutOnClose = {
   toAminoMsg(message: MsgTimeoutOnClose): MsgTimeoutOnCloseAminoMsg {
     return {
       type: "cosmos-sdk/MsgTimeoutOnClose",
-      value: MsgTimeoutOnClose.toAmino(message),
+      value: MsgTimeoutOnClose.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgTimeoutOnCloseProtoMsg): MsgTimeoutOnClose {
@@ -2090,13 +2077,13 @@ export const MsgTimeoutOnClose = {
   toProtoMsg(message: MsgTimeoutOnClose): MsgTimeoutOnCloseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgTimeoutOnClose",
-      value: MsgTimeoutOnClose.encode(message).finish(),
+      value: MsgTimeoutOnClose.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgTimeoutOnCloseResponse(): MsgTimeoutOnCloseResponse {
   return {
-    result: 0,
+    result: 0
   };
 }
 export const MsgTimeoutOnCloseResponse = {
@@ -2124,9 +2111,7 @@ export const MsgTimeoutOnCloseResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgTimeoutOnCloseResponse>, I>>(
-    object: I,
-  ): MsgTimeoutOnCloseResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgTimeoutOnCloseResponse>, I>>(object: I): MsgTimeoutOnCloseResponse {
     const message = createBaseMsgTimeoutOnCloseResponse();
     message.result = object.result ?? 0;
     return message;
@@ -2149,7 +2134,7 @@ export const MsgTimeoutOnCloseResponse = {
   toAminoMsg(message: MsgTimeoutOnCloseResponse): MsgTimeoutOnCloseResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgTimeoutOnCloseResponse",
-      value: MsgTimeoutOnCloseResponse.toAmino(message),
+      value: MsgTimeoutOnCloseResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgTimeoutOnCloseResponseProtoMsg): MsgTimeoutOnCloseResponse {
@@ -2161,9 +2146,9 @@ export const MsgTimeoutOnCloseResponse = {
   toProtoMsg(message: MsgTimeoutOnCloseResponse): MsgTimeoutOnCloseResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgTimeoutOnCloseResponse",
-      value: MsgTimeoutOnCloseResponse.encode(message).finish(),
+      value: MsgTimeoutOnCloseResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgAcknowledgement(): MsgAcknowledgement {
   return {
@@ -2171,7 +2156,7 @@ function createBaseMsgAcknowledgement(): MsgAcknowledgement {
     acknowledgement: new Uint8Array(),
     proofAcked: new Uint8Array(),
     proofHeight: Height.fromPartial({}),
-    signer: "",
+    signer: ""
   };
 }
 export const MsgAcknowledgement = {
@@ -2270,7 +2255,7 @@ export const MsgAcknowledgement = {
   toAminoMsg(message: MsgAcknowledgement): MsgAcknowledgementAminoMsg {
     return {
       type: "cosmos-sdk/MsgAcknowledgement",
-      value: MsgAcknowledgement.toAmino(message),
+      value: MsgAcknowledgement.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgAcknowledgementProtoMsg): MsgAcknowledgement {
@@ -2282,13 +2267,13 @@ export const MsgAcknowledgement = {
   toProtoMsg(message: MsgAcknowledgement): MsgAcknowledgementProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgAcknowledgement",
-      value: MsgAcknowledgement.encode(message).finish(),
+      value: MsgAcknowledgement.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgAcknowledgementResponse(): MsgAcknowledgementResponse {
   return {
-    result: 0,
+    result: 0
   };
 }
 export const MsgAcknowledgementResponse = {
@@ -2316,9 +2301,7 @@ export const MsgAcknowledgementResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgAcknowledgementResponse>, I>>(
-    object: I,
-  ): MsgAcknowledgementResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgAcknowledgementResponse>, I>>(object: I): MsgAcknowledgementResponse {
     const message = createBaseMsgAcknowledgementResponse();
     message.result = object.result ?? 0;
     return message;
@@ -2341,7 +2324,7 @@ export const MsgAcknowledgementResponse = {
   toAminoMsg(message: MsgAcknowledgementResponse): MsgAcknowledgementResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgAcknowledgementResponse",
-      value: MsgAcknowledgementResponse.toAmino(message),
+      value: MsgAcknowledgementResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgAcknowledgementResponseProtoMsg): MsgAcknowledgementResponse {
@@ -2353,9 +2336,9 @@ export const MsgAcknowledgementResponse = {
   toProtoMsg(message: MsgAcknowledgementResponse): MsgAcknowledgementResponseProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.MsgAcknowledgementResponse",
-      value: MsgAcknowledgementResponse.encode(message).finish(),
+      value: MsgAcknowledgementResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the ibc/channel Msg service. */
 export interface Msg {
@@ -2401,51 +2384,51 @@ export class MsgClientImpl implements Msg {
   ChannelOpenInit(request: MsgChannelOpenInit): Promise<MsgChannelOpenInitResponse> {
     const data = MsgChannelOpenInit.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelOpenInit", data);
-    return promise.then((data) => MsgChannelOpenInitResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgChannelOpenInitResponse.decode(new BinaryReader(data)));
   }
   ChannelOpenTry(request: MsgChannelOpenTry): Promise<MsgChannelOpenTryResponse> {
     const data = MsgChannelOpenTry.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelOpenTry", data);
-    return promise.then((data) => MsgChannelOpenTryResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgChannelOpenTryResponse.decode(new BinaryReader(data)));
   }
   ChannelOpenAck(request: MsgChannelOpenAck): Promise<MsgChannelOpenAckResponse> {
     const data = MsgChannelOpenAck.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelOpenAck", data);
-    return promise.then((data) => MsgChannelOpenAckResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgChannelOpenAckResponse.decode(new BinaryReader(data)));
   }
   ChannelOpenConfirm(request: MsgChannelOpenConfirm): Promise<MsgChannelOpenConfirmResponse> {
     const data = MsgChannelOpenConfirm.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelOpenConfirm", data);
-    return promise.then((data) => MsgChannelOpenConfirmResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgChannelOpenConfirmResponse.decode(new BinaryReader(data)));
   }
   ChannelCloseInit(request: MsgChannelCloseInit): Promise<MsgChannelCloseInitResponse> {
     const data = MsgChannelCloseInit.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelCloseInit", data);
-    return promise.then((data) => MsgChannelCloseInitResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgChannelCloseInitResponse.decode(new BinaryReader(data)));
   }
   ChannelCloseConfirm(request: MsgChannelCloseConfirm): Promise<MsgChannelCloseConfirmResponse> {
     const data = MsgChannelCloseConfirm.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelCloseConfirm", data);
-    return promise.then((data) => MsgChannelCloseConfirmResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgChannelCloseConfirmResponse.decode(new BinaryReader(data)));
   }
   RecvPacket(request: MsgRecvPacket): Promise<MsgRecvPacketResponse> {
     const data = MsgRecvPacket.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "RecvPacket", data);
-    return promise.then((data) => MsgRecvPacketResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgRecvPacketResponse.decode(new BinaryReader(data)));
   }
   Timeout(request: MsgTimeout): Promise<MsgTimeoutResponse> {
     const data = MsgTimeout.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "Timeout", data);
-    return promise.then((data) => MsgTimeoutResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgTimeoutResponse.decode(new BinaryReader(data)));
   }
   TimeoutOnClose(request: MsgTimeoutOnClose): Promise<MsgTimeoutOnCloseResponse> {
     const data = MsgTimeoutOnClose.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "TimeoutOnClose", data);
-    return promise.then((data) => MsgTimeoutOnCloseResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgTimeoutOnCloseResponse.decode(new BinaryReader(data)));
   }
   Acknowledgement(request: MsgAcknowledgement): Promise<MsgAcknowledgementResponse> {
     const data = MsgAcknowledgement.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "Acknowledgement", data);
-    return promise.then((data) => MsgAcknowledgementResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgAcknowledgementResponse.decode(new BinaryReader(data)));
   }
 }

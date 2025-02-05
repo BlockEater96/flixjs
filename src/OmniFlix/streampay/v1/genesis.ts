@@ -29,7 +29,7 @@ function createBaseGenesisState(): GenesisState {
   return {
     streamPayments: [],
     nextStreamPaymentNumber: BigInt(0),
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const GenesisState = {
@@ -71,7 +71,7 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.streamPayments = object.streamPayments?.map((e) => StreamPayment.fromPartial(e)) || [];
+    message.streamPayments = object.streamPayments?.map(e => StreamPayment.fromPartial(e)) || [];
     if (object.nextStreamPaymentNumber !== undefined && object.nextStreamPaymentNumber !== null) {
       message.nextStreamPaymentNumber = BigInt(object.nextStreamPaymentNumber.toString());
     }
@@ -82,7 +82,7 @@ export const GenesisState = {
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
-    message.streamPayments = object.stream_payments?.map((e) => StreamPayment.fromAmino(e)) || [];
+    message.streamPayments = object.stream_payments?.map(e => StreamPayment.fromAmino(e)) || [];
     if (object.next_stream_payment_number !== undefined && object.next_stream_payment_number !== null) {
       message.nextStreamPaymentNumber = BigInt(object.next_stream_payment_number);
     }
@@ -94,12 +94,11 @@ export const GenesisState = {
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     if (message.streamPayments) {
-      obj.stream_payments = message.streamPayments.map((e) => (e ? StreamPayment.toAmino(e) : undefined));
+      obj.stream_payments = message.streamPayments.map(e => e ? StreamPayment.toAmino(e) : undefined);
     } else {
       obj.stream_payments = message.streamPayments;
     }
-    obj.next_stream_payment_number =
-      message.nextStreamPaymentNumber !== BigInt(0) ? message.nextStreamPaymentNumber?.toString() : undefined;
+    obj.next_stream_payment_number = message.nextStreamPaymentNumber !== BigInt(0) ? message.nextStreamPaymentNumber?.toString() : undefined;
     obj.params = message.params ? Params.toAmino(message.params) : undefined;
     return obj;
   },
@@ -115,7 +114,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

@@ -188,7 +188,7 @@ function createBaseMsgRegisterPayee(): MsgRegisterPayee {
     portId: "",
     channelId: "",
     relayer: "",
-    payee: "",
+    payee: ""
   };
 }
 export const MsgRegisterPayee = {
@@ -272,7 +272,7 @@ export const MsgRegisterPayee = {
   toAminoMsg(message: MsgRegisterPayee): MsgRegisterPayeeAminoMsg {
     return {
       type: "cosmos-sdk/MsgRegisterPayee",
-      value: MsgRegisterPayee.toAmino(message),
+      value: MsgRegisterPayee.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRegisterPayeeProtoMsg): MsgRegisterPayee {
@@ -284,9 +284,9 @@ export const MsgRegisterPayee = {
   toProtoMsg(message: MsgRegisterPayee): MsgRegisterPayeeProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.MsgRegisterPayee",
-      value: MsgRegisterPayee.encode(message).finish(),
+      value: MsgRegisterPayee.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgRegisterPayeeResponse(): MsgRegisterPayeeResponse {
   return {};
@@ -328,7 +328,7 @@ export const MsgRegisterPayeeResponse = {
   toAminoMsg(message: MsgRegisterPayeeResponse): MsgRegisterPayeeResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgRegisterPayeeResponse",
-      value: MsgRegisterPayeeResponse.toAmino(message),
+      value: MsgRegisterPayeeResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRegisterPayeeResponseProtoMsg): MsgRegisterPayeeResponse {
@@ -340,16 +340,16 @@ export const MsgRegisterPayeeResponse = {
   toProtoMsg(message: MsgRegisterPayeeResponse): MsgRegisterPayeeResponseProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.MsgRegisterPayeeResponse",
-      value: MsgRegisterPayeeResponse.encode(message).finish(),
+      value: MsgRegisterPayeeResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgRegisterCounterpartyPayee(): MsgRegisterCounterpartyPayee {
   return {
     portId: "",
     channelId: "",
     relayer: "",
-    counterpartyPayee: "",
+    counterpartyPayee: ""
   };
 }
 export const MsgRegisterCounterpartyPayee = {
@@ -395,9 +395,7 @@ export const MsgRegisterCounterpartyPayee = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgRegisterCounterpartyPayee>, I>>(
-    object: I,
-  ): MsgRegisterCounterpartyPayee {
+  fromPartial<I extends Exact<DeepPartial<MsgRegisterCounterpartyPayee>, I>>(object: I): MsgRegisterCounterpartyPayee {
     const message = createBaseMsgRegisterCounterpartyPayee();
     message.portId = object.portId ?? "";
     message.channelId = object.channelId ?? "";
@@ -435,7 +433,7 @@ export const MsgRegisterCounterpartyPayee = {
   toAminoMsg(message: MsgRegisterCounterpartyPayee): MsgRegisterCounterpartyPayeeAminoMsg {
     return {
       type: "cosmos-sdk/MsgRegisterCounterpartyPayee",
-      value: MsgRegisterCounterpartyPayee.toAmino(message),
+      value: MsgRegisterCounterpartyPayee.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRegisterCounterpartyPayeeProtoMsg): MsgRegisterCounterpartyPayee {
@@ -447,19 +445,16 @@ export const MsgRegisterCounterpartyPayee = {
   toProtoMsg(message: MsgRegisterCounterpartyPayee): MsgRegisterCounterpartyPayeeProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.MsgRegisterCounterpartyPayee",
-      value: MsgRegisterCounterpartyPayee.encode(message).finish(),
+      value: MsgRegisterCounterpartyPayee.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgRegisterCounterpartyPayeeResponse(): MsgRegisterCounterpartyPayeeResponse {
   return {};
 }
 export const MsgRegisterCounterpartyPayeeResponse = {
   typeUrl: "/ibc.applications.fee.v1.MsgRegisterCounterpartyPayeeResponse",
-  encode(
-    _: MsgRegisterCounterpartyPayeeResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(_: MsgRegisterCounterpartyPayeeResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     return writer;
   },
   decode(input: BinaryReader | Uint8Array, length?: number): MsgRegisterCounterpartyPayeeResponse {
@@ -476,9 +471,7 @@ export const MsgRegisterCounterpartyPayeeResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgRegisterCounterpartyPayeeResponse>, I>>(
-    _: I,
-  ): MsgRegisterCounterpartyPayeeResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgRegisterCounterpartyPayeeResponse>, I>>(_: I): MsgRegisterCounterpartyPayeeResponse {
     const message = createBaseMsgRegisterCounterpartyPayeeResponse();
     return message;
   },
@@ -496,7 +489,7 @@ export const MsgRegisterCounterpartyPayeeResponse = {
   toAminoMsg(message: MsgRegisterCounterpartyPayeeResponse): MsgRegisterCounterpartyPayeeResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgRegisterCounterpartyPayeeResponse",
-      value: MsgRegisterCounterpartyPayeeResponse.toAmino(message),
+      value: MsgRegisterCounterpartyPayeeResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgRegisterCounterpartyPayeeResponseProtoMsg): MsgRegisterCounterpartyPayeeResponse {
@@ -508,9 +501,9 @@ export const MsgRegisterCounterpartyPayeeResponse = {
   toProtoMsg(message: MsgRegisterCounterpartyPayeeResponse): MsgRegisterCounterpartyPayeeResponseProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.MsgRegisterCounterpartyPayeeResponse",
-      value: MsgRegisterCounterpartyPayeeResponse.encode(message).finish(),
+      value: MsgRegisterCounterpartyPayeeResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgPayPacketFee(): MsgPayPacketFee {
   return {
@@ -518,7 +511,7 @@ function createBaseMsgPayPacketFee(): MsgPayPacketFee {
     sourcePortId: "",
     sourceChannelId: "",
     signer: "",
-    relayers: [],
+    relayers: []
   };
 }
 export const MsgPayPacketFee = {
@@ -578,7 +571,7 @@ export const MsgPayPacketFee = {
     message.sourcePortId = object.sourcePortId ?? "";
     message.sourceChannelId = object.sourceChannelId ?? "";
     message.signer = object.signer ?? "";
-    message.relayers = object.relayers?.map((e) => e) || [];
+    message.relayers = object.relayers?.map(e => e) || [];
     return message;
   },
   fromAmino(object: MsgPayPacketFeeAmino): MsgPayPacketFee {
@@ -595,7 +588,7 @@ export const MsgPayPacketFee = {
     if (object.signer !== undefined && object.signer !== null) {
       message.signer = object.signer;
     }
-    message.relayers = object.relayers?.map((e) => e) || [];
+    message.relayers = object.relayers?.map(e => e) || [];
     return message;
   },
   toAmino(message: MsgPayPacketFee): MsgPayPacketFeeAmino {
@@ -605,7 +598,7 @@ export const MsgPayPacketFee = {
     obj.source_channel_id = message.sourceChannelId === "" ? undefined : message.sourceChannelId;
     obj.signer = message.signer === "" ? undefined : message.signer;
     if (message.relayers) {
-      obj.relayers = message.relayers.map((e) => e);
+      obj.relayers = message.relayers.map(e => e);
     } else {
       obj.relayers = message.relayers;
     }
@@ -617,7 +610,7 @@ export const MsgPayPacketFee = {
   toAminoMsg(message: MsgPayPacketFee): MsgPayPacketFeeAminoMsg {
     return {
       type: "cosmos-sdk/MsgPayPacketFee",
-      value: MsgPayPacketFee.toAmino(message),
+      value: MsgPayPacketFee.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgPayPacketFeeProtoMsg): MsgPayPacketFee {
@@ -629,9 +622,9 @@ export const MsgPayPacketFee = {
   toProtoMsg(message: MsgPayPacketFee): MsgPayPacketFeeProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.MsgPayPacketFee",
-      value: MsgPayPacketFee.encode(message).finish(),
+      value: MsgPayPacketFee.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgPayPacketFeeResponse(): MsgPayPacketFeeResponse {
   return {};
@@ -673,7 +666,7 @@ export const MsgPayPacketFeeResponse = {
   toAminoMsg(message: MsgPayPacketFeeResponse): MsgPayPacketFeeResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgPayPacketFeeResponse",
-      value: MsgPayPacketFeeResponse.toAmino(message),
+      value: MsgPayPacketFeeResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgPayPacketFeeResponseProtoMsg): MsgPayPacketFeeResponse {
@@ -685,14 +678,14 @@ export const MsgPayPacketFeeResponse = {
   toProtoMsg(message: MsgPayPacketFeeResponse): MsgPayPacketFeeResponseProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.MsgPayPacketFeeResponse",
-      value: MsgPayPacketFeeResponse.encode(message).finish(),
+      value: MsgPayPacketFeeResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgPayPacketFeeAsync(): MsgPayPacketFeeAsync {
   return {
     packetId: PacketId.fromPartial({}),
-    packetFee: PacketFee.fromPartial({}),
+    packetFee: PacketFee.fromPartial({})
   };
 }
 export const MsgPayPacketFeeAsync = {
@@ -758,7 +751,7 @@ export const MsgPayPacketFeeAsync = {
   toAminoMsg(message: MsgPayPacketFeeAsync): MsgPayPacketFeeAsyncAminoMsg {
     return {
       type: "cosmos-sdk/MsgPayPacketFeeAsync",
-      value: MsgPayPacketFeeAsync.toAmino(message),
+      value: MsgPayPacketFeeAsync.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgPayPacketFeeAsyncProtoMsg): MsgPayPacketFeeAsync {
@@ -770,9 +763,9 @@ export const MsgPayPacketFeeAsync = {
   toProtoMsg(message: MsgPayPacketFeeAsync): MsgPayPacketFeeAsyncProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.MsgPayPacketFeeAsync",
-      value: MsgPayPacketFeeAsync.encode(message).finish(),
+      value: MsgPayPacketFeeAsync.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgPayPacketFeeAsyncResponse(): MsgPayPacketFeeAsyncResponse {
   return {};
@@ -796,9 +789,7 @@ export const MsgPayPacketFeeAsyncResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgPayPacketFeeAsyncResponse>, I>>(
-    _: I,
-  ): MsgPayPacketFeeAsyncResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgPayPacketFeeAsyncResponse>, I>>(_: I): MsgPayPacketFeeAsyncResponse {
     const message = createBaseMsgPayPacketFeeAsyncResponse();
     return message;
   },
@@ -816,7 +807,7 @@ export const MsgPayPacketFeeAsyncResponse = {
   toAminoMsg(message: MsgPayPacketFeeAsyncResponse): MsgPayPacketFeeAsyncResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgPayPacketFeeAsyncResponse",
-      value: MsgPayPacketFeeAsyncResponse.toAmino(message),
+      value: MsgPayPacketFeeAsyncResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgPayPacketFeeAsyncResponseProtoMsg): MsgPayPacketFeeAsyncResponse {
@@ -828,9 +819,9 @@ export const MsgPayPacketFeeAsyncResponse = {
   toProtoMsg(message: MsgPayPacketFeeAsyncResponse): MsgPayPacketFeeAsyncResponseProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.MsgPayPacketFeeAsyncResponse",
-      value: MsgPayPacketFeeAsyncResponse.encode(message).finish(),
+      value: MsgPayPacketFeeAsyncResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the ICS29 Msg service. */
 export interface Msg {
@@ -849,9 +840,7 @@ export interface Msg {
    * the destination chain must include the registered counterparty payee address in the acknowledgement. This function
    * may be called more than once by a relayer, in which case, the latest counterparty payee address is always used.
    */
-  RegisterCounterpartyPayee(
-    request: MsgRegisterCounterpartyPayee,
-  ): Promise<MsgRegisterCounterpartyPayeeResponse>;
+  RegisterCounterpartyPayee(request: MsgRegisterCounterpartyPayee): Promise<MsgRegisterCounterpartyPayeeResponse>;
   /**
    * PayPacketFee defines a rpc handler method for MsgPayPacketFee
    * PayPacketFee is an open callback that may be called by any module/user that wishes to escrow funds in order to
@@ -879,23 +868,21 @@ export class MsgClientImpl implements Msg {
   RegisterPayee(request: MsgRegisterPayee): Promise<MsgRegisterPayeeResponse> {
     const data = MsgRegisterPayee.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.fee.v1.Msg", "RegisterPayee", data);
-    return promise.then((data) => MsgRegisterPayeeResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgRegisterPayeeResponse.decode(new BinaryReader(data)));
   }
-  RegisterCounterpartyPayee(
-    request: MsgRegisterCounterpartyPayee,
-  ): Promise<MsgRegisterCounterpartyPayeeResponse> {
+  RegisterCounterpartyPayee(request: MsgRegisterCounterpartyPayee): Promise<MsgRegisterCounterpartyPayeeResponse> {
     const data = MsgRegisterCounterpartyPayee.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.fee.v1.Msg", "RegisterCounterpartyPayee", data);
-    return promise.then((data) => MsgRegisterCounterpartyPayeeResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgRegisterCounterpartyPayeeResponse.decode(new BinaryReader(data)));
   }
   PayPacketFee(request: MsgPayPacketFee): Promise<MsgPayPacketFeeResponse> {
     const data = MsgPayPacketFee.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.fee.v1.Msg", "PayPacketFee", data);
-    return promise.then((data) => MsgPayPacketFeeResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgPayPacketFeeResponse.decode(new BinaryReader(data)));
   }
   PayPacketFeeAsync(request: MsgPayPacketFeeAsync): Promise<MsgPayPacketFeeAsyncResponse> {
     const data = MsgPayPacketFeeAsync.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.fee.v1.Msg", "PayPacketFeeAsync", data);
-    return promise.then((data) => MsgPayPacketFeeAsyncResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgPayPacketFeeAsyncResponse.decode(new BinaryReader(data)));
   }
 }

@@ -21,13 +21,13 @@ export interface MsgSubmitProposal {
   metadata: string;
   /**
    * title is the title of the proposal.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   title: string;
   /**
    * summary is the summary of the proposal
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   summary: string;
@@ -51,13 +51,13 @@ export interface MsgSubmitProposalAmino {
   metadata?: string;
   /**
    * title is the title of the proposal.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   title?: string;
   /**
    * summary is the summary of the proposal
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   summary?: string;
@@ -248,7 +248,7 @@ export interface MsgDepositResponseAminoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParams {
@@ -256,7 +256,7 @@ export interface MsgUpdateParams {
   authority: string;
   /**
    * params defines the x/gov parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params: Params;
@@ -267,7 +267,7 @@ export interface MsgUpdateParamsProtoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsAmino {
@@ -275,7 +275,7 @@ export interface MsgUpdateParamsAmino {
   authority?: string;
   /**
    * params defines the x/gov parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params: ParamsAmino;
@@ -287,7 +287,7 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponse {}
@@ -298,7 +298,7 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponseAmino {}
@@ -313,7 +313,7 @@ function createBaseMsgSubmitProposal(): MsgSubmitProposal {
     proposer: "",
     metadata: "",
     title: "",
-    summary: "",
+    summary: ""
   };
 }
 export const MsgSubmitProposal = {
@@ -373,8 +373,8 @@ export const MsgSubmitProposal = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgSubmitProposal>, I>>(object: I): MsgSubmitProposal {
     const message = createBaseMsgSubmitProposal();
-    message.messages = object.messages?.map((e) => Any.fromPartial(e)) || [];
-    message.initialDeposit = object.initialDeposit?.map((e) => Coin.fromPartial(e)) || [];
+    message.messages = object.messages?.map(e => Any.fromPartial(e)) || [];
+    message.initialDeposit = object.initialDeposit?.map(e => Coin.fromPartial(e)) || [];
     message.proposer = object.proposer ?? "";
     message.metadata = object.metadata ?? "";
     message.title = object.title ?? "";
@@ -383,8 +383,8 @@ export const MsgSubmitProposal = {
   },
   fromAmino(object: MsgSubmitProposalAmino): MsgSubmitProposal {
     const message = createBaseMsgSubmitProposal();
-    message.messages = object.messages?.map((e) => Any.fromAmino(e)) || [];
-    message.initialDeposit = object.initial_deposit?.map((e) => Coin.fromAmino(e)) || [];
+    message.messages = object.messages?.map(e => Any.fromAmino(e)) || [];
+    message.initialDeposit = object.initial_deposit?.map(e => Coin.fromAmino(e)) || [];
     if (object.proposer !== undefined && object.proposer !== null) {
       message.proposer = object.proposer;
     }
@@ -402,12 +402,12 @@ export const MsgSubmitProposal = {
   toAmino(message: MsgSubmitProposal): MsgSubmitProposalAmino {
     const obj: any = {};
     if (message.messages) {
-      obj.messages = message.messages.map((e) => (e ? Any.toAmino(e) : undefined));
+      obj.messages = message.messages.map(e => e ? Any.toAmino(e) : undefined);
     } else {
       obj.messages = message.messages;
     }
     if (message.initialDeposit) {
-      obj.initial_deposit = message.initialDeposit.map((e) => (e ? Coin.toAmino(e) : undefined));
+      obj.initial_deposit = message.initialDeposit.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
       obj.initial_deposit = message.initialDeposit;
     }
@@ -423,7 +423,7 @@ export const MsgSubmitProposal = {
   toAminoMsg(message: MsgSubmitProposal): MsgSubmitProposalAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgSubmitProposal",
-      value: MsgSubmitProposal.toAmino(message),
+      value: MsgSubmitProposal.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSubmitProposalProtoMsg): MsgSubmitProposal {
@@ -435,13 +435,13 @@ export const MsgSubmitProposal = {
   toProtoMsg(message: MsgSubmitProposal): MsgSubmitProposalProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgSubmitProposal",
-      value: MsgSubmitProposal.encode(message).finish(),
+      value: MsgSubmitProposal.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgSubmitProposalResponse(): MsgSubmitProposalResponse {
   return {
-    proposalId: BigInt(0),
+    proposalId: BigInt(0)
   };
 }
 export const MsgSubmitProposalResponse = {
@@ -469,9 +469,7 @@ export const MsgSubmitProposalResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitProposalResponse>, I>>(
-    object: I,
-  ): MsgSubmitProposalResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitProposalResponse>, I>>(object: I): MsgSubmitProposalResponse {
     const message = createBaseMsgSubmitProposalResponse();
     if (object.proposalId !== undefined && object.proposalId !== null) {
       message.proposalId = BigInt(object.proposalId.toString());
@@ -496,7 +494,7 @@ export const MsgSubmitProposalResponse = {
   toAminoMsg(message: MsgSubmitProposalResponse): MsgSubmitProposalResponseAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgSubmitProposalResponse",
-      value: MsgSubmitProposalResponse.toAmino(message),
+      value: MsgSubmitProposalResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSubmitProposalResponseProtoMsg): MsgSubmitProposalResponse {
@@ -508,14 +506,14 @@ export const MsgSubmitProposalResponse = {
   toProtoMsg(message: MsgSubmitProposalResponse): MsgSubmitProposalResponseProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgSubmitProposalResponse",
-      value: MsgSubmitProposalResponse.encode(message).finish(),
+      value: MsgSubmitProposalResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgExecLegacyContent(): MsgExecLegacyContent {
   return {
     content: undefined,
-    authority: "",
+    authority: ""
   };
 }
 export const MsgExecLegacyContent = {
@@ -579,7 +577,7 @@ export const MsgExecLegacyContent = {
   toAminoMsg(message: MsgExecLegacyContent): MsgExecLegacyContentAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgExecLegacyContent",
-      value: MsgExecLegacyContent.toAmino(message),
+      value: MsgExecLegacyContent.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgExecLegacyContentProtoMsg): MsgExecLegacyContent {
@@ -591,9 +589,9 @@ export const MsgExecLegacyContent = {
   toProtoMsg(message: MsgExecLegacyContent): MsgExecLegacyContentProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgExecLegacyContent",
-      value: MsgExecLegacyContent.encode(message).finish(),
+      value: MsgExecLegacyContent.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgExecLegacyContentResponse(): MsgExecLegacyContentResponse {
   return {};
@@ -617,9 +615,7 @@ export const MsgExecLegacyContentResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgExecLegacyContentResponse>, I>>(
-    _: I,
-  ): MsgExecLegacyContentResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgExecLegacyContentResponse>, I>>(_: I): MsgExecLegacyContentResponse {
     const message = createBaseMsgExecLegacyContentResponse();
     return message;
   },
@@ -637,7 +633,7 @@ export const MsgExecLegacyContentResponse = {
   toAminoMsg(message: MsgExecLegacyContentResponse): MsgExecLegacyContentResponseAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgExecLegacyContentResponse",
-      value: MsgExecLegacyContentResponse.toAmino(message),
+      value: MsgExecLegacyContentResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgExecLegacyContentResponseProtoMsg): MsgExecLegacyContentResponse {
@@ -649,16 +645,16 @@ export const MsgExecLegacyContentResponse = {
   toProtoMsg(message: MsgExecLegacyContentResponse): MsgExecLegacyContentResponseProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgExecLegacyContentResponse",
-      value: MsgExecLegacyContentResponse.encode(message).finish(),
+      value: MsgExecLegacyContentResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgVote(): MsgVote {
   return {
     proposalId: BigInt(0),
     voter: "",
     option: 0,
-    metadata: "",
+    metadata: ""
   };
 }
 export const MsgVote = {
@@ -744,7 +740,7 @@ export const MsgVote = {
   toAminoMsg(message: MsgVote): MsgVoteAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgVote",
-      value: MsgVote.toAmino(message),
+      value: MsgVote.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgVoteProtoMsg): MsgVote {
@@ -756,9 +752,9 @@ export const MsgVote = {
   toProtoMsg(message: MsgVote): MsgVoteProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgVote",
-      value: MsgVote.encode(message).finish(),
+      value: MsgVote.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgVoteResponse(): MsgVoteResponse {
   return {};
@@ -800,7 +796,7 @@ export const MsgVoteResponse = {
   toAminoMsg(message: MsgVoteResponse): MsgVoteResponseAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgVoteResponse",
-      value: MsgVoteResponse.toAmino(message),
+      value: MsgVoteResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgVoteResponseProtoMsg): MsgVoteResponse {
@@ -812,16 +808,16 @@ export const MsgVoteResponse = {
   toProtoMsg(message: MsgVoteResponse): MsgVoteResponseProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgVoteResponse",
-      value: MsgVoteResponse.encode(message).finish(),
+      value: MsgVoteResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgVoteWeighted(): MsgVoteWeighted {
   return {
     proposalId: BigInt(0),
     voter: "",
     options: [],
-    metadata: "",
+    metadata: ""
   };
 }
 export const MsgVoteWeighted = {
@@ -873,7 +869,7 @@ export const MsgVoteWeighted = {
       message.proposalId = BigInt(object.proposalId.toString());
     }
     message.voter = object.voter ?? "";
-    message.options = object.options?.map((e) => WeightedVoteOption.fromPartial(e)) || [];
+    message.options = object.options?.map(e => WeightedVoteOption.fromPartial(e)) || [];
     message.metadata = object.metadata ?? "";
     return message;
   },
@@ -885,7 +881,7 @@ export const MsgVoteWeighted = {
     if (object.voter !== undefined && object.voter !== null) {
       message.voter = object.voter;
     }
-    message.options = object.options?.map((e) => WeightedVoteOption.fromAmino(e)) || [];
+    message.options = object.options?.map(e => WeightedVoteOption.fromAmino(e)) || [];
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = object.metadata;
     }
@@ -896,7 +892,7 @@ export const MsgVoteWeighted = {
     obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
     obj.voter = message.voter === "" ? undefined : message.voter;
     if (message.options) {
-      obj.options = message.options.map((e) => (e ? WeightedVoteOption.toAmino(e) : undefined));
+      obj.options = message.options.map(e => e ? WeightedVoteOption.toAmino(e) : undefined);
     } else {
       obj.options = message.options;
     }
@@ -909,7 +905,7 @@ export const MsgVoteWeighted = {
   toAminoMsg(message: MsgVoteWeighted): MsgVoteWeightedAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgVoteWeighted",
-      value: MsgVoteWeighted.toAmino(message),
+      value: MsgVoteWeighted.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgVoteWeightedProtoMsg): MsgVoteWeighted {
@@ -921,9 +917,9 @@ export const MsgVoteWeighted = {
   toProtoMsg(message: MsgVoteWeighted): MsgVoteWeightedProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgVoteWeighted",
-      value: MsgVoteWeighted.encode(message).finish(),
+      value: MsgVoteWeighted.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgVoteWeightedResponse(): MsgVoteWeightedResponse {
   return {};
@@ -965,7 +961,7 @@ export const MsgVoteWeightedResponse = {
   toAminoMsg(message: MsgVoteWeightedResponse): MsgVoteWeightedResponseAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgVoteWeightedResponse",
-      value: MsgVoteWeightedResponse.toAmino(message),
+      value: MsgVoteWeightedResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgVoteWeightedResponseProtoMsg): MsgVoteWeightedResponse {
@@ -977,15 +973,15 @@ export const MsgVoteWeightedResponse = {
   toProtoMsg(message: MsgVoteWeightedResponse): MsgVoteWeightedResponseProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgVoteWeightedResponse",
-      value: MsgVoteWeightedResponse.encode(message).finish(),
+      value: MsgVoteWeightedResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgDeposit(): MsgDeposit {
   return {
     proposalId: BigInt(0),
     depositor: "",
-    amount: [],
+    amount: []
   };
 }
 export const MsgDeposit = {
@@ -1031,7 +1027,7 @@ export const MsgDeposit = {
       message.proposalId = BigInt(object.proposalId.toString());
     }
     message.depositor = object.depositor ?? "";
-    message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
+    message.amount = object.amount?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: MsgDepositAmino): MsgDeposit {
@@ -1042,7 +1038,7 @@ export const MsgDeposit = {
     if (object.depositor !== undefined && object.depositor !== null) {
       message.depositor = object.depositor;
     }
-    message.amount = object.amount?.map((e) => Coin.fromAmino(e)) || [];
+    message.amount = object.amount?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: MsgDeposit): MsgDepositAmino {
@@ -1050,7 +1046,7 @@ export const MsgDeposit = {
     obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
     obj.depositor = message.depositor === "" ? undefined : message.depositor;
     if (message.amount) {
-      obj.amount = message.amount.map((e) => (e ? Coin.toAmino(e) : undefined));
+      obj.amount = message.amount.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
       obj.amount = message.amount;
     }
@@ -1062,7 +1058,7 @@ export const MsgDeposit = {
   toAminoMsg(message: MsgDeposit): MsgDepositAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgDeposit",
-      value: MsgDeposit.toAmino(message),
+      value: MsgDeposit.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgDepositProtoMsg): MsgDeposit {
@@ -1074,9 +1070,9 @@ export const MsgDeposit = {
   toProtoMsg(message: MsgDeposit): MsgDepositProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgDeposit",
-      value: MsgDeposit.encode(message).finish(),
+      value: MsgDeposit.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgDepositResponse(): MsgDepositResponse {
   return {};
@@ -1118,7 +1114,7 @@ export const MsgDepositResponse = {
   toAminoMsg(message: MsgDepositResponse): MsgDepositResponseAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgDepositResponse",
-      value: MsgDepositResponse.toAmino(message),
+      value: MsgDepositResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgDepositResponseProtoMsg): MsgDepositResponse {
@@ -1130,14 +1126,14 @@ export const MsgDepositResponse = {
   toProtoMsg(message: MsgDepositResponse): MsgDepositResponseProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgDepositResponse",
-      value: MsgDepositResponse.encode(message).finish(),
+      value: MsgDepositResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const MsgUpdateParams = {
@@ -1201,7 +1197,7 @@ export const MsgUpdateParams = {
   toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg {
     return {
       type: "cosmos-sdk/x/gov/v1/MsgUpdateParams",
-      value: MsgUpdateParams.toAmino(message),
+      value: MsgUpdateParams.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams {
@@ -1213,9 +1209,9 @@ export const MsgUpdateParams = {
   toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgUpdateParams",
-      value: MsgUpdateParams.encode(message).finish(),
+      value: MsgUpdateParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
@@ -1257,7 +1253,7 @@ export const MsgUpdateParamsResponse = {
   toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg {
     return {
       type: "cosmos-sdk/v1/MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.toAmino(message),
+      value: MsgUpdateParamsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse {
@@ -1269,9 +1265,9 @@ export const MsgUpdateParamsResponse = {
   toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.encode(message).finish(),
+      value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the gov Msg service. */
 export interface Msg {
@@ -1291,7 +1287,7 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/gov module
    * parameters. The authority is defined in the keeper.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
@@ -1310,31 +1306,31 @@ export class MsgClientImpl implements Msg {
   SubmitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse> {
     const data = MsgSubmitProposal.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "SubmitProposal", data);
-    return promise.then((data) => MsgSubmitProposalResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgSubmitProposalResponse.decode(new BinaryReader(data)));
   }
   ExecLegacyContent(request: MsgExecLegacyContent): Promise<MsgExecLegacyContentResponse> {
     const data = MsgExecLegacyContent.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "ExecLegacyContent", data);
-    return promise.then((data) => MsgExecLegacyContentResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgExecLegacyContentResponse.decode(new BinaryReader(data)));
   }
   Vote(request: MsgVote): Promise<MsgVoteResponse> {
     const data = MsgVote.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "Vote", data);
-    return promise.then((data) => MsgVoteResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgVoteResponse.decode(new BinaryReader(data)));
   }
   VoteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse> {
     const data = MsgVoteWeighted.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "VoteWeighted", data);
-    return promise.then((data) => MsgVoteWeightedResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgVoteWeightedResponse.decode(new BinaryReader(data)));
   }
   Deposit(request: MsgDeposit): Promise<MsgDepositResponse> {
     const data = MsgDeposit.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "Deposit", data);
-    return promise.then((data) => MsgDepositResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgDepositResponse.decode(new BinaryReader(data)));
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "UpdateParams", data);
-    return promise.then((data) => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
   }
 }

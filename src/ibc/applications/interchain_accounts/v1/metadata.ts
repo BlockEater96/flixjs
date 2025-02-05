@@ -60,7 +60,7 @@ function createBaseMetadata(): Metadata {
     hostConnectionId: "",
     address: "",
     encoding: "",
-    txType: "",
+    txType: ""
   };
 }
 export const Metadata = {
@@ -153,8 +153,7 @@ export const Metadata = {
   toAmino(message: Metadata): MetadataAmino {
     const obj: any = {};
     obj.version = message.version === "" ? undefined : message.version;
-    obj.controller_connection_id =
-      message.controllerConnectionId === "" ? undefined : message.controllerConnectionId;
+    obj.controller_connection_id = message.controllerConnectionId === "" ? undefined : message.controllerConnectionId;
     obj.host_connection_id = message.hostConnectionId === "" ? undefined : message.hostConnectionId;
     obj.address = message.address === "" ? undefined : message.address;
     obj.encoding = message.encoding === "" ? undefined : message.encoding;
@@ -167,7 +166,7 @@ export const Metadata = {
   toAminoMsg(message: Metadata): MetadataAminoMsg {
     return {
       type: "cosmos-sdk/Metadata",
-      value: Metadata.toAmino(message),
+      value: Metadata.toAmino(message)
     };
   },
   fromProtoMsg(message: MetadataProtoMsg): Metadata {
@@ -179,7 +178,7 @@ export const Metadata = {
   toProtoMsg(message: Metadata): MetadataProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.v1.Metadata",
-      value: Metadata.encode(message).finish(),
+      value: Metadata.encode(message).finish()
     };
-  },
+  }
 };

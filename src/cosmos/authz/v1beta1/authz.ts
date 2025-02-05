@@ -111,7 +111,7 @@ export interface GrantQueueItemAminoMsg {
 }
 function createBaseGenericAuthorization(): GenericAuthorization {
   return {
-    msg: "",
+    msg: ""
   };
 }
 export const GenericAuthorization = {
@@ -162,7 +162,7 @@ export const GenericAuthorization = {
   toAminoMsg(message: GenericAuthorization): GenericAuthorizationAminoMsg {
     return {
       type: "cosmos-sdk/GenericAuthorization",
-      value: GenericAuthorization.toAmino(message),
+      value: GenericAuthorization.toAmino(message)
     };
   },
   fromProtoMsg(message: GenericAuthorizationProtoMsg): GenericAuthorization {
@@ -174,14 +174,14 @@ export const GenericAuthorization = {
   toProtoMsg(message: GenericAuthorization): GenericAuthorizationProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.GenericAuthorization",
-      value: GenericAuthorization.encode(message).finish(),
+      value: GenericAuthorization.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseGrant(): Grant {
   return {
     authorization: undefined,
-    expiration: undefined,
+    expiration: undefined
   };
 }
 export const Grant = {
@@ -247,7 +247,7 @@ export const Grant = {
   toAminoMsg(message: Grant): GrantAminoMsg {
     return {
       type: "cosmos-sdk/Grant",
-      value: Grant.toAmino(message),
+      value: Grant.toAmino(message)
     };
   },
   fromProtoMsg(message: GrantProtoMsg): Grant {
@@ -259,16 +259,16 @@ export const Grant = {
   toProtoMsg(message: Grant): GrantProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.Grant",
-      value: Grant.encode(message).finish(),
+      value: Grant.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseGrantAuthorization(): GrantAuthorization {
   return {
     granter: "",
     grantee: "",
     authorization: undefined,
-    expiration: undefined,
+    expiration: undefined
   };
 }
 export const GrantAuthorization = {
@@ -356,7 +356,7 @@ export const GrantAuthorization = {
   toAminoMsg(message: GrantAuthorization): GrantAuthorizationAminoMsg {
     return {
       type: "cosmos-sdk/GrantAuthorization",
-      value: GrantAuthorization.toAmino(message),
+      value: GrantAuthorization.toAmino(message)
     };
   },
   fromProtoMsg(message: GrantAuthorizationProtoMsg): GrantAuthorization {
@@ -368,13 +368,13 @@ export const GrantAuthorization = {
   toProtoMsg(message: GrantAuthorization): GrantAuthorizationProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.GrantAuthorization",
-      value: GrantAuthorization.encode(message).finish(),
+      value: GrantAuthorization.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseGrantQueueItem(): GrantQueueItem {
   return {
-    msgTypeUrls: [],
+    msgTypeUrls: []
   };
 }
 export const GrantQueueItem = {
@@ -404,18 +404,18 @@ export const GrantQueueItem = {
   },
   fromPartial<I extends Exact<DeepPartial<GrantQueueItem>, I>>(object: I): GrantQueueItem {
     const message = createBaseGrantQueueItem();
-    message.msgTypeUrls = object.msgTypeUrls?.map((e) => e) || [];
+    message.msgTypeUrls = object.msgTypeUrls?.map(e => e) || [];
     return message;
   },
   fromAmino(object: GrantQueueItemAmino): GrantQueueItem {
     const message = createBaseGrantQueueItem();
-    message.msgTypeUrls = object.msg_type_urls?.map((e) => e) || [];
+    message.msgTypeUrls = object.msg_type_urls?.map(e => e) || [];
     return message;
   },
   toAmino(message: GrantQueueItem): GrantQueueItemAmino {
     const obj: any = {};
     if (message.msgTypeUrls) {
-      obj.msg_type_urls = message.msgTypeUrls.map((e) => e);
+      obj.msg_type_urls = message.msgTypeUrls.map(e => e);
     } else {
       obj.msg_type_urls = message.msgTypeUrls;
     }
@@ -427,7 +427,7 @@ export const GrantQueueItem = {
   toAminoMsg(message: GrantQueueItem): GrantQueueItemAminoMsg {
     return {
       type: "cosmos-sdk/GrantQueueItem",
-      value: GrantQueueItem.toAmino(message),
+      value: GrantQueueItem.toAmino(message)
     };
   },
   fromProtoMsg(message: GrantQueueItemProtoMsg): GrantQueueItem {
@@ -439,7 +439,7 @@ export const GrantQueueItem = {
   toProtoMsg(message: GrantQueueItem): GrantQueueItemProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.GrantQueueItem",
-      value: GrantQueueItem.encode(message).finish(),
+      value: GrantQueueItem.encode(message).finish()
     };
-  },
+  }
 };

@@ -49,7 +49,7 @@ export interface PrivKeyAminoMsg {
 }
 function createBasePubKey(): PubKey {
   return {
-    key: new Uint8Array(),
+    key: new Uint8Array()
   };
 }
 export const PubKey = {
@@ -100,7 +100,7 @@ export const PubKey = {
   toAminoMsg(message: PubKey): PubKeyAminoMsg {
     return {
       type: "tendermint/PubKeySecp256k1",
-      value: PubKey.toAmino(message),
+      value: PubKey.toAmino(message)
     };
   },
   fromProtoMsg(message: PubKeyProtoMsg): PubKey {
@@ -112,13 +112,13 @@ export const PubKey = {
   toProtoMsg(message: PubKey): PubKeyProtoMsg {
     return {
       typeUrl: "/cosmos.crypto.secp256k1.PubKey",
-      value: PubKey.encode(message).finish(),
+      value: PubKey.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePrivKey(): PrivKey {
   return {
-    key: new Uint8Array(),
+    key: new Uint8Array()
   };
 }
 export const PrivKey = {
@@ -169,7 +169,7 @@ export const PrivKey = {
   toAminoMsg(message: PrivKey): PrivKeyAminoMsg {
     return {
       type: "tendermint/PrivKeySecp256k1",
-      value: PrivKey.toAmino(message),
+      value: PrivKey.toAmino(message)
     };
   },
   fromProtoMsg(message: PrivKeyProtoMsg): PrivKey {
@@ -181,7 +181,7 @@ export const PrivKey = {
   toProtoMsg(message: PrivKey): PrivKeyProtoMsg {
     return {
       typeUrl: "/cosmos.crypto.secp256k1.PrivKey",
-      value: PrivKey.encode(message).finish(),
+      value: PrivKey.encode(message).finish()
     };
-  },
+  }
 };

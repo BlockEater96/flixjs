@@ -1,21 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  RequestDeliverTx,
-  RequestDeliverTxAmino,
-  ResponseDeliverTx,
-  ResponseDeliverTxAmino,
-  RequestBeginBlock,
-  RequestBeginBlockAmino,
-  ResponseBeginBlock,
-  ResponseBeginBlockAmino,
-  RequestEndBlock,
-  RequestEndBlockAmino,
-  ResponseEndBlock,
-  ResponseEndBlockAmino,
-  ResponseCommit,
-  ResponseCommitAmino,
-} from "../../../../tendermint/abci/types";
+import { RequestDeliverTx, RequestDeliverTxAmino, ResponseDeliverTx, ResponseDeliverTxAmino, RequestBeginBlock, RequestBeginBlockAmino, ResponseBeginBlock, ResponseBeginBlockAmino, RequestEndBlock, RequestEndBlockAmino, ResponseEndBlock, ResponseEndBlockAmino, ResponseCommit, ResponseCommitAmino } from "../../../../tendermint/abci/types";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { DeepPartial, Exact, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 export const protobufPackage = "cosmos.base.store.v1beta1";
@@ -23,7 +8,7 @@ export const protobufPackage = "cosmos.base.store.v1beta1";
  * StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and Deletes)
  * It optionally includes the StoreKey for the originating KVStore and a Boolean flag to distinguish between Sets and
  * Deletes
- *
+ * 
  * Since: cosmos-sdk 0.43
  */
 export interface StoreKVPair {
@@ -42,7 +27,7 @@ export interface StoreKVPairProtoMsg {
  * StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and Deletes)
  * It optionally includes the StoreKey for the originating KVStore and a Boolean flag to distinguish between Sets and
  * Deletes
- *
+ * 
  * Since: cosmos-sdk 0.43
  */
 export interface StoreKVPairAmino {
@@ -112,7 +97,7 @@ function createBaseStoreKVPair(): StoreKVPair {
     storeKey: "",
     delete: false,
     key: new Uint8Array(),
-    value: new Uint8Array(),
+    value: new Uint8Array()
   };
 }
 export const StoreKVPair = {
@@ -196,7 +181,7 @@ export const StoreKVPair = {
   toAminoMsg(message: StoreKVPair): StoreKVPairAminoMsg {
     return {
       type: "cosmos-sdk/StoreKVPair",
-      value: StoreKVPair.toAmino(message),
+      value: StoreKVPair.toAmino(message)
     };
   },
   fromProtoMsg(message: StoreKVPairProtoMsg): StoreKVPair {
@@ -208,9 +193,9 @@ export const StoreKVPair = {
   toProtoMsg(message: StoreKVPair): StoreKVPairProtoMsg {
     return {
       typeUrl: "/cosmos.base.store.v1beta1.StoreKVPair",
-      value: StoreKVPair.encode(message).finish(),
+      value: StoreKVPair.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseBlockMetadata(): BlockMetadata {
   return {
@@ -219,7 +204,7 @@ function createBaseBlockMetadata(): BlockMetadata {
     deliverTxs: [],
     requestEndBlock: undefined,
     responseEndBlock: undefined,
-    responseCommit: undefined,
+    responseCommit: undefined
   };
 }
 export const BlockMetadata = {
@@ -285,7 +270,7 @@ export const BlockMetadata = {
     if (object.responseBeginBlock !== undefined && object.responseBeginBlock !== null) {
       message.responseBeginBlock = ResponseBeginBlock.fromPartial(object.responseBeginBlock);
     }
-    message.deliverTxs = object.deliverTxs?.map((e) => BlockMetadata_DeliverTx.fromPartial(e)) || [];
+    message.deliverTxs = object.deliverTxs?.map(e => BlockMetadata_DeliverTx.fromPartial(e)) || [];
     if (object.requestEndBlock !== undefined && object.requestEndBlock !== null) {
       message.requestEndBlock = RequestEndBlock.fromPartial(object.requestEndBlock);
     }
@@ -305,7 +290,7 @@ export const BlockMetadata = {
     if (object.response_begin_block !== undefined && object.response_begin_block !== null) {
       message.responseBeginBlock = ResponseBeginBlock.fromAmino(object.response_begin_block);
     }
-    message.deliverTxs = object.deliver_txs?.map((e) => BlockMetadata_DeliverTx.fromAmino(e)) || [];
+    message.deliverTxs = object.deliver_txs?.map(e => BlockMetadata_DeliverTx.fromAmino(e)) || [];
     if (object.request_end_block !== undefined && object.request_end_block !== null) {
       message.requestEndBlock = RequestEndBlock.fromAmino(object.request_end_block);
     }
@@ -319,23 +304,15 @@ export const BlockMetadata = {
   },
   toAmino(message: BlockMetadata): BlockMetadataAmino {
     const obj: any = {};
-    obj.request_begin_block = message.requestBeginBlock
-      ? RequestBeginBlock.toAmino(message.requestBeginBlock)
-      : undefined;
-    obj.response_begin_block = message.responseBeginBlock
-      ? ResponseBeginBlock.toAmino(message.responseBeginBlock)
-      : undefined;
+    obj.request_begin_block = message.requestBeginBlock ? RequestBeginBlock.toAmino(message.requestBeginBlock) : undefined;
+    obj.response_begin_block = message.responseBeginBlock ? ResponseBeginBlock.toAmino(message.responseBeginBlock) : undefined;
     if (message.deliverTxs) {
-      obj.deliver_txs = message.deliverTxs.map((e) => (e ? BlockMetadata_DeliverTx.toAmino(e) : undefined));
+      obj.deliver_txs = message.deliverTxs.map(e => e ? BlockMetadata_DeliverTx.toAmino(e) : undefined);
     } else {
       obj.deliver_txs = message.deliverTxs;
     }
-    obj.request_end_block = message.requestEndBlock
-      ? RequestEndBlock.toAmino(message.requestEndBlock)
-      : undefined;
-    obj.response_end_block = message.responseEndBlock
-      ? ResponseEndBlock.toAmino(message.responseEndBlock)
-      : undefined;
+    obj.request_end_block = message.requestEndBlock ? RequestEndBlock.toAmino(message.requestEndBlock) : undefined;
+    obj.response_end_block = message.responseEndBlock ? ResponseEndBlock.toAmino(message.responseEndBlock) : undefined;
     obj.response_commit = message.responseCommit ? ResponseCommit.toAmino(message.responseCommit) : undefined;
     return obj;
   },
@@ -345,7 +322,7 @@ export const BlockMetadata = {
   toAminoMsg(message: BlockMetadata): BlockMetadataAminoMsg {
     return {
       type: "cosmos-sdk/BlockMetadata",
-      value: BlockMetadata.toAmino(message),
+      value: BlockMetadata.toAmino(message)
     };
   },
   fromProtoMsg(message: BlockMetadataProtoMsg): BlockMetadata {
@@ -357,14 +334,14 @@ export const BlockMetadata = {
   toProtoMsg(message: BlockMetadata): BlockMetadataProtoMsg {
     return {
       typeUrl: "/cosmos.base.store.v1beta1.BlockMetadata",
-      value: BlockMetadata.encode(message).finish(),
+      value: BlockMetadata.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseBlockMetadata_DeliverTx(): BlockMetadata_DeliverTx {
   return {
     request: undefined,
-    response: undefined,
+    response: undefined
   };
 }
 export const BlockMetadata_DeliverTx = {
@@ -430,7 +407,7 @@ export const BlockMetadata_DeliverTx = {
   toAminoMsg(message: BlockMetadata_DeliverTx): BlockMetadata_DeliverTxAminoMsg {
     return {
       type: "cosmos-sdk/DeliverTx",
-      value: BlockMetadata_DeliverTx.toAmino(message),
+      value: BlockMetadata_DeliverTx.toAmino(message)
     };
   },
   fromProtoMsg(message: BlockMetadata_DeliverTxProtoMsg): BlockMetadata_DeliverTx {
@@ -442,7 +419,7 @@ export const BlockMetadata_DeliverTx = {
   toProtoMsg(message: BlockMetadata_DeliverTx): BlockMetadata_DeliverTxProtoMsg {
     return {
       typeUrl: "/cosmos.base.store.v1beta1.DeliverTx",
-      value: BlockMetadata_DeliverTx.encode(message).finish(),
+      value: BlockMetadata_DeliverTx.encode(message).finish()
     };
-  },
+  }
 };

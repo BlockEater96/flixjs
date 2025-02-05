@@ -30,7 +30,7 @@ function createBaseBlock(): Block {
     header: Header.fromPartial({}),
     data: Data.fromPartial({}),
     evidence: EvidenceList.fromPartial({}),
-    lastCommit: undefined,
+    lastCommit: undefined
   };
 }
 export const Block = {
@@ -128,7 +128,7 @@ export const Block = {
   toProtoMsg(message: Block): BlockProtoMsg {
     return {
       typeUrl: "/tendermint.types.Block",
-      value: Block.encode(message).finish(),
+      value: Block.encode(message).finish()
     };
-  },
+  }
 };

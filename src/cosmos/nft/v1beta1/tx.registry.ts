@@ -13,24 +13,24 @@ export const MessageComposer = {
     send(value: MsgSend) {
       return {
         typeUrl: "/cosmos.nft.v1beta1.MsgSend",
-        value: MsgSend.encode(value).finish(),
+        value: MsgSend.encode(value).finish()
       };
-    },
+    }
   },
   withTypeUrl: {
     send(value: MsgSend) {
       return {
         typeUrl: "/cosmos.nft.v1beta1.MsgSend",
-        value,
+        value
       };
-    },
+    }
   },
   fromPartial: {
     send(value: MsgSend) {
       return {
         typeUrl: "/cosmos.nft.v1beta1.MsgSend",
-        value: MsgSend.fromPartial(value),
+        value: MsgSend.fromPartial(value)
       };
-    },
-  },
+    }
+  }
 };

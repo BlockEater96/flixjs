@@ -40,7 +40,7 @@ export interface ConfigAminoMsg {
 function createBaseConfig(): Config {
   return {
     skipAnteHandler: false,
-    skipPostHandler: false,
+    skipPostHandler: false
   };
 }
 export const Config = {
@@ -102,7 +102,7 @@ export const Config = {
   toAminoMsg(message: Config): ConfigAminoMsg {
     return {
       type: "cosmos-sdk/Config",
-      value: Config.toAmino(message),
+      value: Config.toAmino(message)
     };
   },
   fromProtoMsg(message: ConfigProtoMsg): Config {
@@ -114,7 +114,7 @@ export const Config = {
   toProtoMsg(message: Config): ConfigProtoMsg {
     return {
       typeUrl: "/cosmos.tx.config.v1.Config",
-      value: Config.encode(message).finish(),
+      value: Config.encode(message).finish()
     };
-  },
+  }
 };

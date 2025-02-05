@@ -87,7 +87,7 @@ export interface EvidenceListAminoMsg {
 function createBaseEvidence(): Evidence {
   return {
     duplicateVoteEvidence: undefined,
-    lightClientAttackEvidence: undefined,
+    lightClientAttackEvidence: undefined
   };
 }
 export const Evidence = {
@@ -127,9 +127,7 @@ export const Evidence = {
       message.duplicateVoteEvidence = DuplicateVoteEvidence.fromPartial(object.duplicateVoteEvidence);
     }
     if (object.lightClientAttackEvidence !== undefined && object.lightClientAttackEvidence !== null) {
-      message.lightClientAttackEvidence = LightClientAttackEvidence.fromPartial(
-        object.lightClientAttackEvidence,
-      );
+      message.lightClientAttackEvidence = LightClientAttackEvidence.fromPartial(object.lightClientAttackEvidence);
     }
     return message;
   },
@@ -139,20 +137,14 @@ export const Evidence = {
       message.duplicateVoteEvidence = DuplicateVoteEvidence.fromAmino(object.duplicate_vote_evidence);
     }
     if (object.light_client_attack_evidence !== undefined && object.light_client_attack_evidence !== null) {
-      message.lightClientAttackEvidence = LightClientAttackEvidence.fromAmino(
-        object.light_client_attack_evidence,
-      );
+      message.lightClientAttackEvidence = LightClientAttackEvidence.fromAmino(object.light_client_attack_evidence);
     }
     return message;
   },
   toAmino(message: Evidence): EvidenceAmino {
     const obj: any = {};
-    obj.duplicate_vote_evidence = message.duplicateVoteEvidence
-      ? DuplicateVoteEvidence.toAmino(message.duplicateVoteEvidence)
-      : undefined;
-    obj.light_client_attack_evidence = message.lightClientAttackEvidence
-      ? LightClientAttackEvidence.toAmino(message.lightClientAttackEvidence)
-      : undefined;
+    obj.duplicate_vote_evidence = message.duplicateVoteEvidence ? DuplicateVoteEvidence.toAmino(message.duplicateVoteEvidence) : undefined;
+    obj.light_client_attack_evidence = message.lightClientAttackEvidence ? LightClientAttackEvidence.toAmino(message.lightClientAttackEvidence) : undefined;
     return obj;
   },
   fromAminoMsg(object: EvidenceAminoMsg): Evidence {
@@ -167,9 +159,9 @@ export const Evidence = {
   toProtoMsg(message: Evidence): EvidenceProtoMsg {
     return {
       typeUrl: "/tendermint.types.Evidence",
-      value: Evidence.encode(message).finish(),
+      value: Evidence.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseDuplicateVoteEvidence(): DuplicateVoteEvidence {
   return {
@@ -177,7 +169,7 @@ function createBaseDuplicateVoteEvidence(): DuplicateVoteEvidence {
     voteB: undefined,
     totalVotingPower: BigInt(0),
     validatorPower: BigInt(0),
-    timestamp: Timestamp.fromPartial({}),
+    timestamp: Timestamp.fromPartial({})
   };
 }
 export const DuplicateVoteEvidence = {
@@ -271,10 +263,8 @@ export const DuplicateVoteEvidence = {
     const obj: any = {};
     obj.vote_a = message.voteA ? Vote.toAmino(message.voteA) : undefined;
     obj.vote_b = message.voteB ? Vote.toAmino(message.voteB) : undefined;
-    obj.total_voting_power =
-      message.totalVotingPower !== BigInt(0) ? message.totalVotingPower?.toString() : undefined;
-    obj.validator_power =
-      message.validatorPower !== BigInt(0) ? message.validatorPower?.toString() : undefined;
+    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower?.toString() : undefined;
+    obj.validator_power = message.validatorPower !== BigInt(0) ? message.validatorPower?.toString() : undefined;
     obj.timestamp = message.timestamp ? Timestamp.toAmino(message.timestamp) : undefined;
     return obj;
   },
@@ -290,9 +280,9 @@ export const DuplicateVoteEvidence = {
   toProtoMsg(message: DuplicateVoteEvidence): DuplicateVoteEvidenceProtoMsg {
     return {
       typeUrl: "/tendermint.types.DuplicateVoteEvidence",
-      value: DuplicateVoteEvidence.encode(message).finish(),
+      value: DuplicateVoteEvidence.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseLightClientAttackEvidence(): LightClientAttackEvidence {
   return {
@@ -300,7 +290,7 @@ function createBaseLightClientAttackEvidence(): LightClientAttackEvidence {
     commonHeight: BigInt(0),
     byzantineValidators: [],
     totalVotingPower: BigInt(0),
-    timestamp: Timestamp.fromPartial({}),
+    timestamp: Timestamp.fromPartial({})
   };
 }
 export const LightClientAttackEvidence = {
@@ -352,9 +342,7 @@ export const LightClientAttackEvidence = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<LightClientAttackEvidence>, I>>(
-    object: I,
-  ): LightClientAttackEvidence {
+  fromPartial<I extends Exact<DeepPartial<LightClientAttackEvidence>, I>>(object: I): LightClientAttackEvidence {
     const message = createBaseLightClientAttackEvidence();
     if (object.conflictingBlock !== undefined && object.conflictingBlock !== null) {
       message.conflictingBlock = LightBlock.fromPartial(object.conflictingBlock);
@@ -362,7 +350,7 @@ export const LightClientAttackEvidence = {
     if (object.commonHeight !== undefined && object.commonHeight !== null) {
       message.commonHeight = BigInt(object.commonHeight.toString());
     }
-    message.byzantineValidators = object.byzantineValidators?.map((e) => Validator.fromPartial(e)) || [];
+    message.byzantineValidators = object.byzantineValidators?.map(e => Validator.fromPartial(e)) || [];
     if (object.totalVotingPower !== undefined && object.totalVotingPower !== null) {
       message.totalVotingPower = BigInt(object.totalVotingPower.toString());
     }
@@ -379,7 +367,7 @@ export const LightClientAttackEvidence = {
     if (object.common_height !== undefined && object.common_height !== null) {
       message.commonHeight = BigInt(object.common_height);
     }
-    message.byzantineValidators = object.byzantine_validators?.map((e) => Validator.fromAmino(e)) || [];
+    message.byzantineValidators = object.byzantine_validators?.map(e => Validator.fromAmino(e)) || [];
     if (object.total_voting_power !== undefined && object.total_voting_power !== null) {
       message.totalVotingPower = BigInt(object.total_voting_power);
     }
@@ -390,19 +378,14 @@ export const LightClientAttackEvidence = {
   },
   toAmino(message: LightClientAttackEvidence): LightClientAttackEvidenceAmino {
     const obj: any = {};
-    obj.conflicting_block = message.conflictingBlock
-      ? LightBlock.toAmino(message.conflictingBlock)
-      : undefined;
+    obj.conflicting_block = message.conflictingBlock ? LightBlock.toAmino(message.conflictingBlock) : undefined;
     obj.common_height = message.commonHeight !== BigInt(0) ? message.commonHeight?.toString() : undefined;
     if (message.byzantineValidators) {
-      obj.byzantine_validators = message.byzantineValidators.map((e) =>
-        e ? Validator.toAmino(e) : undefined,
-      );
+      obj.byzantine_validators = message.byzantineValidators.map(e => e ? Validator.toAmino(e) : undefined);
     } else {
       obj.byzantine_validators = message.byzantineValidators;
     }
-    obj.total_voting_power =
-      message.totalVotingPower !== BigInt(0) ? message.totalVotingPower?.toString() : undefined;
+    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower?.toString() : undefined;
     obj.timestamp = message.timestamp ? Timestamp.toAmino(message.timestamp) : undefined;
     return obj;
   },
@@ -418,13 +401,13 @@ export const LightClientAttackEvidence = {
   toProtoMsg(message: LightClientAttackEvidence): LightClientAttackEvidenceProtoMsg {
     return {
       typeUrl: "/tendermint.types.LightClientAttackEvidence",
-      value: LightClientAttackEvidence.encode(message).finish(),
+      value: LightClientAttackEvidence.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEvidenceList(): EvidenceList {
   return {
-    evidence: [],
+    evidence: []
   };
 }
 export const EvidenceList = {
@@ -454,18 +437,18 @@ export const EvidenceList = {
   },
   fromPartial<I extends Exact<DeepPartial<EvidenceList>, I>>(object: I): EvidenceList {
     const message = createBaseEvidenceList();
-    message.evidence = object.evidence?.map((e) => Evidence.fromPartial(e)) || [];
+    message.evidence = object.evidence?.map(e => Evidence.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: EvidenceListAmino): EvidenceList {
     const message = createBaseEvidenceList();
-    message.evidence = object.evidence?.map((e) => Evidence.fromAmino(e)) || [];
+    message.evidence = object.evidence?.map(e => Evidence.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: EvidenceList): EvidenceListAmino {
     const obj: any = {};
     if (message.evidence) {
-      obj.evidence = message.evidence.map((e) => (e ? Evidence.toAmino(e) : undefined));
+      obj.evidence = message.evidence.map(e => e ? Evidence.toAmino(e) : undefined);
     } else {
       obj.evidence = message.evidence;
     }
@@ -483,7 +466,7 @@ export const EvidenceList = {
   toProtoMsg(message: EvidenceList): EvidenceListProtoMsg {
     return {
       typeUrl: "/tendermint.types.EvidenceList",
-      value: EvidenceList.encode(message).finish(),
+      value: EvidenceList.encode(message).finish()
     };
-  },
+  }
 };

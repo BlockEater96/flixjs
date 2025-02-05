@@ -51,7 +51,7 @@ function createBaseListing(): Listing {
     denomId: "",
     price: Coin.fromPartial({}),
     owner: "",
-    splitShares: [],
+    splitShares: []
   };
 }
 export const Listing = {
@@ -118,7 +118,7 @@ export const Listing = {
       message.price = Coin.fromPartial(object.price);
     }
     message.owner = object.owner ?? "";
-    message.splitShares = object.splitShares?.map((e) => WeightedAddress.fromPartial(e)) || [];
+    message.splitShares = object.splitShares?.map(e => WeightedAddress.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ListingAmino): Listing {
@@ -138,7 +138,7 @@ export const Listing = {
     if (object.owner !== undefined && object.owner !== null) {
       message.owner = object.owner;
     }
-    message.splitShares = object.split_shares?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    message.splitShares = object.split_shares?.map(e => WeightedAddress.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Listing): ListingAmino {
@@ -149,7 +149,7 @@ export const Listing = {
     obj.price = message.price ? Coin.toAmino(message.price) : undefined;
     obj.owner = message.owner === "" ? undefined : message.owner;
     if (message.splitShares) {
-      obj.split_shares = message.splitShares.map((e) => (e ? WeightedAddress.toAmino(e) : undefined));
+      obj.split_shares = message.splitShares.map(e => e ? WeightedAddress.toAmino(e) : undefined);
     } else {
       obj.split_shares = message.splitShares;
     }
@@ -167,14 +167,14 @@ export const Listing = {
   toProtoMsg(message: Listing): ListingProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.Listing",
-      value: Listing.encode(message).finish(),
+      value: Listing.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseWeightedAddress(): WeightedAddress {
   return {
     address: "",
-    weight: "",
+    weight: ""
   };
 }
 export const WeightedAddress = {
@@ -242,7 +242,7 @@ export const WeightedAddress = {
   toProtoMsg(message: WeightedAddress): WeightedAddressProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.WeightedAddress",
-      value: WeightedAddress.encode(message).finish(),
+      value: WeightedAddress.encode(message).finish()
     };
-  },
+  }
 };

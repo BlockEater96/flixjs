@@ -45,7 +45,7 @@ function createBaseParams(): Params {
     saleCommission: "",
     distribution: Distribution.fromPartial({}),
     bidCloseDuration: Duration.fromPartial({}),
-    maxAuctionDuration: Duration.fromPartial({}),
+    maxAuctionDuration: Duration.fromPartial({})
   };
 }
 export const Params = {
@@ -125,12 +125,8 @@ export const Params = {
     const obj: any = {};
     obj.sale_commission = message.saleCommission === "" ? undefined : message.saleCommission;
     obj.distribution = message.distribution ? Distribution.toAmino(message.distribution) : undefined;
-    obj.bid_close_duration = message.bidCloseDuration
-      ? Duration.toAmino(message.bidCloseDuration)
-      : undefined;
-    obj.max_auction_duration = message.maxAuctionDuration
-      ? Duration.toAmino(message.maxAuctionDuration)
-      : undefined;
+    obj.bid_close_duration = message.bidCloseDuration ? Duration.toAmino(message.bidCloseDuration) : undefined;
+    obj.max_auction_duration = message.maxAuctionDuration ? Duration.toAmino(message.maxAuctionDuration) : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -145,14 +141,14 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseDistribution(): Distribution {
   return {
     staking: "",
-    communityPool: "",
+    communityPool: ""
   };
 }
 export const Distribution = {
@@ -220,7 +216,7 @@ export const Distribution = {
   toProtoMsg(message: Distribution): DistributionProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.Distribution",
-      value: Distribution.encode(message).finish(),
+      value: Distribution.encode(message).finish()
     };
-  },
+  }
 };

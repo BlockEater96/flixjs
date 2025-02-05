@@ -39,7 +39,7 @@ function createBaseGenesisState(): GenesisState {
   return {
     clientGenesis: GenesisState1.fromPartial({}),
     connectionGenesis: GenesisState2.fromPartial({}),
-    channelGenesis: GenesisState3.fromPartial({}),
+    channelGenesis: GenesisState3.fromPartial({})
   };
 }
 export const GenesisState = {
@@ -108,9 +108,7 @@ export const GenesisState = {
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     obj.client_genesis = message.clientGenesis ? GenesisState1.toAmino(message.clientGenesis) : undefined;
-    obj.connection_genesis = message.connectionGenesis
-      ? GenesisState2.toAmino(message.connectionGenesis)
-      : undefined;
+    obj.connection_genesis = message.connectionGenesis ? GenesisState2.toAmino(message.connectionGenesis) : undefined;
     obj.channel_genesis = message.channelGenesis ? GenesisState3.toAmino(message.channelGenesis) : undefined;
     return obj;
   },
@@ -120,7 +118,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -132,7 +130,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/ibc.core.types.v1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

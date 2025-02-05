@@ -74,7 +74,7 @@ export const QueryConfigRequest = {
   toAminoMsg(message: QueryConfigRequest): QueryConfigRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryConfigRequest",
-      value: QueryConfigRequest.toAmino(message),
+      value: QueryConfigRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConfigRequestProtoMsg): QueryConfigRequest {
@@ -86,13 +86,13 @@ export const QueryConfigRequest = {
   toProtoMsg(message: QueryConfigRequest): QueryConfigRequestProtoMsg {
     return {
       typeUrl: "/cosmos.app.v1alpha1.QueryConfigRequest",
-      value: QueryConfigRequest.encode(message).finish(),
+      value: QueryConfigRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryConfigResponse(): QueryConfigResponse {
   return {
-    config: undefined,
+    config: undefined
   };
 }
 export const QueryConfigResponse = {
@@ -145,7 +145,7 @@ export const QueryConfigResponse = {
   toAminoMsg(message: QueryConfigResponse): QueryConfigResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryConfigResponse",
-      value: QueryConfigResponse.toAmino(message),
+      value: QueryConfigResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryConfigResponseProtoMsg): QueryConfigResponse {
@@ -157,9 +157,9 @@ export const QueryConfigResponse = {
   toProtoMsg(message: QueryConfigResponse): QueryConfigResponseProtoMsg {
     return {
       typeUrl: "/cosmos.app.v1alpha1.QueryConfigResponse",
-      value: QueryConfigResponse.encode(message).finish(),
+      value: QueryConfigResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Query is the app module query service. */
 export interface Query {
@@ -175,6 +175,6 @@ export class QueryClientImpl implements Query {
   Config(request: QueryConfigRequest = {}): Promise<QueryConfigResponse> {
     const data = QueryConfigRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.app.v1alpha1.Query", "Config", data);
-    return promise.then((data) => QueryConfigResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryConfigResponse.decode(new BinaryReader(data)));
   }
 }
