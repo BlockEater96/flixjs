@@ -9,7 +9,7 @@
 [submodule "protos/omniflixhub-src"]
 	path = protos/omniflixhub-src
 	url = https://github.com/OmniFlix/omniflixhub.git
-	branch = 6d8e061bacf24f712e17c450d1cfc80cdacc78f4
+	branch = add-buf-work-yaml
 [submodule "protos/cosmos-sdk"]
 	path = protos/cosmos-sdk
 	url = https://github.com/cosmos/cosmos-sdk
