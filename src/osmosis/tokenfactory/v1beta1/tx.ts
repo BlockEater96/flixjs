@@ -10,7 +10,7 @@ export const protobufPackage = "osmosis.tokenfactory.v1beta1";
  * method. It allows an account to create a new denom. It requires a sender
  * address and a sub denomination. The (sender_address, sub_denomination) tuple
  * must be unique and cannot be re-used.
- *
+ * 
  * The resulting denom created is defined as
  * <factory/{creatorAddress}/{subdenom}>. The resulting denom's admin is
  * originally set to be the creator, but this can be changed later. The token
@@ -30,7 +30,7 @@ export interface MsgCreateDenomProtoMsg {
  * method. It allows an account to create a new denom. It requires a sender
  * address and a sub denomination. The (sender_address, sub_denomination) tuple
  * must be unique and cannot be re-used.
- *
+ * 
  * The resulting denom created is defined as
  * <factory/{creatorAddress}/{subdenom}>. The resulting denom's admin is
  * originally set to be the creator, but this can be changed later. The token
@@ -257,7 +257,7 @@ export interface MsgForceTransferResponseAminoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParams {
@@ -265,7 +265,7 @@ export interface MsgUpdateParams {
   authority: string;
   /**
    * params defines the x/mint parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params: Params;
@@ -276,7 +276,7 @@ export interface MsgUpdateParamsProtoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsAmino {
@@ -284,7 +284,7 @@ export interface MsgUpdateParamsAmino {
   authority?: string;
   /**
    * params defines the x/mint parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params?: ParamsAmino;
@@ -296,7 +296,7 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponse {}
@@ -307,7 +307,7 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponseAmino {}
@@ -318,7 +318,7 @@ export interface MsgUpdateParamsResponseAminoMsg {
 function createBaseMsgCreateDenom(): MsgCreateDenom {
   return {
     sender: "",
-    subdenom: "",
+    subdenom: ""
   };
 }
 export const MsgCreateDenom = {
@@ -380,7 +380,7 @@ export const MsgCreateDenom = {
   toAminoMsg(message: MsgCreateDenom): MsgCreateDenomAminoMsg {
     return {
       type: "tokenfactory/create-denom",
-      value: MsgCreateDenom.toAmino(message),
+      value: MsgCreateDenom.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateDenomProtoMsg): MsgCreateDenom {
@@ -392,13 +392,13 @@ export const MsgCreateDenom = {
   toProtoMsg(message: MsgCreateDenom): MsgCreateDenomProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgCreateDenom",
-      value: MsgCreateDenom.encode(message).finish(),
+      value: MsgCreateDenom.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCreateDenomResponse(): MsgCreateDenomResponse {
   return {
-    newTokenDenom: "",
+    newTokenDenom: ""
   };
 }
 export const MsgCreateDenomResponse = {
@@ -449,7 +449,7 @@ export const MsgCreateDenomResponse = {
   toAminoMsg(message: MsgCreateDenomResponse): MsgCreateDenomResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/create-denom-response",
-      value: MsgCreateDenomResponse.toAmino(message),
+      value: MsgCreateDenomResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateDenomResponseProtoMsg): MsgCreateDenomResponse {
@@ -461,15 +461,15 @@ export const MsgCreateDenomResponse = {
   toProtoMsg(message: MsgCreateDenomResponse): MsgCreateDenomResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgCreateDenomResponse",
-      value: MsgCreateDenomResponse.encode(message).finish(),
+      value: MsgCreateDenomResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgMint(): MsgMint {
   return {
     sender: "",
     amount: Coin.fromPartial({}),
-    mintToAddress: "",
+    mintToAddress: ""
   };
 }
 export const MsgMint = {
@@ -544,7 +544,7 @@ export const MsgMint = {
   toAminoMsg(message: MsgMint): MsgMintAminoMsg {
     return {
       type: "tokenfactory/mint",
-      value: MsgMint.toAmino(message),
+      value: MsgMint.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgMintProtoMsg): MsgMint {
@@ -556,9 +556,9 @@ export const MsgMint = {
   toProtoMsg(message: MsgMint): MsgMintProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgMint",
-      value: MsgMint.encode(message).finish(),
+      value: MsgMint.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgMintResponse(): MsgMintResponse {
   return {};
@@ -600,7 +600,7 @@ export const MsgMintResponse = {
   toAminoMsg(message: MsgMintResponse): MsgMintResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/mint-response",
-      value: MsgMintResponse.toAmino(message),
+      value: MsgMintResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgMintResponseProtoMsg): MsgMintResponse {
@@ -612,15 +612,15 @@ export const MsgMintResponse = {
   toProtoMsg(message: MsgMintResponse): MsgMintResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgMintResponse",
-      value: MsgMintResponse.encode(message).finish(),
+      value: MsgMintResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgBurn(): MsgBurn {
   return {
     sender: "",
     amount: Coin.fromPartial({}),
-    burnFromAddress: "",
+    burnFromAddress: ""
   };
 }
 export const MsgBurn = {
@@ -695,7 +695,7 @@ export const MsgBurn = {
   toAminoMsg(message: MsgBurn): MsgBurnAminoMsg {
     return {
       type: "tokenfactory/burn",
-      value: MsgBurn.toAmino(message),
+      value: MsgBurn.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgBurnProtoMsg): MsgBurn {
@@ -707,9 +707,9 @@ export const MsgBurn = {
   toProtoMsg(message: MsgBurn): MsgBurnProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgBurn",
-      value: MsgBurn.encode(message).finish(),
+      value: MsgBurn.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgBurnResponse(): MsgBurnResponse {
   return {};
@@ -751,7 +751,7 @@ export const MsgBurnResponse = {
   toAminoMsg(message: MsgBurnResponse): MsgBurnResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/burn-response",
-      value: MsgBurnResponse.toAmino(message),
+      value: MsgBurnResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgBurnResponseProtoMsg): MsgBurnResponse {
@@ -763,15 +763,15 @@ export const MsgBurnResponse = {
   toProtoMsg(message: MsgBurnResponse): MsgBurnResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgBurnResponse",
-      value: MsgBurnResponse.encode(message).finish(),
+      value: MsgBurnResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChangeAdmin(): MsgChangeAdmin {
   return {
     sender: "",
     denom: "",
-    newAdmin: "",
+    newAdmin: ""
   };
 }
 export const MsgChangeAdmin = {
@@ -844,7 +844,7 @@ export const MsgChangeAdmin = {
   toAminoMsg(message: MsgChangeAdmin): MsgChangeAdminAminoMsg {
     return {
       type: "tokenfactory/change-admin",
-      value: MsgChangeAdmin.toAmino(message),
+      value: MsgChangeAdmin.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChangeAdminProtoMsg): MsgChangeAdmin {
@@ -856,9 +856,9 @@ export const MsgChangeAdmin = {
   toProtoMsg(message: MsgChangeAdmin): MsgChangeAdminProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgChangeAdmin",
-      value: MsgChangeAdmin.encode(message).finish(),
+      value: MsgChangeAdmin.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgChangeAdminResponse(): MsgChangeAdminResponse {
   return {};
@@ -900,7 +900,7 @@ export const MsgChangeAdminResponse = {
   toAminoMsg(message: MsgChangeAdminResponse): MsgChangeAdminResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/change-admin-response",
-      value: MsgChangeAdminResponse.toAmino(message),
+      value: MsgChangeAdminResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgChangeAdminResponseProtoMsg): MsgChangeAdminResponse {
@@ -912,14 +912,14 @@ export const MsgChangeAdminResponse = {
   toProtoMsg(message: MsgChangeAdminResponse): MsgChangeAdminResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgChangeAdminResponse",
-      value: MsgChangeAdminResponse.encode(message).finish(),
+      value: MsgChangeAdminResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgSetDenomMetadata(): MsgSetDenomMetadata {
   return {
     sender: "",
-    metadata: Metadata.fromPartial({}),
+    metadata: Metadata.fromPartial({})
   };
 }
 export const MsgSetDenomMetadata = {
@@ -983,7 +983,7 @@ export const MsgSetDenomMetadata = {
   toAminoMsg(message: MsgSetDenomMetadata): MsgSetDenomMetadataAminoMsg {
     return {
       type: "tokenfactory/set-denom-metadata",
-      value: MsgSetDenomMetadata.toAmino(message),
+      value: MsgSetDenomMetadata.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSetDenomMetadataProtoMsg): MsgSetDenomMetadata {
@@ -995,9 +995,9 @@ export const MsgSetDenomMetadata = {
   toProtoMsg(message: MsgSetDenomMetadata): MsgSetDenomMetadataProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgSetDenomMetadata",
-      value: MsgSetDenomMetadata.encode(message).finish(),
+      value: MsgSetDenomMetadata.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgSetDenomMetadataResponse(): MsgSetDenomMetadataResponse {
   return {};
@@ -1021,9 +1021,7 @@ export const MsgSetDenomMetadataResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgSetDenomMetadataResponse>, I>>(
-    _: I,
-  ): MsgSetDenomMetadataResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgSetDenomMetadataResponse>, I>>(_: I): MsgSetDenomMetadataResponse {
     const message = createBaseMsgSetDenomMetadataResponse();
     return message;
   },
@@ -1041,7 +1039,7 @@ export const MsgSetDenomMetadataResponse = {
   toAminoMsg(message: MsgSetDenomMetadataResponse): MsgSetDenomMetadataResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/set-denom-metadata-response",
-      value: MsgSetDenomMetadataResponse.toAmino(message),
+      value: MsgSetDenomMetadataResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSetDenomMetadataResponseProtoMsg): MsgSetDenomMetadataResponse {
@@ -1053,16 +1051,16 @@ export const MsgSetDenomMetadataResponse = {
   toProtoMsg(message: MsgSetDenomMetadataResponse): MsgSetDenomMetadataResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgSetDenomMetadataResponse",
-      value: MsgSetDenomMetadataResponse.encode(message).finish(),
+      value: MsgSetDenomMetadataResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgForceTransfer(): MsgForceTransfer {
   return {
     sender: "",
     amount: Coin.fromPartial({}),
     transferFromAddress: "",
-    transferToAddress: "",
+    transferToAddress: ""
   };
 }
 export const MsgForceTransfer = {
@@ -1148,7 +1146,7 @@ export const MsgForceTransfer = {
   toAminoMsg(message: MsgForceTransfer): MsgForceTransferAminoMsg {
     return {
       type: "tokenfactory/force-transfer",
-      value: MsgForceTransfer.toAmino(message),
+      value: MsgForceTransfer.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgForceTransferProtoMsg): MsgForceTransfer {
@@ -1160,9 +1158,9 @@ export const MsgForceTransfer = {
   toProtoMsg(message: MsgForceTransfer): MsgForceTransferProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgForceTransfer",
-      value: MsgForceTransfer.encode(message).finish(),
+      value: MsgForceTransfer.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgForceTransferResponse(): MsgForceTransferResponse {
   return {};
@@ -1204,7 +1202,7 @@ export const MsgForceTransferResponse = {
   toAminoMsg(message: MsgForceTransferResponse): MsgForceTransferResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/force-transfer-response",
-      value: MsgForceTransferResponse.toAmino(message),
+      value: MsgForceTransferResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgForceTransferResponseProtoMsg): MsgForceTransferResponse {
@@ -1216,14 +1214,14 @@ export const MsgForceTransferResponse = {
   toProtoMsg(message: MsgForceTransferResponse): MsgForceTransferResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgForceTransferResponse",
-      value: MsgForceTransferResponse.encode(message).finish(),
+      value: MsgForceTransferResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const MsgUpdateParams = {
@@ -1287,7 +1285,7 @@ export const MsgUpdateParams = {
   toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg {
     return {
       type: "osmosis/tokenfactory/update-params",
-      value: MsgUpdateParams.toAmino(message),
+      value: MsgUpdateParams.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams {
@@ -1299,9 +1297,9 @@ export const MsgUpdateParams = {
   toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgUpdateParams",
-      value: MsgUpdateParams.encode(message).finish(),
+      value: MsgUpdateParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
@@ -1343,7 +1341,7 @@ export const MsgUpdateParamsResponse = {
   toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/update-params-response",
-      value: MsgUpdateParamsResponse.toAmino(message),
+      value: MsgUpdateParamsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse {
@@ -1355,9 +1353,9 @@ export const MsgUpdateParamsResponse = {
   toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.encode(message).finish(),
+      value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the tokefactory module's gRPC message service. */
 export interface Msg {
@@ -1370,7 +1368,7 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/mint module
    * parameters. The authority is hard-coded to the x/gov module account.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
@@ -1390,36 +1388,36 @@ export class MsgClientImpl implements Msg {
   CreateDenom(request: MsgCreateDenom): Promise<MsgCreateDenomResponse> {
     const data = MsgCreateDenom.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Msg", "CreateDenom", data);
-    return promise.then((data) => MsgCreateDenomResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgCreateDenomResponse.decode(new BinaryReader(data)));
   }
   Mint(request: MsgMint): Promise<MsgMintResponse> {
     const data = MsgMint.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Msg", "Mint", data);
-    return promise.then((data) => MsgMintResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgMintResponse.decode(new BinaryReader(data)));
   }
   Burn(request: MsgBurn): Promise<MsgBurnResponse> {
     const data = MsgBurn.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Msg", "Burn", data);
-    return promise.then((data) => MsgBurnResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgBurnResponse.decode(new BinaryReader(data)));
   }
   ChangeAdmin(request: MsgChangeAdmin): Promise<MsgChangeAdminResponse> {
     const data = MsgChangeAdmin.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Msg", "ChangeAdmin", data);
-    return promise.then((data) => MsgChangeAdminResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgChangeAdminResponse.decode(new BinaryReader(data)));
   }
   SetDenomMetadata(request: MsgSetDenomMetadata): Promise<MsgSetDenomMetadataResponse> {
     const data = MsgSetDenomMetadata.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Msg", "SetDenomMetadata", data);
-    return promise.then((data) => MsgSetDenomMetadataResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgSetDenomMetadataResponse.decode(new BinaryReader(data)));
   }
   ForceTransfer(request: MsgForceTransfer): Promise<MsgForceTransferResponse> {
     const data = MsgForceTransfer.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Msg", "ForceTransfer", data);
-    return promise.then((data) => MsgForceTransferResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgForceTransferResponse.decode(new BinaryReader(data)));
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Msg", "UpdateParams", data);
-    return promise.then((data) => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
   }
 }

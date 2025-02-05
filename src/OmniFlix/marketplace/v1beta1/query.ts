@@ -1,11 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  PageRequest,
-  PageRequestAmino,
-  PageResponse,
-  PageResponseAmino,
-} from "../../../cosmos/base/query/v1beta1/pagination";
+import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../../cosmos/base/query/v1beta1/pagination";
 import { AuctionStatus, AuctionListing, AuctionListingAmino, Bid, BidAmino } from "./auction";
 import { Params, ParamsAmino } from "./params";
 import { Listing, ListingAmino } from "./listing";
@@ -398,13 +393,13 @@ export const QueryParamsRequest = {
   toProtoMsg(message: QueryParamsRequest): QueryParamsRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryParamsRequest",
-      value: QueryParamsRequest.encode(message).finish(),
+      value: QueryParamsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryParamsResponse(): QueryParamsResponse {
   return {
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const QueryParamsResponse = {
@@ -463,15 +458,15 @@ export const QueryParamsResponse = {
   toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryParamsResponse",
-      value: QueryParamsResponse.encode(message).finish(),
+      value: QueryParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryListingsRequest(): QueryListingsRequest {
   return {
     owner: "",
     priceDenom: "",
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryListingsRequest = {
@@ -552,14 +547,14 @@ export const QueryListingsRequest = {
   toProtoMsg(message: QueryListingsRequest): QueryListingsRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingsRequest",
-      value: QueryListingsRequest.encode(message).finish(),
+      value: QueryListingsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryListingsResponse(): QueryListingsResponse {
   return {
     listings: [],
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryListingsResponse = {
@@ -595,7 +590,7 @@ export const QueryListingsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryListingsResponse>, I>>(object: I): QueryListingsResponse {
     const message = createBaseQueryListingsResponse();
-    message.listings = object.listings?.map((e) => Listing.fromPartial(e)) || [];
+    message.listings = object.listings?.map(e => Listing.fromPartial(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
@@ -603,7 +598,7 @@ export const QueryListingsResponse = {
   },
   fromAmino(object: QueryListingsResponseAmino): QueryListingsResponse {
     const message = createBaseQueryListingsResponse();
-    message.listings = object.listings?.map((e) => Listing.fromAmino(e)) || [];
+    message.listings = object.listings?.map(e => Listing.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -612,7 +607,7 @@ export const QueryListingsResponse = {
   toAmino(message: QueryListingsResponse): QueryListingsResponseAmino {
     const obj: any = {};
     if (message.listings) {
-      obj.listings = message.listings.map((e) => (e ? Listing.toAmino(e) : undefined));
+      obj.listings = message.listings.map(e => e ? Listing.toAmino(e) : undefined);
     } else {
       obj.listings = message.listings;
     }
@@ -631,13 +626,13 @@ export const QueryListingsResponse = {
   toProtoMsg(message: QueryListingsResponse): QueryListingsResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingsResponse",
-      value: QueryListingsResponse.encode(message).finish(),
+      value: QueryListingsResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryListingRequest(): QueryListingRequest {
   return {
-    id: "",
+    id: ""
   };
 }
 export const QueryListingRequest = {
@@ -694,13 +689,13 @@ export const QueryListingRequest = {
   toProtoMsg(message: QueryListingRequest): QueryListingRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingRequest",
-      value: QueryListingRequest.encode(message).finish(),
+      value: QueryListingRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryListingResponse(): QueryListingResponse {
   return {
-    listing: undefined,
+    listing: undefined
   };
 }
 export const QueryListingResponse = {
@@ -759,14 +754,14 @@ export const QueryListingResponse = {
   toProtoMsg(message: QueryListingResponse): QueryListingResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingResponse",
-      value: QueryListingResponse.encode(message).finish(),
+      value: QueryListingResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryListingsByOwnerRequest(): QueryListingsByOwnerRequest {
   return {
     owner: "",
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryListingsByOwnerRequest = {
@@ -800,9 +795,7 @@ export const QueryListingsByOwnerRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryListingsByOwnerRequest>, I>>(
-    object: I,
-  ): QueryListingsByOwnerRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryListingsByOwnerRequest>, I>>(object: I): QueryListingsByOwnerRequest {
     const message = createBaseQueryListingsByOwnerRequest();
     message.owner = object.owner ?? "";
     if (object.pagination !== undefined && object.pagination !== null) {
@@ -838,14 +831,14 @@ export const QueryListingsByOwnerRequest = {
   toProtoMsg(message: QueryListingsByOwnerRequest): QueryListingsByOwnerRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingsByOwnerRequest",
-      value: QueryListingsByOwnerRequest.encode(message).finish(),
+      value: QueryListingsByOwnerRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryListingsByOwnerResponse(): QueryListingsByOwnerResponse {
   return {
     listings: [],
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryListingsByOwnerResponse = {
@@ -879,11 +872,9 @@ export const QueryListingsByOwnerResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryListingsByOwnerResponse>, I>>(
-    object: I,
-  ): QueryListingsByOwnerResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryListingsByOwnerResponse>, I>>(object: I): QueryListingsByOwnerResponse {
     const message = createBaseQueryListingsByOwnerResponse();
-    message.listings = object.listings?.map((e) => Listing.fromPartial(e)) || [];
+    message.listings = object.listings?.map(e => Listing.fromPartial(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
@@ -891,7 +882,7 @@ export const QueryListingsByOwnerResponse = {
   },
   fromAmino(object: QueryListingsByOwnerResponseAmino): QueryListingsByOwnerResponse {
     const message = createBaseQueryListingsByOwnerResponse();
-    message.listings = object.listings?.map((e) => Listing.fromAmino(e)) || [];
+    message.listings = object.listings?.map(e => Listing.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -900,7 +891,7 @@ export const QueryListingsByOwnerResponse = {
   toAmino(message: QueryListingsByOwnerResponse): QueryListingsByOwnerResponseAmino {
     const obj: any = {};
     if (message.listings) {
-      obj.listings = message.listings.map((e) => (e ? Listing.toAmino(e) : undefined));
+      obj.listings = message.listings.map(e => e ? Listing.toAmino(e) : undefined);
     } else {
       obj.listings = message.listings;
     }
@@ -919,13 +910,13 @@ export const QueryListingsByOwnerResponse = {
   toProtoMsg(message: QueryListingsByOwnerResponse): QueryListingsByOwnerResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingsByOwnerResponse",
-      value: QueryListingsByOwnerResponse.encode(message).finish(),
+      value: QueryListingsByOwnerResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryListingByNFTIDRequest(): QueryListingByNFTIDRequest {
   return {
-    nftId: "",
+    nftId: ""
   };
 }
 export const QueryListingByNFTIDRequest = {
@@ -953,9 +944,7 @@ export const QueryListingByNFTIDRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryListingByNFTIDRequest>, I>>(
-    object: I,
-  ): QueryListingByNFTIDRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryListingByNFTIDRequest>, I>>(object: I): QueryListingByNFTIDRequest {
     const message = createBaseQueryListingByNFTIDRequest();
     message.nftId = object.nftId ?? "";
     return message;
@@ -984,22 +973,19 @@ export const QueryListingByNFTIDRequest = {
   toProtoMsg(message: QueryListingByNFTIDRequest): QueryListingByNFTIDRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingByNFTIDRequest",
-      value: QueryListingByNFTIDRequest.encode(message).finish(),
+      value: QueryListingByNFTIDRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryListingsByPriceDenomRequest(): QueryListingsByPriceDenomRequest {
   return {
     priceDenom: "",
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryListingsByPriceDenomRequest = {
   typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingsByPriceDenomRequest",
-  encode(
-    message: QueryListingsByPriceDenomRequest,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryListingsByPriceDenomRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.priceDenom !== "") {
       writer.uint32(10).string(message.priceDenom);
     }
@@ -1028,9 +1014,7 @@ export const QueryListingsByPriceDenomRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryListingsByPriceDenomRequest>, I>>(
-    object: I,
-  ): QueryListingsByPriceDenomRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryListingsByPriceDenomRequest>, I>>(object: I): QueryListingsByPriceDenomRequest {
     const message = createBaseQueryListingsByPriceDenomRequest();
     message.priceDenom = object.priceDenom ?? "";
     if (object.pagination !== undefined && object.pagination !== null) {
@@ -1066,22 +1050,19 @@ export const QueryListingsByPriceDenomRequest = {
   toProtoMsg(message: QueryListingsByPriceDenomRequest): QueryListingsByPriceDenomRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingsByPriceDenomRequest",
-      value: QueryListingsByPriceDenomRequest.encode(message).finish(),
+      value: QueryListingsByPriceDenomRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryListingsByPriceDenomResponse(): QueryListingsByPriceDenomResponse {
   return {
     listings: [],
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryListingsByPriceDenomResponse = {
   typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingsByPriceDenomResponse",
-  encode(
-    message: QueryListingsByPriceDenomResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryListingsByPriceDenomResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     for (const v of message.listings) {
       Listing.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -1110,11 +1091,9 @@ export const QueryListingsByPriceDenomResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryListingsByPriceDenomResponse>, I>>(
-    object: I,
-  ): QueryListingsByPriceDenomResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryListingsByPriceDenomResponse>, I>>(object: I): QueryListingsByPriceDenomResponse {
     const message = createBaseQueryListingsByPriceDenomResponse();
-    message.listings = object.listings?.map((e) => Listing.fromPartial(e)) || [];
+    message.listings = object.listings?.map(e => Listing.fromPartial(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
@@ -1122,7 +1101,7 @@ export const QueryListingsByPriceDenomResponse = {
   },
   fromAmino(object: QueryListingsByPriceDenomResponseAmino): QueryListingsByPriceDenomResponse {
     const message = createBaseQueryListingsByPriceDenomResponse();
-    message.listings = object.listings?.map((e) => Listing.fromAmino(e)) || [];
+    message.listings = object.listings?.map(e => Listing.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -1131,7 +1110,7 @@ export const QueryListingsByPriceDenomResponse = {
   toAmino(message: QueryListingsByPriceDenomResponse): QueryListingsByPriceDenomResponseAmino {
     const obj: any = {};
     if (message.listings) {
-      obj.listings = message.listings.map((e) => (e ? Listing.toAmino(e) : undefined));
+      obj.listings = message.listings.map(e => e ? Listing.toAmino(e) : undefined);
     } else {
       obj.listings = message.listings;
     }
@@ -1150,16 +1129,16 @@ export const QueryListingsByPriceDenomResponse = {
   toProtoMsg(message: QueryListingsByPriceDenomResponse): QueryListingsByPriceDenomResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryListingsByPriceDenomResponse",
-      value: QueryListingsByPriceDenomResponse.encode(message).finish(),
+      value: QueryListingsByPriceDenomResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAuctionsRequest(): QueryAuctionsRequest {
   return {
     status: 0,
     owner: "",
     priceDenom: "",
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryAuctionsRequest = {
@@ -1251,14 +1230,14 @@ export const QueryAuctionsRequest = {
   toProtoMsg(message: QueryAuctionsRequest): QueryAuctionsRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryAuctionsRequest",
-      value: QueryAuctionsRequest.encode(message).finish(),
+      value: QueryAuctionsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAuctionsResponse(): QueryAuctionsResponse {
   return {
     auctions: [],
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryAuctionsResponse = {
@@ -1294,7 +1273,7 @@ export const QueryAuctionsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryAuctionsResponse>, I>>(object: I): QueryAuctionsResponse {
     const message = createBaseQueryAuctionsResponse();
-    message.auctions = object.auctions?.map((e) => AuctionListing.fromPartial(e)) || [];
+    message.auctions = object.auctions?.map(e => AuctionListing.fromPartial(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
@@ -1302,7 +1281,7 @@ export const QueryAuctionsResponse = {
   },
   fromAmino(object: QueryAuctionsResponseAmino): QueryAuctionsResponse {
     const message = createBaseQueryAuctionsResponse();
-    message.auctions = object.auctions?.map((e) => AuctionListing.fromAmino(e)) || [];
+    message.auctions = object.auctions?.map(e => AuctionListing.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -1311,7 +1290,7 @@ export const QueryAuctionsResponse = {
   toAmino(message: QueryAuctionsResponse): QueryAuctionsResponseAmino {
     const obj: any = {};
     if (message.auctions) {
-      obj.auctions = message.auctions.map((e) => (e ? AuctionListing.toAmino(e) : undefined));
+      obj.auctions = message.auctions.map(e => e ? AuctionListing.toAmino(e) : undefined);
     } else {
       obj.auctions = message.auctions;
     }
@@ -1330,13 +1309,13 @@ export const QueryAuctionsResponse = {
   toProtoMsg(message: QueryAuctionsResponse): QueryAuctionsResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryAuctionsResponse",
-      value: QueryAuctionsResponse.encode(message).finish(),
+      value: QueryAuctionsResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAuctionRequest(): QueryAuctionRequest {
   return {
-    id: BigInt(0),
+    id: BigInt(0)
   };
 }
 export const QueryAuctionRequest = {
@@ -1395,13 +1374,13 @@ export const QueryAuctionRequest = {
   toProtoMsg(message: QueryAuctionRequest): QueryAuctionRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryAuctionRequest",
-      value: QueryAuctionRequest.encode(message).finish(),
+      value: QueryAuctionRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAuctionResponse(): QueryAuctionResponse {
   return {
-    auction: undefined,
+    auction: undefined
   };
 }
 export const QueryAuctionResponse = {
@@ -1460,14 +1439,14 @@ export const QueryAuctionResponse = {
   toProtoMsg(message: QueryAuctionResponse): QueryAuctionResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryAuctionResponse",
-      value: QueryAuctionResponse.encode(message).finish(),
+      value: QueryAuctionResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAuctionsByOwnerRequest(): QueryAuctionsByOwnerRequest {
   return {
     owner: "",
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryAuctionsByOwnerRequest = {
@@ -1501,9 +1480,7 @@ export const QueryAuctionsByOwnerRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryAuctionsByOwnerRequest>, I>>(
-    object: I,
-  ): QueryAuctionsByOwnerRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryAuctionsByOwnerRequest>, I>>(object: I): QueryAuctionsByOwnerRequest {
     const message = createBaseQueryAuctionsByOwnerRequest();
     message.owner = object.owner ?? "";
     if (object.pagination !== undefined && object.pagination !== null) {
@@ -1539,13 +1516,13 @@ export const QueryAuctionsByOwnerRequest = {
   toProtoMsg(message: QueryAuctionsByOwnerRequest): QueryAuctionsByOwnerRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryAuctionsByOwnerRequest",
-      value: QueryAuctionsByOwnerRequest.encode(message).finish(),
+      value: QueryAuctionsByOwnerRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAuctionByNFTIDRequest(): QueryAuctionByNFTIDRequest {
   return {
-    nftId: "",
+    nftId: ""
   };
 }
 export const QueryAuctionByNFTIDRequest = {
@@ -1573,9 +1550,7 @@ export const QueryAuctionByNFTIDRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryAuctionByNFTIDRequest>, I>>(
-    object: I,
-  ): QueryAuctionByNFTIDRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryAuctionByNFTIDRequest>, I>>(object: I): QueryAuctionByNFTIDRequest {
     const message = createBaseQueryAuctionByNFTIDRequest();
     message.nftId = object.nftId ?? "";
     return message;
@@ -1604,22 +1579,19 @@ export const QueryAuctionByNFTIDRequest = {
   toProtoMsg(message: QueryAuctionByNFTIDRequest): QueryAuctionByNFTIDRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryAuctionByNFTIDRequest",
-      value: QueryAuctionByNFTIDRequest.encode(message).finish(),
+      value: QueryAuctionByNFTIDRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAuctionsByPriceDenomRequest(): QueryAuctionsByPriceDenomRequest {
   return {
     priceDenom: "",
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryAuctionsByPriceDenomRequest = {
   typeUrl: "/OmniFlix.marketplace.v1beta1.QueryAuctionsByPriceDenomRequest",
-  encode(
-    message: QueryAuctionsByPriceDenomRequest,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryAuctionsByPriceDenomRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.priceDenom !== "") {
       writer.uint32(10).string(message.priceDenom);
     }
@@ -1648,9 +1620,7 @@ export const QueryAuctionsByPriceDenomRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryAuctionsByPriceDenomRequest>, I>>(
-    object: I,
-  ): QueryAuctionsByPriceDenomRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryAuctionsByPriceDenomRequest>, I>>(object: I): QueryAuctionsByPriceDenomRequest {
     const message = createBaseQueryAuctionsByPriceDenomRequest();
     message.priceDenom = object.priceDenom ?? "";
     if (object.pagination !== undefined && object.pagination !== null) {
@@ -1686,14 +1656,14 @@ export const QueryAuctionsByPriceDenomRequest = {
   toProtoMsg(message: QueryAuctionsByPriceDenomRequest): QueryAuctionsByPriceDenomRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryAuctionsByPriceDenomRequest",
-      value: QueryAuctionsByPriceDenomRequest.encode(message).finish(),
+      value: QueryAuctionsByPriceDenomRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryBidsRequest(): QueryBidsRequest {
   return {
     bidder: "",
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryBidsRequest = {
@@ -1763,14 +1733,14 @@ export const QueryBidsRequest = {
   toProtoMsg(message: QueryBidsRequest): QueryBidsRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryBidsRequest",
-      value: QueryBidsRequest.encode(message).finish(),
+      value: QueryBidsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryBidsResponse(): QueryBidsResponse {
   return {
     bids: [],
-    pagination: undefined,
+    pagination: undefined
   };
 }
 export const QueryBidsResponse = {
@@ -1806,7 +1776,7 @@ export const QueryBidsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryBidsResponse>, I>>(object: I): QueryBidsResponse {
     const message = createBaseQueryBidsResponse();
-    message.bids = object.bids?.map((e) => Bid.fromPartial(e)) || [];
+    message.bids = object.bids?.map(e => Bid.fromPartial(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
     }
@@ -1814,7 +1784,7 @@ export const QueryBidsResponse = {
   },
   fromAmino(object: QueryBidsResponseAmino): QueryBidsResponse {
     const message = createBaseQueryBidsResponse();
-    message.bids = object.bids?.map((e) => Bid.fromAmino(e)) || [];
+    message.bids = object.bids?.map(e => Bid.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -1823,7 +1793,7 @@ export const QueryBidsResponse = {
   toAmino(message: QueryBidsResponse): QueryBidsResponseAmino {
     const obj: any = {};
     if (message.bids) {
-      obj.bids = message.bids.map((e) => (e ? Bid.toAmino(e) : undefined));
+      obj.bids = message.bids.map(e => e ? Bid.toAmino(e) : undefined);
     } else {
       obj.bids = message.bids;
     }
@@ -1842,13 +1812,13 @@ export const QueryBidsResponse = {
   toProtoMsg(message: QueryBidsResponse): QueryBidsResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryBidsResponse",
-      value: QueryBidsResponse.encode(message).finish(),
+      value: QueryBidsResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryBidRequest(): QueryBidRequest {
   return {
-    id: BigInt(0),
+    id: BigInt(0)
   };
 }
 export const QueryBidRequest = {
@@ -1907,13 +1877,13 @@ export const QueryBidRequest = {
   toProtoMsg(message: QueryBidRequest): QueryBidRequestProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryBidRequest",
-      value: QueryBidRequest.encode(message).finish(),
+      value: QueryBidRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryBidResponse(): QueryBidResponse {
   return {
-    bid: undefined,
+    bid: undefined
   };
 }
 export const QueryBidResponse = {
@@ -1972,9 +1942,9 @@ export const QueryBidResponse = {
   toProtoMsg(message: QueryBidResponse): QueryBidResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.QueryBidResponse",
-      value: QueryBidResponse.encode(message).finish(),
+      value: QueryBidResponse.encode(message).finish()
     };
-  },
+  }
 };
 export interface Query {
   /** Params queries params of the marketplace module. */
@@ -2014,68 +1984,66 @@ export class QueryClientImpl implements Query {
   Params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
   }
   Listings(request: QueryListingsRequest): Promise<QueryListingsResponse> {
     const data = QueryListingsRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "Listings", data);
-    return promise.then((data) => QueryListingsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryListingsResponse.decode(new BinaryReader(data)));
   }
   Listing(request: QueryListingRequest): Promise<QueryListingResponse> {
     const data = QueryListingRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "Listing", data);
-    return promise.then((data) => QueryListingResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryListingResponse.decode(new BinaryReader(data)));
   }
   ListingsByOwner(request: QueryListingsByOwnerRequest): Promise<QueryListingsByOwnerResponse> {
     const data = QueryListingsByOwnerRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "ListingsByOwner", data);
-    return promise.then((data) => QueryListingsByOwnerResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryListingsByOwnerResponse.decode(new BinaryReader(data)));
   }
-  ListingsByPriceDenom(
-    request: QueryListingsByPriceDenomRequest,
-  ): Promise<QueryListingsByPriceDenomResponse> {
+  ListingsByPriceDenom(request: QueryListingsByPriceDenomRequest): Promise<QueryListingsByPriceDenomResponse> {
     const data = QueryListingsByPriceDenomRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "ListingsByPriceDenom", data);
-    return promise.then((data) => QueryListingsByPriceDenomResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryListingsByPriceDenomResponse.decode(new BinaryReader(data)));
   }
   ListingByNftId(request: QueryListingByNFTIDRequest): Promise<QueryListingResponse> {
     const data = QueryListingByNFTIDRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "ListingByNftId", data);
-    return promise.then((data) => QueryListingResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryListingResponse.decode(new BinaryReader(data)));
   }
   Auctions(request: QueryAuctionsRequest): Promise<QueryAuctionsResponse> {
     const data = QueryAuctionsRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "Auctions", data);
-    return promise.then((data) => QueryAuctionsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryAuctionsResponse.decode(new BinaryReader(data)));
   }
   Auction(request: QueryAuctionRequest): Promise<QueryAuctionResponse> {
     const data = QueryAuctionRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "Auction", data);
-    return promise.then((data) => QueryAuctionResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryAuctionResponse.decode(new BinaryReader(data)));
   }
   AuctionsByOwner(request: QueryAuctionsByOwnerRequest): Promise<QueryAuctionsResponse> {
     const data = QueryAuctionsByOwnerRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "AuctionsByOwner", data);
-    return promise.then((data) => QueryAuctionsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryAuctionsResponse.decode(new BinaryReader(data)));
   }
   AuctionsByPriceDenom(request: QueryAuctionsByPriceDenomRequest): Promise<QueryAuctionsResponse> {
     const data = QueryAuctionsByPriceDenomRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "AuctionsByPriceDenom", data);
-    return promise.then((data) => QueryAuctionsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryAuctionsResponse.decode(new BinaryReader(data)));
   }
   AuctionByNftId(request: QueryAuctionByNFTIDRequest): Promise<QueryAuctionResponse> {
     const data = QueryAuctionByNFTIDRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "AuctionByNftId", data);
-    return promise.then((data) => QueryAuctionResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryAuctionResponse.decode(new BinaryReader(data)));
   }
   Bids(request: QueryBidsRequest): Promise<QueryBidsResponse> {
     const data = QueryBidsRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "Bids", data);
-    return promise.then((data) => QueryBidsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryBidsResponse.decode(new BinaryReader(data)));
   }
   Bid(request: QueryBidRequest): Promise<QueryBidResponse> {
     const data = QueryBidRequest.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.marketplace.v1beta1.Query", "Bid", data);
-    return promise.then((data) => QueryBidResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryBidResponse.decode(new BinaryReader(data)));
   }
 }

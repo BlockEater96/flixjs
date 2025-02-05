@@ -404,7 +404,7 @@ function createBaseChannel(): Channel {
     ordering: 0,
     counterparty: Counterparty.fromPartial({}),
     connectionHops: [],
-    version: "",
+    version: ""
   };
 }
 export const Channel = {
@@ -463,7 +463,7 @@ export const Channel = {
     if (object.counterparty !== undefined && object.counterparty !== null) {
       message.counterparty = Counterparty.fromPartial(object.counterparty);
     }
-    message.connectionHops = object.connectionHops?.map((e) => e) || [];
+    message.connectionHops = object.connectionHops?.map(e => e) || [];
     message.version = object.version ?? "";
     return message;
   },
@@ -478,7 +478,7 @@ export const Channel = {
     if (object.counterparty !== undefined && object.counterparty !== null) {
       message.counterparty = Counterparty.fromAmino(object.counterparty);
     }
-    message.connectionHops = object.connection_hops?.map((e) => e) || [];
+    message.connectionHops = object.connection_hops?.map(e => e) || [];
     if (object.version !== undefined && object.version !== null) {
       message.version = object.version;
     }
@@ -490,7 +490,7 @@ export const Channel = {
     obj.ordering = message.ordering === 0 ? undefined : message.ordering;
     obj.counterparty = message.counterparty ? Counterparty.toAmino(message.counterparty) : undefined;
     if (message.connectionHops) {
-      obj.connection_hops = message.connectionHops.map((e) => e);
+      obj.connection_hops = message.connectionHops.map(e => e);
     } else {
       obj.connection_hops = message.connectionHops;
     }
@@ -503,7 +503,7 @@ export const Channel = {
   toAminoMsg(message: Channel): ChannelAminoMsg {
     return {
       type: "cosmos-sdk/Channel",
-      value: Channel.toAmino(message),
+      value: Channel.toAmino(message)
     };
   },
   fromProtoMsg(message: ChannelProtoMsg): Channel {
@@ -515,9 +515,9 @@ export const Channel = {
   toProtoMsg(message: Channel): ChannelProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.Channel",
-      value: Channel.encode(message).finish(),
+      value: Channel.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseIdentifiedChannel(): IdentifiedChannel {
   return {
@@ -527,7 +527,7 @@ function createBaseIdentifiedChannel(): IdentifiedChannel {
     connectionHops: [],
     version: "",
     portId: "",
-    channelId: "",
+    channelId: ""
   };
 }
 export const IdentifiedChannel = {
@@ -598,7 +598,7 @@ export const IdentifiedChannel = {
     if (object.counterparty !== undefined && object.counterparty !== null) {
       message.counterparty = Counterparty.fromPartial(object.counterparty);
     }
-    message.connectionHops = object.connectionHops?.map((e) => e) || [];
+    message.connectionHops = object.connectionHops?.map(e => e) || [];
     message.version = object.version ?? "";
     message.portId = object.portId ?? "";
     message.channelId = object.channelId ?? "";
@@ -615,7 +615,7 @@ export const IdentifiedChannel = {
     if (object.counterparty !== undefined && object.counterparty !== null) {
       message.counterparty = Counterparty.fromAmino(object.counterparty);
     }
-    message.connectionHops = object.connection_hops?.map((e) => e) || [];
+    message.connectionHops = object.connection_hops?.map(e => e) || [];
     if (object.version !== undefined && object.version !== null) {
       message.version = object.version;
     }
@@ -633,7 +633,7 @@ export const IdentifiedChannel = {
     obj.ordering = message.ordering === 0 ? undefined : message.ordering;
     obj.counterparty = message.counterparty ? Counterparty.toAmino(message.counterparty) : undefined;
     if (message.connectionHops) {
-      obj.connection_hops = message.connectionHops.map((e) => e);
+      obj.connection_hops = message.connectionHops.map(e => e);
     } else {
       obj.connection_hops = message.connectionHops;
     }
@@ -648,7 +648,7 @@ export const IdentifiedChannel = {
   toAminoMsg(message: IdentifiedChannel): IdentifiedChannelAminoMsg {
     return {
       type: "cosmos-sdk/IdentifiedChannel",
-      value: IdentifiedChannel.toAmino(message),
+      value: IdentifiedChannel.toAmino(message)
     };
   },
   fromProtoMsg(message: IdentifiedChannelProtoMsg): IdentifiedChannel {
@@ -660,14 +660,14 @@ export const IdentifiedChannel = {
   toProtoMsg(message: IdentifiedChannel): IdentifiedChannelProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.IdentifiedChannel",
-      value: IdentifiedChannel.encode(message).finish(),
+      value: IdentifiedChannel.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseCounterparty(): Counterparty {
   return {
     portId: "",
-    channelId: "",
+    channelId: ""
   };
 }
 export const Counterparty = {
@@ -729,7 +729,7 @@ export const Counterparty = {
   toAminoMsg(message: Counterparty): CounterpartyAminoMsg {
     return {
       type: "cosmos-sdk/Counterparty",
-      value: Counterparty.toAmino(message),
+      value: Counterparty.toAmino(message)
     };
   },
   fromProtoMsg(message: CounterpartyProtoMsg): Counterparty {
@@ -741,9 +741,9 @@ export const Counterparty = {
   toProtoMsg(message: Counterparty): CounterpartyProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.Counterparty",
-      value: Counterparty.encode(message).finish(),
+      value: Counterparty.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePacket(): Packet {
   return {
@@ -754,7 +754,7 @@ function createBasePacket(): Packet {
     destinationChannel: "",
     data: new Uint8Array(),
     timeoutHeight: Height.fromPartial({}),
-    timeoutTimestamp: BigInt(0),
+    timeoutTimestamp: BigInt(0)
   };
 }
 export const Packet = {
@@ -879,8 +879,7 @@ export const Packet = {
     obj.destination_channel = message.destinationChannel === "" ? undefined : message.destinationChannel;
     obj.data = message.data ? base64FromBytes(message.data) : undefined;
     obj.timeout_height = message.timeoutHeight ? Height.toAmino(message.timeoutHeight) : {};
-    obj.timeout_timestamp =
-      message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : undefined;
+    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: PacketAminoMsg): Packet {
@@ -889,7 +888,7 @@ export const Packet = {
   toAminoMsg(message: Packet): PacketAminoMsg {
     return {
       type: "cosmos-sdk/Packet",
-      value: Packet.toAmino(message),
+      value: Packet.toAmino(message)
     };
   },
   fromProtoMsg(message: PacketProtoMsg): Packet {
@@ -901,16 +900,16 @@ export const Packet = {
   toProtoMsg(message: Packet): PacketProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.Packet",
-      value: Packet.encode(message).finish(),
+      value: Packet.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePacketState(): PacketState {
   return {
     portId: "",
     channelId: "",
     sequence: BigInt(0),
-    data: new Uint8Array(),
+    data: new Uint8Array()
   };
 }
 export const PacketState = {
@@ -996,7 +995,7 @@ export const PacketState = {
   toAminoMsg(message: PacketState): PacketStateAminoMsg {
     return {
       type: "cosmos-sdk/PacketState",
-      value: PacketState.toAmino(message),
+      value: PacketState.toAmino(message)
     };
   },
   fromProtoMsg(message: PacketStateProtoMsg): PacketState {
@@ -1008,15 +1007,15 @@ export const PacketState = {
   toProtoMsg(message: PacketState): PacketStateProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.PacketState",
-      value: PacketState.encode(message).finish(),
+      value: PacketState.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePacketId(): PacketId {
   return {
     portId: "",
     channelId: "",
-    sequence: BigInt(0),
+    sequence: BigInt(0)
   };
 }
 export const PacketId = {
@@ -1091,7 +1090,7 @@ export const PacketId = {
   toAminoMsg(message: PacketId): PacketIdAminoMsg {
     return {
       type: "cosmos-sdk/PacketId",
-      value: PacketId.toAmino(message),
+      value: PacketId.toAmino(message)
     };
   },
   fromProtoMsg(message: PacketIdProtoMsg): PacketId {
@@ -1103,14 +1102,14 @@ export const PacketId = {
   toProtoMsg(message: PacketId): PacketIdProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.PacketId",
-      value: PacketId.encode(message).finish(),
+      value: PacketId.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseAcknowledgement(): Acknowledgement {
   return {
     result: undefined,
-    error: undefined,
+    error: undefined
   };
 }
 export const Acknowledgement = {
@@ -1172,7 +1171,7 @@ export const Acknowledgement = {
   toAminoMsg(message: Acknowledgement): AcknowledgementAminoMsg {
     return {
       type: "cosmos-sdk/Acknowledgement",
-      value: Acknowledgement.toAmino(message),
+      value: Acknowledgement.toAmino(message)
     };
   },
   fromProtoMsg(message: AcknowledgementProtoMsg): Acknowledgement {
@@ -1184,7 +1183,7 @@ export const Acknowledgement = {
   toProtoMsg(message: Acknowledgement): AcknowledgementProtoMsg {
     return {
       typeUrl: "/ibc.core.channel.v1.Acknowledgement",
-      value: Acknowledgement.encode(message).finish(),
+      value: Acknowledgement.encode(message).finish()
     };
-  },
+  }
 };

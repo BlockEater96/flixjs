@@ -54,7 +54,7 @@ export interface GenesisDenomAminoMsg {
 function createBaseGenesisState(): GenesisState {
   return {
     params: Params.fromPartial({}),
-    factoryDenoms: [],
+    factoryDenoms: []
   };
 }
 export const GenesisState = {
@@ -93,7 +93,7 @@ export const GenesisState = {
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
-    message.factoryDenoms = object.factoryDenoms?.map((e) => GenesisDenom.fromPartial(e)) || [];
+    message.factoryDenoms = object.factoryDenoms?.map(e => GenesisDenom.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -101,14 +101,14 @@ export const GenesisState = {
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
-    message.factoryDenoms = object.factory_denoms?.map((e) => GenesisDenom.fromAmino(e)) || [];
+    message.factoryDenoms = object.factory_denoms?.map(e => GenesisDenom.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     obj.params = message.params ? Params.toAmino(message.params) : undefined;
     if (message.factoryDenoms) {
-      obj.factory_denoms = message.factoryDenoms.map((e) => (e ? GenesisDenom.toAmino(e) : undefined));
+      obj.factory_denoms = message.factoryDenoms.map(e => e ? GenesisDenom.toAmino(e) : undefined);
     } else {
       obj.factory_denoms = message.factoryDenoms;
     }
@@ -120,7 +120,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "osmosis/tokenfactory/genesis-state",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -132,14 +132,14 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseGenesisDenom(): GenesisDenom {
   return {
     denom: "",
-    authorityMetadata: DenomAuthorityMetadata.fromPartial({}),
+    authorityMetadata: DenomAuthorityMetadata.fromPartial({})
   };
 }
 export const GenesisDenom = {
@@ -194,9 +194,7 @@ export const GenesisDenom = {
   toAmino(message: GenesisDenom): GenesisDenomAmino {
     const obj: any = {};
     obj.denom = message.denom === "" ? undefined : message.denom;
-    obj.authority_metadata = message.authorityMetadata
-      ? DenomAuthorityMetadata.toAmino(message.authorityMetadata)
-      : undefined;
+    obj.authority_metadata = message.authorityMetadata ? DenomAuthorityMetadata.toAmino(message.authorityMetadata) : undefined;
     return obj;
   },
   fromAminoMsg(object: GenesisDenomAminoMsg): GenesisDenom {
@@ -205,7 +203,7 @@ export const GenesisDenom = {
   toAminoMsg(message: GenesisDenom): GenesisDenomAminoMsg {
     return {
       type: "osmosis/tokenfactory/genesis-denom",
-      value: GenesisDenom.toAmino(message),
+      value: GenesisDenom.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisDenomProtoMsg): GenesisDenom {
@@ -217,7 +215,7 @@ export const GenesisDenom = {
   toProtoMsg(message: GenesisDenom): GenesisDenomProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.GenesisDenom",
-      value: GenesisDenom.encode(message).finish(),
+      value: GenesisDenom.encode(message).finish()
     };
-  },
+  }
 };

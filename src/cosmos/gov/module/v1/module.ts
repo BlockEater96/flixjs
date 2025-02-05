@@ -34,7 +34,7 @@ export interface ModuleAminoMsg {
 function createBaseModule(): Module {
   return {
     maxMetadataLen: BigInt(0),
-    authority: "",
+    authority: ""
   };
 }
 export const Module = {
@@ -88,8 +88,7 @@ export const Module = {
   },
   toAmino(message: Module): ModuleAmino {
     const obj: any = {};
-    obj.max_metadata_len =
-      message.maxMetadataLen !== BigInt(0) ? message.maxMetadataLen?.toString() : undefined;
+    obj.max_metadata_len = message.maxMetadataLen !== BigInt(0) ? message.maxMetadataLen?.toString() : undefined;
     obj.authority = message.authority === "" ? undefined : message.authority;
     return obj;
   },
@@ -99,7 +98,7 @@ export const Module = {
   toAminoMsg(message: Module): ModuleAminoMsg {
     return {
       type: "cosmos-sdk/Module",
-      value: Module.toAmino(message),
+      value: Module.toAmino(message)
     };
   },
   fromProtoMsg(message: ModuleProtoMsg): Module {
@@ -111,7 +110,7 @@ export const Module = {
   toProtoMsg(message: Module): ModuleProtoMsg {
     return {
       typeUrl: "/cosmos.gov.module.v1.Module",
-      value: Module.encode(message).finish(),
+      value: Module.encode(message).finish()
     };
-  },
+  }
 };

@@ -219,7 +219,7 @@ export interface WeightedAddressAminoMsg {
 function createBaseCollection(): Collection {
   return {
     denom: Denom.fromPartial({}),
-    onfts: [],
+    onfts: []
   };
 }
 export const Collection = {
@@ -258,7 +258,7 @@ export const Collection = {
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = Denom.fromPartial(object.denom);
     }
-    message.onfts = object.onfts?.map((e) => ONFT.fromPartial(e)) || [];
+    message.onfts = object.onfts?.map(e => ONFT.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: CollectionAmino): Collection {
@@ -266,14 +266,14 @@ export const Collection = {
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = Denom.fromAmino(object.denom);
     }
-    message.onfts = object.onfts?.map((e) => ONFT.fromAmino(e)) || [];
+    message.onfts = object.onfts?.map(e => ONFT.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Collection): CollectionAmino {
     const obj: any = {};
     obj.denom = message.denom ? Denom.toAmino(message.denom) : undefined;
     if (message.onfts) {
-      obj.onfts = message.onfts.map((e) => (e ? ONFT.toAmino(e) : undefined));
+      obj.onfts = message.onfts.map(e => e ? ONFT.toAmino(e) : undefined);
     } else {
       obj.onfts = message.onfts;
     }
@@ -291,14 +291,14 @@ export const Collection = {
   toProtoMsg(message: Collection): CollectionProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.Collection",
-      value: Collection.encode(message).finish(),
+      value: Collection.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseIDCollection(): IDCollection {
   return {
     denomId: "",
-    onftIds: [],
+    onftIds: []
   };
 }
 export const IDCollection = {
@@ -335,7 +335,7 @@ export const IDCollection = {
   fromPartial<I extends Exact<DeepPartial<IDCollection>, I>>(object: I): IDCollection {
     const message = createBaseIDCollection();
     message.denomId = object.denomId ?? "";
-    message.onftIds = object.onftIds?.map((e) => e) || [];
+    message.onftIds = object.onftIds?.map(e => e) || [];
     return message;
   },
   fromAmino(object: IDCollectionAmino): IDCollection {
@@ -343,14 +343,14 @@ export const IDCollection = {
     if (object.denom_id !== undefined && object.denom_id !== null) {
       message.denomId = object.denom_id;
     }
-    message.onftIds = object.onft_ids?.map((e) => e) || [];
+    message.onftIds = object.onft_ids?.map(e => e) || [];
     return message;
   },
   toAmino(message: IDCollection): IDCollectionAmino {
     const obj: any = {};
     obj.denom_id = message.denomId === "" ? undefined : message.denomId;
     if (message.onftIds) {
-      obj.onft_ids = message.onftIds.map((e) => e);
+      obj.onft_ids = message.onftIds.map(e => e);
     } else {
       obj.onft_ids = message.onftIds;
     }
@@ -368,9 +368,9 @@ export const IDCollection = {
   toProtoMsg(message: IDCollection): IDCollectionProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.IDCollection",
-      value: IDCollection.encode(message).finish(),
+      value: IDCollection.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseDenom(): Denom {
   return {
@@ -384,7 +384,7 @@ function createBaseDenom(): Denom {
     uri: "",
     uriHash: "",
     data: "",
-    royaltyReceivers: [],
+    royaltyReceivers: []
   };
 }
 export const Denom = {
@@ -484,7 +484,7 @@ export const Denom = {
     message.uri = object.uri ?? "";
     message.uriHash = object.uriHash ?? "";
     message.data = object.data ?? "";
-    message.royaltyReceivers = object.royaltyReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
+    message.royaltyReceivers = object.royaltyReceivers?.map(e => WeightedAddress.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: DenomAmino): Denom {
@@ -519,7 +519,7 @@ export const Denom = {
     if (object.data !== undefined && object.data !== null) {
       message.data = object.data;
     }
-    message.royaltyReceivers = object.royalty_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    message.royaltyReceivers = object.royalty_receivers?.map(e => WeightedAddress.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Denom): DenomAmino {
@@ -535,9 +535,7 @@ export const Denom = {
     obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
     obj.data = message.data === "" ? undefined : message.data;
     if (message.royaltyReceivers) {
-      obj.royalty_receivers = message.royaltyReceivers.map((e) =>
-        e ? WeightedAddress.toAmino(e) : undefined,
-      );
+      obj.royalty_receivers = message.royaltyReceivers.map(e => e ? WeightedAddress.toAmino(e) : undefined);
     } else {
       obj.royalty_receivers = message.royaltyReceivers;
     }
@@ -555,9 +553,9 @@ export const Denom = {
   toProtoMsg(message: Denom): DenomProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.Denom",
-      value: Denom.encode(message).finish(),
+      value: Denom.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseDenomMetadata(): DenomMetadata {
   return {
@@ -567,7 +565,7 @@ function createBaseDenomMetadata(): DenomMetadata {
     previewUri: "",
     data: "",
     uriHash: "",
-    royaltyReceivers: [],
+    royaltyReceivers: []
   };
 }
 export const DenomMetadata = {
@@ -639,7 +637,7 @@ export const DenomMetadata = {
     message.previewUri = object.previewUri ?? "";
     message.data = object.data ?? "";
     message.uriHash = object.uriHash ?? "";
-    message.royaltyReceivers = object.royaltyReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
+    message.royaltyReceivers = object.royaltyReceivers?.map(e => WeightedAddress.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: DenomMetadataAmino): DenomMetadata {
@@ -662,7 +660,7 @@ export const DenomMetadata = {
     if (object.uri_hash !== undefined && object.uri_hash !== null) {
       message.uriHash = object.uri_hash;
     }
-    message.royaltyReceivers = object.royalty_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    message.royaltyReceivers = object.royalty_receivers?.map(e => WeightedAddress.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: DenomMetadata): DenomMetadataAmino {
@@ -674,9 +672,7 @@ export const DenomMetadata = {
     obj.data = message.data === "" ? undefined : message.data;
     obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
     if (message.royaltyReceivers) {
-      obj.royalty_receivers = message.royaltyReceivers.map((e) =>
-        e ? WeightedAddress.toAmino(e) : undefined,
-      );
+      obj.royalty_receivers = message.royaltyReceivers.map(e => e ? WeightedAddress.toAmino(e) : undefined);
     } else {
       obj.royalty_receivers = message.royaltyReceivers;
     }
@@ -694,9 +690,9 @@ export const DenomMetadata = {
   toProtoMsg(message: DenomMetadata): DenomMetadataProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.DenomMetadata",
-      value: DenomMetadata.encode(message).finish(),
+      value: DenomMetadata.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseONFT(): ONFT {
   return {
@@ -708,7 +704,7 @@ function createBaseONFT(): ONFT {
     extensible: false,
     createdAt: Timestamp.fromPartial({}),
     nsfw: false,
-    royaltyShare: "",
+    royaltyShare: ""
   };
 }
 export const ONFT = {
@@ -857,9 +853,9 @@ export const ONFT = {
   toProtoMsg(message: ONFT): ONFTProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.ONFT",
-      value: ONFT.encode(message).finish(),
+      value: ONFT.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMetadata(): Metadata {
   return {
@@ -867,7 +863,7 @@ function createBaseMetadata(): Metadata {
     description: "",
     mediaUri: "",
     previewUri: "",
-    uriHash: "",
+    uriHash: ""
   };
 }
 export const Metadata = {
@@ -968,9 +964,9 @@ export const Metadata = {
   toProtoMsg(message: Metadata): MetadataProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.Metadata",
-      value: Metadata.encode(message).finish(),
+      value: Metadata.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseONFTMetadata(): ONFTMetadata {
   return {
@@ -983,7 +979,7 @@ function createBaseONFTMetadata(): ONFTMetadata {
     createdAt: Timestamp.fromPartial({}),
     nsfw: false,
     royaltyShare: "",
-    uriHash: "",
+    uriHash: ""
   };
 }
 export const ONFTMetadata = {
@@ -1141,14 +1137,14 @@ export const ONFTMetadata = {
   toProtoMsg(message: ONFTMetadata): ONFTMetadataProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.ONFTMetadata",
-      value: ONFTMetadata.encode(message).finish(),
+      value: ONFTMetadata.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseOwner(): Owner {
   return {
     address: "",
-    idCollections: [],
+    idCollections: []
   };
 }
 export const Owner = {
@@ -1185,7 +1181,7 @@ export const Owner = {
   fromPartial<I extends Exact<DeepPartial<Owner>, I>>(object: I): Owner {
     const message = createBaseOwner();
     message.address = object.address ?? "";
-    message.idCollections = object.idCollections?.map((e) => IDCollection.fromPartial(e)) || [];
+    message.idCollections = object.idCollections?.map(e => IDCollection.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: OwnerAmino): Owner {
@@ -1193,14 +1189,14 @@ export const Owner = {
     if (object.address !== undefined && object.address !== null) {
       message.address = object.address;
     }
-    message.idCollections = object.id_collections?.map((e) => IDCollection.fromAmino(e)) || [];
+    message.idCollections = object.id_collections?.map(e => IDCollection.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Owner): OwnerAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
     if (message.idCollections) {
-      obj.id_collections = message.idCollections.map((e) => (e ? IDCollection.toAmino(e) : undefined));
+      obj.id_collections = message.idCollections.map(e => e ? IDCollection.toAmino(e) : undefined);
     } else {
       obj.id_collections = message.idCollections;
     }
@@ -1218,14 +1214,14 @@ export const Owner = {
   toProtoMsg(message: Owner): OwnerProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.Owner",
-      value: Owner.encode(message).finish(),
+      value: Owner.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseWeightedAddress(): WeightedAddress {
   return {
     address: "",
-    weight: "",
+    weight: ""
   };
 }
 export const WeightedAddress = {
@@ -1293,7 +1289,7 @@ export const WeightedAddress = {
   toProtoMsg(message: WeightedAddress): WeightedAddressProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.WeightedAddress",
-      value: WeightedAddress.encode(message).finish(),
+      value: WeightedAddress.encode(message).finish()
     };
-  },
+  }
 };

@@ -98,7 +98,7 @@ function createBaseMsgTransfer(): MsgTransfer {
     receiver: "",
     timeoutHeight: Height.fromPartial({}),
     timeoutTimestamp: BigInt(0),
-    memo: "",
+    memo: ""
   };
 }
 export const MsgTransfer = {
@@ -222,8 +222,7 @@ export const MsgTransfer = {
     obj.sender = message.sender === "" ? undefined : message.sender;
     obj.receiver = message.receiver === "" ? undefined : message.receiver;
     obj.timeout_height = message.timeoutHeight ? Height.toAmino(message.timeoutHeight) : {};
-    obj.timeout_timestamp =
-      message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : undefined;
+    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : undefined;
     obj.memo = message.memo === "" ? undefined : message.memo;
     return obj;
   },
@@ -233,7 +232,7 @@ export const MsgTransfer = {
   toAminoMsg(message: MsgTransfer): MsgTransferAminoMsg {
     return {
       type: "cosmos-sdk/MsgTransfer",
-      value: MsgTransfer.toAmino(message),
+      value: MsgTransfer.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgTransferProtoMsg): MsgTransfer {
@@ -245,13 +244,13 @@ export const MsgTransfer = {
   toProtoMsg(message: MsgTransfer): MsgTransferProtoMsg {
     return {
       typeUrl: "/ibc.applications.transfer.v1.MsgTransfer",
-      value: MsgTransfer.encode(message).finish(),
+      value: MsgTransfer.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgTransferResponse(): MsgTransferResponse {
   return {
-    sequence: BigInt(0),
+    sequence: BigInt(0)
   };
 }
 export const MsgTransferResponse = {
@@ -304,7 +303,7 @@ export const MsgTransferResponse = {
   toAminoMsg(message: MsgTransferResponse): MsgTransferResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgTransferResponse",
-      value: MsgTransferResponse.toAmino(message),
+      value: MsgTransferResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgTransferResponseProtoMsg): MsgTransferResponse {
@@ -316,9 +315,9 @@ export const MsgTransferResponse = {
   toProtoMsg(message: MsgTransferResponse): MsgTransferResponseProtoMsg {
     return {
       typeUrl: "/ibc.applications.transfer.v1.MsgTransferResponse",
-      value: MsgTransferResponse.encode(message).finish(),
+      value: MsgTransferResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the ibc/transfer Msg service. */
 export interface Msg {
@@ -334,6 +333,6 @@ export class MsgClientImpl implements Msg {
   Transfer(request: MsgTransfer): Promise<MsgTransferResponse> {
     const data = MsgTransfer.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.transfer.v1.Msg", "Transfer", data);
-    return promise.then((data) => MsgTransferResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgTransferResponse.decode(new BinaryReader(data)));
   }
 }

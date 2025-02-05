@@ -70,14 +70,14 @@ export interface BlockParamsAminoMsg {
 export interface EvidenceParams {
   /**
    * Max age of evidence, in blocks.
-   *
+   * 
    * The basic formula for calculating this is: MaxAgeDuration / {average block
    * time}.
    */
   maxAgeNumBlocks: bigint;
   /**
    * Max age of evidence, in time.
-   *
+   * 
    * It should correspond with an app's "unbonding period" or other similar
    * mechanism for handling [Nothing-At-Stake
    * attacks](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ#what-is-the-nothing-at-stake-problem-and-how-can-it-be-fixed).
@@ -98,14 +98,14 @@ export interface EvidenceParamsProtoMsg {
 export interface EvidenceParamsAmino {
   /**
    * Max age of evidence, in blocks.
-   *
+   * 
    * The basic formula for calculating this is: MaxAgeDuration / {average block
    * time}.
    */
   max_age_num_blocks?: string;
   /**
    * Max age of evidence, in time.
-   *
+   * 
    * It should correspond with an app's "unbonding period" or other similar
    * mechanism for handling [Nothing-At-Stake
    * attacks](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ#what-is-the-nothing-at-stake-problem-and-how-can-it-be-fixed).
@@ -162,7 +162,7 @@ export interface VersionParamsAminoMsg {
 }
 /**
  * HashedParams is a subset of ConsensusParams.
- *
+ * 
  * It is hashed into the Header.ConsensusHash.
  */
 export interface HashedParams {
@@ -175,7 +175,7 @@ export interface HashedParamsProtoMsg {
 }
 /**
  * HashedParams is a subset of ConsensusParams.
- *
+ * 
  * It is hashed into the Header.ConsensusHash.
  */
 export interface HashedParamsAmino {
@@ -191,7 +191,7 @@ function createBaseConsensusParams(): ConsensusParams {
     block: undefined,
     evidence: undefined,
     validator: undefined,
-    version: undefined,
+    version: undefined
   };
 }
 export const ConsensusParams = {
@@ -289,14 +289,14 @@ export const ConsensusParams = {
   toProtoMsg(message: ConsensusParams): ConsensusParamsProtoMsg {
     return {
       typeUrl: "/tendermint.types.ConsensusParams",
-      value: ConsensusParams.encode(message).finish(),
+      value: ConsensusParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseBlockParams(): BlockParams {
   return {
     maxBytes: BigInt(0),
-    maxGas: BigInt(0),
+    maxGas: BigInt(0)
   };
 }
 export const BlockParams = {
@@ -368,15 +368,15 @@ export const BlockParams = {
   toProtoMsg(message: BlockParams): BlockParamsProtoMsg {
     return {
       typeUrl: "/tendermint.types.BlockParams",
-      value: BlockParams.encode(message).finish(),
+      value: BlockParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEvidenceParams(): EvidenceParams {
   return {
     maxAgeNumBlocks: BigInt(0),
     maxAgeDuration: Duration.fromPartial({}),
-    maxBytes: BigInt(0),
+    maxBytes: BigInt(0)
   };
 }
 export const EvidenceParams = {
@@ -444,8 +444,7 @@ export const EvidenceParams = {
   },
   toAmino(message: EvidenceParams): EvidenceParamsAmino {
     const obj: any = {};
-    obj.max_age_num_blocks =
-      message.maxAgeNumBlocks !== BigInt(0) ? message.maxAgeNumBlocks?.toString() : undefined;
+    obj.max_age_num_blocks = message.maxAgeNumBlocks !== BigInt(0) ? message.maxAgeNumBlocks?.toString() : undefined;
     obj.max_age_duration = message.maxAgeDuration ? Duration.toAmino(message.maxAgeDuration) : undefined;
     obj.max_bytes = message.maxBytes !== BigInt(0) ? message.maxBytes?.toString() : undefined;
     return obj;
@@ -462,13 +461,13 @@ export const EvidenceParams = {
   toProtoMsg(message: EvidenceParams): EvidenceParamsProtoMsg {
     return {
       typeUrl: "/tendermint.types.EvidenceParams",
-      value: EvidenceParams.encode(message).finish(),
+      value: EvidenceParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseValidatorParams(): ValidatorParams {
   return {
-    pubKeyTypes: [],
+    pubKeyTypes: []
   };
 }
 export const ValidatorParams = {
@@ -498,18 +497,18 @@ export const ValidatorParams = {
   },
   fromPartial<I extends Exact<DeepPartial<ValidatorParams>, I>>(object: I): ValidatorParams {
     const message = createBaseValidatorParams();
-    message.pubKeyTypes = object.pubKeyTypes?.map((e) => e) || [];
+    message.pubKeyTypes = object.pubKeyTypes?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ValidatorParamsAmino): ValidatorParams {
     const message = createBaseValidatorParams();
-    message.pubKeyTypes = object.pub_key_types?.map((e) => e) || [];
+    message.pubKeyTypes = object.pub_key_types?.map(e => e) || [];
     return message;
   },
   toAmino(message: ValidatorParams): ValidatorParamsAmino {
     const obj: any = {};
     if (message.pubKeyTypes) {
-      obj.pub_key_types = message.pubKeyTypes.map((e) => e);
+      obj.pub_key_types = message.pubKeyTypes.map(e => e);
     } else {
       obj.pub_key_types = message.pubKeyTypes;
     }
@@ -527,13 +526,13 @@ export const ValidatorParams = {
   toProtoMsg(message: ValidatorParams): ValidatorParamsProtoMsg {
     return {
       typeUrl: "/tendermint.types.ValidatorParams",
-      value: ValidatorParams.encode(message).finish(),
+      value: ValidatorParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseVersionParams(): VersionParams {
   return {
-    app: BigInt(0),
+    app: BigInt(0)
   };
 }
 export const VersionParams = {
@@ -592,14 +591,14 @@ export const VersionParams = {
   toProtoMsg(message: VersionParams): VersionParamsProtoMsg {
     return {
       typeUrl: "/tendermint.types.VersionParams",
-      value: VersionParams.encode(message).finish(),
+      value: VersionParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseHashedParams(): HashedParams {
   return {
     blockMaxBytes: BigInt(0),
-    blockMaxGas: BigInt(0),
+    blockMaxGas: BigInt(0)
   };
 }
 export const HashedParams = {
@@ -671,7 +670,7 @@ export const HashedParams = {
   toProtoMsg(message: HashedParams): HashedParamsProtoMsg {
     return {
       typeUrl: "/tendermint.types.HashedParams",
-      value: HashedParams.encode(message).finish(),
+      value: HashedParams.encode(message).finish()
     };
-  },
+  }
 };

@@ -33,7 +33,7 @@ export interface LegacyAminoPubKeyAminoMsg {
 function createBaseLegacyAminoPubKey(): LegacyAminoPubKey {
   return {
     threshold: 0,
-    publicKeys: [],
+    publicKeys: []
   };
 }
 export const LegacyAminoPubKey = {
@@ -70,7 +70,7 @@ export const LegacyAminoPubKey = {
   fromPartial<I extends Exact<DeepPartial<LegacyAminoPubKey>, I>>(object: I): LegacyAminoPubKey {
     const message = createBaseLegacyAminoPubKey();
     message.threshold = object.threshold ?? 0;
-    message.publicKeys = object.publicKeys?.map((e) => Any.fromPartial(e)) || [];
+    message.publicKeys = object.publicKeys?.map(e => Any.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: LegacyAminoPubKeyAmino): LegacyAminoPubKey {
@@ -78,14 +78,14 @@ export const LegacyAminoPubKey = {
     if (object.threshold !== undefined && object.threshold !== null) {
       message.threshold = object.threshold;
     }
-    message.publicKeys = object.public_keys?.map((e) => Any.fromAmino(e)) || [];
+    message.publicKeys = object.public_keys?.map(e => Any.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: LegacyAminoPubKey): LegacyAminoPubKeyAmino {
     const obj: any = {};
     obj.threshold = message.threshold === 0 ? undefined : message.threshold;
     if (message.publicKeys) {
-      obj.public_keys = message.publicKeys.map((e) => (e ? Any.toAmino(e) : undefined));
+      obj.public_keys = message.publicKeys.map(e => e ? Any.toAmino(e) : undefined);
     } else {
       obj.public_keys = message.publicKeys;
     }
@@ -97,7 +97,7 @@ export const LegacyAminoPubKey = {
   toAminoMsg(message: LegacyAminoPubKey): LegacyAminoPubKeyAminoMsg {
     return {
       type: "tendermint/PubKeyMultisigThreshold",
-      value: LegacyAminoPubKey.toAmino(message),
+      value: LegacyAminoPubKey.toAmino(message)
     };
   },
   fromProtoMsg(message: LegacyAminoPubKeyProtoMsg): LegacyAminoPubKey {
@@ -109,7 +109,7 @@ export const LegacyAminoPubKey = {
   toProtoMsg(message: LegacyAminoPubKey): LegacyAminoPubKeyProtoMsg {
     return {
       typeUrl: "/cosmos.crypto.multisig.LegacyAminoPubKey",
-      value: LegacyAminoPubKey.encode(message).finish(),
+      value: LegacyAminoPubKey.encode(message).finish()
     };
-  },
+  }
 };

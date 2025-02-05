@@ -81,7 +81,7 @@ function createBaseInterchainAccountPacketData(): InterchainAccountPacketData {
   return {
     type: 0,
     data: new Uint8Array(),
-    memo: "",
+    memo: ""
   };
 }
 export const InterchainAccountPacketData = {
@@ -121,9 +121,7 @@ export const InterchainAccountPacketData = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<InterchainAccountPacketData>, I>>(
-    object: I,
-  ): InterchainAccountPacketData {
+  fromPartial<I extends Exact<DeepPartial<InterchainAccountPacketData>, I>>(object: I): InterchainAccountPacketData {
     const message = createBaseInterchainAccountPacketData();
     message.type = object.type ?? 0;
     message.data = object.data ?? new Uint8Array();
@@ -156,7 +154,7 @@ export const InterchainAccountPacketData = {
   toAminoMsg(message: InterchainAccountPacketData): InterchainAccountPacketDataAminoMsg {
     return {
       type: "cosmos-sdk/InterchainAccountPacketData",
-      value: InterchainAccountPacketData.toAmino(message),
+      value: InterchainAccountPacketData.toAmino(message)
     };
   },
   fromProtoMsg(message: InterchainAccountPacketDataProtoMsg): InterchainAccountPacketData {
@@ -168,13 +166,13 @@ export const InterchainAccountPacketData = {
   toProtoMsg(message: InterchainAccountPacketData): InterchainAccountPacketDataProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.v1.InterchainAccountPacketData",
-      value: InterchainAccountPacketData.encode(message).finish(),
+      value: InterchainAccountPacketData.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseCosmosTx(): CosmosTx {
   return {
-    messages: [],
+    messages: []
   };
 }
 export const CosmosTx = {
@@ -204,18 +202,18 @@ export const CosmosTx = {
   },
   fromPartial<I extends Exact<DeepPartial<CosmosTx>, I>>(object: I): CosmosTx {
     const message = createBaseCosmosTx();
-    message.messages = object.messages?.map((e) => Any.fromPartial(e)) || [];
+    message.messages = object.messages?.map(e => Any.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: CosmosTxAmino): CosmosTx {
     const message = createBaseCosmosTx();
-    message.messages = object.messages?.map((e) => Any.fromAmino(e)) || [];
+    message.messages = object.messages?.map(e => Any.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: CosmosTx): CosmosTxAmino {
     const obj: any = {};
     if (message.messages) {
-      obj.messages = message.messages.map((e) => (e ? Any.toAmino(e) : undefined));
+      obj.messages = message.messages.map(e => e ? Any.toAmino(e) : undefined);
     } else {
       obj.messages = message.messages;
     }
@@ -227,7 +225,7 @@ export const CosmosTx = {
   toAminoMsg(message: CosmosTx): CosmosTxAminoMsg {
     return {
       type: "cosmos-sdk/CosmosTx",
-      value: CosmosTx.toAmino(message),
+      value: CosmosTx.toAmino(message)
     };
   },
   fromProtoMsg(message: CosmosTxProtoMsg): CosmosTx {
@@ -239,7 +237,7 @@ export const CosmosTx = {
   toProtoMsg(message: CosmosTx): CosmosTxProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.v1.CosmosTx",
-      value: CosmosTx.encode(message).finish(),
+      value: CosmosTx.encode(message).finish()
     };
-  },
+  }
 };

@@ -6,7 +6,7 @@ import { DeepPartial, Exact, Rpc } from "../../../helpers";
 export const protobufPackage = "cosmos.upgrade.v1beta1";
 /**
  * MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type.
- *
+ * 
  * Since: cosmos-sdk 0.46
  */
 export interface MsgSoftwareUpgrade {
@@ -21,7 +21,7 @@ export interface MsgSoftwareUpgradeProtoMsg {
 }
 /**
  * MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type.
- *
+ * 
  * Since: cosmos-sdk 0.46
  */
 export interface MsgSoftwareUpgradeAmino {
@@ -36,7 +36,7 @@ export interface MsgSoftwareUpgradeAminoMsg {
 }
 /**
  * MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type.
- *
+ * 
  * Since: cosmos-sdk 0.46
  */
 export interface MsgSoftwareUpgradeResponse {}
@@ -46,7 +46,7 @@ export interface MsgSoftwareUpgradeResponseProtoMsg {
 }
 /**
  * MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type.
- *
+ * 
  * Since: cosmos-sdk 0.46
  */
 export interface MsgSoftwareUpgradeResponseAmino {}
@@ -56,7 +56,7 @@ export interface MsgSoftwareUpgradeResponseAminoMsg {
 }
 /**
  * MsgCancelUpgrade is the Msg/CancelUpgrade request type.
- *
+ * 
  * Since: cosmos-sdk 0.46
  */
 export interface MsgCancelUpgrade {
@@ -69,7 +69,7 @@ export interface MsgCancelUpgradeProtoMsg {
 }
 /**
  * MsgCancelUpgrade is the Msg/CancelUpgrade request type.
- *
+ * 
  * Since: cosmos-sdk 0.46
  */
 export interface MsgCancelUpgradeAmino {
@@ -82,7 +82,7 @@ export interface MsgCancelUpgradeAminoMsg {
 }
 /**
  * MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type.
- *
+ * 
  * Since: cosmos-sdk 0.46
  */
 export interface MsgCancelUpgradeResponse {}
@@ -92,7 +92,7 @@ export interface MsgCancelUpgradeResponseProtoMsg {
 }
 /**
  * MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type.
- *
+ * 
  * Since: cosmos-sdk 0.46
  */
 export interface MsgCancelUpgradeResponseAmino {}
@@ -103,7 +103,7 @@ export interface MsgCancelUpgradeResponseAminoMsg {
 function createBaseMsgSoftwareUpgrade(): MsgSoftwareUpgrade {
   return {
     authority: "",
-    plan: Plan.fromPartial({}),
+    plan: Plan.fromPartial({})
   };
 }
 export const MsgSoftwareUpgrade = {
@@ -167,7 +167,7 @@ export const MsgSoftwareUpgrade = {
   toAminoMsg(message: MsgSoftwareUpgrade): MsgSoftwareUpgradeAminoMsg {
     return {
       type: "cosmos-sdk/MsgSoftwareUpgrade",
-      value: MsgSoftwareUpgrade.toAmino(message),
+      value: MsgSoftwareUpgrade.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSoftwareUpgradeProtoMsg): MsgSoftwareUpgrade {
@@ -179,9 +179,9 @@ export const MsgSoftwareUpgrade = {
   toProtoMsg(message: MsgSoftwareUpgrade): MsgSoftwareUpgradeProtoMsg {
     return {
       typeUrl: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgrade",
-      value: MsgSoftwareUpgrade.encode(message).finish(),
+      value: MsgSoftwareUpgrade.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgSoftwareUpgradeResponse(): MsgSoftwareUpgradeResponse {
   return {};
@@ -223,7 +223,7 @@ export const MsgSoftwareUpgradeResponse = {
   toAminoMsg(message: MsgSoftwareUpgradeResponse): MsgSoftwareUpgradeResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgSoftwareUpgradeResponse",
-      value: MsgSoftwareUpgradeResponse.toAmino(message),
+      value: MsgSoftwareUpgradeResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSoftwareUpgradeResponseProtoMsg): MsgSoftwareUpgradeResponse {
@@ -235,13 +235,13 @@ export const MsgSoftwareUpgradeResponse = {
   toProtoMsg(message: MsgSoftwareUpgradeResponse): MsgSoftwareUpgradeResponseProtoMsg {
     return {
       typeUrl: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse",
-      value: MsgSoftwareUpgradeResponse.encode(message).finish(),
+      value: MsgSoftwareUpgradeResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCancelUpgrade(): MsgCancelUpgrade {
   return {
-    authority: "",
+    authority: ""
   };
 }
 export const MsgCancelUpgrade = {
@@ -292,7 +292,7 @@ export const MsgCancelUpgrade = {
   toAminoMsg(message: MsgCancelUpgrade): MsgCancelUpgradeAminoMsg {
     return {
       type: "cosmos-sdk/MsgCancelUpgrade",
-      value: MsgCancelUpgrade.toAmino(message),
+      value: MsgCancelUpgrade.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCancelUpgradeProtoMsg): MsgCancelUpgrade {
@@ -304,9 +304,9 @@ export const MsgCancelUpgrade = {
   toProtoMsg(message: MsgCancelUpgrade): MsgCancelUpgradeProtoMsg {
     return {
       typeUrl: "/cosmos.upgrade.v1beta1.MsgCancelUpgrade",
-      value: MsgCancelUpgrade.encode(message).finish(),
+      value: MsgCancelUpgrade.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCancelUpgradeResponse(): MsgCancelUpgradeResponse {
   return {};
@@ -348,7 +348,7 @@ export const MsgCancelUpgradeResponse = {
   toAminoMsg(message: MsgCancelUpgradeResponse): MsgCancelUpgradeResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgCancelUpgradeResponse",
-      value: MsgCancelUpgradeResponse.toAmino(message),
+      value: MsgCancelUpgradeResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCancelUpgradeResponseProtoMsg): MsgCancelUpgradeResponse {
@@ -360,22 +360,22 @@ export const MsgCancelUpgradeResponse = {
   toProtoMsg(message: MsgCancelUpgradeResponse): MsgCancelUpgradeResponseProtoMsg {
     return {
       typeUrl: "/cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse",
-      value: MsgCancelUpgradeResponse.encode(message).finish(),
+      value: MsgCancelUpgradeResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the upgrade Msg service. */
 export interface Msg {
   /**
    * SoftwareUpgrade is a governance operation for initiating a software upgrade.
-   *
+   * 
    * Since: cosmos-sdk 0.46
    */
   SoftwareUpgrade(request: MsgSoftwareUpgrade): Promise<MsgSoftwareUpgradeResponse>;
   /**
    * CancelUpgrade is a governance operation for cancelling a previously
    * approved software upgrade.
-   *
+   * 
    * Since: cosmos-sdk 0.46
    */
   CancelUpgrade(request: MsgCancelUpgrade): Promise<MsgCancelUpgradeResponse>;
@@ -390,11 +390,11 @@ export class MsgClientImpl implements Msg {
   SoftwareUpgrade(request: MsgSoftwareUpgrade): Promise<MsgSoftwareUpgradeResponse> {
     const data = MsgSoftwareUpgrade.encode(request).finish();
     const promise = this.rpc.request("cosmos.upgrade.v1beta1.Msg", "SoftwareUpgrade", data);
-    return promise.then((data) => MsgSoftwareUpgradeResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgSoftwareUpgradeResponse.decode(new BinaryReader(data)));
   }
   CancelUpgrade(request: MsgCancelUpgrade): Promise<MsgCancelUpgradeResponse> {
     const data = MsgCancelUpgrade.encode(request).finish();
     const promise = this.rpc.request("cosmos.upgrade.v1beta1.Msg", "CancelUpgrade", data);
-    return promise.then((data) => MsgCancelUpgradeResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgCancelUpgradeResponse.decode(new BinaryReader(data)));
   }
 }

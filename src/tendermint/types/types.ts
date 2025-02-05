@@ -422,7 +422,7 @@ export interface TxProofAminoMsg {
 function createBasePartSetHeader(): PartSetHeader {
   return {
     total: 0,
-    hash: new Uint8Array(),
+    hash: new Uint8Array()
   };
 }
 export const PartSetHeader = {
@@ -490,15 +490,15 @@ export const PartSetHeader = {
   toProtoMsg(message: PartSetHeader): PartSetHeaderProtoMsg {
     return {
       typeUrl: "/tendermint.types.PartSetHeader",
-      value: PartSetHeader.encode(message).finish(),
+      value: PartSetHeader.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePart(): Part {
   return {
     index: 0,
     bytes: new Uint8Array(),
-    proof: Proof.fromPartial({}),
+    proof: Proof.fromPartial({})
   };
 }
 export const Part = {
@@ -579,14 +579,14 @@ export const Part = {
   toProtoMsg(message: Part): PartProtoMsg {
     return {
       typeUrl: "/tendermint.types.Part",
-      value: Part.encode(message).finish(),
+      value: Part.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseBlockID(): BlockID {
   return {
     hash: new Uint8Array(),
-    partSetHeader: PartSetHeader.fromPartial({}),
+    partSetHeader: PartSetHeader.fromPartial({})
   };
 }
 export const BlockID = {
@@ -656,9 +656,9 @@ export const BlockID = {
   toProtoMsg(message: BlockID): BlockIDProtoMsg {
     return {
       typeUrl: "/tendermint.types.BlockID",
-      value: BlockID.encode(message).finish(),
+      value: BlockID.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseHeader(): Header {
   return {
@@ -675,7 +675,7 @@ function createBaseHeader(): Header {
     appHash: new Uint8Array(),
     lastResultsHash: new Uint8Array(),
     evidenceHash: new Uint8Array(),
-    proposerAddress: new Uint8Array(),
+    proposerAddress: new Uint8Array()
   };
 }
 export const Header = {
@@ -863,9 +863,7 @@ export const Header = {
     obj.last_commit_hash = message.lastCommitHash ? base64FromBytes(message.lastCommitHash) : undefined;
     obj.data_hash = message.dataHash ? base64FromBytes(message.dataHash) : undefined;
     obj.validators_hash = message.validatorsHash ? base64FromBytes(message.validatorsHash) : undefined;
-    obj.next_validators_hash = message.nextValidatorsHash
-      ? base64FromBytes(message.nextValidatorsHash)
-      : undefined;
+    obj.next_validators_hash = message.nextValidatorsHash ? base64FromBytes(message.nextValidatorsHash) : undefined;
     obj.consensus_hash = message.consensusHash ? base64FromBytes(message.consensusHash) : undefined;
     obj.app_hash = message.appHash ? base64FromBytes(message.appHash) : undefined;
     obj.last_results_hash = message.lastResultsHash ? base64FromBytes(message.lastResultsHash) : undefined;
@@ -885,13 +883,13 @@ export const Header = {
   toProtoMsg(message: Header): HeaderProtoMsg {
     return {
       typeUrl: "/tendermint.types.Header",
-      value: Header.encode(message).finish(),
+      value: Header.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseData(): Data {
   return {
-    txs: [],
+    txs: []
   };
 }
 export const Data = {
@@ -921,18 +919,18 @@ export const Data = {
   },
   fromPartial<I extends Exact<DeepPartial<Data>, I>>(object: I): Data {
     const message = createBaseData();
-    message.txs = object.txs?.map((e) => e) || [];
+    message.txs = object.txs?.map(e => e) || [];
     return message;
   },
   fromAmino(object: DataAmino): Data {
     const message = createBaseData();
-    message.txs = object.txs?.map((e) => bytesFromBase64(e)) || [];
+    message.txs = object.txs?.map(e => bytesFromBase64(e)) || [];
     return message;
   },
   toAmino(message: Data): DataAmino {
     const obj: any = {};
     if (message.txs) {
-      obj.txs = message.txs.map((e) => base64FromBytes(e));
+      obj.txs = message.txs.map(e => base64FromBytes(e));
     } else {
       obj.txs = message.txs;
     }
@@ -950,9 +948,9 @@ export const Data = {
   toProtoMsg(message: Data): DataProtoMsg {
     return {
       typeUrl: "/tendermint.types.Data",
-      value: Data.encode(message).finish(),
+      value: Data.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseVote(): Vote {
   return {
@@ -963,7 +961,7 @@ function createBaseVote(): Vote {
     timestamp: Timestamp.fromPartial({}),
     validatorAddress: new Uint8Array(),
     validatorIndex: 0,
-    signature: new Uint8Array(),
+    signature: new Uint8Array()
   };
 }
 export const Vote = {
@@ -1103,16 +1101,16 @@ export const Vote = {
   toProtoMsg(message: Vote): VoteProtoMsg {
     return {
       typeUrl: "/tendermint.types.Vote",
-      value: Vote.encode(message).finish(),
+      value: Vote.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseCommit(): Commit {
   return {
     height: BigInt(0),
     round: 0,
     blockId: BlockID.fromPartial({}),
-    signatures: [],
+    signatures: []
   };
 }
 export const Commit = {
@@ -1167,7 +1165,7 @@ export const Commit = {
     if (object.blockId !== undefined && object.blockId !== null) {
       message.blockId = BlockID.fromPartial(object.blockId);
     }
-    message.signatures = object.signatures?.map((e) => CommitSig.fromPartial(e)) || [];
+    message.signatures = object.signatures?.map(e => CommitSig.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: CommitAmino): Commit {
@@ -1181,7 +1179,7 @@ export const Commit = {
     if (object.block_id !== undefined && object.block_id !== null) {
       message.blockId = BlockID.fromAmino(object.block_id);
     }
-    message.signatures = object.signatures?.map((e) => CommitSig.fromAmino(e)) || [];
+    message.signatures = object.signatures?.map(e => CommitSig.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Commit): CommitAmino {
@@ -1190,7 +1188,7 @@ export const Commit = {
     obj.round = message.round === 0 ? undefined : message.round;
     obj.block_id = message.blockId ? BlockID.toAmino(message.blockId) : undefined;
     if (message.signatures) {
-      obj.signatures = message.signatures.map((e) => (e ? CommitSig.toAmino(e) : undefined));
+      obj.signatures = message.signatures.map(e => e ? CommitSig.toAmino(e) : undefined);
     } else {
       obj.signatures = message.signatures;
     }
@@ -1208,16 +1206,16 @@ export const Commit = {
   toProtoMsg(message: Commit): CommitProtoMsg {
     return {
       typeUrl: "/tendermint.types.Commit",
-      value: Commit.encode(message).finish(),
+      value: Commit.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseCommitSig(): CommitSig {
   return {
     blockIdFlag: 0,
     validatorAddress: new Uint8Array(),
     timestamp: Timestamp.fromPartial({}),
-    signature: new Uint8Array(),
+    signature: new Uint8Array()
   };
 }
 export const CommitSig = {
@@ -1309,9 +1307,9 @@ export const CommitSig = {
   toProtoMsg(message: CommitSig): CommitSigProtoMsg {
     return {
       typeUrl: "/tendermint.types.CommitSig",
-      value: CommitSig.encode(message).finish(),
+      value: CommitSig.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseProposal(): Proposal {
   return {
@@ -1321,7 +1319,7 @@ function createBaseProposal(): Proposal {
     polRound: 0,
     blockId: BlockID.fromPartial({}),
     timestamp: Timestamp.fromPartial({}),
-    signature: new Uint8Array(),
+    signature: new Uint8Array()
   };
 }
 export const Proposal = {
@@ -1450,14 +1448,14 @@ export const Proposal = {
   toProtoMsg(message: Proposal): ProposalProtoMsg {
     return {
       typeUrl: "/tendermint.types.Proposal",
-      value: Proposal.encode(message).finish(),
+      value: Proposal.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseSignedHeader(): SignedHeader {
   return {
     header: undefined,
-    commit: undefined,
+    commit: undefined
   };
 }
 export const SignedHeader = {
@@ -1529,14 +1527,14 @@ export const SignedHeader = {
   toProtoMsg(message: SignedHeader): SignedHeaderProtoMsg {
     return {
       typeUrl: "/tendermint.types.SignedHeader",
-      value: SignedHeader.encode(message).finish(),
+      value: SignedHeader.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseLightBlock(): LightBlock {
   return {
     signedHeader: undefined,
-    validatorSet: undefined,
+    validatorSet: undefined
   };
 }
 export const LightBlock = {
@@ -1608,16 +1606,16 @@ export const LightBlock = {
   toProtoMsg(message: LightBlock): LightBlockProtoMsg {
     return {
       typeUrl: "/tendermint.types.LightBlock",
-      value: LightBlock.encode(message).finish(),
+      value: LightBlock.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseBlockMeta(): BlockMeta {
   return {
     blockId: BlockID.fromPartial({}),
     blockSize: BigInt(0),
     header: Header.fromPartial({}),
-    numTxs: BigInt(0),
+    numTxs: BigInt(0)
   };
 }
 export const BlockMeta = {
@@ -1715,15 +1713,15 @@ export const BlockMeta = {
   toProtoMsg(message: BlockMeta): BlockMetaProtoMsg {
     return {
       typeUrl: "/tendermint.types.BlockMeta",
-      value: BlockMeta.encode(message).finish(),
+      value: BlockMeta.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseTxProof(): TxProof {
   return {
     rootHash: new Uint8Array(),
     data: new Uint8Array(),
-    proof: undefined,
+    proof: undefined
   };
 }
 export const TxProof = {
@@ -1804,7 +1802,7 @@ export const TxProof = {
   toProtoMsg(message: TxProof): TxProofProtoMsg {
     return {
       typeUrl: "/tendermint.types.TxProof",
-      value: TxProof.encode(message).finish(),
+      value: TxProof.encode(message).finish()
     };
-  },
+  }
 };

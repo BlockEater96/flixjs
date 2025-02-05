@@ -90,7 +90,7 @@ function createBaseMsgIBCSend(): MsgIBCSend {
     channel: "",
     timeoutHeight: BigInt(0),
     timeoutTimestamp: BigInt(0),
-    data: new Uint8Array(),
+    data: new Uint8Array()
   };
 }
 export const MsgIBCSend = {
@@ -168,8 +168,7 @@ export const MsgIBCSend = {
     const obj: any = {};
     obj.channel = message.channel === "" ? undefined : message.channel;
     obj.timeout_height = message.timeoutHeight !== BigInt(0) ? message.timeoutHeight?.toString() : undefined;
-    obj.timeout_timestamp =
-      message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : undefined;
+    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : undefined;
     obj.data = message.data ? base64FromBytes(message.data) : undefined;
     return obj;
   },
@@ -179,7 +178,7 @@ export const MsgIBCSend = {
   toAminoMsg(message: MsgIBCSend): MsgIBCSendAminoMsg {
     return {
       type: "wasm/MsgIBCSend",
-      value: MsgIBCSend.toAmino(message),
+      value: MsgIBCSend.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgIBCSendProtoMsg): MsgIBCSend {
@@ -191,13 +190,13 @@ export const MsgIBCSend = {
   toProtoMsg(message: MsgIBCSend): MsgIBCSendProtoMsg {
     return {
       typeUrl: "/cosmwasm.wasm.v1.MsgIBCSend",
-      value: MsgIBCSend.encode(message).finish(),
+      value: MsgIBCSend.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgIBCSendResponse(): MsgIBCSendResponse {
   return {
-    sequence: BigInt(0),
+    sequence: BigInt(0)
   };
 }
 export const MsgIBCSendResponse = {
@@ -250,7 +249,7 @@ export const MsgIBCSendResponse = {
   toAminoMsg(message: MsgIBCSendResponse): MsgIBCSendResponseAminoMsg {
     return {
       type: "wasm/MsgIBCSendResponse",
-      value: MsgIBCSendResponse.toAmino(message),
+      value: MsgIBCSendResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgIBCSendResponseProtoMsg): MsgIBCSendResponse {
@@ -262,13 +261,13 @@ export const MsgIBCSendResponse = {
   toProtoMsg(message: MsgIBCSendResponse): MsgIBCSendResponseProtoMsg {
     return {
       typeUrl: "/cosmwasm.wasm.v1.MsgIBCSendResponse",
-      value: MsgIBCSendResponse.encode(message).finish(),
+      value: MsgIBCSendResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgIBCCloseChannel(): MsgIBCCloseChannel {
   return {
-    channel: "",
+    channel: ""
   };
 }
 export const MsgIBCCloseChannel = {
@@ -319,7 +318,7 @@ export const MsgIBCCloseChannel = {
   toAminoMsg(message: MsgIBCCloseChannel): MsgIBCCloseChannelAminoMsg {
     return {
       type: "wasm/MsgIBCCloseChannel",
-      value: MsgIBCCloseChannel.toAmino(message),
+      value: MsgIBCCloseChannel.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgIBCCloseChannelProtoMsg): MsgIBCCloseChannel {
@@ -331,7 +330,7 @@ export const MsgIBCCloseChannel = {
   toProtoMsg(message: MsgIBCCloseChannel): MsgIBCCloseChannelProtoMsg {
     return {
       typeUrl: "/cosmwasm.wasm.v1.MsgIBCCloseChannel",
-      value: MsgIBCCloseChannel.encode(message).finish(),
+      value: MsgIBCCloseChannel.encode(message).finish()
     };
-  },
+  }
 };

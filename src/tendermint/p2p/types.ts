@@ -87,7 +87,7 @@ function createBaseNetAddress(): NetAddress {
   return {
     id: "",
     ip: "",
-    port: 0,
+    port: 0
   };
 }
 export const NetAddress = {
@@ -166,15 +166,15 @@ export const NetAddress = {
   toProtoMsg(message: NetAddress): NetAddressProtoMsg {
     return {
       typeUrl: "/tendermint.p2p.NetAddress",
-      value: NetAddress.encode(message).finish(),
+      value: NetAddress.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseProtocolVersion(): ProtocolVersion {
   return {
     p2p: BigInt(0),
     block: BigInt(0),
-    app: BigInt(0),
+    app: BigInt(0)
   };
 }
 export const ProtocolVersion = {
@@ -259,9 +259,9 @@ export const ProtocolVersion = {
   toProtoMsg(message: ProtocolVersion): ProtocolVersionProtoMsg {
     return {
       typeUrl: "/tendermint.p2p.ProtocolVersion",
-      value: ProtocolVersion.encode(message).finish(),
+      value: ProtocolVersion.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseDefaultNodeInfo(): DefaultNodeInfo {
   return {
@@ -272,7 +272,7 @@ function createBaseDefaultNodeInfo(): DefaultNodeInfo {
     version: "",
     channels: new Uint8Array(),
     moniker: "",
-    other: DefaultNodeInfoOther.fromPartial({}),
+    other: DefaultNodeInfoOther.fromPartial({})
   };
 }
 export const DefaultNodeInfo = {
@@ -388,9 +388,7 @@ export const DefaultNodeInfo = {
   },
   toAmino(message: DefaultNodeInfo): DefaultNodeInfoAmino {
     const obj: any = {};
-    obj.protocol_version = message.protocolVersion
-      ? ProtocolVersion.toAmino(message.protocolVersion)
-      : undefined;
+    obj.protocol_version = message.protocolVersion ? ProtocolVersion.toAmino(message.protocolVersion) : undefined;
     obj.default_node_id = message.defaultNodeId === "" ? undefined : message.defaultNodeId;
     obj.listen_addr = message.listenAddr === "" ? undefined : message.listenAddr;
     obj.network = message.network === "" ? undefined : message.network;
@@ -412,14 +410,14 @@ export const DefaultNodeInfo = {
   toProtoMsg(message: DefaultNodeInfo): DefaultNodeInfoProtoMsg {
     return {
       typeUrl: "/tendermint.p2p.DefaultNodeInfo",
-      value: DefaultNodeInfo.encode(message).finish(),
+      value: DefaultNodeInfo.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseDefaultNodeInfoOther(): DefaultNodeInfoOther {
   return {
     txIndex: "",
-    rpcAddress: "",
+    rpcAddress: ""
   };
 }
 export const DefaultNodeInfoOther = {
@@ -487,7 +485,7 @@ export const DefaultNodeInfoOther = {
   toProtoMsg(message: DefaultNodeInfoOther): DefaultNodeInfoOtherProtoMsg {
     return {
       typeUrl: "/tendermint.p2p.DefaultNodeInfoOther",
-      value: DefaultNodeInfoOther.encode(message).finish(),
+      value: DefaultNodeInfoOther.encode(message).finish()
     };
-  },
+  }
 };

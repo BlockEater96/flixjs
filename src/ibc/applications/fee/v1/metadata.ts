@@ -34,7 +34,7 @@ export interface MetadataAminoMsg {
 function createBaseMetadata(): Metadata {
   return {
     feeVersion: "",
-    appVersion: "",
+    appVersion: ""
   };
 }
 export const Metadata = {
@@ -96,7 +96,7 @@ export const Metadata = {
   toAminoMsg(message: Metadata): MetadataAminoMsg {
     return {
       type: "cosmos-sdk/Metadata",
-      value: Metadata.toAmino(message),
+      value: Metadata.toAmino(message)
     };
   },
   fromProtoMsg(message: MetadataProtoMsg): Metadata {
@@ -108,7 +108,7 @@ export const Metadata = {
   toProtoMsg(message: Metadata): MetadataProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.Metadata",
-      value: Metadata.encode(message).finish(),
+      value: Metadata.encode(message).finish()
     };
-  },
+  }
 };

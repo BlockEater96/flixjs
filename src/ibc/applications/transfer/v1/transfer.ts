@@ -84,7 +84,7 @@ export interface ParamsAminoMsg {
 function createBaseDenomTrace(): DenomTrace {
   return {
     path: "",
-    baseDenom: "",
+    baseDenom: ""
   };
 }
 export const DenomTrace = {
@@ -146,7 +146,7 @@ export const DenomTrace = {
   toAminoMsg(message: DenomTrace): DenomTraceAminoMsg {
     return {
       type: "cosmos-sdk/DenomTrace",
-      value: DenomTrace.toAmino(message),
+      value: DenomTrace.toAmino(message)
     };
   },
   fromProtoMsg(message: DenomTraceProtoMsg): DenomTrace {
@@ -158,14 +158,14 @@ export const DenomTrace = {
   toProtoMsg(message: DenomTrace): DenomTraceProtoMsg {
     return {
       typeUrl: "/ibc.applications.transfer.v1.DenomTrace",
-      value: DenomTrace.encode(message).finish(),
+      value: DenomTrace.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseParams(): Params {
   return {
     sendEnabled: false,
-    receiveEnabled: false,
+    receiveEnabled: false
   };
 }
 export const Params = {
@@ -227,7 +227,7 @@ export const Params = {
   toAminoMsg(message: Params): ParamsAminoMsg {
     return {
       type: "cosmos-sdk/Params",
-      value: Params.toAmino(message),
+      value: Params.toAmino(message)
     };
   },
   fromProtoMsg(message: ParamsProtoMsg): Params {
@@ -239,7 +239,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/ibc.applications.transfer.v1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

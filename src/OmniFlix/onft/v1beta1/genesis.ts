@@ -26,7 +26,7 @@ export interface GenesisStateAminoMsg {
 function createBaseGenesisState(): GenesisState {
   return {
     collections: [],
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const GenesisState = {
@@ -62,7 +62,7 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.collections = object.collections?.map((e) => Collection.fromPartial(e)) || [];
+    message.collections = object.collections?.map(e => Collection.fromPartial(e)) || [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
@@ -70,7 +70,7 @@ export const GenesisState = {
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
-    message.collections = object.collections?.map((e) => Collection.fromAmino(e)) || [];
+    message.collections = object.collections?.map(e => Collection.fromAmino(e)) || [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
@@ -79,7 +79,7 @@ export const GenesisState = {
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     if (message.collections) {
-      obj.collections = message.collections.map((e) => (e ? Collection.toAmino(e) : undefined));
+      obj.collections = message.collections.map(e => e ? Collection.toAmino(e) : undefined);
     } else {
       obj.collections = message.collections;
     }
@@ -98,7 +98,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

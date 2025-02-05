@@ -120,7 +120,7 @@ export interface RegisteredInterchainAccountAminoMsg {
 function createBaseGenesisState(): GenesisState {
   return {
     controllerGenesisState: ControllerGenesisState.fromPartial({}),
-    hostGenesisState: HostGenesisState.fromPartial({}),
+    hostGenesisState: HostGenesisState.fromPartial({})
   };
 }
 export const GenesisState = {
@@ -176,12 +176,8 @@ export const GenesisState = {
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
-    obj.controller_genesis_state = message.controllerGenesisState
-      ? ControllerGenesisState.toAmino(message.controllerGenesisState)
-      : undefined;
-    obj.host_genesis_state = message.hostGenesisState
-      ? HostGenesisState.toAmino(message.hostGenesisState)
-      : undefined;
+    obj.controller_genesis_state = message.controllerGenesisState ? ControllerGenesisState.toAmino(message.controllerGenesisState) : undefined;
+    obj.host_genesis_state = message.hostGenesisState ? HostGenesisState.toAmino(message.hostGenesisState) : undefined;
     return obj;
   },
   fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
@@ -190,7 +186,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -202,16 +198,16 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.genesis.v1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseControllerGenesisState(): ControllerGenesisState {
   return {
     activeChannels: [],
     interchainAccounts: [],
     ports: [],
-    params: Params1.fromPartial({}),
+    params: Params1.fromPartial({})
   };
 }
 export const ControllerGenesisState = {
@@ -259,10 +255,9 @@ export const ControllerGenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<ControllerGenesisState>, I>>(object: I): ControllerGenesisState {
     const message = createBaseControllerGenesisState();
-    message.activeChannels = object.activeChannels?.map((e) => ActiveChannel.fromPartial(e)) || [];
-    message.interchainAccounts =
-      object.interchainAccounts?.map((e) => RegisteredInterchainAccount.fromPartial(e)) || [];
-    message.ports = object.ports?.map((e) => e) || [];
+    message.activeChannels = object.activeChannels?.map(e => ActiveChannel.fromPartial(e)) || [];
+    message.interchainAccounts = object.interchainAccounts?.map(e => RegisteredInterchainAccount.fromPartial(e)) || [];
+    message.ports = object.ports?.map(e => e) || [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params1.fromPartial(object.params);
     }
@@ -270,10 +265,9 @@ export const ControllerGenesisState = {
   },
   fromAmino(object: ControllerGenesisStateAmino): ControllerGenesisState {
     const message = createBaseControllerGenesisState();
-    message.activeChannels = object.active_channels?.map((e) => ActiveChannel.fromAmino(e)) || [];
-    message.interchainAccounts =
-      object.interchain_accounts?.map((e) => RegisteredInterchainAccount.fromAmino(e)) || [];
-    message.ports = object.ports?.map((e) => e) || [];
+    message.activeChannels = object.active_channels?.map(e => ActiveChannel.fromAmino(e)) || [];
+    message.interchainAccounts = object.interchain_accounts?.map(e => RegisteredInterchainAccount.fromAmino(e)) || [];
+    message.ports = object.ports?.map(e => e) || [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params1.fromAmino(object.params);
     }
@@ -282,19 +276,17 @@ export const ControllerGenesisState = {
   toAmino(message: ControllerGenesisState): ControllerGenesisStateAmino {
     const obj: any = {};
     if (message.activeChannels) {
-      obj.active_channels = message.activeChannels.map((e) => (e ? ActiveChannel.toAmino(e) : undefined));
+      obj.active_channels = message.activeChannels.map(e => e ? ActiveChannel.toAmino(e) : undefined);
     } else {
       obj.active_channels = message.activeChannels;
     }
     if (message.interchainAccounts) {
-      obj.interchain_accounts = message.interchainAccounts.map((e) =>
-        e ? RegisteredInterchainAccount.toAmino(e) : undefined,
-      );
+      obj.interchain_accounts = message.interchainAccounts.map(e => e ? RegisteredInterchainAccount.toAmino(e) : undefined);
     } else {
       obj.interchain_accounts = message.interchainAccounts;
     }
     if (message.ports) {
-      obj.ports = message.ports.map((e) => e);
+      obj.ports = message.ports.map(e => e);
     } else {
       obj.ports = message.ports;
     }
@@ -307,7 +299,7 @@ export const ControllerGenesisState = {
   toAminoMsg(message: ControllerGenesisState): ControllerGenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/ControllerGenesisState",
-      value: ControllerGenesisState.toAmino(message),
+      value: ControllerGenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: ControllerGenesisStateProtoMsg): ControllerGenesisState {
@@ -319,16 +311,16 @@ export const ControllerGenesisState = {
   toProtoMsg(message: ControllerGenesisState): ControllerGenesisStateProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.genesis.v1.ControllerGenesisState",
-      value: ControllerGenesisState.encode(message).finish(),
+      value: ControllerGenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseHostGenesisState(): HostGenesisState {
   return {
     activeChannels: [],
     interchainAccounts: [],
     port: "",
-    params: Params2.fromPartial({}),
+    params: Params2.fromPartial({})
   };
 }
 export const HostGenesisState = {
@@ -376,9 +368,8 @@ export const HostGenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<HostGenesisState>, I>>(object: I): HostGenesisState {
     const message = createBaseHostGenesisState();
-    message.activeChannels = object.activeChannels?.map((e) => ActiveChannel.fromPartial(e)) || [];
-    message.interchainAccounts =
-      object.interchainAccounts?.map((e) => RegisteredInterchainAccount.fromPartial(e)) || [];
+    message.activeChannels = object.activeChannels?.map(e => ActiveChannel.fromPartial(e)) || [];
+    message.interchainAccounts = object.interchainAccounts?.map(e => RegisteredInterchainAccount.fromPartial(e)) || [];
     message.port = object.port ?? "";
     if (object.params !== undefined && object.params !== null) {
       message.params = Params2.fromPartial(object.params);
@@ -387,9 +378,8 @@ export const HostGenesisState = {
   },
   fromAmino(object: HostGenesisStateAmino): HostGenesisState {
     const message = createBaseHostGenesisState();
-    message.activeChannels = object.active_channels?.map((e) => ActiveChannel.fromAmino(e)) || [];
-    message.interchainAccounts =
-      object.interchain_accounts?.map((e) => RegisteredInterchainAccount.fromAmino(e)) || [];
+    message.activeChannels = object.active_channels?.map(e => ActiveChannel.fromAmino(e)) || [];
+    message.interchainAccounts = object.interchain_accounts?.map(e => RegisteredInterchainAccount.fromAmino(e)) || [];
     if (object.port !== undefined && object.port !== null) {
       message.port = object.port;
     }
@@ -401,14 +391,12 @@ export const HostGenesisState = {
   toAmino(message: HostGenesisState): HostGenesisStateAmino {
     const obj: any = {};
     if (message.activeChannels) {
-      obj.active_channels = message.activeChannels.map((e) => (e ? ActiveChannel.toAmino(e) : undefined));
+      obj.active_channels = message.activeChannels.map(e => e ? ActiveChannel.toAmino(e) : undefined);
     } else {
       obj.active_channels = message.activeChannels;
     }
     if (message.interchainAccounts) {
-      obj.interchain_accounts = message.interchainAccounts.map((e) =>
-        e ? RegisteredInterchainAccount.toAmino(e) : undefined,
-      );
+      obj.interchain_accounts = message.interchainAccounts.map(e => e ? RegisteredInterchainAccount.toAmino(e) : undefined);
     } else {
       obj.interchain_accounts = message.interchainAccounts;
     }
@@ -422,7 +410,7 @@ export const HostGenesisState = {
   toAminoMsg(message: HostGenesisState): HostGenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/HostGenesisState",
-      value: HostGenesisState.toAmino(message),
+      value: HostGenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: HostGenesisStateProtoMsg): HostGenesisState {
@@ -434,16 +422,16 @@ export const HostGenesisState = {
   toProtoMsg(message: HostGenesisState): HostGenesisStateProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.genesis.v1.HostGenesisState",
-      value: HostGenesisState.encode(message).finish(),
+      value: HostGenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseActiveChannel(): ActiveChannel {
   return {
     connectionId: "",
     portId: "",
     channelId: "",
-    isMiddlewareEnabled: false,
+    isMiddlewareEnabled: false
   };
 }
 export const ActiveChannel = {
@@ -518,8 +506,7 @@ export const ActiveChannel = {
     obj.connection_id = message.connectionId === "" ? undefined : message.connectionId;
     obj.port_id = message.portId === "" ? undefined : message.portId;
     obj.channel_id = message.channelId === "" ? undefined : message.channelId;
-    obj.is_middleware_enabled =
-      message.isMiddlewareEnabled === false ? undefined : message.isMiddlewareEnabled;
+    obj.is_middleware_enabled = message.isMiddlewareEnabled === false ? undefined : message.isMiddlewareEnabled;
     return obj;
   },
   fromAminoMsg(object: ActiveChannelAminoMsg): ActiveChannel {
@@ -528,7 +515,7 @@ export const ActiveChannel = {
   toAminoMsg(message: ActiveChannel): ActiveChannelAminoMsg {
     return {
       type: "cosmos-sdk/ActiveChannel",
-      value: ActiveChannel.toAmino(message),
+      value: ActiveChannel.toAmino(message)
     };
   },
   fromProtoMsg(message: ActiveChannelProtoMsg): ActiveChannel {
@@ -540,15 +527,15 @@ export const ActiveChannel = {
   toProtoMsg(message: ActiveChannel): ActiveChannelProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.genesis.v1.ActiveChannel",
-      value: ActiveChannel.encode(message).finish(),
+      value: ActiveChannel.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseRegisteredInterchainAccount(): RegisteredInterchainAccount {
   return {
     connectionId: "",
     portId: "",
-    accountAddress: "",
+    accountAddress: ""
   };
 }
 export const RegisteredInterchainAccount = {
@@ -588,9 +575,7 @@ export const RegisteredInterchainAccount = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<RegisteredInterchainAccount>, I>>(
-    object: I,
-  ): RegisteredInterchainAccount {
+  fromPartial<I extends Exact<DeepPartial<RegisteredInterchainAccount>, I>>(object: I): RegisteredInterchainAccount {
     const message = createBaseRegisteredInterchainAccount();
     message.connectionId = object.connectionId ?? "";
     message.portId = object.portId ?? "";
@@ -623,7 +608,7 @@ export const RegisteredInterchainAccount = {
   toAminoMsg(message: RegisteredInterchainAccount): RegisteredInterchainAccountAminoMsg {
     return {
       type: "cosmos-sdk/RegisteredInterchainAccount",
-      value: RegisteredInterchainAccount.toAmino(message),
+      value: RegisteredInterchainAccount.toAmino(message)
     };
   },
   fromProtoMsg(message: RegisteredInterchainAccountProtoMsg): RegisteredInterchainAccount {
@@ -635,7 +620,7 @@ export const RegisteredInterchainAccount = {
   toProtoMsg(message: RegisteredInterchainAccount): RegisteredInterchainAccountProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.genesis.v1.RegisteredInterchainAccount",
-      value: RegisteredInterchainAccount.encode(message).finish(),
+      value: RegisteredInterchainAccount.encode(message).finish()
     };
-  },
+  }
 };

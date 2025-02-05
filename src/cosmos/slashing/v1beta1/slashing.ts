@@ -98,7 +98,7 @@ function createBaseValidatorSigningInfo(): ValidatorSigningInfo {
     indexOffset: BigInt(0),
     jailedUntil: Timestamp.fromPartial({}),
     tombstoned: false,
-    missedBlocksCounter: BigInt(0),
+    missedBlocksCounter: BigInt(0)
   };
 }
 export const ValidatorSigningInfo = {
@@ -201,12 +201,9 @@ export const ValidatorSigningInfo = {
     obj.address = message.address === "" ? undefined : message.address;
     obj.start_height = message.startHeight !== BigInt(0) ? message.startHeight?.toString() : undefined;
     obj.index_offset = message.indexOffset !== BigInt(0) ? message.indexOffset?.toString() : undefined;
-    obj.jailed_until = message.jailedUntil
-      ? Timestamp.toAmino(message.jailedUntil)
-      : Timestamp.toAmino(Timestamp.fromPartial({}));
+    obj.jailed_until = message.jailedUntil ? Timestamp.toAmino(message.jailedUntil) : Timestamp.toAmino(Timestamp.fromPartial({}));
     obj.tombstoned = message.tombstoned === false ? undefined : message.tombstoned;
-    obj.missed_blocks_counter =
-      message.missedBlocksCounter !== BigInt(0) ? message.missedBlocksCounter?.toString() : undefined;
+    obj.missed_blocks_counter = message.missedBlocksCounter !== BigInt(0) ? message.missedBlocksCounter?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ValidatorSigningInfoAminoMsg): ValidatorSigningInfo {
@@ -215,7 +212,7 @@ export const ValidatorSigningInfo = {
   toAminoMsg(message: ValidatorSigningInfo): ValidatorSigningInfoAminoMsg {
     return {
       type: "cosmos-sdk/ValidatorSigningInfo",
-      value: ValidatorSigningInfo.toAmino(message),
+      value: ValidatorSigningInfo.toAmino(message)
     };
   },
   fromProtoMsg(message: ValidatorSigningInfoProtoMsg): ValidatorSigningInfo {
@@ -227,9 +224,9 @@ export const ValidatorSigningInfo = {
   toProtoMsg(message: ValidatorSigningInfo): ValidatorSigningInfoProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.ValidatorSigningInfo",
-      value: ValidatorSigningInfo.encode(message).finish(),
+      value: ValidatorSigningInfo.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseParams(): Params {
   return {
@@ -237,7 +234,7 @@ function createBaseParams(): Params {
     minSignedPerWindow: new Uint8Array(),
     downtimeJailDuration: Duration.fromPartial({}),
     slashFractionDoubleSign: new Uint8Array(),
-    slashFractionDowntime: new Uint8Array(),
+    slashFractionDowntime: new Uint8Array()
   };
 }
 export const Params = {
@@ -323,18 +320,11 @@ export const Params = {
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.signed_blocks_window =
-      message.signedBlocksWindow !== BigInt(0) ? message.signedBlocksWindow?.toString() : undefined;
+    obj.signed_blocks_window = message.signedBlocksWindow !== BigInt(0) ? message.signedBlocksWindow?.toString() : undefined;
     obj.min_signed_per_window = message.minSignedPerWindow ? base64FromBytes(message.minSignedPerWindow) : "";
-    obj.downtime_jail_duration = message.downtimeJailDuration
-      ? Duration.toAmino(message.downtimeJailDuration)
-      : Duration.toAmino(Duration.fromPartial({}));
-    obj.slash_fraction_double_sign = message.slashFractionDoubleSign
-      ? base64FromBytes(message.slashFractionDoubleSign)
-      : "";
-    obj.slash_fraction_downtime = message.slashFractionDowntime
-      ? base64FromBytes(message.slashFractionDowntime)
-      : "";
+    obj.downtime_jail_duration = message.downtimeJailDuration ? Duration.toAmino(message.downtimeJailDuration) : Duration.toAmino(Duration.fromPartial({}));
+    obj.slash_fraction_double_sign = message.slashFractionDoubleSign ? base64FromBytes(message.slashFractionDoubleSign) : "";
+    obj.slash_fraction_downtime = message.slashFractionDowntime ? base64FromBytes(message.slashFractionDowntime) : "";
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -343,7 +333,7 @@ export const Params = {
   toAminoMsg(message: Params): ParamsAminoMsg {
     return {
       type: "cosmos-sdk/x/slashing/Params",
-      value: Params.toAmino(message),
+      value: Params.toAmino(message)
     };
   },
   fromProtoMsg(message: ParamsProtoMsg): Params {
@@ -355,7 +345,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

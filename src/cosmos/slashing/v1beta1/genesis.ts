@@ -118,7 +118,7 @@ function createBaseGenesisState(): GenesisState {
   return {
     params: Params.fromPartial({}),
     signingInfos: [],
-    missedBlocks: [],
+    missedBlocks: []
   };
 }
 export const GenesisState = {
@@ -163,8 +163,8 @@ export const GenesisState = {
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
-    message.signingInfos = object.signingInfos?.map((e) => SigningInfo.fromPartial(e)) || [];
-    message.missedBlocks = object.missedBlocks?.map((e) => ValidatorMissedBlocks.fromPartial(e)) || [];
+    message.signingInfos = object.signingInfos?.map(e => SigningInfo.fromPartial(e)) || [];
+    message.missedBlocks = object.missedBlocks?.map(e => ValidatorMissedBlocks.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -172,20 +172,20 @@ export const GenesisState = {
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
-    message.signingInfos = object.signing_infos?.map((e) => SigningInfo.fromAmino(e)) || [];
-    message.missedBlocks = object.missed_blocks?.map((e) => ValidatorMissedBlocks.fromAmino(e)) || [];
+    message.signingInfos = object.signing_infos?.map(e => SigningInfo.fromAmino(e)) || [];
+    message.missedBlocks = object.missed_blocks?.map(e => ValidatorMissedBlocks.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
     if (message.signingInfos) {
-      obj.signing_infos = message.signingInfos.map((e) => (e ? SigningInfo.toAmino(e) : undefined));
+      obj.signing_infos = message.signingInfos.map(e => e ? SigningInfo.toAmino(e) : undefined);
     } else {
       obj.signing_infos = message.signingInfos;
     }
     if (message.missedBlocks) {
-      obj.missed_blocks = message.missedBlocks.map((e) => (e ? ValidatorMissedBlocks.toAmino(e) : undefined));
+      obj.missed_blocks = message.missedBlocks.map(e => e ? ValidatorMissedBlocks.toAmino(e) : undefined);
     } else {
       obj.missed_blocks = message.missedBlocks;
     }
@@ -197,7 +197,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -209,14 +209,14 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseSigningInfo(): SigningInfo {
   return {
     address: "",
-    validatorSigningInfo: ValidatorSigningInfo.fromPartial({}),
+    validatorSigningInfo: ValidatorSigningInfo.fromPartial({})
   };
 }
 export const SigningInfo = {
@@ -271,9 +271,7 @@ export const SigningInfo = {
   toAmino(message: SigningInfo): SigningInfoAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    obj.validator_signing_info = message.validatorSigningInfo
-      ? ValidatorSigningInfo.toAmino(message.validatorSigningInfo)
-      : ValidatorSigningInfo.toAmino(ValidatorSigningInfo.fromPartial({}));
+    obj.validator_signing_info = message.validatorSigningInfo ? ValidatorSigningInfo.toAmino(message.validatorSigningInfo) : ValidatorSigningInfo.toAmino(ValidatorSigningInfo.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object: SigningInfoAminoMsg): SigningInfo {
@@ -282,7 +280,7 @@ export const SigningInfo = {
   toAminoMsg(message: SigningInfo): SigningInfoAminoMsg {
     return {
       type: "cosmos-sdk/SigningInfo",
-      value: SigningInfo.toAmino(message),
+      value: SigningInfo.toAmino(message)
     };
   },
   fromProtoMsg(message: SigningInfoProtoMsg): SigningInfo {
@@ -294,14 +292,14 @@ export const SigningInfo = {
   toProtoMsg(message: SigningInfo): SigningInfoProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.SigningInfo",
-      value: SigningInfo.encode(message).finish(),
+      value: SigningInfo.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseValidatorMissedBlocks(): ValidatorMissedBlocks {
   return {
     address: "",
-    missedBlocks: [],
+    missedBlocks: []
   };
 }
 export const ValidatorMissedBlocks = {
@@ -338,7 +336,7 @@ export const ValidatorMissedBlocks = {
   fromPartial<I extends Exact<DeepPartial<ValidatorMissedBlocks>, I>>(object: I): ValidatorMissedBlocks {
     const message = createBaseValidatorMissedBlocks();
     message.address = object.address ?? "";
-    message.missedBlocks = object.missedBlocks?.map((e) => MissedBlock.fromPartial(e)) || [];
+    message.missedBlocks = object.missedBlocks?.map(e => MissedBlock.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ValidatorMissedBlocksAmino): ValidatorMissedBlocks {
@@ -346,14 +344,14 @@ export const ValidatorMissedBlocks = {
     if (object.address !== undefined && object.address !== null) {
       message.address = object.address;
     }
-    message.missedBlocks = object.missed_blocks?.map((e) => MissedBlock.fromAmino(e)) || [];
+    message.missedBlocks = object.missed_blocks?.map(e => MissedBlock.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ValidatorMissedBlocks): ValidatorMissedBlocksAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
     if (message.missedBlocks) {
-      obj.missed_blocks = message.missedBlocks.map((e) => (e ? MissedBlock.toAmino(e) : undefined));
+      obj.missed_blocks = message.missedBlocks.map(e => e ? MissedBlock.toAmino(e) : undefined);
     } else {
       obj.missed_blocks = message.missedBlocks;
     }
@@ -365,7 +363,7 @@ export const ValidatorMissedBlocks = {
   toAminoMsg(message: ValidatorMissedBlocks): ValidatorMissedBlocksAminoMsg {
     return {
       type: "cosmos-sdk/ValidatorMissedBlocks",
-      value: ValidatorMissedBlocks.toAmino(message),
+      value: ValidatorMissedBlocks.toAmino(message)
     };
   },
   fromProtoMsg(message: ValidatorMissedBlocksProtoMsg): ValidatorMissedBlocks {
@@ -377,14 +375,14 @@ export const ValidatorMissedBlocks = {
   toProtoMsg(message: ValidatorMissedBlocks): ValidatorMissedBlocksProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.ValidatorMissedBlocks",
-      value: ValidatorMissedBlocks.encode(message).finish(),
+      value: ValidatorMissedBlocks.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMissedBlock(): MissedBlock {
   return {
     index: BigInt(0),
-    missed: false,
+    missed: false
   };
 }
 export const MissedBlock = {
@@ -448,7 +446,7 @@ export const MissedBlock = {
   toAminoMsg(message: MissedBlock): MissedBlockAminoMsg {
     return {
       type: "cosmos-sdk/MissedBlock",
-      value: MissedBlock.toAmino(message),
+      value: MissedBlock.toAmino(message)
     };
   },
   fromProtoMsg(message: MissedBlockProtoMsg): MissedBlock {
@@ -460,7 +458,7 @@ export const MissedBlock = {
   toProtoMsg(message: MissedBlock): MissedBlockProtoMsg {
     return {
       typeUrl: "/cosmos.slashing.v1beta1.MissedBlock",
-      value: MissedBlock.encode(message).finish(),
+      value: MissedBlock.encode(message).finish()
     };
-  },
+  }
 };

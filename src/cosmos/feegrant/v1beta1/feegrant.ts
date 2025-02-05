@@ -154,7 +154,7 @@ export interface GrantAminoMsg {
 function createBaseBasicAllowance(): BasicAllowance {
   return {
     spendLimit: [],
-    expiration: undefined,
+    expiration: undefined
   };
 }
 export const BasicAllowance = {
@@ -190,7 +190,7 @@ export const BasicAllowance = {
   },
   fromPartial<I extends Exact<DeepPartial<BasicAllowance>, I>>(object: I): BasicAllowance {
     const message = createBaseBasicAllowance();
-    message.spendLimit = object.spendLimit?.map((e) => Coin.fromPartial(e)) || [];
+    message.spendLimit = object.spendLimit?.map(e => Coin.fromPartial(e)) || [];
     if (object.expiration !== undefined && object.expiration !== null) {
       message.expiration = Timestamp.fromPartial(object.expiration);
     }
@@ -198,7 +198,7 @@ export const BasicAllowance = {
   },
   fromAmino(object: BasicAllowanceAmino): BasicAllowance {
     const message = createBaseBasicAllowance();
-    message.spendLimit = object.spend_limit?.map((e) => Coin.fromAmino(e)) || [];
+    message.spendLimit = object.spend_limit?.map(e => Coin.fromAmino(e)) || [];
     if (object.expiration !== undefined && object.expiration !== null) {
       message.expiration = Timestamp.fromAmino(object.expiration);
     }
@@ -207,7 +207,7 @@ export const BasicAllowance = {
   toAmino(message: BasicAllowance): BasicAllowanceAmino {
     const obj: any = {};
     if (message.spendLimit) {
-      obj.spend_limit = message.spendLimit.map((e) => (e ? Coin.toAmino(e) : undefined));
+      obj.spend_limit = message.spendLimit.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
       obj.spend_limit = message.spendLimit;
     }
@@ -220,7 +220,7 @@ export const BasicAllowance = {
   toAminoMsg(message: BasicAllowance): BasicAllowanceAminoMsg {
     return {
       type: "cosmos-sdk/BasicAllowance",
-      value: BasicAllowance.toAmino(message),
+      value: BasicAllowance.toAmino(message)
     };
   },
   fromProtoMsg(message: BasicAllowanceProtoMsg): BasicAllowance {
@@ -232,9 +232,9 @@ export const BasicAllowance = {
   toProtoMsg(message: BasicAllowance): BasicAllowanceProtoMsg {
     return {
       typeUrl: "/cosmos.feegrant.v1beta1.BasicAllowance",
-      value: BasicAllowance.encode(message).finish(),
+      value: BasicAllowance.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePeriodicAllowance(): PeriodicAllowance {
   return {
@@ -242,7 +242,7 @@ function createBasePeriodicAllowance(): PeriodicAllowance {
     period: Duration.fromPartial({}),
     periodSpendLimit: [],
     periodCanSpend: [],
-    periodReset: Timestamp.fromPartial({}),
+    periodReset: Timestamp.fromPartial({})
   };
 }
 export const PeriodicAllowance = {
@@ -302,8 +302,8 @@ export const PeriodicAllowance = {
     if (object.period !== undefined && object.period !== null) {
       message.period = Duration.fromPartial(object.period);
     }
-    message.periodSpendLimit = object.periodSpendLimit?.map((e) => Coin.fromPartial(e)) || [];
-    message.periodCanSpend = object.periodCanSpend?.map((e) => Coin.fromPartial(e)) || [];
+    message.periodSpendLimit = object.periodSpendLimit?.map(e => Coin.fromPartial(e)) || [];
+    message.periodCanSpend = object.periodCanSpend?.map(e => Coin.fromPartial(e)) || [];
     if (object.periodReset !== undefined && object.periodReset !== null) {
       message.periodReset = Timestamp.fromPartial(object.periodReset);
     }
@@ -317,8 +317,8 @@ export const PeriodicAllowance = {
     if (object.period !== undefined && object.period !== null) {
       message.period = Duration.fromAmino(object.period);
     }
-    message.periodSpendLimit = object.period_spend_limit?.map((e) => Coin.fromAmino(e)) || [];
-    message.periodCanSpend = object.period_can_spend?.map((e) => Coin.fromAmino(e)) || [];
+    message.periodSpendLimit = object.period_spend_limit?.map(e => Coin.fromAmino(e)) || [];
+    message.periodCanSpend = object.period_can_spend?.map(e => Coin.fromAmino(e)) || [];
     if (object.period_reset !== undefined && object.period_reset !== null) {
       message.periodReset = Timestamp.fromAmino(object.period_reset);
     }
@@ -326,25 +326,19 @@ export const PeriodicAllowance = {
   },
   toAmino(message: PeriodicAllowance): PeriodicAllowanceAmino {
     const obj: any = {};
-    obj.basic = message.basic
-      ? BasicAllowance.toAmino(message.basic)
-      : BasicAllowance.toAmino(BasicAllowance.fromPartial({}));
-    obj.period = message.period
-      ? Duration.toAmino(message.period)
-      : Duration.toAmino(Duration.fromPartial({}));
+    obj.basic = message.basic ? BasicAllowance.toAmino(message.basic) : BasicAllowance.toAmino(BasicAllowance.fromPartial({}));
+    obj.period = message.period ? Duration.toAmino(message.period) : Duration.toAmino(Duration.fromPartial({}));
     if (message.periodSpendLimit) {
-      obj.period_spend_limit = message.periodSpendLimit.map((e) => (e ? Coin.toAmino(e) : undefined));
+      obj.period_spend_limit = message.periodSpendLimit.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
       obj.period_spend_limit = message.periodSpendLimit;
     }
     if (message.periodCanSpend) {
-      obj.period_can_spend = message.periodCanSpend.map((e) => (e ? Coin.toAmino(e) : undefined));
+      obj.period_can_spend = message.periodCanSpend.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
       obj.period_can_spend = message.periodCanSpend;
     }
-    obj.period_reset = message.periodReset
-      ? Timestamp.toAmino(message.periodReset)
-      : Timestamp.toAmino(Timestamp.fromPartial({}));
+    obj.period_reset = message.periodReset ? Timestamp.toAmino(message.periodReset) : Timestamp.toAmino(Timestamp.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object: PeriodicAllowanceAminoMsg): PeriodicAllowance {
@@ -353,7 +347,7 @@ export const PeriodicAllowance = {
   toAminoMsg(message: PeriodicAllowance): PeriodicAllowanceAminoMsg {
     return {
       type: "cosmos-sdk/PeriodicAllowance",
-      value: PeriodicAllowance.toAmino(message),
+      value: PeriodicAllowance.toAmino(message)
     };
   },
   fromProtoMsg(message: PeriodicAllowanceProtoMsg): PeriodicAllowance {
@@ -365,14 +359,14 @@ export const PeriodicAllowance = {
   toProtoMsg(message: PeriodicAllowance): PeriodicAllowanceProtoMsg {
     return {
       typeUrl: "/cosmos.feegrant.v1beta1.PeriodicAllowance",
-      value: PeriodicAllowance.encode(message).finish(),
+      value: PeriodicAllowance.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseAllowedMsgAllowance(): AllowedMsgAllowance {
   return {
     allowance: undefined,
-    allowedMessages: [],
+    allowedMessages: []
   };
 }
 export const AllowedMsgAllowance = {
@@ -411,7 +405,7 @@ export const AllowedMsgAllowance = {
     if (object.allowance !== undefined && object.allowance !== null) {
       message.allowance = Any.fromPartial(object.allowance);
     }
-    message.allowedMessages = object.allowedMessages?.map((e) => e) || [];
+    message.allowedMessages = object.allowedMessages?.map(e => e) || [];
     return message;
   },
   fromAmino(object: AllowedMsgAllowanceAmino): AllowedMsgAllowance {
@@ -419,14 +413,14 @@ export const AllowedMsgAllowance = {
     if (object.allowance !== undefined && object.allowance !== null) {
       message.allowance = Any.fromAmino(object.allowance);
     }
-    message.allowedMessages = object.allowed_messages?.map((e) => e) || [];
+    message.allowedMessages = object.allowed_messages?.map(e => e) || [];
     return message;
   },
   toAmino(message: AllowedMsgAllowance): AllowedMsgAllowanceAmino {
     const obj: any = {};
     obj.allowance = message.allowance ? Any.toAmino(message.allowance) : undefined;
     if (message.allowedMessages) {
-      obj.allowed_messages = message.allowedMessages.map((e) => e);
+      obj.allowed_messages = message.allowedMessages.map(e => e);
     } else {
       obj.allowed_messages = message.allowedMessages;
     }
@@ -438,7 +432,7 @@ export const AllowedMsgAllowance = {
   toAminoMsg(message: AllowedMsgAllowance): AllowedMsgAllowanceAminoMsg {
     return {
       type: "cosmos-sdk/AllowedMsgAllowance",
-      value: AllowedMsgAllowance.toAmino(message),
+      value: AllowedMsgAllowance.toAmino(message)
     };
   },
   fromProtoMsg(message: AllowedMsgAllowanceProtoMsg): AllowedMsgAllowance {
@@ -450,15 +444,15 @@ export const AllowedMsgAllowance = {
   toProtoMsg(message: AllowedMsgAllowance): AllowedMsgAllowanceProtoMsg {
     return {
       typeUrl: "/cosmos.feegrant.v1beta1.AllowedMsgAllowance",
-      value: AllowedMsgAllowance.encode(message).finish(),
+      value: AllowedMsgAllowance.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseGrant(): Grant {
   return {
     granter: "",
     grantee: "",
-    allowance: undefined,
+    allowance: undefined
   };
 }
 export const Grant = {
@@ -533,7 +527,7 @@ export const Grant = {
   toAminoMsg(message: Grant): GrantAminoMsg {
     return {
       type: "cosmos-sdk/Grant",
-      value: Grant.toAmino(message),
+      value: Grant.toAmino(message)
     };
   },
   fromProtoMsg(message: GrantProtoMsg): Grant {
@@ -545,7 +539,7 @@ export const Grant = {
   toProtoMsg(message: Grant): GrantProtoMsg {
     return {
       typeUrl: "/cosmos.feegrant.v1beta1.Grant",
-      value: Grant.encode(message).finish(),
+      value: Grant.encode(message).finish()
     };
-  },
+  }
 };

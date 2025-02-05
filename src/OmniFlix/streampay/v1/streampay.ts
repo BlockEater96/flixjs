@@ -144,7 +144,7 @@ function createBaseStreamPayment(): StreamPayment {
     endTime: Timestamp.fromPartial({}),
     streamedAmount: Coin.fromPartial({}),
     lastClaimedAt: Timestamp.fromPartial({}),
-    status: 0,
+    status: 0
   };
 }
 export const StreamPayment = {
@@ -247,7 +247,7 @@ export const StreamPayment = {
       message.totalAmount = Coin.fromPartial(object.totalAmount);
     }
     message.streamType = object.streamType ?? 0;
-    message.periods = object.periods?.map((e) => Period.fromPartial(e)) || [];
+    message.periods = object.periods?.map(e => Period.fromPartial(e)) || [];
     message.cancellable = object.cancellable ?? false;
     if (object.startTime !== undefined && object.startTime !== null) {
       message.startTime = Timestamp.fromPartial(object.startTime);
@@ -281,7 +281,7 @@ export const StreamPayment = {
     if (object.stream_type !== undefined && object.stream_type !== null) {
       message.streamType = object.stream_type;
     }
-    message.periods = object.periods?.map((e) => Period.fromAmino(e)) || [];
+    message.periods = object.periods?.map(e => Period.fromAmino(e)) || [];
     if (object.cancellable !== undefined && object.cancellable !== null) {
       message.cancellable = object.cancellable;
     }
@@ -310,7 +310,7 @@ export const StreamPayment = {
     obj.total_amount = message.totalAmount ? Coin.toAmino(message.totalAmount) : undefined;
     obj.stream_type = message.streamType === 0 ? undefined : message.streamType;
     if (message.periods) {
-      obj.periods = message.periods.map((e) => (e ? Period.toAmino(e) : undefined));
+      obj.periods = message.periods.map(e => e ? Period.toAmino(e) : undefined);
     } else {
       obj.periods = message.periods;
     }
@@ -334,14 +334,14 @@ export const StreamPayment = {
   toProtoMsg(message: StreamPayment): StreamPaymentProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.StreamPayment",
-      value: StreamPayment.encode(message).finish(),
+      value: StreamPayment.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePeriod(): Period {
   return {
     amount: BigInt(0),
-    duration: BigInt(0),
+    duration: BigInt(0)
   };
 }
 export const Period = {
@@ -413,7 +413,7 @@ export const Period = {
   toProtoMsg(message: Period): PeriodProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.Period",
-      value: Period.encode(message).finish(),
+      value: Period.encode(message).finish()
     };
-  },
+  }
 };

@@ -53,7 +53,7 @@ export interface MsgSubmitEvidenceResponseAminoMsg {
 function createBaseMsgSubmitEvidence(): MsgSubmitEvidence {
   return {
     submitter: "",
-    evidence: undefined,
+    evidence: undefined
   };
 }
 export const MsgSubmitEvidence = {
@@ -117,7 +117,7 @@ export const MsgSubmitEvidence = {
   toAminoMsg(message: MsgSubmitEvidence): MsgSubmitEvidenceAminoMsg {
     return {
       type: "cosmos-sdk/MsgSubmitEvidence",
-      value: MsgSubmitEvidence.toAmino(message),
+      value: MsgSubmitEvidence.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSubmitEvidenceProtoMsg): MsgSubmitEvidence {
@@ -129,13 +129,13 @@ export const MsgSubmitEvidence = {
   toProtoMsg(message: MsgSubmitEvidence): MsgSubmitEvidenceProtoMsg {
     return {
       typeUrl: "/cosmos.evidence.v1beta1.MsgSubmitEvidence",
-      value: MsgSubmitEvidence.encode(message).finish(),
+      value: MsgSubmitEvidence.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgSubmitEvidenceResponse(): MsgSubmitEvidenceResponse {
   return {
-    hash: new Uint8Array(),
+    hash: new Uint8Array()
   };
 }
 export const MsgSubmitEvidenceResponse = {
@@ -163,9 +163,7 @@ export const MsgSubmitEvidenceResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitEvidenceResponse>, I>>(
-    object: I,
-  ): MsgSubmitEvidenceResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitEvidenceResponse>, I>>(object: I): MsgSubmitEvidenceResponse {
     const message = createBaseMsgSubmitEvidenceResponse();
     message.hash = object.hash ?? new Uint8Array();
     return message;
@@ -188,7 +186,7 @@ export const MsgSubmitEvidenceResponse = {
   toAminoMsg(message: MsgSubmitEvidenceResponse): MsgSubmitEvidenceResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgSubmitEvidenceResponse",
-      value: MsgSubmitEvidenceResponse.toAmino(message),
+      value: MsgSubmitEvidenceResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSubmitEvidenceResponseProtoMsg): MsgSubmitEvidenceResponse {
@@ -200,9 +198,9 @@ export const MsgSubmitEvidenceResponse = {
   toProtoMsg(message: MsgSubmitEvidenceResponse): MsgSubmitEvidenceResponseProtoMsg {
     return {
       typeUrl: "/cosmos.evidence.v1beta1.MsgSubmitEvidenceResponse",
-      value: MsgSubmitEvidenceResponse.encode(message).finish(),
+      value: MsgSubmitEvidenceResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the evidence Msg service. */
 export interface Msg {
@@ -221,6 +219,6 @@ export class MsgClientImpl implements Msg {
   SubmitEvidence(request: MsgSubmitEvidence): Promise<MsgSubmitEvidenceResponse> {
     const data = MsgSubmitEvidence.encode(request).finish();
     const promise = this.rpc.request("cosmos.evidence.v1beta1.Msg", "SubmitEvidence", data);
-    return promise.then((data) => MsgSubmitEvidenceResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgSubmitEvidenceResponse.decode(new BinaryReader(data)));
   }
 }

@@ -22,7 +22,7 @@ export interface GenesisStateAminoMsg {
 }
 function createBaseGenesisState(): GenesisState {
   return {
-    authorization: [],
+    authorization: []
   };
 }
 export const GenesisState = {
@@ -52,18 +52,18 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.authorization = object.authorization?.map((e) => GrantAuthorization.fromPartial(e)) || [];
+    message.authorization = object.authorization?.map(e => GrantAuthorization.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
-    message.authorization = object.authorization?.map((e) => GrantAuthorization.fromAmino(e)) || [];
+    message.authorization = object.authorization?.map(e => GrantAuthorization.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     if (message.authorization) {
-      obj.authorization = message.authorization.map((e) => (e ? GrantAuthorization.toAmino(e) : undefined));
+      obj.authorization = message.authorization.map(e => e ? GrantAuthorization.toAmino(e) : undefined);
     } else {
       obj.authorization = message.authorization;
     }
@@ -75,7 +75,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -87,7 +87,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/cosmos.authz.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

@@ -101,7 +101,7 @@ function createBaseFee(): Fee {
   return {
     recvFee: [],
     ackFee: [],
-    timeoutFee: [],
+    timeoutFee: []
   };
 }
 export const Fee = {
@@ -143,32 +143,32 @@ export const Fee = {
   },
   fromPartial<I extends Exact<DeepPartial<Fee>, I>>(object: I): Fee {
     const message = createBaseFee();
-    message.recvFee = object.recvFee?.map((e) => Coin.fromPartial(e)) || [];
-    message.ackFee = object.ackFee?.map((e) => Coin.fromPartial(e)) || [];
-    message.timeoutFee = object.timeoutFee?.map((e) => Coin.fromPartial(e)) || [];
+    message.recvFee = object.recvFee?.map(e => Coin.fromPartial(e)) || [];
+    message.ackFee = object.ackFee?.map(e => Coin.fromPartial(e)) || [];
+    message.timeoutFee = object.timeoutFee?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: FeeAmino): Fee {
     const message = createBaseFee();
-    message.recvFee = object.recv_fee?.map((e) => Coin.fromAmino(e)) || [];
-    message.ackFee = object.ack_fee?.map((e) => Coin.fromAmino(e)) || [];
-    message.timeoutFee = object.timeout_fee?.map((e) => Coin.fromAmino(e)) || [];
+    message.recvFee = object.recv_fee?.map(e => Coin.fromAmino(e)) || [];
+    message.ackFee = object.ack_fee?.map(e => Coin.fromAmino(e)) || [];
+    message.timeoutFee = object.timeout_fee?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Fee): FeeAmino {
     const obj: any = {};
     if (message.recvFee) {
-      obj.recv_fee = message.recvFee.map((e) => (e ? Coin.toAmino(e) : undefined));
+      obj.recv_fee = message.recvFee.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
       obj.recv_fee = message.recvFee;
     }
     if (message.ackFee) {
-      obj.ack_fee = message.ackFee.map((e) => (e ? Coin.toAmino(e) : undefined));
+      obj.ack_fee = message.ackFee.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
       obj.ack_fee = message.ackFee;
     }
     if (message.timeoutFee) {
-      obj.timeout_fee = message.timeoutFee.map((e) => (e ? Coin.toAmino(e) : undefined));
+      obj.timeout_fee = message.timeoutFee.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
       obj.timeout_fee = message.timeoutFee;
     }
@@ -180,7 +180,7 @@ export const Fee = {
   toAminoMsg(message: Fee): FeeAminoMsg {
     return {
       type: "cosmos-sdk/Fee",
-      value: Fee.toAmino(message),
+      value: Fee.toAmino(message)
     };
   },
   fromProtoMsg(message: FeeProtoMsg): Fee {
@@ -192,15 +192,15 @@ export const Fee = {
   toProtoMsg(message: Fee): FeeProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.Fee",
-      value: Fee.encode(message).finish(),
+      value: Fee.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePacketFee(): PacketFee {
   return {
     fee: Fee.fromPartial({}),
     refundAddress: "",
-    relayers: [],
+    relayers: []
   };
 }
 export const PacketFee = {
@@ -246,7 +246,7 @@ export const PacketFee = {
       message.fee = Fee.fromPartial(object.fee);
     }
     message.refundAddress = object.refundAddress ?? "";
-    message.relayers = object.relayers?.map((e) => e) || [];
+    message.relayers = object.relayers?.map(e => e) || [];
     return message;
   },
   fromAmino(object: PacketFeeAmino): PacketFee {
@@ -257,7 +257,7 @@ export const PacketFee = {
     if (object.refund_address !== undefined && object.refund_address !== null) {
       message.refundAddress = object.refund_address;
     }
-    message.relayers = object.relayers?.map((e) => e) || [];
+    message.relayers = object.relayers?.map(e => e) || [];
     return message;
   },
   toAmino(message: PacketFee): PacketFeeAmino {
@@ -265,7 +265,7 @@ export const PacketFee = {
     obj.fee = message.fee ? Fee.toAmino(message.fee) : undefined;
     obj.refund_address = message.refundAddress === "" ? undefined : message.refundAddress;
     if (message.relayers) {
-      obj.relayers = message.relayers.map((e) => e);
+      obj.relayers = message.relayers.map(e => e);
     } else {
       obj.relayers = message.relayers;
     }
@@ -277,7 +277,7 @@ export const PacketFee = {
   toAminoMsg(message: PacketFee): PacketFeeAminoMsg {
     return {
       type: "cosmos-sdk/PacketFee",
-      value: PacketFee.toAmino(message),
+      value: PacketFee.toAmino(message)
     };
   },
   fromProtoMsg(message: PacketFeeProtoMsg): PacketFee {
@@ -289,13 +289,13 @@ export const PacketFee = {
   toProtoMsg(message: PacketFee): PacketFeeProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.PacketFee",
-      value: PacketFee.encode(message).finish(),
+      value: PacketFee.encode(message).finish()
     };
-  },
+  }
 };
 function createBasePacketFees(): PacketFees {
   return {
-    packetFees: [],
+    packetFees: []
   };
 }
 export const PacketFees = {
@@ -325,18 +325,18 @@ export const PacketFees = {
   },
   fromPartial<I extends Exact<DeepPartial<PacketFees>, I>>(object: I): PacketFees {
     const message = createBasePacketFees();
-    message.packetFees = object.packetFees?.map((e) => PacketFee.fromPartial(e)) || [];
+    message.packetFees = object.packetFees?.map(e => PacketFee.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: PacketFeesAmino): PacketFees {
     const message = createBasePacketFees();
-    message.packetFees = object.packet_fees?.map((e) => PacketFee.fromAmino(e)) || [];
+    message.packetFees = object.packet_fees?.map(e => PacketFee.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: PacketFees): PacketFeesAmino {
     const obj: any = {};
     if (message.packetFees) {
-      obj.packet_fees = message.packetFees.map((e) => (e ? PacketFee.toAmino(e) : undefined));
+      obj.packet_fees = message.packetFees.map(e => e ? PacketFee.toAmino(e) : undefined);
     } else {
       obj.packet_fees = message.packetFees;
     }
@@ -348,7 +348,7 @@ export const PacketFees = {
   toAminoMsg(message: PacketFees): PacketFeesAminoMsg {
     return {
       type: "cosmos-sdk/PacketFees",
-      value: PacketFees.toAmino(message),
+      value: PacketFees.toAmino(message)
     };
   },
   fromProtoMsg(message: PacketFeesProtoMsg): PacketFees {
@@ -360,14 +360,14 @@ export const PacketFees = {
   toProtoMsg(message: PacketFees): PacketFeesProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.PacketFees",
-      value: PacketFees.encode(message).finish(),
+      value: PacketFees.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseIdentifiedPacketFees(): IdentifiedPacketFees {
   return {
     packetId: PacketId.fromPartial({}),
-    packetFees: [],
+    packetFees: []
   };
 }
 export const IdentifiedPacketFees = {
@@ -406,7 +406,7 @@ export const IdentifiedPacketFees = {
     if (object.packetId !== undefined && object.packetId !== null) {
       message.packetId = PacketId.fromPartial(object.packetId);
     }
-    message.packetFees = object.packetFees?.map((e) => PacketFee.fromPartial(e)) || [];
+    message.packetFees = object.packetFees?.map(e => PacketFee.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: IdentifiedPacketFeesAmino): IdentifiedPacketFees {
@@ -414,14 +414,14 @@ export const IdentifiedPacketFees = {
     if (object.packet_id !== undefined && object.packet_id !== null) {
       message.packetId = PacketId.fromAmino(object.packet_id);
     }
-    message.packetFees = object.packet_fees?.map((e) => PacketFee.fromAmino(e)) || [];
+    message.packetFees = object.packet_fees?.map(e => PacketFee.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: IdentifiedPacketFees): IdentifiedPacketFeesAmino {
     const obj: any = {};
     obj.packet_id = message.packetId ? PacketId.toAmino(message.packetId) : undefined;
     if (message.packetFees) {
-      obj.packet_fees = message.packetFees.map((e) => (e ? PacketFee.toAmino(e) : undefined));
+      obj.packet_fees = message.packetFees.map(e => e ? PacketFee.toAmino(e) : undefined);
     } else {
       obj.packet_fees = message.packetFees;
     }
@@ -433,7 +433,7 @@ export const IdentifiedPacketFees = {
   toAminoMsg(message: IdentifiedPacketFees): IdentifiedPacketFeesAminoMsg {
     return {
       type: "cosmos-sdk/IdentifiedPacketFees",
-      value: IdentifiedPacketFees.toAmino(message),
+      value: IdentifiedPacketFees.toAmino(message)
     };
   },
   fromProtoMsg(message: IdentifiedPacketFeesProtoMsg): IdentifiedPacketFees {
@@ -445,7 +445,7 @@ export const IdentifiedPacketFees = {
   toProtoMsg(message: IdentifiedPacketFees): IdentifiedPacketFeesProtoMsg {
     return {
       typeUrl: "/ibc.applications.fee.v1.IdentifiedPacketFees",
-      value: IdentifiedPacketFees.encode(message).finish(),
+      value: IdentifiedPacketFees.encode(message).finish()
     };
-  },
+  }
 };

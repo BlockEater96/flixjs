@@ -76,7 +76,7 @@ export interface ParamsAminoMsg {
 }
 function createBaseGenesisState(): GenesisState {
   return {
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const GenesisState = {
@@ -135,15 +135,15 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/OmniFlix.globalfee.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseParams(): Params {
   return {
     minimumGasPrices: [],
     bypassMinFeeMsgTypes: [],
-    maxTotalBypassMinFeeMsgGasUsage: BigInt(0),
+    maxTotalBypassMinFeeMsgGasUsage: BigInt(0)
   };
 }
 export const Params = {
@@ -185,24 +185,18 @@ export const Params = {
   },
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
-    message.minimumGasPrices = object.minimumGasPrices?.map((e) => DecCoin.fromPartial(e)) || [];
-    message.bypassMinFeeMsgTypes = object.bypassMinFeeMsgTypes?.map((e) => e) || [];
-    if (
-      object.maxTotalBypassMinFeeMsgGasUsage !== undefined &&
-      object.maxTotalBypassMinFeeMsgGasUsage !== null
-    ) {
+    message.minimumGasPrices = object.minimumGasPrices?.map(e => DecCoin.fromPartial(e)) || [];
+    message.bypassMinFeeMsgTypes = object.bypassMinFeeMsgTypes?.map(e => e) || [];
+    if (object.maxTotalBypassMinFeeMsgGasUsage !== undefined && object.maxTotalBypassMinFeeMsgGasUsage !== null) {
       message.maxTotalBypassMinFeeMsgGasUsage = BigInt(object.maxTotalBypassMinFeeMsgGasUsage.toString());
     }
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
-    message.minimumGasPrices = object.minimum_gas_prices?.map((e) => DecCoin.fromAmino(e)) || [];
-    message.bypassMinFeeMsgTypes = object.bypass_min_fee_msg_types?.map((e) => e) || [];
-    if (
-      object.max_total_bypass_min_fee_msg_gas_usage !== undefined &&
-      object.max_total_bypass_min_fee_msg_gas_usage !== null
-    ) {
+    message.minimumGasPrices = object.minimum_gas_prices?.map(e => DecCoin.fromAmino(e)) || [];
+    message.bypassMinFeeMsgTypes = object.bypass_min_fee_msg_types?.map(e => e) || [];
+    if (object.max_total_bypass_min_fee_msg_gas_usage !== undefined && object.max_total_bypass_min_fee_msg_gas_usage !== null) {
       message.maxTotalBypassMinFeeMsgGasUsage = BigInt(object.max_total_bypass_min_fee_msg_gas_usage);
     }
     return message;
@@ -210,19 +204,16 @@ export const Params = {
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
     if (message.minimumGasPrices) {
-      obj.minimum_gas_prices = message.minimumGasPrices.map((e) => (e ? DecCoin.toAmino(e) : undefined));
+      obj.minimum_gas_prices = message.minimumGasPrices.map(e => e ? DecCoin.toAmino(e) : undefined);
     } else {
       obj.minimum_gas_prices = message.minimumGasPrices;
     }
     if (message.bypassMinFeeMsgTypes) {
-      obj.bypass_min_fee_msg_types = message.bypassMinFeeMsgTypes.map((e) => e);
+      obj.bypass_min_fee_msg_types = message.bypassMinFeeMsgTypes.map(e => e);
     } else {
       obj.bypass_min_fee_msg_types = message.bypassMinFeeMsgTypes;
     }
-    obj.max_total_bypass_min_fee_msg_gas_usage =
-      message.maxTotalBypassMinFeeMsgGasUsage !== BigInt(0)
-        ? message.maxTotalBypassMinFeeMsgGasUsage?.toString()
-        : undefined;
+    obj.max_total_bypass_min_fee_msg_gas_usage = message.maxTotalBypassMinFeeMsgGasUsage !== BigInt(0) ? message.maxTotalBypassMinFeeMsgGasUsage?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -237,7 +228,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/OmniFlix.globalfee.v1beta1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

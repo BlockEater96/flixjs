@@ -103,7 +103,7 @@ export interface MsgClaimStreamedAmountResponseAminoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParams {
@@ -111,7 +111,7 @@ export interface MsgUpdateParams {
   authority: string;
   /**
    * params defines the x/streampay parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params: Params;
@@ -122,7 +122,7 @@ export interface MsgUpdateParamsProtoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsAmino {
@@ -130,7 +130,7 @@ export interface MsgUpdateParamsAmino {
   authority?: string;
   /**
    * params defines the x/streampay parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params?: ParamsAmino;
@@ -142,7 +142,7 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponse {}
@@ -153,7 +153,7 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponseAmino {}
@@ -170,7 +170,7 @@ function createBaseMsgStreamSend(): MsgStreamSend {
     streamType: 0,
     periods: [],
     cancellable: false,
-    paymentFee: Coin.fromPartial({}),
+    paymentFee: Coin.fromPartial({})
   };
 }
 export const MsgStreamSend = {
@@ -251,7 +251,7 @@ export const MsgStreamSend = {
       message.duration = Duration.fromPartial(object.duration);
     }
     message.streamType = object.streamType ?? 0;
-    message.periods = object.periods?.map((e) => Period.fromPartial(e)) || [];
+    message.periods = object.periods?.map(e => Period.fromPartial(e)) || [];
     message.cancellable = object.cancellable ?? false;
     if (object.paymentFee !== undefined && object.paymentFee !== null) {
       message.paymentFee = Coin.fromPartial(object.paymentFee);
@@ -275,7 +275,7 @@ export const MsgStreamSend = {
     if (object.stream_type !== undefined && object.stream_type !== null) {
       message.streamType = object.stream_type;
     }
-    message.periods = object.periods?.map((e) => Period.fromAmino(e)) || [];
+    message.periods = object.periods?.map(e => Period.fromAmino(e)) || [];
     if (object.cancellable !== undefined && object.cancellable !== null) {
       message.cancellable = object.cancellable;
     }
@@ -292,7 +292,7 @@ export const MsgStreamSend = {
     obj.duration = message.duration ? Duration.toAmino(message.duration) : undefined;
     obj.stream_type = message.streamType === 0 ? undefined : message.streamType;
     if (message.periods) {
-      obj.periods = message.periods.map((e) => (e ? Period.toAmino(e) : undefined));
+      obj.periods = message.periods.map(e => e ? Period.toAmino(e) : undefined);
     } else {
       obj.periods = message.periods;
     }
@@ -306,7 +306,7 @@ export const MsgStreamSend = {
   toAminoMsg(message: MsgStreamSend): MsgStreamSendAminoMsg {
     return {
       type: "OmniFlix/streampay/MsgStreamSend",
-      value: MsgStreamSend.toAmino(message),
+      value: MsgStreamSend.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgStreamSendProtoMsg): MsgStreamSend {
@@ -318,13 +318,13 @@ export const MsgStreamSend = {
   toProtoMsg(message: MsgStreamSend): MsgStreamSendProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.MsgStreamSend",
-      value: MsgStreamSend.encode(message).finish(),
+      value: MsgStreamSend.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgStreamSendResponse(): MsgStreamSendResponse {
   return {
-    streamId: "",
+    streamId: ""
   };
 }
 export const MsgStreamSendResponse = {
@@ -381,14 +381,14 @@ export const MsgStreamSendResponse = {
   toProtoMsg(message: MsgStreamSendResponse): MsgStreamSendResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.MsgStreamSendResponse",
-      value: MsgStreamSendResponse.encode(message).finish(),
+      value: MsgStreamSendResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgStopStream(): MsgStopStream {
   return {
     streamId: "",
-    sender: "",
+    sender: ""
   };
 }
 export const MsgStopStream = {
@@ -450,7 +450,7 @@ export const MsgStopStream = {
   toAminoMsg(message: MsgStopStream): MsgStopStreamAminoMsg {
     return {
       type: "OmniFlix/streampay/MsgStopStream",
-      value: MsgStopStream.toAmino(message),
+      value: MsgStopStream.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgStopStreamProtoMsg): MsgStopStream {
@@ -462,9 +462,9 @@ export const MsgStopStream = {
   toProtoMsg(message: MsgStopStream): MsgStopStreamProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.MsgStopStream",
-      value: MsgStopStream.encode(message).finish(),
+      value: MsgStopStream.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgStopStreamResponse(): MsgStopStreamResponse {
   return {};
@@ -512,14 +512,14 @@ export const MsgStopStreamResponse = {
   toProtoMsg(message: MsgStopStreamResponse): MsgStopStreamResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.MsgStopStreamResponse",
-      value: MsgStopStreamResponse.encode(message).finish(),
+      value: MsgStopStreamResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgClaimStreamedAmount(): MsgClaimStreamedAmount {
   return {
     streamId: "",
-    claimer: "",
+    claimer: ""
   };
 }
 export const MsgClaimStreamedAmount = {
@@ -581,7 +581,7 @@ export const MsgClaimStreamedAmount = {
   toAminoMsg(message: MsgClaimStreamedAmount): MsgClaimStreamedAmountAminoMsg {
     return {
       type: "OmniFlix/streampay/MsgClaimStream",
-      value: MsgClaimStreamedAmount.toAmino(message),
+      value: MsgClaimStreamedAmount.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgClaimStreamedAmountProtoMsg): MsgClaimStreamedAmount {
@@ -593,9 +593,9 @@ export const MsgClaimStreamedAmount = {
   toProtoMsg(message: MsgClaimStreamedAmount): MsgClaimStreamedAmountProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.MsgClaimStreamedAmount",
-      value: MsgClaimStreamedAmount.encode(message).finish(),
+      value: MsgClaimStreamedAmount.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgClaimStreamedAmountResponse(): MsgClaimStreamedAmountResponse {
   return {};
@@ -619,9 +619,7 @@ export const MsgClaimStreamedAmountResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<MsgClaimStreamedAmountResponse>, I>>(
-    _: I,
-  ): MsgClaimStreamedAmountResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgClaimStreamedAmountResponse>, I>>(_: I): MsgClaimStreamedAmountResponse {
     const message = createBaseMsgClaimStreamedAmountResponse();
     return message;
   },
@@ -645,14 +643,14 @@ export const MsgClaimStreamedAmountResponse = {
   toProtoMsg(message: MsgClaimStreamedAmountResponse): MsgClaimStreamedAmountResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.MsgClaimStreamedAmountResponse",
-      value: MsgClaimStreamedAmountResponse.encode(message).finish(),
+      value: MsgClaimStreamedAmountResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const MsgUpdateParams = {
@@ -722,9 +720,9 @@ export const MsgUpdateParams = {
   toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.MsgUpdateParams",
-      value: MsgUpdateParams.encode(message).finish(),
+      value: MsgUpdateParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
@@ -772,9 +770,9 @@ export const MsgUpdateParamsResponse = {
   toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.streampay.v1.MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.encode(message).finish(),
+      value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the Msg service. */
 export interface Msg {
@@ -784,7 +782,7 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/streampay module
    * parameters. The authority is hard-coded to the x/gov module account.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
@@ -801,21 +799,21 @@ export class MsgClientImpl implements Msg {
   StreamSend(request: MsgStreamSend): Promise<MsgStreamSendResponse> {
     const data = MsgStreamSend.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.streampay.v1.Msg", "StreamSend", data);
-    return promise.then((data) => MsgStreamSendResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgStreamSendResponse.decode(new BinaryReader(data)));
   }
   StopStream(request: MsgStopStream): Promise<MsgStopStreamResponse> {
     const data = MsgStopStream.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.streampay.v1.Msg", "StopStream", data);
-    return promise.then((data) => MsgStopStreamResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgStopStreamResponse.decode(new BinaryReader(data)));
   }
   ClaimStreamedAmount(request: MsgClaimStreamedAmount): Promise<MsgClaimStreamedAmountResponse> {
     const data = MsgClaimStreamedAmount.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.streampay.v1.Msg", "ClaimStreamedAmount", data);
-    return promise.then((data) => MsgClaimStreamedAmountResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgClaimStreamedAmountResponse.decode(new BinaryReader(data)));
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.streampay.v1.Msg", "UpdateParams", data);
-    return promise.then((data) => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
   }
 }

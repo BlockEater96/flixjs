@@ -152,7 +152,7 @@ export const QueryParamsRequest = {
   toAminoMsg(message: QueryParamsRequest): QueryParamsRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryParamsRequest",
-      value: QueryParamsRequest.toAmino(message),
+      value: QueryParamsRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryParamsRequestProtoMsg): QueryParamsRequest {
@@ -164,13 +164,13 @@ export const QueryParamsRequest = {
   toProtoMsg(message: QueryParamsRequest): QueryParamsRequestProtoMsg {
     return {
       typeUrl: "/cosmos.mint.v1beta1.QueryParamsRequest",
-      value: QueryParamsRequest.encode(message).finish(),
+      value: QueryParamsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryParamsResponse(): QueryParamsResponse {
   return {
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const QueryParamsResponse = {
@@ -223,7 +223,7 @@ export const QueryParamsResponse = {
   toAminoMsg(message: QueryParamsResponse): QueryParamsResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryParamsResponse",
-      value: QueryParamsResponse.toAmino(message),
+      value: QueryParamsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryParamsResponseProtoMsg): QueryParamsResponse {
@@ -235,9 +235,9 @@ export const QueryParamsResponse = {
   toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg {
     return {
       typeUrl: "/cosmos.mint.v1beta1.QueryParamsResponse",
-      value: QueryParamsResponse.encode(message).finish(),
+      value: QueryParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryInflationRequest(): QueryInflationRequest {
   return {};
@@ -279,7 +279,7 @@ export const QueryInflationRequest = {
   toAminoMsg(message: QueryInflationRequest): QueryInflationRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryInflationRequest",
-      value: QueryInflationRequest.toAmino(message),
+      value: QueryInflationRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryInflationRequestProtoMsg): QueryInflationRequest {
@@ -291,13 +291,13 @@ export const QueryInflationRequest = {
   toProtoMsg(message: QueryInflationRequest): QueryInflationRequestProtoMsg {
     return {
       typeUrl: "/cosmos.mint.v1beta1.QueryInflationRequest",
-      value: QueryInflationRequest.encode(message).finish(),
+      value: QueryInflationRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryInflationResponse(): QueryInflationResponse {
   return {
-    inflation: new Uint8Array(),
+    inflation: new Uint8Array()
   };
 }
 export const QueryInflationResponse = {
@@ -348,7 +348,7 @@ export const QueryInflationResponse = {
   toAminoMsg(message: QueryInflationResponse): QueryInflationResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryInflationResponse",
-      value: QueryInflationResponse.toAmino(message),
+      value: QueryInflationResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryInflationResponseProtoMsg): QueryInflationResponse {
@@ -360,9 +360,9 @@ export const QueryInflationResponse = {
   toProtoMsg(message: QueryInflationResponse): QueryInflationResponseProtoMsg {
     return {
       typeUrl: "/cosmos.mint.v1beta1.QueryInflationResponse",
-      value: QueryInflationResponse.encode(message).finish(),
+      value: QueryInflationResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAnnualProvisionsRequest(): QueryAnnualProvisionsRequest {
   return {};
@@ -386,9 +386,7 @@ export const QueryAnnualProvisionsRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryAnnualProvisionsRequest>, I>>(
-    _: I,
-  ): QueryAnnualProvisionsRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryAnnualProvisionsRequest>, I>>(_: I): QueryAnnualProvisionsRequest {
     const message = createBaseQueryAnnualProvisionsRequest();
     return message;
   },
@@ -406,7 +404,7 @@ export const QueryAnnualProvisionsRequest = {
   toAminoMsg(message: QueryAnnualProvisionsRequest): QueryAnnualProvisionsRequestAminoMsg {
     return {
       type: "cosmos-sdk/QueryAnnualProvisionsRequest",
-      value: QueryAnnualProvisionsRequest.toAmino(message),
+      value: QueryAnnualProvisionsRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryAnnualProvisionsRequestProtoMsg): QueryAnnualProvisionsRequest {
@@ -418,13 +416,13 @@ export const QueryAnnualProvisionsRequest = {
   toProtoMsg(message: QueryAnnualProvisionsRequest): QueryAnnualProvisionsRequestProtoMsg {
     return {
       typeUrl: "/cosmos.mint.v1beta1.QueryAnnualProvisionsRequest",
-      value: QueryAnnualProvisionsRequest.encode(message).finish(),
+      value: QueryAnnualProvisionsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryAnnualProvisionsResponse(): QueryAnnualProvisionsResponse {
   return {
-    annualProvisions: new Uint8Array(),
+    annualProvisions: new Uint8Array()
   };
 }
 export const QueryAnnualProvisionsResponse = {
@@ -452,9 +450,7 @@ export const QueryAnnualProvisionsResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryAnnualProvisionsResponse>, I>>(
-    object: I,
-  ): QueryAnnualProvisionsResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryAnnualProvisionsResponse>, I>>(object: I): QueryAnnualProvisionsResponse {
     const message = createBaseQueryAnnualProvisionsResponse();
     message.annualProvisions = object.annualProvisions ?? new Uint8Array();
     return message;
@@ -477,7 +473,7 @@ export const QueryAnnualProvisionsResponse = {
   toAminoMsg(message: QueryAnnualProvisionsResponse): QueryAnnualProvisionsResponseAminoMsg {
     return {
       type: "cosmos-sdk/QueryAnnualProvisionsResponse",
-      value: QueryAnnualProvisionsResponse.toAmino(message),
+      value: QueryAnnualProvisionsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryAnnualProvisionsResponseProtoMsg): QueryAnnualProvisionsResponse {
@@ -489,9 +485,9 @@ export const QueryAnnualProvisionsResponse = {
   toProtoMsg(message: QueryAnnualProvisionsResponse): QueryAnnualProvisionsResponseProtoMsg {
     return {
       typeUrl: "/cosmos.mint.v1beta1.QueryAnnualProvisionsResponse",
-      value: QueryAnnualProvisionsResponse.encode(message).finish(),
+      value: QueryAnnualProvisionsResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Query provides defines the gRPC querier service. */
 export interface Query {
@@ -513,16 +509,16 @@ export class QueryClientImpl implements Query {
   Params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
   }
   Inflation(request: QueryInflationRequest = {}): Promise<QueryInflationResponse> {
     const data = QueryInflationRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "Inflation", data);
-    return promise.then((data) => QueryInflationResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryInflationResponse.decode(new BinaryReader(data)));
   }
   AnnualProvisions(request: QueryAnnualProvisionsRequest = {}): Promise<QueryAnnualProvisionsResponse> {
     const data = QueryAnnualProvisionsRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "AnnualProvisions", data);
-    return promise.then((data) => QueryAnnualProvisionsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryAnnualProvisionsResponse.decode(new BinaryReader(data)));
   }
 }

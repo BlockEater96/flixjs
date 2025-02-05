@@ -163,7 +163,7 @@ export const QueryParamsRequest = {
   toAminoMsg(message: QueryParamsRequest): QueryParamsRequestAminoMsg {
     return {
       type: "osmosis/tokenfactory/query-params-request",
-      value: QueryParamsRequest.toAmino(message),
+      value: QueryParamsRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryParamsRequestProtoMsg): QueryParamsRequest {
@@ -175,13 +175,13 @@ export const QueryParamsRequest = {
   toProtoMsg(message: QueryParamsRequest): QueryParamsRequestProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.QueryParamsRequest",
-      value: QueryParamsRequest.encode(message).finish(),
+      value: QueryParamsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryParamsResponse(): QueryParamsResponse {
   return {
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const QueryParamsResponse = {
@@ -234,7 +234,7 @@ export const QueryParamsResponse = {
   toAminoMsg(message: QueryParamsResponse): QueryParamsResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/query-params-response",
-      value: QueryParamsResponse.toAmino(message),
+      value: QueryParamsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryParamsResponseProtoMsg): QueryParamsResponse {
@@ -246,21 +246,18 @@ export const QueryParamsResponse = {
   toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.QueryParamsResponse",
-      value: QueryParamsResponse.encode(message).finish(),
+      value: QueryParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryDenomAuthorityMetadataRequest(): QueryDenomAuthorityMetadataRequest {
   return {
-    denom: "",
+    denom: ""
   };
 }
 export const QueryDenomAuthorityMetadataRequest = {
   typeUrl: "/osmosis.tokenfactory.v1beta1.QueryDenomAuthorityMetadataRequest",
-  encode(
-    message: QueryDenomAuthorityMetadataRequest,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryDenomAuthorityMetadataRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.denom !== "") {
       writer.uint32(10).string(message.denom);
     }
@@ -283,9 +280,7 @@ export const QueryDenomAuthorityMetadataRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryDenomAuthorityMetadataRequest>, I>>(
-    object: I,
-  ): QueryDenomAuthorityMetadataRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryDenomAuthorityMetadataRequest>, I>>(object: I): QueryDenomAuthorityMetadataRequest {
     const message = createBaseQueryDenomAuthorityMetadataRequest();
     message.denom = object.denom ?? "";
     return message;
@@ -308,7 +303,7 @@ export const QueryDenomAuthorityMetadataRequest = {
   toAminoMsg(message: QueryDenomAuthorityMetadataRequest): QueryDenomAuthorityMetadataRequestAminoMsg {
     return {
       type: "osmosis/tokenfactory/query-denom-authority-metadata-request",
-      value: QueryDenomAuthorityMetadataRequest.toAmino(message),
+      value: QueryDenomAuthorityMetadataRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryDenomAuthorityMetadataRequestProtoMsg): QueryDenomAuthorityMetadataRequest {
@@ -320,21 +315,18 @@ export const QueryDenomAuthorityMetadataRequest = {
   toProtoMsg(message: QueryDenomAuthorityMetadataRequest): QueryDenomAuthorityMetadataRequestProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.QueryDenomAuthorityMetadataRequest",
-      value: QueryDenomAuthorityMetadataRequest.encode(message).finish(),
+      value: QueryDenomAuthorityMetadataRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryDenomAuthorityMetadataResponse(): QueryDenomAuthorityMetadataResponse {
   return {
-    authorityMetadata: DenomAuthorityMetadata.fromPartial({}),
+    authorityMetadata: DenomAuthorityMetadata.fromPartial({})
   };
 }
 export const QueryDenomAuthorityMetadataResponse = {
   typeUrl: "/osmosis.tokenfactory.v1beta1.QueryDenomAuthorityMetadataResponse",
-  encode(
-    message: QueryDenomAuthorityMetadataResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryDenomAuthorityMetadataResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.authorityMetadata !== undefined) {
       DenomAuthorityMetadata.encode(message.authorityMetadata, writer.uint32(10).fork()).ldelim();
     }
@@ -357,9 +349,7 @@ export const QueryDenomAuthorityMetadataResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryDenomAuthorityMetadataResponse>, I>>(
-    object: I,
-  ): QueryDenomAuthorityMetadataResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryDenomAuthorityMetadataResponse>, I>>(object: I): QueryDenomAuthorityMetadataResponse {
     const message = createBaseQueryDenomAuthorityMetadataResponse();
     if (object.authorityMetadata !== undefined && object.authorityMetadata !== null) {
       message.authorityMetadata = DenomAuthorityMetadata.fromPartial(object.authorityMetadata);
@@ -375,9 +365,7 @@ export const QueryDenomAuthorityMetadataResponse = {
   },
   toAmino(message: QueryDenomAuthorityMetadataResponse): QueryDenomAuthorityMetadataResponseAmino {
     const obj: any = {};
-    obj.authority_metadata = message.authorityMetadata
-      ? DenomAuthorityMetadata.toAmino(message.authorityMetadata)
-      : undefined;
+    obj.authority_metadata = message.authorityMetadata ? DenomAuthorityMetadata.toAmino(message.authorityMetadata) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryDenomAuthorityMetadataResponseAminoMsg): QueryDenomAuthorityMetadataResponse {
@@ -386,7 +374,7 @@ export const QueryDenomAuthorityMetadataResponse = {
   toAminoMsg(message: QueryDenomAuthorityMetadataResponse): QueryDenomAuthorityMetadataResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/query-denom-authority-metadata-response",
-      value: QueryDenomAuthorityMetadataResponse.toAmino(message),
+      value: QueryDenomAuthorityMetadataResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryDenomAuthorityMetadataResponseProtoMsg): QueryDenomAuthorityMetadataResponse {
@@ -398,13 +386,13 @@ export const QueryDenomAuthorityMetadataResponse = {
   toProtoMsg(message: QueryDenomAuthorityMetadataResponse): QueryDenomAuthorityMetadataResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.QueryDenomAuthorityMetadataResponse",
-      value: QueryDenomAuthorityMetadataResponse.encode(message).finish(),
+      value: QueryDenomAuthorityMetadataResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryDenomsFromCreatorRequest(): QueryDenomsFromCreatorRequest {
   return {
-    creator: "",
+    creator: ""
   };
 }
 export const QueryDenomsFromCreatorRequest = {
@@ -432,9 +420,7 @@ export const QueryDenomsFromCreatorRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryDenomsFromCreatorRequest>, I>>(
-    object: I,
-  ): QueryDenomsFromCreatorRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryDenomsFromCreatorRequest>, I>>(object: I): QueryDenomsFromCreatorRequest {
     const message = createBaseQueryDenomsFromCreatorRequest();
     message.creator = object.creator ?? "";
     return message;
@@ -457,7 +443,7 @@ export const QueryDenomsFromCreatorRequest = {
   toAminoMsg(message: QueryDenomsFromCreatorRequest): QueryDenomsFromCreatorRequestAminoMsg {
     return {
       type: "osmosis/tokenfactory/query-denoms-from-creator-request",
-      value: QueryDenomsFromCreatorRequest.toAmino(message),
+      value: QueryDenomsFromCreatorRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryDenomsFromCreatorRequestProtoMsg): QueryDenomsFromCreatorRequest {
@@ -469,21 +455,18 @@ export const QueryDenomsFromCreatorRequest = {
   toProtoMsg(message: QueryDenomsFromCreatorRequest): QueryDenomsFromCreatorRequestProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.QueryDenomsFromCreatorRequest",
-      value: QueryDenomsFromCreatorRequest.encode(message).finish(),
+      value: QueryDenomsFromCreatorRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseQueryDenomsFromCreatorResponse(): QueryDenomsFromCreatorResponse {
   return {
-    denoms: [],
+    denoms: []
   };
 }
 export const QueryDenomsFromCreatorResponse = {
   typeUrl: "/osmosis.tokenfactory.v1beta1.QueryDenomsFromCreatorResponse",
-  encode(
-    message: QueryDenomsFromCreatorResponse,
-    writer: BinaryWriter = BinaryWriter.create(),
-  ): BinaryWriter {
+  encode(message: QueryDenomsFromCreatorResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     for (const v of message.denoms) {
       writer.uint32(10).string(v!);
     }
@@ -506,22 +489,20 @@ export const QueryDenomsFromCreatorResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<QueryDenomsFromCreatorResponse>, I>>(
-    object: I,
-  ): QueryDenomsFromCreatorResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryDenomsFromCreatorResponse>, I>>(object: I): QueryDenomsFromCreatorResponse {
     const message = createBaseQueryDenomsFromCreatorResponse();
-    message.denoms = object.denoms?.map((e) => e) || [];
+    message.denoms = object.denoms?.map(e => e) || [];
     return message;
   },
   fromAmino(object: QueryDenomsFromCreatorResponseAmino): QueryDenomsFromCreatorResponse {
     const message = createBaseQueryDenomsFromCreatorResponse();
-    message.denoms = object.denoms?.map((e) => e) || [];
+    message.denoms = object.denoms?.map(e => e) || [];
     return message;
   },
   toAmino(message: QueryDenomsFromCreatorResponse): QueryDenomsFromCreatorResponseAmino {
     const obj: any = {};
     if (message.denoms) {
-      obj.denoms = message.denoms.map((e) => e);
+      obj.denoms = message.denoms.map(e => e);
     } else {
       obj.denoms = message.denoms;
     }
@@ -533,7 +514,7 @@ export const QueryDenomsFromCreatorResponse = {
   toAminoMsg(message: QueryDenomsFromCreatorResponse): QueryDenomsFromCreatorResponseAminoMsg {
     return {
       type: "osmosis/tokenfactory/query-denoms-from-creator-response",
-      value: QueryDenomsFromCreatorResponse.toAmino(message),
+      value: QueryDenomsFromCreatorResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: QueryDenomsFromCreatorResponseProtoMsg): QueryDenomsFromCreatorResponse {
@@ -545,9 +526,9 @@ export const QueryDenomsFromCreatorResponse = {
   toProtoMsg(message: QueryDenomsFromCreatorResponse): QueryDenomsFromCreatorResponseProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.QueryDenomsFromCreatorResponse",
-      value: QueryDenomsFromCreatorResponse.encode(message).finish(),
+      value: QueryDenomsFromCreatorResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Query defines the gRPC querier service. */
 export interface Query {
@@ -560,9 +541,7 @@ export interface Query {
    * DenomAuthorityMetadata defines a gRPC query method for fetching
    * DenomAuthorityMetadata for a particular denom.
    */
-  DenomAuthorityMetadata(
-    request: QueryDenomAuthorityMetadataRequest,
-  ): Promise<QueryDenomAuthorityMetadataResponse>;
+  DenomAuthorityMetadata(request: QueryDenomAuthorityMetadataRequest): Promise<QueryDenomAuthorityMetadataResponse>;
   /**
    * DenomsFromCreator defines a gRPC query method for fetching all
    * denominations created by a specific admin/creator.
@@ -580,18 +559,16 @@ export class QueryClientImpl implements Query {
   Params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
   }
-  DenomAuthorityMetadata(
-    request: QueryDenomAuthorityMetadataRequest,
-  ): Promise<QueryDenomAuthorityMetadataResponse> {
+  DenomAuthorityMetadata(request: QueryDenomAuthorityMetadataRequest): Promise<QueryDenomAuthorityMetadataResponse> {
     const data = QueryDenomAuthorityMetadataRequest.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Query", "DenomAuthorityMetadata", data);
-    return promise.then((data) => QueryDenomAuthorityMetadataResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryDenomAuthorityMetadataResponse.decode(new BinaryReader(data)));
   }
   DenomsFromCreator(request: QueryDenomsFromCreatorRequest): Promise<QueryDenomsFromCreatorResponse> {
     const data = QueryDenomsFromCreatorRequest.encode(request).finish();
     const promise = this.rpc.request("osmosis.tokenfactory.v1beta1.Query", "DenomsFromCreator", data);
-    return promise.then((data) => QueryDenomsFromCreatorResponse.decode(new BinaryReader(data)));
+    return promise.then(data => QueryDenomsFromCreatorResponse.decode(new BinaryReader(data)));
   }
 }

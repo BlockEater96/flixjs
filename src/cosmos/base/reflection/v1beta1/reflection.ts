@@ -119,7 +119,7 @@ export const ListAllInterfacesRequest = {
   toAminoMsg(message: ListAllInterfacesRequest): ListAllInterfacesRequestAminoMsg {
     return {
       type: "cosmos-sdk/ListAllInterfacesRequest",
-      value: ListAllInterfacesRequest.toAmino(message),
+      value: ListAllInterfacesRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: ListAllInterfacesRequestProtoMsg): ListAllInterfacesRequest {
@@ -131,13 +131,13 @@ export const ListAllInterfacesRequest = {
   toProtoMsg(message: ListAllInterfacesRequest): ListAllInterfacesRequestProtoMsg {
     return {
       typeUrl: "/cosmos.base.reflection.v1beta1.ListAllInterfacesRequest",
-      value: ListAllInterfacesRequest.encode(message).finish(),
+      value: ListAllInterfacesRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseListAllInterfacesResponse(): ListAllInterfacesResponse {
   return {
-    interfaceNames: [],
+    interfaceNames: []
   };
 }
 export const ListAllInterfacesResponse = {
@@ -165,22 +165,20 @@ export const ListAllInterfacesResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<ListAllInterfacesResponse>, I>>(
-    object: I,
-  ): ListAllInterfacesResponse {
+  fromPartial<I extends Exact<DeepPartial<ListAllInterfacesResponse>, I>>(object: I): ListAllInterfacesResponse {
     const message = createBaseListAllInterfacesResponse();
-    message.interfaceNames = object.interfaceNames?.map((e) => e) || [];
+    message.interfaceNames = object.interfaceNames?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ListAllInterfacesResponseAmino): ListAllInterfacesResponse {
     const message = createBaseListAllInterfacesResponse();
-    message.interfaceNames = object.interface_names?.map((e) => e) || [];
+    message.interfaceNames = object.interface_names?.map(e => e) || [];
     return message;
   },
   toAmino(message: ListAllInterfacesResponse): ListAllInterfacesResponseAmino {
     const obj: any = {};
     if (message.interfaceNames) {
-      obj.interface_names = message.interfaceNames.map((e) => e);
+      obj.interface_names = message.interfaceNames.map(e => e);
     } else {
       obj.interface_names = message.interfaceNames;
     }
@@ -192,7 +190,7 @@ export const ListAllInterfacesResponse = {
   toAminoMsg(message: ListAllInterfacesResponse): ListAllInterfacesResponseAminoMsg {
     return {
       type: "cosmos-sdk/ListAllInterfacesResponse",
-      value: ListAllInterfacesResponse.toAmino(message),
+      value: ListAllInterfacesResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: ListAllInterfacesResponseProtoMsg): ListAllInterfacesResponse {
@@ -204,13 +202,13 @@ export const ListAllInterfacesResponse = {
   toProtoMsg(message: ListAllInterfacesResponse): ListAllInterfacesResponseProtoMsg {
     return {
       typeUrl: "/cosmos.base.reflection.v1beta1.ListAllInterfacesResponse",
-      value: ListAllInterfacesResponse.encode(message).finish(),
+      value: ListAllInterfacesResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseListImplementationsRequest(): ListImplementationsRequest {
   return {
-    interfaceName: "",
+    interfaceName: ""
   };
 }
 export const ListImplementationsRequest = {
@@ -238,9 +236,7 @@ export const ListImplementationsRequest = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<ListImplementationsRequest>, I>>(
-    object: I,
-  ): ListImplementationsRequest {
+  fromPartial<I extends Exact<DeepPartial<ListImplementationsRequest>, I>>(object: I): ListImplementationsRequest {
     const message = createBaseListImplementationsRequest();
     message.interfaceName = object.interfaceName ?? "";
     return message;
@@ -263,7 +259,7 @@ export const ListImplementationsRequest = {
   toAminoMsg(message: ListImplementationsRequest): ListImplementationsRequestAminoMsg {
     return {
       type: "cosmos-sdk/ListImplementationsRequest",
-      value: ListImplementationsRequest.toAmino(message),
+      value: ListImplementationsRequest.toAmino(message)
     };
   },
   fromProtoMsg(message: ListImplementationsRequestProtoMsg): ListImplementationsRequest {
@@ -275,13 +271,13 @@ export const ListImplementationsRequest = {
   toProtoMsg(message: ListImplementationsRequest): ListImplementationsRequestProtoMsg {
     return {
       typeUrl: "/cosmos.base.reflection.v1beta1.ListImplementationsRequest",
-      value: ListImplementationsRequest.encode(message).finish(),
+      value: ListImplementationsRequest.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseListImplementationsResponse(): ListImplementationsResponse {
   return {
-    implementationMessageNames: [],
+    implementationMessageNames: []
   };
 }
 export const ListImplementationsResponse = {
@@ -309,22 +305,20 @@ export const ListImplementationsResponse = {
     }
     return message;
   },
-  fromPartial<I extends Exact<DeepPartial<ListImplementationsResponse>, I>>(
-    object: I,
-  ): ListImplementationsResponse {
+  fromPartial<I extends Exact<DeepPartial<ListImplementationsResponse>, I>>(object: I): ListImplementationsResponse {
     const message = createBaseListImplementationsResponse();
-    message.implementationMessageNames = object.implementationMessageNames?.map((e) => e) || [];
+    message.implementationMessageNames = object.implementationMessageNames?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ListImplementationsResponseAmino): ListImplementationsResponse {
     const message = createBaseListImplementationsResponse();
-    message.implementationMessageNames = object.implementation_message_names?.map((e) => e) || [];
+    message.implementationMessageNames = object.implementation_message_names?.map(e => e) || [];
     return message;
   },
   toAmino(message: ListImplementationsResponse): ListImplementationsResponseAmino {
     const obj: any = {};
     if (message.implementationMessageNames) {
-      obj.implementation_message_names = message.implementationMessageNames.map((e) => e);
+      obj.implementation_message_names = message.implementationMessageNames.map(e => e);
     } else {
       obj.implementation_message_names = message.implementationMessageNames;
     }
@@ -336,7 +330,7 @@ export const ListImplementationsResponse = {
   toAminoMsg(message: ListImplementationsResponse): ListImplementationsResponseAminoMsg {
     return {
       type: "cosmos-sdk/ListImplementationsResponse",
-      value: ListImplementationsResponse.toAmino(message),
+      value: ListImplementationsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: ListImplementationsResponseProtoMsg): ListImplementationsResponse {
@@ -348,9 +342,9 @@ export const ListImplementationsResponse = {
   toProtoMsg(message: ListImplementationsResponse): ListImplementationsResponseProtoMsg {
     return {
       typeUrl: "/cosmos.base.reflection.v1beta1.ListImplementationsResponse",
-      value: ListImplementationsResponse.encode(message).finish(),
+      value: ListImplementationsResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** ReflectionService defines a service for interface reflection. */
 export interface ReflectionService {
@@ -374,20 +368,12 @@ export class ReflectionServiceClientImpl implements ReflectionService {
   }
   ListAllInterfaces(request: ListAllInterfacesRequest = {}): Promise<ListAllInterfacesResponse> {
     const data = ListAllInterfacesRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v1beta1.ReflectionService",
-      "ListAllInterfaces",
-      data,
-    );
-    return promise.then((data) => ListAllInterfacesResponse.decode(new BinaryReader(data)));
+    const promise = this.rpc.request("cosmos.base.reflection.v1beta1.ReflectionService", "ListAllInterfaces", data);
+    return promise.then(data => ListAllInterfacesResponse.decode(new BinaryReader(data)));
   }
   ListImplementations(request: ListImplementationsRequest): Promise<ListImplementationsResponse> {
     const data = ListImplementationsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v1beta1.ReflectionService",
-      "ListImplementations",
-      data,
-    );
-    return promise.then((data) => ListImplementationsResponse.decode(new BinaryReader(data)));
+    const promise = this.rpc.request("cosmos.base.reflection.v1beta1.ReflectionService", "ListImplementations", data);
+    return promise.then(data => ListImplementationsResponse.decode(new BinaryReader(data)));
   }
 }

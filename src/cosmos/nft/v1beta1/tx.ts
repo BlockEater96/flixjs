@@ -50,7 +50,7 @@ function createBaseMsgSend(): MsgSend {
     classId: "",
     id: "",
     sender: "",
-    receiver: "",
+    receiver: ""
   };
 }
 export const MsgSend = {
@@ -134,7 +134,7 @@ export const MsgSend = {
   toAminoMsg(message: MsgSend): MsgSendAminoMsg {
     return {
       type: "cosmos-sdk/MsgNFTSend",
-      value: MsgSend.toAmino(message),
+      value: MsgSend.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSendProtoMsg): MsgSend {
@@ -146,9 +146,9 @@ export const MsgSend = {
   toProtoMsg(message: MsgSend): MsgSendProtoMsg {
     return {
       typeUrl: "/cosmos.nft.v1beta1.MsgSend",
-      value: MsgSend.encode(message).finish(),
+      value: MsgSend.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgSendResponse(): MsgSendResponse {
   return {};
@@ -190,7 +190,7 @@ export const MsgSendResponse = {
   toAminoMsg(message: MsgSendResponse): MsgSendResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgSendResponse",
-      value: MsgSendResponse.toAmino(message),
+      value: MsgSendResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgSendResponseProtoMsg): MsgSendResponse {
@@ -202,9 +202,9 @@ export const MsgSendResponse = {
   toProtoMsg(message: MsgSendResponse): MsgSendResponseProtoMsg {
     return {
       typeUrl: "/cosmos.nft.v1beta1.MsgSendResponse",
-      value: MsgSendResponse.encode(message).finish(),
+      value: MsgSendResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the nft Msg service. */
 export interface Msg {
@@ -220,6 +220,6 @@ export class MsgClientImpl implements Msg {
   Send(request: MsgSend): Promise<MsgSendResponse> {
     const data = MsgSend.encode(request).finish();
     const promise = this.rpc.request("cosmos.nft.v1beta1.Msg", "Send", data);
-    return promise.then((data) => MsgSendResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgSendResponse.decode(new BinaryReader(data)));
   }
 }

@@ -53,7 +53,7 @@ function createBaseParameterChangeProposal(): ParameterChangeProposal {
   return {
     title: "",
     description: "",
-    changes: [],
+    changes: []
   };
 }
 export const ParameterChangeProposal = {
@@ -97,7 +97,7 @@ export const ParameterChangeProposal = {
     const message = createBaseParameterChangeProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
-    message.changes = object.changes?.map((e) => ParamChange.fromPartial(e)) || [];
+    message.changes = object.changes?.map(e => ParamChange.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ParameterChangeProposalAmino): ParameterChangeProposal {
@@ -108,7 +108,7 @@ export const ParameterChangeProposal = {
     if (object.description !== undefined && object.description !== null) {
       message.description = object.description;
     }
-    message.changes = object.changes?.map((e) => ParamChange.fromAmino(e)) || [];
+    message.changes = object.changes?.map(e => ParamChange.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ParameterChangeProposal): ParameterChangeProposalAmino {
@@ -116,7 +116,7 @@ export const ParameterChangeProposal = {
     obj.title = message.title === "" ? undefined : message.title;
     obj.description = message.description === "" ? undefined : message.description;
     if (message.changes) {
-      obj.changes = message.changes.map((e) => (e ? ParamChange.toAmino(e) : undefined));
+      obj.changes = message.changes.map(e => e ? ParamChange.toAmino(e) : undefined);
     } else {
       obj.changes = message.changes;
     }
@@ -128,7 +128,7 @@ export const ParameterChangeProposal = {
   toAminoMsg(message: ParameterChangeProposal): ParameterChangeProposalAminoMsg {
     return {
       type: "cosmos-sdk/ParameterChangeProposal",
-      value: ParameterChangeProposal.toAmino(message),
+      value: ParameterChangeProposal.toAmino(message)
     };
   },
   fromProtoMsg(message: ParameterChangeProposalProtoMsg): ParameterChangeProposal {
@@ -140,15 +140,15 @@ export const ParameterChangeProposal = {
   toProtoMsg(message: ParameterChangeProposal): ParameterChangeProposalProtoMsg {
     return {
       typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal",
-      value: ParameterChangeProposal.encode(message).finish(),
+      value: ParameterChangeProposal.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseParamChange(): ParamChange {
   return {
     subspace: "",
     key: "",
-    value: "",
+    value: ""
   };
 }
 export const ParamChange = {
@@ -221,7 +221,7 @@ export const ParamChange = {
   toAminoMsg(message: ParamChange): ParamChangeAminoMsg {
     return {
       type: "cosmos-sdk/ParamChange",
-      value: ParamChange.toAmino(message),
+      value: ParamChange.toAmino(message)
     };
   },
   fromProtoMsg(message: ParamChangeProtoMsg): ParamChange {
@@ -233,7 +233,7 @@ export const ParamChange = {
   toProtoMsg(message: ParamChange): ParamChangeProtoMsg {
     return {
       typeUrl: "/cosmos.params.v1beta1.ParamChange",
-      value: ParamChange.encode(message).finish(),
+      value: ParamChange.encode(message).finish()
     };
-  },
+  }
 };

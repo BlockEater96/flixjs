@@ -44,7 +44,7 @@ export interface MsgVerifyInvariantResponseAminoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParams {
@@ -59,7 +59,7 @@ export interface MsgUpdateParamsProtoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsAmino {
@@ -75,7 +75,7 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponse {}
@@ -86,7 +86,7 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponseAmino {}
@@ -98,7 +98,7 @@ function createBaseMsgVerifyInvariant(): MsgVerifyInvariant {
   return {
     sender: "",
     invariantModuleName: "",
-    invariantRoute: "",
+    invariantRoute: ""
   };
 }
 export const MsgVerifyInvariant = {
@@ -171,7 +171,7 @@ export const MsgVerifyInvariant = {
   toAminoMsg(message: MsgVerifyInvariant): MsgVerifyInvariantAminoMsg {
     return {
       type: "cosmos-sdk/MsgVerifyInvariant",
-      value: MsgVerifyInvariant.toAmino(message),
+      value: MsgVerifyInvariant.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgVerifyInvariantProtoMsg): MsgVerifyInvariant {
@@ -183,9 +183,9 @@ export const MsgVerifyInvariant = {
   toProtoMsg(message: MsgVerifyInvariant): MsgVerifyInvariantProtoMsg {
     return {
       typeUrl: "/cosmos.crisis.v1beta1.MsgVerifyInvariant",
-      value: MsgVerifyInvariant.encode(message).finish(),
+      value: MsgVerifyInvariant.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgVerifyInvariantResponse(): MsgVerifyInvariantResponse {
   return {};
@@ -227,7 +227,7 @@ export const MsgVerifyInvariantResponse = {
   toAminoMsg(message: MsgVerifyInvariantResponse): MsgVerifyInvariantResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgVerifyInvariantResponse",
-      value: MsgVerifyInvariantResponse.toAmino(message),
+      value: MsgVerifyInvariantResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgVerifyInvariantResponseProtoMsg): MsgVerifyInvariantResponse {
@@ -239,14 +239,14 @@ export const MsgVerifyInvariantResponse = {
   toProtoMsg(message: MsgVerifyInvariantResponse): MsgVerifyInvariantResponseProtoMsg {
     return {
       typeUrl: "/cosmos.crisis.v1beta1.MsgVerifyInvariantResponse",
-      value: MsgVerifyInvariantResponse.encode(message).finish(),
+      value: MsgVerifyInvariantResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
-    constantFee: Coin.fromPartial({}),
+    constantFee: Coin.fromPartial({})
   };
 }
 export const MsgUpdateParams = {
@@ -301,9 +301,7 @@ export const MsgUpdateParams = {
   toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino {
     const obj: any = {};
     obj.authority = message.authority === "" ? undefined : message.authority;
-    obj.constant_fee = message.constantFee
-      ? Coin.toAmino(message.constantFee)
-      : Coin.toAmino(Coin.fromPartial({}));
+    obj.constant_fee = message.constantFee ? Coin.toAmino(message.constantFee) : Coin.toAmino(Coin.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams {
@@ -312,7 +310,7 @@ export const MsgUpdateParams = {
   toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg {
     return {
       type: "cosmos-sdk/x/crisis/MsgUpdateParams",
-      value: MsgUpdateParams.toAmino(message),
+      value: MsgUpdateParams.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams {
@@ -324,9 +322,9 @@ export const MsgUpdateParams = {
   toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
     return {
       typeUrl: "/cosmos.crisis.v1beta1.MsgUpdateParams",
-      value: MsgUpdateParams.encode(message).finish(),
+      value: MsgUpdateParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
@@ -368,7 +366,7 @@ export const MsgUpdateParamsResponse = {
   toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg {
     return {
       type: "cosmos-sdk/MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.toAmino(message),
+      value: MsgUpdateParamsResponse.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse {
@@ -380,9 +378,9 @@ export const MsgUpdateParamsResponse = {
   toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
     return {
       typeUrl: "/cosmos.crisis.v1beta1.MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.encode(message).finish(),
+      value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 /** Msg defines the bank Msg service. */
 export interface Msg {
@@ -391,7 +389,7 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/crisis module
    * parameters. The authority is defined in the keeper.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
@@ -406,11 +404,11 @@ export class MsgClientImpl implements Msg {
   VerifyInvariant(request: MsgVerifyInvariant): Promise<MsgVerifyInvariantResponse> {
     const data = MsgVerifyInvariant.encode(request).finish();
     const promise = this.rpc.request("cosmos.crisis.v1beta1.Msg", "VerifyInvariant", data);
-    return promise.then((data) => MsgVerifyInvariantResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgVerifyInvariantResponse.decode(new BinaryReader(data)));
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.crisis.v1beta1.Msg", "UpdateParams", data);
-    return promise.then((data) => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
   }
 }

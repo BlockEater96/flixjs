@@ -5,21 +5,21 @@ export const AminoConverter = {
   "/OmniFlix.streampay.v1.MsgStreamSend": {
     aminoType: "OmniFlix/streampay/MsgStreamSend",
     toAmino: MsgStreamSend.toAmino,
-    fromAmino: MsgStreamSend.fromAmino,
+    fromAmino: MsgStreamSend.fromAmino
   },
   "/OmniFlix.streampay.v1.MsgStopStream": {
     aminoType: "OmniFlix/streampay/MsgStopStream",
     toAmino: MsgStopStream.toAmino,
-    fromAmino: MsgStopStream.fromAmino,
+    fromAmino: MsgStopStream.fromAmino
   },
   "/OmniFlix.streampay.v1.MsgClaimStreamedAmount": {
     aminoType: "OmniFlix/streampay/MsgClaimStream",
     toAmino: MsgClaimStreamedAmount.toAmino,
-    fromAmino: MsgClaimStreamedAmount.fromAmino,
+    fromAmino: MsgClaimStreamedAmount.fromAmino
   },
   "/OmniFlix.streampay.v1.MsgUpdateParams": {
     aminoType: "/OmniFlix.streampay.v1.MsgUpdateParams",
     toAmino: MsgUpdateParams.toAmino,
-    fromAmino: MsgUpdateParams.fromAmino,
-  },
+    fromAmino: MsgUpdateParams.fromAmino
+  }
 };

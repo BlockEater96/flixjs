@@ -36,7 +36,7 @@ export interface ModuleAminoMsg {
 function createBaseModule(): Module {
   return {
     blockedModuleAccountsOverride: [],
-    authority: "",
+    authority: ""
   };
 }
 export const Module = {
@@ -72,13 +72,13 @@ export const Module = {
   },
   fromPartial<I extends Exact<DeepPartial<Module>, I>>(object: I): Module {
     const message = createBaseModule();
-    message.blockedModuleAccountsOverride = object.blockedModuleAccountsOverride?.map((e) => e) || [];
+    message.blockedModuleAccountsOverride = object.blockedModuleAccountsOverride?.map(e => e) || [];
     message.authority = object.authority ?? "";
     return message;
   },
   fromAmino(object: ModuleAmino): Module {
     const message = createBaseModule();
-    message.blockedModuleAccountsOverride = object.blocked_module_accounts_override?.map((e) => e) || [];
+    message.blockedModuleAccountsOverride = object.blocked_module_accounts_override?.map(e => e) || [];
     if (object.authority !== undefined && object.authority !== null) {
       message.authority = object.authority;
     }
@@ -87,7 +87,7 @@ export const Module = {
   toAmino(message: Module): ModuleAmino {
     const obj: any = {};
     if (message.blockedModuleAccountsOverride) {
-      obj.blocked_module_accounts_override = message.blockedModuleAccountsOverride.map((e) => e);
+      obj.blocked_module_accounts_override = message.blockedModuleAccountsOverride.map(e => e);
     } else {
       obj.blocked_module_accounts_override = message.blockedModuleAccountsOverride;
     }
@@ -100,7 +100,7 @@ export const Module = {
   toAminoMsg(message: Module): ModuleAminoMsg {
     return {
       type: "cosmos-sdk/Module",
-      value: Module.toAmino(message),
+      value: Module.toAmino(message)
     };
   },
   fromProtoMsg(message: ModuleProtoMsg): Module {
@@ -112,7 +112,7 @@ export const Module = {
   toProtoMsg(message: Module): ModuleProtoMsg {
     return {
       typeUrl: "/cosmos.bank.module.v1.Module",
-      value: Module.encode(message).finish(),
+      value: Module.encode(message).finish()
     };
-  },
+  }
 };

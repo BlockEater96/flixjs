@@ -51,7 +51,7 @@ function createBaseFungibleTokenPacketData(): FungibleTokenPacketData {
     amount: "",
     sender: "",
     receiver: "",
-    memo: "",
+    memo: ""
   };
 }
 export const FungibleTokenPacketData = {
@@ -146,7 +146,7 @@ export const FungibleTokenPacketData = {
   toAminoMsg(message: FungibleTokenPacketData): FungibleTokenPacketDataAminoMsg {
     return {
       type: "cosmos-sdk/FungibleTokenPacketData",
-      value: FungibleTokenPacketData.toAmino(message),
+      value: FungibleTokenPacketData.toAmino(message)
     };
   },
   fromProtoMsg(message: FungibleTokenPacketDataProtoMsg): FungibleTokenPacketData {
@@ -158,7 +158,7 @@ export const FungibleTokenPacketData = {
   toProtoMsg(message: FungibleTokenPacketData): FungibleTokenPacketDataProtoMsg {
     return {
       typeUrl: "/ibc.applications.transfer.v2.FungibleTokenPacketData",
-      value: FungibleTokenPacketData.encode(message).finish(),
+      value: FungibleTokenPacketData.encode(message).finish()
     };
-  },
+  }
 };

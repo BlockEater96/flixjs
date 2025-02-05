@@ -242,7 +242,7 @@ export interface MsgBurnONFTResponseAminoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParams {
@@ -250,7 +250,7 @@ export interface MsgUpdateParams {
   authority: string;
   /**
    * params defines the onft module parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params: Params;
@@ -261,7 +261,7 @@ export interface MsgUpdateParamsProtoMsg {
 }
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsAmino {
@@ -269,7 +269,7 @@ export interface MsgUpdateParamsAmino {
   authority?: string;
   /**
    * params defines the onft module parameters to update.
-   *
+   * 
    * NOTE: All parameters must be supplied.
    */
   params?: ParamsAmino;
@@ -281,7 +281,7 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponse {}
@@ -292,7 +292,7 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
- *
+ * 
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponseAmino {}
@@ -313,7 +313,7 @@ function createBaseMsgCreateDenom(): MsgCreateDenom {
     uri: "",
     uriHash: "",
     data: "",
-    royaltyReceivers: [],
+    royaltyReceivers: []
   };
 }
 export const MsgCreateDenom = {
@@ -422,7 +422,7 @@ export const MsgCreateDenom = {
     message.uri = object.uri ?? "";
     message.uriHash = object.uriHash ?? "";
     message.data = object.data ?? "";
-    message.royaltyReceivers = object.royaltyReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
+    message.royaltyReceivers = object.royaltyReceivers?.map(e => WeightedAddress.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: MsgCreateDenomAmino): MsgCreateDenom {
@@ -460,7 +460,7 @@ export const MsgCreateDenom = {
     if (object.data !== undefined && object.data !== null) {
       message.data = object.data;
     }
-    message.royaltyReceivers = object.royalty_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    message.royaltyReceivers = object.royalty_receivers?.map(e => WeightedAddress.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: MsgCreateDenom): MsgCreateDenomAmino {
@@ -477,9 +477,7 @@ export const MsgCreateDenom = {
     obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
     obj.data = message.data === "" ? undefined : message.data;
     if (message.royaltyReceivers) {
-      obj.royalty_receivers = message.royaltyReceivers.map((e) =>
-        e ? WeightedAddress.toAmino(e) : undefined,
-      );
+      obj.royalty_receivers = message.royaltyReceivers.map(e => e ? WeightedAddress.toAmino(e) : undefined);
     } else {
       obj.royalty_receivers = message.royaltyReceivers;
     }
@@ -491,7 +489,7 @@ export const MsgCreateDenom = {
   toAminoMsg(message: MsgCreateDenom): MsgCreateDenomAminoMsg {
     return {
       type: "OmniFlix/onft/MsgCreateDenom",
-      value: MsgCreateDenom.toAmino(message),
+      value: MsgCreateDenom.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgCreateDenomProtoMsg): MsgCreateDenom {
@@ -503,9 +501,9 @@ export const MsgCreateDenom = {
   toProtoMsg(message: MsgCreateDenom): MsgCreateDenomProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgCreateDenom",
-      value: MsgCreateDenom.encode(message).finish(),
+      value: MsgCreateDenom.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgCreateDenomResponse(): MsgCreateDenomResponse {
   return {};
@@ -553,9 +551,9 @@ export const MsgCreateDenomResponse = {
   toProtoMsg(message: MsgCreateDenomResponse): MsgCreateDenomResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgCreateDenomResponse",
-      value: MsgCreateDenomResponse.encode(message).finish(),
+      value: MsgCreateDenomResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateDenom(): MsgUpdateDenom {
   return {
@@ -564,7 +562,7 @@ function createBaseMsgUpdateDenom(): MsgUpdateDenom {
     description: "",
     previewUri: "",
     sender: "",
-    royaltyReceivers: [],
+    royaltyReceivers: []
   };
 }
 export const MsgUpdateDenom = {
@@ -629,7 +627,7 @@ export const MsgUpdateDenom = {
     message.description = object.description ?? "";
     message.previewUri = object.previewUri ?? "";
     message.sender = object.sender ?? "";
-    message.royaltyReceivers = object.royaltyReceivers?.map((e) => WeightedAddress.fromPartial(e)) || [];
+    message.royaltyReceivers = object.royaltyReceivers?.map(e => WeightedAddress.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: MsgUpdateDenomAmino): MsgUpdateDenom {
@@ -649,7 +647,7 @@ export const MsgUpdateDenom = {
     if (object.sender !== undefined && object.sender !== null) {
       message.sender = object.sender;
     }
-    message.royaltyReceivers = object.royalty_receivers?.map((e) => WeightedAddress.fromAmino(e)) || [];
+    message.royaltyReceivers = object.royalty_receivers?.map(e => WeightedAddress.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: MsgUpdateDenom): MsgUpdateDenomAmino {
@@ -660,9 +658,7 @@ export const MsgUpdateDenom = {
     obj.preview_uri = message.previewUri === "" ? undefined : message.previewUri;
     obj.sender = message.sender === "" ? undefined : message.sender;
     if (message.royaltyReceivers) {
-      obj.royalty_receivers = message.royaltyReceivers.map((e) =>
-        e ? WeightedAddress.toAmino(e) : undefined,
-      );
+      obj.royalty_receivers = message.royaltyReceivers.map(e => e ? WeightedAddress.toAmino(e) : undefined);
     } else {
       obj.royalty_receivers = message.royaltyReceivers;
     }
@@ -674,7 +670,7 @@ export const MsgUpdateDenom = {
   toAminoMsg(message: MsgUpdateDenom): MsgUpdateDenomAminoMsg {
     return {
       type: "OmniFlix/onft/MsgUpdateDenom",
-      value: MsgUpdateDenom.toAmino(message),
+      value: MsgUpdateDenom.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgUpdateDenomProtoMsg): MsgUpdateDenom {
@@ -686,9 +682,9 @@ export const MsgUpdateDenom = {
   toProtoMsg(message: MsgUpdateDenom): MsgUpdateDenomProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateDenom",
-      value: MsgUpdateDenom.encode(message).finish(),
+      value: MsgUpdateDenom.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateDenomResponse(): MsgUpdateDenomResponse {
   return {};
@@ -736,14 +732,14 @@ export const MsgUpdateDenomResponse = {
   toProtoMsg(message: MsgUpdateDenomResponse): MsgUpdateDenomResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateDenomResponse",
-      value: MsgUpdateDenomResponse.encode(message).finish(),
+      value: MsgUpdateDenomResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgPurgeDenom(): MsgPurgeDenom {
   return {
     id: "",
-    sender: "",
+    sender: ""
   };
 }
 export const MsgPurgeDenom = {
@@ -805,7 +801,7 @@ export const MsgPurgeDenom = {
   toAminoMsg(message: MsgPurgeDenom): MsgPurgeDenomAminoMsg {
     return {
       type: "OmniFlix/onft/MsgPurgeDenom",
-      value: MsgPurgeDenom.toAmino(message),
+      value: MsgPurgeDenom.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgPurgeDenomProtoMsg): MsgPurgeDenom {
@@ -817,9 +813,9 @@ export const MsgPurgeDenom = {
   toProtoMsg(message: MsgPurgeDenom): MsgPurgeDenomProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgPurgeDenom",
-      value: MsgPurgeDenom.encode(message).finish(),
+      value: MsgPurgeDenom.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgPurgeDenomResponse(): MsgPurgeDenomResponse {
   return {};
@@ -867,15 +863,15 @@ export const MsgPurgeDenomResponse = {
   toProtoMsg(message: MsgPurgeDenomResponse): MsgPurgeDenomResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgPurgeDenomResponse",
-      value: MsgPurgeDenomResponse.encode(message).finish(),
+      value: MsgPurgeDenomResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgTransferDenom(): MsgTransferDenom {
   return {
     id: "",
     sender: "",
-    recipient: "",
+    recipient: ""
   };
 }
 export const MsgTransferDenom = {
@@ -948,7 +944,7 @@ export const MsgTransferDenom = {
   toAminoMsg(message: MsgTransferDenom): MsgTransferDenomAminoMsg {
     return {
       type: "OmniFlix/onft/MsgTransferDenom",
-      value: MsgTransferDenom.toAmino(message),
+      value: MsgTransferDenom.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgTransferDenomProtoMsg): MsgTransferDenom {
@@ -960,9 +956,9 @@ export const MsgTransferDenom = {
   toProtoMsg(message: MsgTransferDenom): MsgTransferDenomProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferDenom",
-      value: MsgTransferDenom.encode(message).finish(),
+      value: MsgTransferDenom.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgTransferDenomResponse(): MsgTransferDenomResponse {
   return {};
@@ -1010,9 +1006,9 @@ export const MsgTransferDenomResponse = {
   toProtoMsg(message: MsgTransferDenomResponse): MsgTransferDenomResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferDenomResponse",
-      value: MsgTransferDenomResponse.encode(message).finish(),
+      value: MsgTransferDenomResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgMintONFT(): MsgMintONFT {
   return {
@@ -1025,7 +1021,7 @@ function createBaseMsgMintONFT(): MsgMintONFT {
     nsfw: false,
     royaltyShare: "",
     sender: "",
-    recipient: "",
+    recipient: ""
   };
 }
 export const MsgMintONFT = {
@@ -1177,7 +1173,7 @@ export const MsgMintONFT = {
   toAminoMsg(message: MsgMintONFT): MsgMintONFTAminoMsg {
     return {
       type: "OmniFlix/onft/MsgMintONFT",
-      value: MsgMintONFT.toAmino(message),
+      value: MsgMintONFT.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgMintONFTProtoMsg): MsgMintONFT {
@@ -1189,9 +1185,9 @@ export const MsgMintONFT = {
   toProtoMsg(message: MsgMintONFT): MsgMintONFTProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgMintONFT",
-      value: MsgMintONFT.encode(message).finish(),
+      value: MsgMintONFT.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgMintONFTResponse(): MsgMintONFTResponse {
   return {};
@@ -1239,16 +1235,16 @@ export const MsgMintONFTResponse = {
   toProtoMsg(message: MsgMintONFTResponse): MsgMintONFTResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgMintONFTResponse",
-      value: MsgMintONFTResponse.encode(message).finish(),
+      value: MsgMintONFTResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgTransferONFT(): MsgTransferONFT {
   return {
     id: "",
     denomId: "",
     sender: "",
-    recipient: "",
+    recipient: ""
   };
 }
 export const MsgTransferONFT = {
@@ -1332,7 +1328,7 @@ export const MsgTransferONFT = {
   toAminoMsg(message: MsgTransferONFT): MsgTransferONFTAminoMsg {
     return {
       type: "OmniFlix/onft/MsgTransferONFT",
-      value: MsgTransferONFT.toAmino(message),
+      value: MsgTransferONFT.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgTransferONFTProtoMsg): MsgTransferONFT {
@@ -1344,9 +1340,9 @@ export const MsgTransferONFT = {
   toProtoMsg(message: MsgTransferONFT): MsgTransferONFTProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferONFT",
-      value: MsgTransferONFT.encode(message).finish(),
+      value: MsgTransferONFT.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgTransferONFTResponse(): MsgTransferONFTResponse {
   return {};
@@ -1394,15 +1390,15 @@ export const MsgTransferONFTResponse = {
   toProtoMsg(message: MsgTransferONFTResponse): MsgTransferONFTResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgTransferONFTResponse",
-      value: MsgTransferONFTResponse.encode(message).finish(),
+      value: MsgTransferONFTResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgBurnONFT(): MsgBurnONFT {
   return {
     id: "",
     denomId: "",
-    sender: "",
+    sender: ""
   };
 }
 export const MsgBurnONFT = {
@@ -1475,7 +1471,7 @@ export const MsgBurnONFT = {
   toAminoMsg(message: MsgBurnONFT): MsgBurnONFTAminoMsg {
     return {
       type: "OmniFlix/onft/MsgBurnONFT",
-      value: MsgBurnONFT.toAmino(message),
+      value: MsgBurnONFT.toAmino(message)
     };
   },
   fromProtoMsg(message: MsgBurnONFTProtoMsg): MsgBurnONFT {
@@ -1487,9 +1483,9 @@ export const MsgBurnONFT = {
   toProtoMsg(message: MsgBurnONFT): MsgBurnONFTProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgBurnONFT",
-      value: MsgBurnONFT.encode(message).finish(),
+      value: MsgBurnONFT.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgBurnONFTResponse(): MsgBurnONFTResponse {
   return {};
@@ -1537,14 +1533,14 @@ export const MsgBurnONFTResponse = {
   toProtoMsg(message: MsgBurnONFTResponse): MsgBurnONFTResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgBurnONFTResponse",
-      value: MsgBurnONFTResponse.encode(message).finish(),
+      value: MsgBurnONFTResponse.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const MsgUpdateParams = {
@@ -1614,9 +1610,9 @@ export const MsgUpdateParams = {
   toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateParams",
-      value: MsgUpdateParams.encode(message).finish(),
+      value: MsgUpdateParams.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
@@ -1664,9 +1660,9 @@ export const MsgUpdateParamsResponse = {
   toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.MsgUpdateParamsResponse",
-      value: MsgUpdateParamsResponse.encode(message).finish(),
+      value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  },
+  }
 };
 export interface Msg {
   CreateDenom(request: MsgCreateDenom): Promise<MsgCreateDenomResponse>;
@@ -1679,7 +1675,7 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the onft module
    * parameters. The authority is hard-coded to the onft module account.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
@@ -1700,41 +1696,41 @@ export class MsgClientImpl implements Msg {
   CreateDenom(request: MsgCreateDenom): Promise<MsgCreateDenomResponse> {
     const data = MsgCreateDenom.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.onft.v1beta1.Msg", "CreateDenom", data);
-    return promise.then((data) => MsgCreateDenomResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgCreateDenomResponse.decode(new BinaryReader(data)));
   }
   UpdateDenom(request: MsgUpdateDenom): Promise<MsgUpdateDenomResponse> {
     const data = MsgUpdateDenom.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.onft.v1beta1.Msg", "UpdateDenom", data);
-    return promise.then((data) => MsgUpdateDenomResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateDenomResponse.decode(new BinaryReader(data)));
   }
   TransferDenom(request: MsgTransferDenom): Promise<MsgTransferDenomResponse> {
     const data = MsgTransferDenom.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.onft.v1beta1.Msg", "TransferDenom", data);
-    return promise.then((data) => MsgTransferDenomResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgTransferDenomResponse.decode(new BinaryReader(data)));
   }
   PurgeDenom(request: MsgPurgeDenom): Promise<MsgPurgeDenomResponse> {
     const data = MsgPurgeDenom.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.onft.v1beta1.Msg", "PurgeDenom", data);
-    return promise.then((data) => MsgPurgeDenomResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgPurgeDenomResponse.decode(new BinaryReader(data)));
   }
   MintONFT(request: MsgMintONFT): Promise<MsgMintONFTResponse> {
     const data = MsgMintONFT.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.onft.v1beta1.Msg", "MintONFT", data);
-    return promise.then((data) => MsgMintONFTResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgMintONFTResponse.decode(new BinaryReader(data)));
   }
   TransferONFT(request: MsgTransferONFT): Promise<MsgTransferONFTResponse> {
     const data = MsgTransferONFT.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.onft.v1beta1.Msg", "TransferONFT", data);
-    return promise.then((data) => MsgTransferONFTResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgTransferONFTResponse.decode(new BinaryReader(data)));
   }
   BurnONFT(request: MsgBurnONFT): Promise<MsgBurnONFTResponse> {
     const data = MsgBurnONFT.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.onft.v1beta1.Msg", "BurnONFT", data);
-    return promise.then((data) => MsgBurnONFTResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgBurnONFTResponse.decode(new BinaryReader(data)));
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("OmniFlix.onft.v1beta1.Msg", "UpdateParams", data);
-    return promise.then((data) => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
+    return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
   }
 }

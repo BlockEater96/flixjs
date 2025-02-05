@@ -25,7 +25,7 @@ export interface InterchainAccountAminoMsg {
 function createBaseInterchainAccount(): InterchainAccount {
   return {
     baseAccount: undefined,
-    accountOwner: "",
+    accountOwner: ""
   };
 }
 export const InterchainAccount = {
@@ -89,7 +89,7 @@ export const InterchainAccount = {
   toAminoMsg(message: InterchainAccount): InterchainAccountAminoMsg {
     return {
       type: "cosmos-sdk/InterchainAccount",
-      value: InterchainAccount.toAmino(message),
+      value: InterchainAccount.toAmino(message)
     };
   },
   fromProtoMsg(message: InterchainAccountProtoMsg): InterchainAccount {
@@ -101,7 +101,7 @@ export const InterchainAccount = {
   toProtoMsg(message: InterchainAccount): InterchainAccountProtoMsg {
     return {
       typeUrl: "/ibc.applications.interchain_accounts.v1.InterchainAccount",
-      value: InterchainAccount.encode(message).finish(),
+      value: InterchainAccount.encode(message).finish()
     };
-  },
+  }
 };

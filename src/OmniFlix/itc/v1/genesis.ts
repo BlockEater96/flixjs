@@ -32,7 +32,7 @@ function createBaseGenesisState(): GenesisState {
     campaigns: [],
     nextCampaignNumber: BigInt(0),
     claims: [],
-    params: Params.fromPartial({}),
+    params: Params.fromPartial({})
   };
 }
 export const GenesisState = {
@@ -80,11 +80,11 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.campaigns = object.campaigns?.map((e) => Campaign.fromPartial(e)) || [];
+    message.campaigns = object.campaigns?.map(e => Campaign.fromPartial(e)) || [];
     if (object.nextCampaignNumber !== undefined && object.nextCampaignNumber !== null) {
       message.nextCampaignNumber = BigInt(object.nextCampaignNumber.toString());
     }
-    message.claims = object.claims?.map((e) => Claim.fromPartial(e)) || [];
+    message.claims = object.claims?.map(e => Claim.fromPartial(e)) || [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     }
@@ -92,11 +92,11 @@ export const GenesisState = {
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
-    message.campaigns = object.campaigns?.map((e) => Campaign.fromAmino(e)) || [];
+    message.campaigns = object.campaigns?.map(e => Campaign.fromAmino(e)) || [];
     if (object.next_campaign_number !== undefined && object.next_campaign_number !== null) {
       message.nextCampaignNumber = BigInt(object.next_campaign_number);
     }
-    message.claims = object.claims?.map((e) => Claim.fromAmino(e)) || [];
+    message.claims = object.claims?.map(e => Claim.fromAmino(e)) || [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
@@ -105,14 +105,13 @@ export const GenesisState = {
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     if (message.campaigns) {
-      obj.campaigns = message.campaigns.map((e) => (e ? Campaign.toAmino(e) : undefined));
+      obj.campaigns = message.campaigns.map(e => e ? Campaign.toAmino(e) : undefined);
     } else {
       obj.campaigns = message.campaigns;
     }
-    obj.next_campaign_number =
-      message.nextCampaignNumber !== BigInt(0) ? message.nextCampaignNumber?.toString() : undefined;
+    obj.next_campaign_number = message.nextCampaignNumber !== BigInt(0) ? message.nextCampaignNumber?.toString() : undefined;
     if (message.claims) {
-      obj.claims = message.claims.map((e) => (e ? Claim.toAmino(e) : undefined));
+      obj.claims = message.claims.map(e => e ? Claim.toAmino(e) : undefined);
     } else {
       obj.claims = message.claims;
     }
@@ -131,7 +130,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/OmniFlix.itc.v1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

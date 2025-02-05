@@ -88,7 +88,7 @@ function createBaseClass(): Class {
     description: "",
     uri: "",
     uriHash: "",
-    data: undefined,
+    data: undefined
   };
 }
 export const Class = {
@@ -207,7 +207,7 @@ export const Class = {
   toAminoMsg(message: Class): ClassAminoMsg {
     return {
       type: "cosmos-sdk/Class",
-      value: Class.toAmino(message),
+      value: Class.toAmino(message)
     };
   },
   fromProtoMsg(message: ClassProtoMsg): Class {
@@ -219,9 +219,9 @@ export const Class = {
   toProtoMsg(message: Class): ClassProtoMsg {
     return {
       typeUrl: "/cosmos.nft.v1beta1.Class",
-      value: Class.encode(message).finish(),
+      value: Class.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseNFT(): NFT {
   return {
@@ -229,7 +229,7 @@ function createBaseNFT(): NFT {
     id: "",
     uri: "",
     uriHash: "",
-    data: undefined,
+    data: undefined
   };
 }
 export const NFT = {
@@ -326,7 +326,7 @@ export const NFT = {
   toAminoMsg(message: NFT): NFTAminoMsg {
     return {
       type: "cosmos-sdk/NFT",
-      value: NFT.toAmino(message),
+      value: NFT.toAmino(message)
     };
   },
   fromProtoMsg(message: NFTProtoMsg): NFT {
@@ -338,7 +338,7 @@ export const NFT = {
   toProtoMsg(message: NFT): NFTProtoMsg {
     return {
       typeUrl: "/cosmos.nft.v1beta1.NFT",
-      value: NFT.encode(message).finish(),
+      value: NFT.encode(message).finish()
     };
-  },
+  }
 };

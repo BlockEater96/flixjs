@@ -20,7 +20,7 @@ export interface ParamsAminoMsg {
 }
 function createBaseParams(): Params {
   return {
-    denomCreationFee: Coin.fromPartial({}),
+    denomCreationFee: Coin.fromPartial({})
   };
 }
 export const Params = {
@@ -79,7 +79,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/OmniFlix.onft.v1beta1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

@@ -110,7 +110,7 @@ function createBaseProof(): Proof {
     total: BigInt(0),
     index: BigInt(0),
     leafHash: new Uint8Array(),
-    aunts: [],
+    aunts: []
   };
 }
 export const Proof = {
@@ -165,7 +165,7 @@ export const Proof = {
       message.index = BigInt(object.index.toString());
     }
     message.leafHash = object.leafHash ?? new Uint8Array();
-    message.aunts = object.aunts?.map((e) => e) || [];
+    message.aunts = object.aunts?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ProofAmino): Proof {
@@ -179,7 +179,7 @@ export const Proof = {
     if (object.leaf_hash !== undefined && object.leaf_hash !== null) {
       message.leafHash = bytesFromBase64(object.leaf_hash);
     }
-    message.aunts = object.aunts?.map((e) => bytesFromBase64(e)) || [];
+    message.aunts = object.aunts?.map(e => bytesFromBase64(e)) || [];
     return message;
   },
   toAmino(message: Proof): ProofAmino {
@@ -188,7 +188,7 @@ export const Proof = {
     obj.index = message.index !== BigInt(0) ? message.index?.toString() : undefined;
     obj.leaf_hash = message.leafHash ? base64FromBytes(message.leafHash) : undefined;
     if (message.aunts) {
-      obj.aunts = message.aunts.map((e) => base64FromBytes(e));
+      obj.aunts = message.aunts.map(e => base64FromBytes(e));
     } else {
       obj.aunts = message.aunts;
     }
@@ -206,14 +206,14 @@ export const Proof = {
   toProtoMsg(message: Proof): ProofProtoMsg {
     return {
       typeUrl: "/tendermint.crypto.Proof",
-      value: Proof.encode(message).finish(),
+      value: Proof.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseValueOp(): ValueOp {
   return {
     key: new Uint8Array(),
-    proof: undefined,
+    proof: undefined
   };
 }
 export const ValueOp = {
@@ -283,15 +283,15 @@ export const ValueOp = {
   toProtoMsg(message: ValueOp): ValueOpProtoMsg {
     return {
       typeUrl: "/tendermint.crypto.ValueOp",
-      value: ValueOp.encode(message).finish(),
+      value: ValueOp.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseDominoOp(): DominoOp {
   return {
     key: "",
     input: "",
-    output: "",
+    output: ""
   };
 }
 export const DominoOp = {
@@ -370,15 +370,15 @@ export const DominoOp = {
   toProtoMsg(message: DominoOp): DominoOpProtoMsg {
     return {
       typeUrl: "/tendermint.crypto.DominoOp",
-      value: DominoOp.encode(message).finish(),
+      value: DominoOp.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseProofOp(): ProofOp {
   return {
     type: "",
     key: new Uint8Array(),
-    data: new Uint8Array(),
+    data: new Uint8Array()
   };
 }
 export const ProofOp = {
@@ -457,13 +457,13 @@ export const ProofOp = {
   toProtoMsg(message: ProofOp): ProofOpProtoMsg {
     return {
       typeUrl: "/tendermint.crypto.ProofOp",
-      value: ProofOp.encode(message).finish(),
+      value: ProofOp.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseProofOps(): ProofOps {
   return {
-    ops: [],
+    ops: []
   };
 }
 export const ProofOps = {
@@ -493,18 +493,18 @@ export const ProofOps = {
   },
   fromPartial<I extends Exact<DeepPartial<ProofOps>, I>>(object: I): ProofOps {
     const message = createBaseProofOps();
-    message.ops = object.ops?.map((e) => ProofOp.fromPartial(e)) || [];
+    message.ops = object.ops?.map(e => ProofOp.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ProofOpsAmino): ProofOps {
     const message = createBaseProofOps();
-    message.ops = object.ops?.map((e) => ProofOp.fromAmino(e)) || [];
+    message.ops = object.ops?.map(e => ProofOp.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ProofOps): ProofOpsAmino {
     const obj: any = {};
     if (message.ops) {
-      obj.ops = message.ops.map((e) => (e ? ProofOp.toAmino(e) : undefined));
+      obj.ops = message.ops.map(e => e ? ProofOp.toAmino(e) : undefined);
     } else {
       obj.ops = message.ops;
     }
@@ -522,7 +522,7 @@ export const ProofOps = {
   toProtoMsg(message: ProofOps): ProofOpsProtoMsg {
     return {
       typeUrl: "/tendermint.crypto.ProofOps",
-      value: ProofOps.encode(message).finish(),
+      value: ProofOps.encode(message).finish()
     };
-  },
+  }
 };

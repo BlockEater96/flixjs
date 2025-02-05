@@ -1,21 +1,6 @@
 //@ts-nocheck
 /* eslint-disable */
-import {
-  Deposit,
-  DepositAmino,
-  Vote,
-  VoteAmino,
-  Proposal,
-  ProposalAmino,
-  DepositParams,
-  DepositParamsAmino,
-  VotingParams,
-  VotingParamsAmino,
-  TallyParams,
-  TallyParamsAmino,
-  Params,
-  ParamsAmino,
-} from "./gov";
+import { Deposit, DepositAmino, Vote, VoteAmino, Proposal, ProposalAmino, DepositParams, DepositParamsAmino, VotingParams, VotingParamsAmino, TallyParams, TallyParamsAmino, Params, ParamsAmino } from "./gov";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, Exact } from "../../../helpers";
 export const protobufPackage = "cosmos.gov.v1";
@@ -49,7 +34,7 @@ export interface GenesisState {
   tallyParams?: TallyParams;
   /**
    * params defines all the paramaters of x/gov module.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   params?: Params;
@@ -88,7 +73,7 @@ export interface GenesisStateAmino {
   tally_params?: TallyParamsAmino;
   /**
    * params defines all the paramaters of x/gov module.
-   *
+   * 
    * Since: cosmos-sdk 0.47
    */
   params?: ParamsAmino;
@@ -106,7 +91,7 @@ function createBaseGenesisState(): GenesisState {
     depositParams: undefined,
     votingParams: undefined,
     tallyParams: undefined,
-    params: undefined,
+    params: undefined
   };
 }
 export const GenesisState = {
@@ -181,9 +166,9 @@ export const GenesisState = {
     if (object.startingProposalId !== undefined && object.startingProposalId !== null) {
       message.startingProposalId = BigInt(object.startingProposalId.toString());
     }
-    message.deposits = object.deposits?.map((e) => Deposit.fromPartial(e)) || [];
-    message.votes = object.votes?.map((e) => Vote.fromPartial(e)) || [];
-    message.proposals = object.proposals?.map((e) => Proposal.fromPartial(e)) || [];
+    message.deposits = object.deposits?.map(e => Deposit.fromPartial(e)) || [];
+    message.votes = object.votes?.map(e => Vote.fromPartial(e)) || [];
+    message.proposals = object.proposals?.map(e => Proposal.fromPartial(e)) || [];
     if (object.depositParams !== undefined && object.depositParams !== null) {
       message.depositParams = DepositParams.fromPartial(object.depositParams);
     }
@@ -203,9 +188,9 @@ export const GenesisState = {
     if (object.starting_proposal_id !== undefined && object.starting_proposal_id !== null) {
       message.startingProposalId = BigInt(object.starting_proposal_id);
     }
-    message.deposits = object.deposits?.map((e) => Deposit.fromAmino(e)) || [];
-    message.votes = object.votes?.map((e) => Vote.fromAmino(e)) || [];
-    message.proposals = object.proposals?.map((e) => Proposal.fromAmino(e)) || [];
+    message.deposits = object.deposits?.map(e => Deposit.fromAmino(e)) || [];
+    message.votes = object.votes?.map(e => Vote.fromAmino(e)) || [];
+    message.proposals = object.proposals?.map(e => Proposal.fromAmino(e)) || [];
     if (object.deposit_params !== undefined && object.deposit_params !== null) {
       message.depositParams = DepositParams.fromAmino(object.deposit_params);
     }
@@ -222,20 +207,19 @@ export const GenesisState = {
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
-    obj.starting_proposal_id =
-      message.startingProposalId !== BigInt(0) ? message.startingProposalId?.toString() : undefined;
+    obj.starting_proposal_id = message.startingProposalId !== BigInt(0) ? message.startingProposalId?.toString() : undefined;
     if (message.deposits) {
-      obj.deposits = message.deposits.map((e) => (e ? Deposit.toAmino(e) : undefined));
+      obj.deposits = message.deposits.map(e => e ? Deposit.toAmino(e) : undefined);
     } else {
       obj.deposits = message.deposits;
     }
     if (message.votes) {
-      obj.votes = message.votes.map((e) => (e ? Vote.toAmino(e) : undefined));
+      obj.votes = message.votes.map(e => e ? Vote.toAmino(e) : undefined);
     } else {
       obj.votes = message.votes;
     }
     if (message.proposals) {
-      obj.proposals = message.proposals.map((e) => (e ? Proposal.toAmino(e) : undefined));
+      obj.proposals = message.proposals.map(e => e ? Proposal.toAmino(e) : undefined);
     } else {
       obj.proposals = message.proposals;
     }
@@ -251,7 +235,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/v1/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -263,7 +247,7 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/cosmos.gov.v1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };

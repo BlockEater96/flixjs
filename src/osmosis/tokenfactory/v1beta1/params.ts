@@ -35,7 +35,7 @@ export interface ParamsAminoMsg {
 function createBaseParams(): Params {
   return {
     denomCreationFee: [],
-    denomCreationGasConsume: undefined,
+    denomCreationGasConsume: undefined
   };
 }
 export const Params = {
@@ -71,7 +71,7 @@ export const Params = {
   },
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
-    message.denomCreationFee = object.denomCreationFee?.map((e) => Coin.fromPartial(e)) || [];
+    message.denomCreationFee = object.denomCreationFee?.map(e => Coin.fromPartial(e)) || [];
     if (object.denomCreationGasConsume !== undefined && object.denomCreationGasConsume !== null) {
       message.denomCreationGasConsume = BigInt(object.denomCreationGasConsume.toString());
     }
@@ -79,7 +79,7 @@ export const Params = {
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
-    message.denomCreationFee = object.denom_creation_fee?.map((e) => Coin.fromAmino(e)) || [];
+    message.denomCreationFee = object.denom_creation_fee?.map(e => Coin.fromAmino(e)) || [];
     if (object.denom_creation_gas_consume !== undefined && object.denom_creation_gas_consume !== null) {
       message.denomCreationGasConsume = BigInt(object.denom_creation_gas_consume);
     }
@@ -88,12 +88,11 @@ export const Params = {
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
     if (message.denomCreationFee) {
-      obj.denom_creation_fee = message.denomCreationFee.map((e) => (e ? Coin.toAmino(e) : undefined));
+      obj.denom_creation_fee = message.denomCreationFee.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
       obj.denom_creation_fee = message.denomCreationFee;
     }
-    obj.denom_creation_gas_consume =
-      message.denomCreationGasConsume !== BigInt(0) ? message.denomCreationGasConsume?.toString() : undefined;
+    obj.denom_creation_gas_consume = message.denomCreationGasConsume !== BigInt(0) ? message.denomCreationGasConsume?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -102,7 +101,7 @@ export const Params = {
   toAminoMsg(message: Params): ParamsAminoMsg {
     return {
       type: "osmosis/tokenfactory/params",
-      value: Params.toAmino(message),
+      value: Params.toAmino(message)
     };
   },
   fromProtoMsg(message: ParamsProtoMsg): Params {
@@ -114,7 +113,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/osmosis.tokenfactory.v1beta1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };

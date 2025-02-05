@@ -168,7 +168,7 @@ function createBaseEventListNFT(): EventListNFT {
     id: "",
     nftId: "",
     denomId: "",
-    owner: "",
+    owner: ""
   };
 }
 export const EventListNFT = {
@@ -258,16 +258,16 @@ export const EventListNFT = {
   toProtoMsg(message: EventListNFT): EventListNFTProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.EventListNFT",
-      value: EventListNFT.encode(message).finish(),
+      value: EventListNFT.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEventEditListing(): EventEditListing {
   return {
     id: "",
     nftId: "",
     denomId: "",
-    owner: "",
+    owner: ""
   };
 }
 export const EventEditListing = {
@@ -357,16 +357,16 @@ export const EventEditListing = {
   toProtoMsg(message: EventEditListing): EventEditListingProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.EventEditListing",
-      value: EventEditListing.encode(message).finish(),
+      value: EventEditListing.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEventDeListNFT(): EventDeListNFT {
   return {
     id: "",
     nftId: "",
     denomId: "",
-    owner: "",
+    owner: ""
   };
 }
 export const EventDeListNFT = {
@@ -456,9 +456,9 @@ export const EventDeListNFT = {
   toProtoMsg(message: EventDeListNFT): EventDeListNFTProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.EventDeListNFT",
-      value: EventDeListNFT.encode(message).finish(),
+      value: EventDeListNFT.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEventBuyNFT(): EventBuyNFT {
   return {
@@ -466,7 +466,7 @@ function createBaseEventBuyNFT(): EventBuyNFT {
     nftId: "",
     denomId: "",
     owner: "",
-    buyer: "",
+    buyer: ""
   };
 }
 export const EventBuyNFT = {
@@ -567,9 +567,9 @@ export const EventBuyNFT = {
   toProtoMsg(message: EventBuyNFT): EventBuyNFTProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.EventBuyNFT",
-      value: EventBuyNFT.encode(message).finish(),
+      value: EventBuyNFT.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEventCreateAuction(): EventCreateAuction {
   return {
@@ -577,7 +577,7 @@ function createBaseEventCreateAuction(): EventCreateAuction {
     nftId: "",
     denomId: "",
     owner: "",
-    minPrice: "",
+    minPrice: ""
   };
 }
 export const EventCreateAuction = {
@@ -678,16 +678,16 @@ export const EventCreateAuction = {
   toProtoMsg(message: EventCreateAuction): EventCreateAuctionProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.EventCreateAuction",
-      value: EventCreateAuction.encode(message).finish(),
+      value: EventCreateAuction.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEventCancelAuction(): EventCancelAuction {
   return {
     id: "",
     nftId: "",
     denomId: "",
-    owner: "",
+    owner: ""
   };
 }
 export const EventCancelAuction = {
@@ -777,9 +777,9 @@ export const EventCancelAuction = {
   toProtoMsg(message: EventCancelAuction): EventCancelAuctionProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.EventCancelAuction",
-      value: EventCancelAuction.encode(message).finish(),
+      value: EventCancelAuction.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEventPlaceBid(): EventPlaceBid {
   return {
@@ -787,7 +787,7 @@ function createBaseEventPlaceBid(): EventPlaceBid {
     nftId: "",
     denomId: "",
     bidder: "",
-    amount: "",
+    amount: ""
   };
 }
 export const EventPlaceBid = {
@@ -888,7 +888,7 @@ export const EventPlaceBid = {
   toProtoMsg(message: EventPlaceBid): EventPlaceBidProtoMsg {
     return {
       typeUrl: "/OmniFlix.marketplace.v1beta1.EventPlaceBid",
-      value: EventPlaceBid.encode(message).finish(),
+      value: EventPlaceBid.encode(message).finish()
     };
-  },
+  }
 };

@@ -14,7 +14,9 @@ jobs:
           submodules: 'recursive'
 
       - name: Update Git Submodules
-        run: git submodule update --init --recursive --remote
+        run: |
+          git submodule sync --recursive
+          git submodule update --init --recursive --remote
 
       - name: Setup Node.js
         uses: actions/setup-node@v3

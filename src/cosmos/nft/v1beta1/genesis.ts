@@ -51,7 +51,7 @@ export interface EntryAminoMsg {
 function createBaseGenesisState(): GenesisState {
   return {
     classes: [],
-    entries: [],
+    entries: []
   };
 }
 export const GenesisState = {
@@ -87,25 +87,25 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.classes = object.classes?.map((e) => Class.fromPartial(e)) || [];
-    message.entries = object.entries?.map((e) => Entry.fromPartial(e)) || [];
+    message.classes = object.classes?.map(e => Class.fromPartial(e)) || [];
+    message.entries = object.entries?.map(e => Entry.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
-    message.classes = object.classes?.map((e) => Class.fromAmino(e)) || [];
-    message.entries = object.entries?.map((e) => Entry.fromAmino(e)) || [];
+    message.classes = object.classes?.map(e => Class.fromAmino(e)) || [];
+    message.entries = object.entries?.map(e => Entry.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     if (message.classes) {
-      obj.classes = message.classes.map((e) => (e ? Class.toAmino(e) : undefined));
+      obj.classes = message.classes.map(e => e ? Class.toAmino(e) : undefined);
     } else {
       obj.classes = message.classes;
     }
     if (message.entries) {
-      obj.entries = message.entries.map((e) => (e ? Entry.toAmino(e) : undefined));
+      obj.entries = message.entries.map(e => e ? Entry.toAmino(e) : undefined);
     } else {
       obj.entries = message.entries;
     }
@@ -117,7 +117,7 @@ export const GenesisState = {
   toAminoMsg(message: GenesisState): GenesisStateAminoMsg {
     return {
       type: "cosmos-sdk/GenesisState",
-      value: GenesisState.toAmino(message),
+      value: GenesisState.toAmino(message)
     };
   },
   fromProtoMsg(message: GenesisStateProtoMsg): GenesisState {
@@ -129,14 +129,14 @@ export const GenesisState = {
   toProtoMsg(message: GenesisState): GenesisStateProtoMsg {
     return {
       typeUrl: "/cosmos.nft.v1beta1.GenesisState",
-      value: GenesisState.encode(message).finish(),
+      value: GenesisState.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseEntry(): Entry {
   return {
     owner: "",
-    nfts: [],
+    nfts: []
   };
 }
 export const Entry = {
@@ -173,7 +173,7 @@ export const Entry = {
   fromPartial<I extends Exact<DeepPartial<Entry>, I>>(object: I): Entry {
     const message = createBaseEntry();
     message.owner = object.owner ?? "";
-    message.nfts = object.nfts?.map((e) => NFT.fromPartial(e)) || [];
+    message.nfts = object.nfts?.map(e => NFT.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: EntryAmino): Entry {
@@ -181,14 +181,14 @@ export const Entry = {
     if (object.owner !== undefined && object.owner !== null) {
       message.owner = object.owner;
     }
-    message.nfts = object.nfts?.map((e) => NFT.fromAmino(e)) || [];
+    message.nfts = object.nfts?.map(e => NFT.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Entry): EntryAmino {
     const obj: any = {};
     obj.owner = message.owner === "" ? undefined : message.owner;
     if (message.nfts) {
-      obj.nfts = message.nfts.map((e) => (e ? NFT.toAmino(e) : undefined));
+      obj.nfts = message.nfts.map(e => e ? NFT.toAmino(e) : undefined);
     } else {
       obj.nfts = message.nfts;
     }
@@ -200,7 +200,7 @@ export const Entry = {
   toAminoMsg(message: Entry): EntryAminoMsg {
     return {
       type: "cosmos-sdk/Entry",
-      value: Entry.toAmino(message),
+      value: Entry.toAmino(message)
     };
   },
   fromProtoMsg(message: EntryProtoMsg): Entry {
@@ -212,7 +212,7 @@ export const Entry = {
   toProtoMsg(message: Entry): EntryProtoMsg {
     return {
       typeUrl: "/cosmos.nft.v1beta1.Entry",
-      value: Entry.encode(message).finish(),
+      value: Entry.encode(message).finish()
     };
-  },
+  }
 };

@@ -304,7 +304,7 @@ function createBaseConnectionEnd(): ConnectionEnd {
     versions: [],
     state: 0,
     counterparty: Counterparty.fromPartial({}),
-    delayPeriod: BigInt(0),
+    delayPeriod: BigInt(0)
   };
 }
 export const ConnectionEnd = {
@@ -359,7 +359,7 @@ export const ConnectionEnd = {
   fromPartial<I extends Exact<DeepPartial<ConnectionEnd>, I>>(object: I): ConnectionEnd {
     const message = createBaseConnectionEnd();
     message.clientId = object.clientId ?? "";
-    message.versions = object.versions?.map((e) => Version.fromPartial(e)) || [];
+    message.versions = object.versions?.map(e => Version.fromPartial(e)) || [];
     message.state = object.state ?? 0;
     if (object.counterparty !== undefined && object.counterparty !== null) {
       message.counterparty = Counterparty.fromPartial(object.counterparty);
@@ -374,7 +374,7 @@ export const ConnectionEnd = {
     if (object.client_id !== undefined && object.client_id !== null) {
       message.clientId = object.client_id;
     }
-    message.versions = object.versions?.map((e) => Version.fromAmino(e)) || [];
+    message.versions = object.versions?.map(e => Version.fromAmino(e)) || [];
     if (object.state !== undefined && object.state !== null) {
       message.state = object.state;
     }
@@ -390,7 +390,7 @@ export const ConnectionEnd = {
     const obj: any = {};
     obj.client_id = message.clientId === "" ? undefined : message.clientId;
     if (message.versions) {
-      obj.versions = message.versions.map((e) => (e ? Version.toAmino(e) : undefined));
+      obj.versions = message.versions.map(e => e ? Version.toAmino(e) : undefined);
     } else {
       obj.versions = message.versions;
     }
@@ -405,7 +405,7 @@ export const ConnectionEnd = {
   toAminoMsg(message: ConnectionEnd): ConnectionEndAminoMsg {
     return {
       type: "cosmos-sdk/ConnectionEnd",
-      value: ConnectionEnd.toAmino(message),
+      value: ConnectionEnd.toAmino(message)
     };
   },
   fromProtoMsg(message: ConnectionEndProtoMsg): ConnectionEnd {
@@ -417,9 +417,9 @@ export const ConnectionEnd = {
   toProtoMsg(message: ConnectionEnd): ConnectionEndProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.ConnectionEnd",
-      value: ConnectionEnd.encode(message).finish(),
+      value: ConnectionEnd.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseIdentifiedConnection(): IdentifiedConnection {
   return {
@@ -428,7 +428,7 @@ function createBaseIdentifiedConnection(): IdentifiedConnection {
     versions: [],
     state: 0,
     counterparty: Counterparty.fromPartial({}),
-    delayPeriod: BigInt(0),
+    delayPeriod: BigInt(0)
   };
 }
 export const IdentifiedConnection = {
@@ -490,7 +490,7 @@ export const IdentifiedConnection = {
     const message = createBaseIdentifiedConnection();
     message.id = object.id ?? "";
     message.clientId = object.clientId ?? "";
-    message.versions = object.versions?.map((e) => Version.fromPartial(e)) || [];
+    message.versions = object.versions?.map(e => Version.fromPartial(e)) || [];
     message.state = object.state ?? 0;
     if (object.counterparty !== undefined && object.counterparty !== null) {
       message.counterparty = Counterparty.fromPartial(object.counterparty);
@@ -508,7 +508,7 @@ export const IdentifiedConnection = {
     if (object.client_id !== undefined && object.client_id !== null) {
       message.clientId = object.client_id;
     }
-    message.versions = object.versions?.map((e) => Version.fromAmino(e)) || [];
+    message.versions = object.versions?.map(e => Version.fromAmino(e)) || [];
     if (object.state !== undefined && object.state !== null) {
       message.state = object.state;
     }
@@ -525,7 +525,7 @@ export const IdentifiedConnection = {
     obj.id = message.id === "" ? undefined : message.id;
     obj.client_id = message.clientId === "" ? undefined : message.clientId;
     if (message.versions) {
-      obj.versions = message.versions.map((e) => (e ? Version.toAmino(e) : undefined));
+      obj.versions = message.versions.map(e => e ? Version.toAmino(e) : undefined);
     } else {
       obj.versions = message.versions;
     }
@@ -540,7 +540,7 @@ export const IdentifiedConnection = {
   toAminoMsg(message: IdentifiedConnection): IdentifiedConnectionAminoMsg {
     return {
       type: "cosmos-sdk/IdentifiedConnection",
-      value: IdentifiedConnection.toAmino(message),
+      value: IdentifiedConnection.toAmino(message)
     };
   },
   fromProtoMsg(message: IdentifiedConnectionProtoMsg): IdentifiedConnection {
@@ -552,15 +552,15 @@ export const IdentifiedConnection = {
   toProtoMsg(message: IdentifiedConnection): IdentifiedConnectionProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.IdentifiedConnection",
-      value: IdentifiedConnection.encode(message).finish(),
+      value: IdentifiedConnection.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseCounterparty(): Counterparty {
   return {
     clientId: "",
     connectionId: "",
-    prefix: MerklePrefix.fromPartial({}),
+    prefix: MerklePrefix.fromPartial({})
   };
 }
 export const Counterparty = {
@@ -635,7 +635,7 @@ export const Counterparty = {
   toAminoMsg(message: Counterparty): CounterpartyAminoMsg {
     return {
       type: "cosmos-sdk/Counterparty",
-      value: Counterparty.toAmino(message),
+      value: Counterparty.toAmino(message)
     };
   },
   fromProtoMsg(message: CounterpartyProtoMsg): Counterparty {
@@ -647,13 +647,13 @@ export const Counterparty = {
   toProtoMsg(message: Counterparty): CounterpartyProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.Counterparty",
-      value: Counterparty.encode(message).finish(),
+      value: Counterparty.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseClientPaths(): ClientPaths {
   return {
-    paths: [],
+    paths: []
   };
 }
 export const ClientPaths = {
@@ -683,18 +683,18 @@ export const ClientPaths = {
   },
   fromPartial<I extends Exact<DeepPartial<ClientPaths>, I>>(object: I): ClientPaths {
     const message = createBaseClientPaths();
-    message.paths = object.paths?.map((e) => e) || [];
+    message.paths = object.paths?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ClientPathsAmino): ClientPaths {
     const message = createBaseClientPaths();
-    message.paths = object.paths?.map((e) => e) || [];
+    message.paths = object.paths?.map(e => e) || [];
     return message;
   },
   toAmino(message: ClientPaths): ClientPathsAmino {
     const obj: any = {};
     if (message.paths) {
-      obj.paths = message.paths.map((e) => e);
+      obj.paths = message.paths.map(e => e);
     } else {
       obj.paths = message.paths;
     }
@@ -706,7 +706,7 @@ export const ClientPaths = {
   toAminoMsg(message: ClientPaths): ClientPathsAminoMsg {
     return {
       type: "cosmos-sdk/ClientPaths",
-      value: ClientPaths.toAmino(message),
+      value: ClientPaths.toAmino(message)
     };
   },
   fromProtoMsg(message: ClientPathsProtoMsg): ClientPaths {
@@ -718,14 +718,14 @@ export const ClientPaths = {
   toProtoMsg(message: ClientPaths): ClientPathsProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.ClientPaths",
-      value: ClientPaths.encode(message).finish(),
+      value: ClientPaths.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseConnectionPaths(): ConnectionPaths {
   return {
     clientId: "",
-    paths: [],
+    paths: []
   };
 }
 export const ConnectionPaths = {
@@ -762,7 +762,7 @@ export const ConnectionPaths = {
   fromPartial<I extends Exact<DeepPartial<ConnectionPaths>, I>>(object: I): ConnectionPaths {
     const message = createBaseConnectionPaths();
     message.clientId = object.clientId ?? "";
-    message.paths = object.paths?.map((e) => e) || [];
+    message.paths = object.paths?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ConnectionPathsAmino): ConnectionPaths {
@@ -770,14 +770,14 @@ export const ConnectionPaths = {
     if (object.client_id !== undefined && object.client_id !== null) {
       message.clientId = object.client_id;
     }
-    message.paths = object.paths?.map((e) => e) || [];
+    message.paths = object.paths?.map(e => e) || [];
     return message;
   },
   toAmino(message: ConnectionPaths): ConnectionPathsAmino {
     const obj: any = {};
     obj.client_id = message.clientId === "" ? undefined : message.clientId;
     if (message.paths) {
-      obj.paths = message.paths.map((e) => e);
+      obj.paths = message.paths.map(e => e);
     } else {
       obj.paths = message.paths;
     }
@@ -789,7 +789,7 @@ export const ConnectionPaths = {
   toAminoMsg(message: ConnectionPaths): ConnectionPathsAminoMsg {
     return {
       type: "cosmos-sdk/ConnectionPaths",
-      value: ConnectionPaths.toAmino(message),
+      value: ConnectionPaths.toAmino(message)
     };
   },
   fromProtoMsg(message: ConnectionPathsProtoMsg): ConnectionPaths {
@@ -801,14 +801,14 @@ export const ConnectionPaths = {
   toProtoMsg(message: ConnectionPaths): ConnectionPathsProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.ConnectionPaths",
-      value: ConnectionPaths.encode(message).finish(),
+      value: ConnectionPaths.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseVersion(): Version {
   return {
     identifier: "",
-    features: [],
+    features: []
   };
 }
 export const Version = {
@@ -845,7 +845,7 @@ export const Version = {
   fromPartial<I extends Exact<DeepPartial<Version>, I>>(object: I): Version {
     const message = createBaseVersion();
     message.identifier = object.identifier ?? "";
-    message.features = object.features?.map((e) => e) || [];
+    message.features = object.features?.map(e => e) || [];
     return message;
   },
   fromAmino(object: VersionAmino): Version {
@@ -853,14 +853,14 @@ export const Version = {
     if (object.identifier !== undefined && object.identifier !== null) {
       message.identifier = object.identifier;
     }
-    message.features = object.features?.map((e) => e) || [];
+    message.features = object.features?.map(e => e) || [];
     return message;
   },
   toAmino(message: Version): VersionAmino {
     const obj: any = {};
     obj.identifier = message.identifier === "" ? undefined : message.identifier;
     if (message.features) {
-      obj.features = message.features.map((e) => e);
+      obj.features = message.features.map(e => e);
     } else {
       obj.features = message.features;
     }
@@ -872,7 +872,7 @@ export const Version = {
   toAminoMsg(message: Version): VersionAminoMsg {
     return {
       type: "cosmos-sdk/Version",
-      value: Version.toAmino(message),
+      value: Version.toAmino(message)
     };
   },
   fromProtoMsg(message: VersionProtoMsg): Version {
@@ -884,13 +884,13 @@ export const Version = {
   toProtoMsg(message: Version): VersionProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.Version",
-      value: Version.encode(message).finish(),
+      value: Version.encode(message).finish()
     };
-  },
+  }
 };
 function createBaseParams(): Params {
   return {
-    maxExpectedTimePerBlock: BigInt(0),
+    maxExpectedTimePerBlock: BigInt(0)
   };
 }
 export const Params = {
@@ -934,8 +934,7 @@ export const Params = {
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.max_expected_time_per_block =
-      message.maxExpectedTimePerBlock !== BigInt(0) ? message.maxExpectedTimePerBlock?.toString() : undefined;
+    obj.max_expected_time_per_block = message.maxExpectedTimePerBlock !== BigInt(0) ? message.maxExpectedTimePerBlock?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -944,7 +943,7 @@ export const Params = {
   toAminoMsg(message: Params): ParamsAminoMsg {
     return {
       type: "cosmos-sdk/Params",
-      value: Params.toAmino(message),
+      value: Params.toAmino(message)
     };
   },
   fromProtoMsg(message: ParamsProtoMsg): Params {
@@ -956,7 +955,7 @@ export const Params = {
   toProtoMsg(message: Params): ParamsProtoMsg {
     return {
       typeUrl: "/ibc.core.connection.v1.Params",
-      value: Params.encode(message).finish(),
+      value: Params.encode(message).finish()
     };
-  },
+  }
 };
