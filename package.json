@@ -1,6 +1,6 @@
 {
   "name": "flixjs",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "JS and TS types relating to Protocol Buffers used by Cosmos SDK and other related projects",
   "contributors": [
     "Blockeater <hariom@layerzerox.com>"
@@ -35,12 +35,12 @@
   "scripts": {
     "format": "prettier --write --loglevel warn \"./src/**/*.ts\" \"./scripts/**/*.js\"",
     "precodegen": "./scripts/exports_protos.sh",
-    "codegen": "rm -rf ./src && ./scripts/codegen.js && npm run format",
+    "codegen": "node scripts/codegen.js",
     "prepare-publishing": "./scripts/prepare-publishing.sh",
-    "build": "rm -rf ./build && tsc && npm run prepare-publishing"
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@cosmology/telescope": "^1.0.7",
     "@types/node": "^15.6.2",
