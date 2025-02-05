@@ -4,19 +4,17 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    types:
-      - closed
 
 jobs:
   publish:
-    # Only run if PR is merged to main
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' || github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: 'recursive'
+
+      - name: Update Git Submodules
+        run: git submodule update --init --recursive --remote
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
