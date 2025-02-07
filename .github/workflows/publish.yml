@@ -15,27 +15,13 @@ jobs:
 
       - name: Update Git Submodules
         run: |
-          cd protos/omniflixhub-src
-          git fetch --all
-          git checkout 6d8e061bacf24f712e17c450d1cfc80cdacc78f4
-          cd ../..
-          cd protos/cosmos-sdk
-          git fetch --all
-          git checkout v0.50.11
-          cd ../..
-          cd protos/ibc-go-src
-          git fetch --all
-          git checkout v7.0.0
-          cd ../..
-          cd protos/wasmd-src
-          git fetch --all
-          git checkout v0.54.0
-          cd ../..
-          cd protos/streampay-src
-          git fetch --all
-          git checkout v2.5.0
-          cd ../..
+          git submodule sync
+          git submodule init
+          git submodule update --init --recursive --force
           
+          # Verify all submodules are properly checked out
+          git submodule status
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
